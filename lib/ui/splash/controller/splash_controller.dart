@@ -13,7 +13,7 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    profileRepositories = Injector().profile;
+    //profileRepositories = Injector().profile;
     onEndSplash();
   }
 
@@ -32,13 +32,13 @@ class SplashController extends GetxController {
     // });
 
     Future.delayed(Duration(seconds: 3), () {
-      // if token != null => MainPage, this one is just for testing
+      //if token != null => MainPage, this one is just for testing
       if(token != null) {
         Get.offAll(() => MainPage());
       } else {
         Get.offAll(() => LoginPage());
       }
-    });
+          });
   }
 
 

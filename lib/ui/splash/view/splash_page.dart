@@ -12,13 +12,23 @@ class SplashPage extends GetView<SplashController> {
     return GetBuilder<SplashController>(
         init: SplashController(),
         builder: (value) => InitialWidget(
-          child: Center(
-                child: ImageCustomized(
-                  path: viet_trung_mobile_logo,
-                  width: 178,
-                  height: 250,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(BG_IMG),
+                fit: BoxFit.cover,
+                
+                )
+            ),
+            child: Center(
+              
+                  child: ImageCustomized(
+                    path: LOGO_IMG,
+                    width: 178,
+                    height: 250,
+                  ),
                 ),
-              ),
+          ),
         ));
   }
 }

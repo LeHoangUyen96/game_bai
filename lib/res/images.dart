@@ -18,3 +18,5 @@ const String IC_SHOPPING_CART = "assets/images/icon_shopping_cart.svg";
 const String IC_NOTES = "assets/images/icon_notes.svg";
 const String IC_DOLLAR = "assets/images/icon_dollar.svg";
 
+const String LOGO_IMG = "assets/images/logo_app_viettrung.png";
+const String BG_IMG = "assets/images/background_img.png";
