@@ -17,4 +17,6 @@ const String IC_SAD = "assets/images/icon_sad.svg";
 const String IC_SHOPPING_CART = "assets/images/icon_shopping_cart.svg";
 const String IC_NOTES = "assets/images/icon_notes.svg";
 const String IC_DOLLAR = "assets/images/icon_dollar.svg";
+const String IC_UPDATE_ADDRESS = "assets/images/icon_update_address.svg";
+const String IC_DELETE_ADDRESS = "assets/images/ic_delete_address.svg";
 

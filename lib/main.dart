@@ -1,4 +1,6 @@
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
+import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
@@ -25,7 +27,7 @@ Widget _app() => LayoutBuilder(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashPage(),
+          home: AddressPage(),
           theme: ThemeData(
             brightness: Brightness.light,
             primaryColor: MAIN_COLOR,
@@ -45,5 +47,6 @@ class _Binding extends Bindings {
     Get.lazyPut<RegisterController>(() => RegisterController(), fenix: true);
     Get.lazyPut<MainController>(() => MainController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
+    Get.lazyPut<AddressController>(() => AddressController(), fenix: true);
   }
 }

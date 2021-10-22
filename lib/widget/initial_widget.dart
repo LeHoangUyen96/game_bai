@@ -18,6 +18,7 @@ class InitialWidget extends StatefulWidget {
   final Widget? bottomNavigationBar;
   final bool? isAdd;
   final Widget? iconAdd;
+  final Color? titleAppBarColor;
   
 
   InitialWidget({
@@ -36,6 +37,7 @@ class InitialWidget extends StatefulWidget {
     this.statusBarIconBrightness,
     this.isAdd, 
     this.iconAdd,
+    this.titleAppBarColor
   });
 
   @override
@@ -125,7 +127,7 @@ class _InitialWidgetState extends State<InitialWidget> {
                         : "",
                     style: TextStyle(
                         fontSize: 20,
-                        color: _isDark ? Colors.white : Colors.white),
+                        color: _isDark ? widget.titleAppBarColor : Colors.white),
                   ),
                 )
               : null,
