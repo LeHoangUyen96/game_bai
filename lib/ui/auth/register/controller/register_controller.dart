@@ -1,4 +1,5 @@
 
+import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/data/response/register_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
@@ -22,6 +23,7 @@ class RegisterController extends GetxController implements RegisterContract{
   TextEditingController usernameController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
+  ScreenshotController screenshotController = ScreenshotController();
 
 
 

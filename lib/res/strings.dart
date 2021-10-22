@@ -705,12 +705,27 @@ const String CONSIGNMENT_PRODUCT = 'Tên sản phẩm';
 const String AUTH_FORGOT_PASS_ERROR = 'Email không đúng định dạng';
 const String ERROR_IMAGES = "Chỉ được tải lên tối đa 5 ảnh";
 
+const String LOGIN_EMAIL_PHONE = "Email/SĐT";
+const String LOGIN_PASSWORD = "Mật khẩu";
+const String LOGIN = "Đăng Nhập ";
+const String LOGIN_REGISTER = "Đăng ký ";
+const String LOGIN_EMAIL = "Email";
+const String LOGIN_PHONE = "Số điện thoại";
+const String LOGIN_NAME = "Họ và tên";
+const String LOGIN_CONFIRM_PASSWORD = "Xác nhận lại mật khẩu";
+const String LOGIN_PASSWORD_RECOVERY = "Khôi phục mật khẩu";
+const String LOGIN_EMAIL_OR_PHONE = "Email hoặc số điện thoại";
+const String LOGIN_RESET_PASSWORD = "Đặt lại mật khẩu";
+const String LOGIN_FORGOTPASSWORD = "Quên mật khẩu?";
+const String LOGIN_REGISTER_NOW = "Đăng ký ngay";
+const String LOGIN_NO_ACCOUNT = "Bạn chưa có tài khoản?";
+const String LOGIN_RESET = "Khôi phục ";
 
 
-
-
-
-
+const String PROFILE_PERSONAL_INFOMATION = "Thông tin cá nhân";
+const String PROFILE_CUSTOMERE_CODE = "Mã khách hàng";
+const String PROFILE_ADDRESS = "Sổ địa chỉ";
+const String PROFILE_CHANGE_INFORMATION = "Thay đổi thông tin";
 
 
 

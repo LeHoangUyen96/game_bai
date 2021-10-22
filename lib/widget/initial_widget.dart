@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/res/colors.dart';
 
 class InitialWidget extends StatefulWidget {
   final Widget child;
@@ -125,7 +126,9 @@ class _InitialWidgetState extends State<InitialWidget> {
                         : "",
                     style: TextStyle(
                         fontSize: 20,
-                        color: _isDark ? Colors.white : Colors.white),
+                        // color: _isDark ? Colors.white : Colors.white
+                        color: _isDark ? MAIN_BLACK : Colors.white
+                        ),
                   ),
                 )
               : null,
