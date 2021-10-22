@@ -3,6 +3,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/view/forgot_password_page.dart';
 import 'package:viet_trung_mobile/ui/auth/register/view/register_page.dart';
+import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
@@ -116,8 +117,8 @@ class LoginPage extends GetView<LoginController> {
                               color: BLACK,
                           ),
                            TextFieldCustom(
-                               textController: controller.emailController,
-                               errorText: !controller.isEmailValid ? controller.emailError : null,
+                               textController: controller.passwordController,
+                               errorText: !controller.isPasswordValid ? controller.passwordError : null,
                                hint: LOGIN_PASSWORD,
                                
                            ),
@@ -178,7 +179,8 @@ class LoginPage extends GetView<LoginController> {
                                       ),
                                       InkWell(
                                         onTap: (){
-                                          Get.to(RegisterPage());
+                                          //Get.to(RegisterPage());
+                                          Get.to(ProfilePage());
                                         },
                                         child:  TextCustomized(
                                           text: LOGIN_REGISTER_NOW,

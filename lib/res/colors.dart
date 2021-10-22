@@ -73,6 +73,6 @@ const Color GRAY3 = Color(0xFF999999);
 const Color PINK = Color(0xFFFF9999);
 
 const Color MAIN_BLACK = Color(0xFF131416);
-
+const Color MAIN_GRAY = Color(0xFF787878);
 
 

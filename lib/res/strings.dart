@@ -722,6 +722,10 @@ const String LOGIN_NO_ACCOUNT = "Bạn chưa có tài khoản?";
 const String LOGIN_RESET = "Khôi phục ";
 
 
+const String PROFILE_PERSONAL_INFOMATION = "Thông tin cá nhân";
+const String PROFILE_CUSTOMERE_CODE = "Mã khách hàng";
+const String PROFILE_ADDRESS = "Sổ địa chỉ";
+const String PROFILE_CHANGE_INFORMATION = "Thay đổi thông tin";
 
 
 
