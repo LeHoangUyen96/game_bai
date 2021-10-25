@@ -4,10 +4,10 @@ import 'package:get_storage/get_storage.dart';
 
 class NetworkConfig {
 
-  // static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
-  static const String URL_SERVER = "https://api.baoden.vn/api/v2";
-  // static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
-  static const String URL_SERVER_BASE_CDN = "https://api.baoden.vn";
+   //static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
+  static const String URL_SERVER = "http://backend-viettrung.tekup.vn/api/v1";
+  //static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
+  static const String URL_SERVER_BASE_CDN = "http://backend-viettrung.tekup.vn";
 
   static Map<String, String> onBuildHeader({bool? isMultipart})  {
     String? token = GetStorage().read(KEY_TOKEN);

@@ -62,7 +62,7 @@ class HomeController extends GetxController
     // print('Call onGetProfile');
     profileRepositories!.onGetProfile().then((value) {
       // print('Call onGetProfile $value');
-      profile = value;
+      //profile = value;
     }).catchError((onError) {
       print('onGetProfile onError $onError');
       // profile = ProfileResponse.fromJson({});

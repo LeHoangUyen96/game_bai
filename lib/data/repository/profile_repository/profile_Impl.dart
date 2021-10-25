@@ -7,6 +7,7 @@ import 'package:viet_trung_mobile/data/repository/profile_repository/profile_rep
 import 'package:viet_trung_mobile/data/request/edit_profile_request.dart';
 import 'package:viet_trung_mobile/data/response/auth_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile/data/response/profile_response.dart';
 import 'package:viet_trung_mobile/data/response/update_profile_response.dart';
 import 'package:viet_trung_mobile/data/response/upload_images_response.dart';
@@ -15,13 +16,13 @@ import 'package:get/get_connect.dart';
 
 class ProfileImpl extends GetConnect implements ProfileRepositories {
   @override
-  Future<ProfileResponse> onGetProfile() async {
+  Future<GetProfileResponse> onGetProfile() async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.PROFILE_INFO;
-    final body = null;
-    final responseJson = await post(url, body, headers: header);
+    //final body = null;
+    final responseJson = await get(url,  headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
-      return ProfileResponse.fromJson(responseJson.body);
+      return GetProfileResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }
@@ -85,4 +86,6 @@ class ProfileImpl extends GetConnect implements ProfileRepositories {
     throw ErrorResponse.fromJson(responseJson.body);
 
   }
+
+
 }

@@ -4,6 +4,7 @@ import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/login/contract/login.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
+import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,8 @@ class LoginController extends GetxController implements LoginContract{
   @override
   void onSuccess(User response) {
     Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
-    Get.offAll(() => MainPage());
+    //Get.offAll(() => MainPage());
+    Get.offAll(() => ProfilePage());
     print("Successss");
     // TODO: implement onSuccess
   }

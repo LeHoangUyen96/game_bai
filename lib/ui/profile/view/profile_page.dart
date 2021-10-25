@@ -10,6 +10,7 @@ import 'package:viet_trung_mobile/ui/profile/view/profile_change_password_page.d
 import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class ProfilePage extends GetView<ProfileController> {
@@ -21,9 +22,9 @@ class ProfilePage extends GetView<ProfileController> {
       init: ProfileController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:  //controller.mDataProfile != null
-                 buildBody(), 
-          //: Container(child: LoadingSpinKit(),),
+        body:  controller.mDataProfile != null ?
+                 buildBody() 
+               : Container(child: LoadingSpinKit(),),
       ),
     );
   }
@@ -91,7 +92,7 @@ class ProfilePage extends GetView<ProfileController> {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: TextCustomized(
-                      text: NAME,
+                      text: controller.mDataProfile!.data!.name!.toString(),
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_BLACK,
@@ -240,6 +241,38 @@ class ProfilePage extends GetView<ProfileController> {
                   ),
                   InkWell(
                     onTap: (){},
+                    child: SvgPicture.asset(
+                      IC_ARROWS_RIGHT,
+                      width: 12,
+                      height: 12,
+                      ),
+                  ),
+              ],
+            ),
+          ),
+           SizedBox(height: 10,),
+           Container(
+            padding: EdgeInsets.all(10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: COLOR_MESSAGE_USER,
+                )
+              )
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextCustomized(
+                  text: 'Đăng xuất',
+                  font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                  ),
+                  InkWell(
+                    onTap: (){
+                      controller.onLogout();
+                    },
                     child: SvgPicture.asset(
                       IC_ARROWS_RIGHT,
                       width: 12,

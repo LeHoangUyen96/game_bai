@@ -168,10 +168,10 @@ class RegisterPage extends GetView<RegisterController> {
                               color: BLACK,
                           ),
                            TextFieldCustom(
-                               textController: controller.emailController,
-                               errorText: !controller.isEmailValid ? controller.emailError : null,
+                               textController: controller.passwordController,
+                               errorText: !controller.isPasswordValid ? controller.passwordError : null,
                                hint: LOGIN_PASSWORD,
-                               
+                               isObscured: true,
                            ),
                           
                          const SizedBox(height: 5),

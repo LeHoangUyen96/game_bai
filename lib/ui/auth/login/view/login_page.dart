@@ -179,8 +179,8 @@ class LoginPage extends GetView<LoginController> {
                                       ),
                                       InkWell(
                                         onTap: (){
-                                          //Get.to(RegisterPage());
-                                          Get.to(ProfilePage());
+                                          Get.to(RegisterPage());
+                                          
                                         },
                                         child:  TextCustomized(
                                           text: LOGIN_REGISTER_NOW,
