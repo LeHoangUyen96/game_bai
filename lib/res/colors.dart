@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:viet_trung_mobile/ulti/helper/color_helper.dart';
 
+final Color boderTextFieldColor = ColorHelper.parseColor("#C1C1C1");
+final Color boderTextFieldEnabledColor = ColorHelper.parseColor("#333333");
+final Color boderTextFieldErrorColor = ColorHelper.parseColor("#BC0000");
 const Color MAIN_COLOR = Color(0xFFFF0000);
 const Color DISABLED_COLOR = Color(0xFF344D5B);
 const Color BG_NAVIGATION_COLOR = Color(0xFFF8F8F8);
@@ -68,6 +72,12 @@ const Color BLACK = Color(0xFF000000);
 const Color GRAY3 = Color(0xFF999999);
 const Color PINK = Color(0xFFFF9999);
 
-
+const Color MAIN_BLACK = Color(0xFF131416);
+const Color MAIN_GRAY = Color(0xFF787878);
+const Color MAIN_ADDRESS_GRAY = Color(0xFFF2F2F2);
+const Color MAIN_LINE = Color(0xFFBDBDBD);
+const Color MAIN_BT_SAVE_ADDRESS = Color(0xFF828282);
+const Color MAIN_BT_CANCEL_ADDRESS = Color(0xFFE0E0E0);
+const Color MAIN_DELETE_ADDRESS = Color(0xFFEB5757);
 
 

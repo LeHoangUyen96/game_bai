@@ -1,4 +1,6 @@
 
+import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_impl.dart';
+import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dart';
@@ -19,5 +21,6 @@ class Injector {
   ProfileRepositories get profile => ProfileImpl();
   HomeRepositories get home => HomeImpl();
   NotificationRepository get notification => NotificationImpl();
+  AddressRepository get address => AddressImpl();
 
 }

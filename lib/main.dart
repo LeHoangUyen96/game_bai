@@ -1,5 +1,7 @@
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/ui/address/controller/add_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
+import 'package:viet_trung_mobile/ui/address/controller/update_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
@@ -48,5 +50,7 @@ class _Binding extends Bindings {
     Get.lazyPut<MainController>(() => MainController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
     Get.lazyPut<AddressController>(() => AddressController(), fenix: true);
+    Get.lazyPut<AddAddressController>(() => AddAddressController(), fenix: true);
+    Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(), fenix: true);
   }
 }

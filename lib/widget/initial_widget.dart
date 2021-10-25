@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/res/colors.dart';
 
 class InitialWidget extends StatefulWidget {
   final Widget child;
@@ -19,7 +20,7 @@ class InitialWidget extends StatefulWidget {
   final bool? isAdd;
   final Widget? iconAdd;
   final Color? titleAppBarColor;
-  
+
 
   InitialWidget({
     required this.child,
@@ -94,6 +95,7 @@ class _InitialWidgetState extends State<InitialWidget> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           floatingActionButton: widget.floatingActionButton,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           backgroundColor: widget.backgroundColor ?? Colors.white,
           appBar: widget.titleAppBar != null ||
                   (widget.isShowBack != null && widget.isShowBack!)

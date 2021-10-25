@@ -1,3 +1,4 @@
+import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/data/models/user.dart';
 import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -18,6 +19,7 @@ class LoginController extends GetxController implements LoginContract{
   TextEditingController passwordController = TextEditingController();
   // TextEditingController emailController = TextEditingController(text: "baohq@gmail.com");
   // TextEditingController passwordController = TextEditingController(text: "12345678");
+  ScreenshotController screenshotController = ScreenshotController();
 
   late LoginContract contract;
 

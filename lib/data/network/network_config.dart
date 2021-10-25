@@ -4,13 +4,14 @@ import 'package:get_storage/get_storage.dart';
 
 class NetworkConfig {
 
-  // static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
-  static const String URL_SERVER = "https://api.baoden.vn/api/v2";
-  // static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
-  static const String URL_SERVER_BASE_CDN = "https://api.baoden.vn";
+  static const String URL_SERVER = "http://backend-viettrung.tekup.vn/api/v1";
+  //static const String URL_SERVER = "https://api.baoden.vn/api/v2";
+  static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
+  //static const String URL_SERVER_BASE_CDN = "https://api.baoden.vn";
 
   static Map<String, String> onBuildHeader({bool? isMultipart})  {
     String? token = GetStorage().read(KEY_TOKEN);
+    //String? token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYmFja2VuZC12aWV0dHJ1bmcudGVrdXAudm4vYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2MzUxNTc5MTMsImV4cCI6MTYzNTE2MTUxMywibmJmIjoxNjM1MTU3OTEzLCJqdGkiOiJHY2JhWkpEV2dCRG1FNE42Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rDJ67arhDln30TOvEpXTsy_423gcvF2aYKTkV7YrHbM";
     final header = {
       HttpHeaders.contentTypeHeader: isMultipart != null && isMultipart
           ? 'multipart/form-data'
