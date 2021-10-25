@@ -95,15 +95,9 @@ class RegisterController extends GetxController implements RegisterContract{
     if (phoneNumberController.text.length < 9 || phoneNumberController.text.length > 11) {
         isPhoneNumberValid = false;
         phoneNumberError = "Số điện thoại không được để trống";
-    }else {
+    }else  {
         isPhoneNumberValid = true;
-      }
-    if (usernameController.text.isEmpty) {
-      isUserNameValid = false;
-      userNameError = "Tên đăng nhập không được để trống";
-    } else {
-      isUserNameValid = true;
-    }
+      } 
     if (nameController.text.isEmpty) {
       isNameValid = false;
       nameError = "Họ và tên không được để trống";
@@ -132,7 +126,12 @@ class RegisterController extends GetxController implements RegisterContract{
 
   @override
   void onError(ErrorResponse msg) {
-    Get.snackbar(NOTIFY,msg.message.toString());
+    //Get.snackbar(NOTIFY,msg.message.toString());
+    if (msg.error!.phoneError!.toList().isNotEmpty) {
+      isPhoneNumberValid = false;
+      phoneNumberError = msg.error!.phoneError![0].toString();
+      update();
+    } else {isPhoneNumberValid = true; update();}
 
     if (msg.error!.emailError!.toList().isNotEmpty) {
       isEmailValid = false;
@@ -140,17 +139,9 @@ class RegisterController extends GetxController implements RegisterContract{
       update();
     } else {isEmailValid = true; update();}
 
-    if (msg.error!.phoneError!.toList().isNotEmpty) {
-      isPhoneNumberValid = false;
-      phoneNumberError = msg.error!.phoneError![0].toString();
-      update();
-    } else {isPhoneNumberValid = true; update();}
+    
 
-    if (msg.error!.namedError!.toList().isNotEmpty) {
-      isUserNameValid = false;
-      userNameError = (msg.error!.namedError?[0].toString() ?? null)!;
-      update();
-    } else {isUserNameValid = true; update();}
+    update();
   }
 
   @override

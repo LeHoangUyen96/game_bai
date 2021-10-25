@@ -4,7 +4,6 @@ import 'package:viet_trung_mobile/data/repository/profile_repository/profile_rep
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/excharge_rate_response.dart';
 import 'package:viet_trung_mobile/data/response/home_response.dart';
-import 'package:viet_trung_mobile/data/response/profile_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/home/contract/home_contract.dart';
@@ -22,7 +21,7 @@ class HomeController extends GetxController
   TextEditingController searchTextController = TextEditingController();
 
   ProfileRepositories? profileRepositories;
-  ProfileResponse? profile;
+  //ProfileResponse? profile;
 
   HomeRepositories? homeRepositories;
   HomeResponse? homeResponse;
@@ -120,7 +119,7 @@ class HomeController extends GetxController
     if (urlProduct.length == 0) {
       onGetHomeError(ErrorResponse(message: HOME_URL_PRODUCT_EMPTY));
     }
-    if (profile == null) return;
+    //if (profile == null) return;
     // if (urlProduct.indexOf('tmall.com') > 0) {
     //   Get.to(
     //     () => ProductViewTMallPage(),

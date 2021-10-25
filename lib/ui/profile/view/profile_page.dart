@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -96,6 +97,7 @@ class ProfilePage extends GetView<ProfileController> {
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_BLACK,
+                      size: normalXSize,
                       ),
                       
                   ),
@@ -124,7 +126,7 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                   TextCustomized(
-                  text: NAME,
+                  text: controller.mDataProfile!.data!.user_code.toString(),
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_GRAY,
@@ -152,7 +154,7 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                  TextCustomized(
-                  text: LOGIN_PHONE,
+                  text: controller.mDataProfile!.data!.phone.toString(),
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_GRAY,
@@ -180,7 +182,7 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                   TextCustomized(
-                  text: LOGIN_EMAIL,
+                  text: controller.mDataProfile!.data!.email.toString(),
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_GRAY,
@@ -264,7 +266,7 @@ class ProfilePage extends GetView<ProfileController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextCustomized(
-                  text: 'Đăng xuất',
+                  text: PROFILE_LOGOUT,
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_BLACK,
@@ -304,7 +306,7 @@ class ProfilePage extends GetView<ProfileController> {
         child: InkWell(
           onTap: (){},
           child: ImageCustomized(
-           path: BG_IMG,
+           path: controller.mDataProfile!.data!.avatar.toString().isEmpty ? LOGO_IMG : controller.mDataProfile!.data!.avatar.toString() , 
            fit: BoxFit.cover,
           width: 60,
           height: 60,

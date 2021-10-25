@@ -1,9 +1,10 @@
 class AuthRequest {
   String? email;
+  String? name;
   String? phone;
   String? password;
   String? password_confirmation;
-  String? name;
+  
 
   AuthRequest(
       {this.email,

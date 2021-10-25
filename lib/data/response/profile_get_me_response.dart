@@ -1,40 +1,31 @@
-class GetProfileResponse{
-  DataGetProfile ? data;
+class ProfileResponse{
+  DataProfile ? data;
 
-  GetProfileResponse({this.data});
+  ProfileResponse({this.data});
 
-  GetProfileResponse.fromJson(Map<String, dynamic> json){
-    this.data = json['data'] != null ? DataGetProfile.fromJson(json['data']) : null;
+  ProfileResponse.fromJson(Map<String, dynamic> json){
+    this.data = json['data'] != null ? DataProfile.fromJson(json['data']) : null;
 
   }
-
 }
 
 
-class DataGetProfile{
+class DataProfile{
   String? name;
   String? email;
   String? phone;
   String? avatar;
   String? user_code;
 
-  
-  
-  
-
-  DataGetProfile({
+  DataProfile({
      this.name,
      this.email,
      this.phone,
      this.avatar,
      this.user_code,
-    
-
-
-
   });
 
-  DataGetProfile.fromJson(Map<String, dynamic> json){
+  DataProfile.fromJson(Map<String, dynamic> json){
     name = json["name"] != null ? json["name"] : '';
     email =  json["email"] != null ? json["email"] : '';
     phone = json["phone"] != null ? json["phone"] : '';

@@ -104,7 +104,7 @@ class LoginPage extends GetView<LoginController> {
                                   font: SanFranciscoText,
                                   size: 12,
                                   weight: FontWeight.w400,
-                                  color: GRAY,
+                                  color: RED,
                                 )
                                     : Container(),
                               ],
@@ -120,6 +120,7 @@ class LoginPage extends GetView<LoginController> {
                                textController: controller.passwordController,
                                errorText: !controller.isPasswordValid ? controller.passwordError : null,
                                hint: LOGIN_PASSWORD,
+                               isObscured: true,
                                
                            ),
                           
@@ -133,7 +134,7 @@ class LoginPage extends GetView<LoginController> {
                                   font: SanFranciscoText,
                                   size: 12,
                                   weight: FontWeight.w400,
-                                  color: GRAY,
+                                  color: RED,
                                 )
                                     : Container(),
                               ],

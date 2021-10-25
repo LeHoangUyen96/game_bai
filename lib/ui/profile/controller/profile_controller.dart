@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile/data/response/errors_response.dart';
 import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -17,7 +18,7 @@ ProfileRepositories? profileRepositories;
 AuthRepository? authRepository;
 final tokens = GetStorage();
 ProfileContract? contract;
-GetProfileResponse ? mDataProfile;
+ProfileResponse ? mDataProfile;
 
 
 @override
@@ -58,12 +59,13 @@ GetProfileResponse ? mDataProfile;
   }
 
   @override
-  void onGetProfileError(ForgotErrorResponse error) {
-    // TODO: implement onGetProfileError
+  void onGetProfileError(ErrorsResponse error) {
+    Get.snackbar(NOTIFY,error.message.toString());
+    update();
   }
 
   @override
-  void onGetProfileSuccess(GetProfileResponse data) {
+  void onGetProfileSuccess(ProfileResponse data) {
      mDataProfile = data;
     update();
   }
