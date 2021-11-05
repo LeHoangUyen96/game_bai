@@ -4,7 +4,7 @@ import 'package:viet_trung_mobile/data/models/cart.dart';
 import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
 import 'package:viet_trung_mobile/data/response/address_error_response.dart';
 import 'package:viet_trung_mobile/data/response/address_response.dart';
-import 'package:viet_trung_mobile/data/response/profile_response.dart';
+import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/service_fee_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';

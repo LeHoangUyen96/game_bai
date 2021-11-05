@@ -80,5 +80,5 @@ const Color MAIN_LINE = Color(0xFFBDBDBD);
 const Color MAIN_BT_SAVE_ADDRESS = Color(0xFF828282);
 const Color MAIN_BT_CANCEL_ADDRESS = Color(0xFFE0E0E0);
 const Color MAIN_DELETE_ADDRESS = Color(0xFFEB5757);
-
+const Color BT_GRAY = Color(0xFFDCDDE7);
 

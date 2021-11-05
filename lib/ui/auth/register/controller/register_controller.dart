@@ -1,5 +1,6 @@
 
 import 'package:screenshot/screenshot.dart';
+import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/register_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
@@ -166,6 +167,11 @@ class RegisterController extends GetxController implements RegisterContract{
       Get.snackbar(NOTIFY,AUTH_REGISTER_ERROR);
       update();
     });
+  }
+
+  @override
+  void onSuccessGetAddress(RegisterAddressResponse response) {
+    // TODO: implement onSuccessGetAddress
   }
 
 

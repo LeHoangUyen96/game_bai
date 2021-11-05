@@ -723,7 +723,7 @@ const String LOGIN_NO_ACCOUNT = "Bạn chưa có tài khoản?";
 const String LOGIN_RESET = "Khôi phục ";
 const String LOGIN_SIGN_TO_CONTINUE = "Đăng nhập để tiếp tục";
 const String LOGIN_CREATE_ACCOUNT = "Tạo một mới tài khoản";
-
+const String LOGIN_ENTER_EMAIL = "Nhập Email hoặc Số điện thoại của tài khoản để lấy lại mật khẩu ";
 
 const String PROFILE_PERSONAL_INFOMATION = "Thông tin cá nhân";
 const String PROFILE_CUSTOMERE_CODE = "Mã khách hàng";
@@ -753,6 +753,10 @@ const String ORDER_LIST_IMPORT_PROCEDURES = 'Đơn hàng đang làm thủ tục 
 const String ORDER_LIST_ARRIVED_BORDER_WAREHOUSE = 'Đơn hàng đã đến kho Cửa khẩu';
 const String ORDER_LIST_CHINA_WAREHOUSE = 'Kho Trung Quốc';
 const String ORDER_LIST_EVALUATE = 'Đánh  giá';
+const String AUTH_VERIFICATION = 'Xác minh ';
+const String AUTH_SENT_PIN_CODE = 'Chúng tôi vừa gửi cho bạn một dãy số vào số điện thoại hoặc Email bạn vừa cung cấp';
+const String AUTH_VERIFY_IN_TIME = 'Vui lòng xác minh trong thời gian';
+const String AUTH_CONFIRMATION_CODE = 'Gửi lại mã xác nhậng';
 
 
 
