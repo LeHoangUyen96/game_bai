@@ -17,6 +17,8 @@ const String IC_SAD = "assets/images/icon_sad.svg";
 const String IC_SHOPPING_CART = "assets/images/icon_shopping_cart.svg";
 const String IC_NOTES = "assets/images/icon_notes.svg";
 const String IC_DOLLAR = "assets/images/icon_dollar.svg";
+const String IC_UPDATE_ADDRESS = "assets/images/icon_update_address.svg";
+const String IC_DELETE_ADDRESS = "assets/images/ic_delete_address.svg";
 
 const String LOGO_IMG = "assets/images/logo_app_viettrung.png";
 const String BG_IMG = "assets/images/img_background.png";
@@ -26,3 +28,4 @@ const String IC_ARROWS_RIGHT = "assets/images/icon_arrows_right.svg";
 const String IC_SEARCH = "assets/images/icon_search.svg";
 const String IC_FILTER = "assets/images/icon_filter.svg";
 const String IC_EYE = "assets/images/icon_eye.svg";
+const String IC_CHECK_CRICLE = "assets/images/icon_check_cricle.svg";

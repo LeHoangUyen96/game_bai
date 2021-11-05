@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
+import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_change_password_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
@@ -245,7 +246,9 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                   InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      Get.to(()=>AddressPage());
+                    },
                     child: SvgPicture.asset(
                       IC_ARROWS_RIGHT,
                       width: 12,

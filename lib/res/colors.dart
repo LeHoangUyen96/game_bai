@@ -75,4 +75,10 @@ const Color PINK = Color(0xFFFF9999);
 const Color MAIN_BLACK = Color(0xFF131416);
 const Color MAIN_GRAY = Color(0xFF787878);
 const Color GRAY_BG = Color(0xFFF5F5F5);
+const Color MAIN_ADDRESS_GRAY = Color(0xFFF2F2F2);
+const Color MAIN_LINE = Color(0xFFBDBDBD);
+const Color MAIN_BT_SAVE_ADDRESS = Color(0xFF828282);
+const Color MAIN_BT_CANCEL_ADDRESS = Color(0xFFE0E0E0);
+const Color MAIN_DELETE_ADDRESS = Color(0xFFEB5757);
+
 
