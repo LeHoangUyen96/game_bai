@@ -19,7 +19,8 @@ class InitialWidget extends StatefulWidget {
   final Widget? bottomNavigationBar;
   final bool? isAdd;
   final Widget? iconAdd;
-  
+  final Color? titleAppBarColor;
+
 
   InitialWidget({
     required this.child,
@@ -37,6 +38,7 @@ class InitialWidget extends StatefulWidget {
     this.statusBarIconBrightness,
     this.isAdd, 
     this.iconAdd,
+    this.titleAppBarColor
   });
 
   @override
@@ -93,6 +95,7 @@ class _InitialWidgetState extends State<InitialWidget> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           floatingActionButton: widget.floatingActionButton,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           backgroundColor: widget.backgroundColor ?? Colors.white,
           appBar: widget.titleAppBar != null ||
                   (widget.isShowBack != null && widget.isShowBack!)
@@ -126,9 +129,7 @@ class _InitialWidgetState extends State<InitialWidget> {
                         : "",
                     style: TextStyle(
                         fontSize: 20,
-                        // color: _isDark ? Colors.white : Colors.white
-                        color: _isDark ? MAIN_BLACK : Colors.white
-                        ),
+                        color: _isDark ? widget.titleAppBarColor : Colors.white),
                   ),
                 )
               : null,

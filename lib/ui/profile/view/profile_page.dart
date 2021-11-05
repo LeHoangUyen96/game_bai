@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
+import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_change_password_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class ProfilePage extends GetView<ProfileController> {
@@ -21,9 +26,9 @@ class ProfilePage extends GetView<ProfileController> {
       init: ProfileController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:  //controller.mDataProfile != null
-                 buildBody(), 
-          //: Container(child: LoadingSpinKit(),),
+        body:  controller.mDataProfile != null ?
+                 buildBody() 
+               : Container(child: LoadingSpinKit(),),
       ),
     );
   }
@@ -39,7 +44,8 @@ class ProfilePage extends GetView<ProfileController> {
         iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
         floatingActionButton: InkWell(
           onTap: () {
-            Get.to(ProfileEditPage());
+            //Get.to(ProfileEditPage());
+            Get.to(OrderInfoPage());
           },
           child: SvgPicture.asset(
             IC_EDIT,
@@ -91,10 +97,11 @@ class ProfilePage extends GetView<ProfileController> {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: TextCustomized(
-                      text: NAME,
+                      text: controller.mDataProfile!.data!.name!.toString(),
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_BLACK,
+                      size: normalXSize,
                       ),
                       
                   ),
@@ -123,7 +130,7 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                   TextCustomized(
-                  text: NAME,
+                  text: controller.mDataProfile!.data!.user_code.toString(),
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_GRAY,
@@ -151,7 +158,7 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                  TextCustomized(
-                  text: LOGIN_PHONE,
+                  text: controller.mDataProfile!.data!.phone.toString(),
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_GRAY,
@@ -179,7 +186,7 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                   TextCustomized(
-                  text: LOGIN_EMAIL,
+                  text: controller.mDataProfile!.data!.email.toString(),
                   font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: MAIN_GRAY,
@@ -239,7 +246,73 @@ class ProfilePage extends GetView<ProfileController> {
                       color: MAIN_BLACK,
                   ),
                   InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      Get.to(()=>AddressPage());
+                    },
+                    child: SvgPicture.asset(
+                      IC_ARROWS_RIGHT,
+                      width: 12,
+                      height: 12,
+                      ),
+                  ),
+              ],
+            ),
+          ),
+           SizedBox(height: 10,),
+           Container(
+            padding: EdgeInsets.all(10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: COLOR_MESSAGE_USER,
+                )
+              )
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextCustomized(
+                  text: PROFILE_LOGOUT,
+                  font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                  ),
+                  InkWell(
+                    onTap: (){
+                      controller.onLogout();
+                    },
+                    child: SvgPicture.asset(
+                      IC_ARROWS_RIGHT,
+                      width: 12,
+                      height: 12,
+                      ),
+                  ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: COLOR_MESSAGE_USER,
+                )
+              )
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextCustomized(
+                  text: ORDER_LIST_APP_BAR,
+                  font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                  ),
+                  InkWell(
+                    onTap: (){
+                      Get.to(OrderInfoPage());
+                    },
                     child: SvgPicture.asset(
                       IC_ARROWS_RIGHT,
                       width: 12,
@@ -271,7 +344,7 @@ class ProfilePage extends GetView<ProfileController> {
         child: InkWell(
           onTap: (){},
           child: ImageCustomized(
-           path: BG_IMG,
+           path: controller.mDataProfile!.data!.avatar.toString().isEmpty ? LOGO_IMG : controller.mDataProfile!.data!.avatar.toString() , 
            fit: BoxFit.cover,
           width: 60,
           height: 60,

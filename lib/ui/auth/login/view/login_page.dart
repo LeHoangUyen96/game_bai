@@ -1,8 +1,10 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/view/forgot_password_page.dart';
 import 'package:viet_trung_mobile/ui/auth/register/view/register_page.dart';
+import 'package:viet_trung_mobile/ui/auth/register/view/register_step_1.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
@@ -53,11 +55,8 @@ class LoginPage extends GetView<LoginController> {
                               height: 150,
                               width: 150,
                             )
-                        
                         ),
-                       
                         SizedBox(height: 8),
-                      
                         Expanded(
                           //flex: 4,
                           child: Container(
@@ -81,6 +80,14 @@ class LoginPage extends GetView<LoginController> {
                               color: BLACK,
                               weight: FontWeight.w400,
                           ),
+                          const SizedBox(height: 5),
+                           TextCustomized(
+                              text: LOGIN_SIGN_TO_CONTINUE,
+                              font: SanFranciscoUIText,
+                              size: verySmallSize,
+                              color: GRAY,
+                              weight: FontWeight.w400,
+                          ),
                           const SizedBox(height: 25),
                           TextCustomized(
                               text: LOGIN_EMAIL_PHONE,
@@ -88,7 +95,14 @@ class LoginPage extends GetView<LoginController> {
                               weight: FontWeight.w400,
                               color: BLACK,
                           ),
-                           TextFieldCustom(
+                          //  TextFieldCustom(
+                          //      textController: controller.emailController,
+                          //      errorText: !controller.isEmailValid ? controller.emailError : null,
+                          //      hint: LOGIN_EMAIL_PHONE,
+                               
+                          //  ),
+                          const SizedBox(height: 5),
+                          TextFieldCustomized(
                                textController: controller.emailController,
                                errorText: !controller.isEmailValid ? controller.emailError : null,
                                hint: LOGIN_EMAIL_PHONE,
@@ -104,7 +118,7 @@ class LoginPage extends GetView<LoginController> {
                                   font: SanFranciscoText,
                                   size: 12,
                                   weight: FontWeight.w400,
-                                  color: GRAY,
+                                  color: RED,
                                 )
                                     : Container(),
                               ],
@@ -116,12 +130,21 @@ class LoginPage extends GetView<LoginController> {
                               weight: FontWeight.w400,
                               color: BLACK,
                           ),
-                           TextFieldCustom(
-                               textController: controller.passwordController,
+                          //  TextFieldCustom(
+                          //      textController: controller.passwordController,
+                          //      errorText: !controller.isPasswordValid ? controller.passwordError : null,
+                          //      hint: LOGIN_PASSWORD,
+                          //      isObscured: true,
+                               
+                          //  ),
+                          const SizedBox(height: 5),
+                          TextFieldCustomized(
+                            textController: controller.passwordController,
                                errorText: !controller.isPasswordValid ? controller.passwordError : null,
                                hint: LOGIN_PASSWORD,
-                               
-                           ),
+                               isSuffixIcon: true,
+                               isObscured: true,
+                          ),
                           
                           SizedBox(height: 5),
                           Row(
@@ -133,7 +156,7 @@ class LoginPage extends GetView<LoginController> {
                                   font: SanFranciscoText,
                                   size: 12,
                                   weight: FontWeight.w400,
-                                  color: GRAY,
+                                  color: RED,
                                 )
                                     : Container(),
                               ],
@@ -179,8 +202,8 @@ class LoginPage extends GetView<LoginController> {
                                       ),
                                       InkWell(
                                         onTap: (){
-                                          //Get.to(RegisterPage());
-                                          Get.to(ProfilePage());
+                                          Get.to(RegisterStepOnePage());
+                                          
                                         },
                                         child:  TextCustomized(
                                           text: LOGIN_REGISTER_NOW,

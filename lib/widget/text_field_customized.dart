@@ -161,8 +161,9 @@ class TextFieldCustomized extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final bool Function()? validator;
+  final bool? isSuffixIcon;
 
-  TextFieldCustomized({this.invalid, this.textInputAction, this.path, this.textInputType, this.title, this.errorText, this.hint, this.textController, this.isObscured, this.suffixIcon, this.borderTop, this.borderBottom, this.focusNode, this.filled, this.onChanged, this.validator, this.onSubmitted, this.icon, });
+  TextFieldCustomized({this.invalid, this.textInputAction, this.path, this.textInputType, this.title, this.errorText, this.hint, this.textController, this.isObscured, this.suffixIcon, this.borderTop, this.borderBottom, this.focusNode, this.filled, this.onChanged, this.validator, this.onSubmitted, this.icon, this.isSuffixIcon, });
 
   @override
   State<StatefulWidget> createState() {
@@ -173,6 +174,7 @@ class TextFieldCustomized extends StatefulWidget {
 class _TextFieldCustomizedState extends State<TextFieldCustomized> {
   FocusNode _focusNode = FocusNode();
   bool _enabled = false;
+  bool _obscureText = true;
 
   @override
   void initState() {
@@ -183,6 +185,13 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
           _enabled = false;
         });
       }
+    });
+  }
+  void _toggleObscured() {
+    setState(() {
+      _obscureText = !_obscureText;
+      if (_focusNode.hasPrimaryFocus) return; // If focus is on text field, dont unfocus
+      _focusNode.canRequestFocus = false;     // Prevents focus if tap on eye
     });
   }
 
@@ -196,65 +205,65 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
           border: Border.all(
             color: _enabled == false
                 ? widget.errorText != null
-                    ? RED
+                    ? BLACK
                     : GRAY
                 : widget.errorText == null
-                    ? RED
+                    ? BLACK
                     : GRAY,
           ),
           borderRadius: BorderRadius.all(Radius.circular(9))),
       child: Row(
         children: [
-          widget.path != null
-              ? Expanded(
-                  flex: 2,
-                  child: SvgPicture.asset(
-                    widget.path.toString(),
-                    height: 25.0,
-                    width: 25.0,
-                    color: _enabled == false
-                        ? widget.errorText != null
-                            ? RED
-                            : GRAY
-                        : widget.errorText == null
-                            ? RED
-                            : GRAY,
-                    allowDrawingOutsideViewBox: true,
-                  ),
-                )
-              : SizedBox(),
-          widget.path != null
-              ? Container(
-                  height: 48,
-                  width: 1,
-                  decoration: BoxDecoration(
-                    color: _enabled == false
-                        ? widget.errorText != null
-                            ? RED
-                            : GRAY
-                        : widget.errorText == null
-                            ? RED
-                            : GRAY,
-                  ),
-                )
-              : SizedBox(),
-          widget.path != null
-              ? Container(
-                  height: 48,
-                  width: 1,
-                  decoration: BoxDecoration(
-                    color: _enabled == false
-                        ? widget.errorText != null
-                            ? RED
-                            : GRAY
-                        : widget.errorText == null
-                            ? RED
-                            : GRAY,
-                  ),
-                )
-              : SizedBox(),
+          // widget.path != null
+          //     ? Expanded(
+          //         flex: 2,
+          //         child: SvgPicture.asset(
+          //           widget.path.toString(),
+          //           height: 25.0,
+          //           width: 25.0,
+          //           color: _enabled == false
+          //               ? widget.errorText != null
+          //                   ? RED
+          //                   : GRAY
+          //               : widget.errorText == null
+          //                   ? RED
+          //                   : GRAY,
+          //           allowDrawingOutsideViewBox: true,
+          //         ),
+          //       )
+          //     : SizedBox(),
+          // widget.path != null
+          //     ? Container(
+          //         height: 48,
+          //         width: 1,
+          //         decoration: BoxDecoration(
+          //           color: _enabled == false
+          //               ? widget.errorText != null
+          //                   ? RED
+          //                   : GRAY
+          //               : widget.errorText == null
+          //                   ? RED
+          //                   : GRAY,
+          //         ),
+          //       )
+          //     : SizedBox(),
+          // widget.path != null
+          //     ? Container(
+          //         height: 48,
+          //         width: 1,
+          //         decoration: BoxDecoration(
+          //           color: _enabled == false
+          //               ? widget.errorText != null
+          //                   ? RED
+          //                   : GRAY
+          //               : widget.errorText == null
+          //                   ? RED
+          //                   : GRAY,
+          //         ),
+          //       )
+          //     : SizedBox(),
           SizedBox(
-            width: widget.path != null ? 20 : 10,
+            width: widget.path != null ? 10 : 10,
           ),
           Expanded(
             flex: 10,
@@ -268,7 +277,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
               controller: widget.textController,
               keyboardType: widget.textInputType,
               textInputAction: widget.textInputAction,
-              obscureText: widget.isObscured ?? false,
+              obscureText: widget.isObscured ==null ? false : _obscureText,
               maxLines: 1,
               focusNode: _focusNode,
               onTap: () {
@@ -298,10 +307,23 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                
+                suffixIcon : widget.isSuffixIcon != null 
+                ? GestureDetector(
+                  onTap: _toggleObscured,
+                  child: Icon(
+                  _obscureText
+                  ? Icons.visibility_off_rounded
+                  : Icons.visibility_rounded,
+                  // : Icons.visibility_off_rounded,
+                  color: GRAY,
+                  size: 24,
+                )
+               ) : SizedBox(),
               ),
+              
             ),
           ),
+         
         ],
       ),
     );

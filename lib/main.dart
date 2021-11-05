@@ -1,8 +1,13 @@
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/ui/address/controller/add_address_controller.dart';
+import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
+import 'package:viet_trung_mobile/ui/address/controller/update_address_controller.dart';
+import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
+import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/splash/controller/splash_controller.dart';
 import 'package:viet_trung_mobile/ui/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -45,5 +50,9 @@ class _Binding extends Bindings {
     Get.lazyPut<RegisterController>(() => RegisterController(), fenix: true);
     Get.lazyPut<MainController>(() => MainController(), fenix: true);
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
+    Get.lazyPut<AddressController>(() => AddressController(), fenix: true);
+    Get.lazyPut<AddAddressController>(() => AddAddressController(), fenix: true);
+    Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(), fenix: true);
+    Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
   }
 }
