@@ -98,7 +98,7 @@ class LoginController extends GetxController implements LoginContract{
   void onSuccess(User response) {
     Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
     //Get.offAll(() => MainPage());
-    Get.offAll(() => ProfilePage());
+    Get.offAll(() => MainPage());
     print("Successss");
     // TODO: implement onSuccess
   }

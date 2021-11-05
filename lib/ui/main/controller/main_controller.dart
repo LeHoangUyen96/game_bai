@@ -48,41 +48,41 @@ class MainController extends GetxController implements MainContract {
     repository = Injector().notification;
     homeRepositories = Injector().home;
     contract = this;
-    //await Firebase.initializeApp();
-    getNotificationCount();
-    //initFirebaseMessage();
-    getHomeData();
+    await Firebase.initializeApp();
+    //getNotificationCount();
+    initFirebaseMessage();
+    //getHomeData();
   }
 
-  void getHomeData() {
-    homeRepositories!.onGetHome().then((value) {
-      if (value.data != null) {
-        if (value.data!.number_product! > 0) {
-          navigateItem[1].badgeCount = value.data!.number_product!;
-          navigateItem[1].showBadge = true;
-        }
-      }
-      update();
-    }).catchError((onError) {
-      // Get.defaultDialog(
-      //     title: (onError as ErrorResponse).message.toString(), middleText: '');
-    });
-    update();
-  }
+  // void getHomeData() {
+  //   homeRepositories!.onGetHome().then((value) {
+  //     if (value.data != null) {
+  //       if (value.data!.number_product! > 0) {
+  //         navigateItem[1].badgeCount = value.data!.number_product!;
+  //         navigateItem[1].showBadge = true;
+  //       }
+  //     }
+  //     update();
+  //   }).catchError((onError) {
+  //     // Get.defaultDialog(
+  //     //     title: (onError as ErrorResponse).message.toString(), middleText: '');
+  //   });
+  //   update();
+  // }
 
-  void getNotificationCount() {
-    repository.onGetUnreadCount(3).then((value) {
-      return contract.onSuccess(value);
-    }).catchError((onError) {
-      print('$onError');
-    });
+  // void getNotificationCount() {
+  //   repository.onGetUnreadCount(3).then((value) {
+  //     return contract.onSuccess(value);
+  //   }).catchError((onError) {
+  //     print('$onError');
+  //   });
 
-    repository.onGetUnreadCount(4).then((value) {
-      return contract.onSuccess(value);
-    }).catchError((onError) {
-      print('$onError');
-    });
-  }
+  //   repository.onGetUnreadCount(4).then((value) {
+  //     return contract.onSuccess(value);
+  //   }).catchError((onError) {
+  //     print('$onError');
+  //   });
+  // }
 
   @override
   void onError(ErrorResponse error) {}
@@ -97,51 +97,51 @@ class MainController extends GetxController implements MainContract {
     update();
   }
 
-  // initFirebaseMessage() async {
-  //   /// Update the iOS foreground notification presentation options to allow
-  //   /// heads up notifications.
-  //   await FirebaseMessaging.instance
-  //       .setForegroundNotificationPresentationOptions(
-  //     alert: true,
-  //     badge: true,
-  //     sound: true,
-  //   );
+  initFirebaseMessage() async {
+    /// Update the iOS foreground notification presentation options to allow
+    /// heads up notifications.
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
 
-  //   await FirebaseMessaging.instance.requestPermission(
-  //     alert: true,
-  //     badge: true,
-  //     sound: true,
-  //   );
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
 
-  //   LocalNotificationService.initialize(Get.context!);
+    LocalNotificationService.initialize(Get.context!);
 
-  //   // Firebase token, used to call API
-  //   String? token = await FirebaseMessaging.instance.getToken();
+    // Firebase token, used to call API
+    String? token = await FirebaseMessaging.instance.getToken();
 
-  //   deviceToken.write(DEVICE_TOKEN, token);
+    deviceToken.write(DEVICE_TOKEN, token);
 
-  //   FirebaseMessaging.instance.getInitialMessage().then((value) {
-  //     // Case app is killed
-  //     if (value != null) {
-  //       print(value.notification!.title);
-  //       Get.to(() => MainPage());
-  //     }
-  //   });
+    FirebaseMessaging.instance.getInitialMessage().then((value) {
+      // Case app is killed
+      if (value != null) {
+        print(value.notification!.title);
+        Get.to(() => MainPage());
+      }
+    });
 
-  //   FirebaseMessaging.onMessage.listen((event) {
-  //     // Case app is in foreground
-  //     if (event.notification != null) {
-  //       print(event.notification!.title);
-  //       print(event.notification!.body);
-  //       LocalNotificationService.display(event);
-  //     }
-  //   });
+    FirebaseMessaging.onMessage.listen((event) {
+      // Case app is in foreground
+      if (event.notification != null) {
+        print(event.notification!.title);
+        print(event.notification!.body);
+        LocalNotificationService.display(event);
+      }
+    });
 
-  //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
-  //     // Case app is in background and user tap in push notification
-  //     final routeMessage = event.data['route'];
-  //     print(routeMessage);
-  //     Get.to(() => MainPage());
-  //   });
-  // }
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      // Case app is in background and user tap in push notification
+      final routeMessage = event.data['route'];
+      print(routeMessage);
+      Get.to(() => MainPage());
+    });
+  }
 }

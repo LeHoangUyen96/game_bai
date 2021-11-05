@@ -302,7 +302,7 @@ const String ORDER_BT_DEPOTIS= 'Thanh toán tất cả';
 
 const String BT_CONFIRMPASSWORD = 'Xác nhận mật khẩu';
 const String CP_PASSWORD = 'Mật khẩu';
-const String ADDRESS_NAME = 'Nguyễn Vũ';
+const String ADDRESS_NAME = '';
 const String ADDRESS_PHONENUMBER = 'Số điện thoại';
 const String ADDRESS_ADDRESS = 'Địa chỉ';
 const String BT_CONTINUE = 'Tiếp tục';
@@ -756,8 +756,8 @@ const String ORDER_LIST_EVALUATE = 'Đánh  giá';
 const String AUTH_VERIFICATION = 'Xác minh ';
 const String AUTH_SENT_PIN_CODE = 'Chúng tôi vừa gửi cho bạn một dãy số vào số điện thoại hoặc Email bạn vừa cung cấp';
 const String AUTH_VERIFY_IN_TIME = 'Vui lòng xác minh trong thời gian';
-const String AUTH_CONFIRMATION_CODE = 'Gửi lại mã xác nhậng';
-
+const String AUTH_CONFIRMATION_CODE = 'Gửi lại mã xác nhận';
+const String AUTH_CONFIRM = 'Xác nhận ';
 
 
  
