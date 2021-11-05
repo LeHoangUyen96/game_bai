@@ -6,6 +6,8 @@ import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_change_password_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
@@ -41,7 +43,8 @@ class ProfilePage extends GetView<ProfileController> {
         iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
         floatingActionButton: InkWell(
           onTap: () {
-            Get.to(ProfileEditPage());
+            //Get.to(ProfileEditPage());
+            Get.to(OrderInfoPage());
           },
           child: SvgPicture.asset(
             IC_EDIT,
@@ -274,6 +277,38 @@ class ProfilePage extends GetView<ProfileController> {
                   InkWell(
                     onTap: (){
                       controller.onLogout();
+                    },
+                    child: SvgPicture.asset(
+                      IC_ARROWS_RIGHT,
+                      width: 12,
+                      height: 12,
+                      ),
+                  ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10,),
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: COLOR_MESSAGE_USER,
+                )
+              )
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextCustomized(
+                  text: ORDER_LIST_APP_BAR,
+                  font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                  ),
+                  InkWell(
+                    onTap: (){
+                      Get.to(OrderInfoPage());
                     },
                     child: SvgPicture.asset(
                       IC_ARROWS_RIGHT,

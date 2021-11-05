@@ -430,7 +430,7 @@ const String PROFILE_USER_NAME = "Tên đăng nhập: ";
 const String PROFILE_UPDATE_AVATAR = "Thay đổi ảnh đại diện";
 const String PROFILE_NEW_IMAGE = "Chụp ảnh mới";
 const String PROFILE_IMAGE_LIB = "Chọn ảnh từ thư viện";
-const String PROFILE_UPDATE = "Cập nhập";
+const String PROFILE_UPDATE = "Cập nhật";
 const String PROFILE_OLD_PASS = "Mật khẩu cũ";
 const String PROFILE_NEW_PASS = "Mật khẩu mới";
 const String PROFILE_INPUT_NEWPASS = "Nhập mật khẩu mới";
@@ -689,7 +689,7 @@ const String HEADER_QUESTION = 'Câu hỏi thường gặp';
 //Notification
 const String AUTH_LOGIN_SUCCESS = 'Đăng nhập thành công';
 const String AUTH_LOGIN_ERROR_PASS = 'Mật khẩu tối thiểu 8 kí tự';
-const String AUTH_LOGIN_ERROR_EMAIL = 'Tên đăng nhập/Email không được để trống';
+const String AUTH_LOGIN_ERROR_EMAIL = 'Email/SĐT không được để trống';
 const String AUTH_LOGIN_EMAIL_ERROR = 'Email/SĐT không đúng định dạng';
 const String AUTH_LOGIN_ERROR_PASS_EMPTY = 'Mật khẩu không được để trống';
 const String AUTH_FORGOT_PASS_ERROR_INPUT = 'Email/Số điện thoại không được để trống';
@@ -720,29 +720,55 @@ const String LOGIN_FORGOTPASSWORD = "Quên mật khẩu?";
 const String LOGIN_REGISTER_NOW = "Đăng ký ngay";
 const String LOGIN_NO_ACCOUNT = "Bạn chưa có tài khoản?";
 const String LOGIN_RESET = "Khôi phục ";
+const String LOGIN_SIGN_TO_CONTINUE = "Đăng nhập để tiếp tục";
+const String LOGIN_CREATE_ACCOUNT = "Tạo một mới tài khoản";
 
 
 const String PROFILE_PERSONAL_INFOMATION = "Thông tin cá nhân";
 const String PROFILE_CUSTOMERE_CODE = "Mã khách hàng";
 const String PROFILE_ADDRESS = "Sổ địa chỉ";
 const String PROFILE_CHANGE_INFORMATION = "Thay đổi thông tin";
+const String ORDER_LIST_APP_BAR = 'Danh sách đơn hàng';
+const String ORDER_LIST_ARRIVED = 'Danh sách hàng về ';
+const String ORDER_LIST_STOCK = 'Danh sách hàng lưu kho';
+const String ORDER_LIST_BILL_CODE = 'Mã Bill:';
+const String ORDER_LIST_PARCELS = 'Số kiện hàng:';
+const String ORDER_LIST_ITEMS = 'Mặt hàng:';
+const String ORDER_LIST_PACKING_FORM = 'Hình thức đóng gói:';
+const String ORDER_LIST_COD = 'Thu hộ phí vẫn chuyển(COD)';
+const String ORDER_LIST_DELIVERY_METHOD = 'Hình thức nhận hàng:';
+const String ORDER_LIST_DELIVERY_ADDRESS = 'Địa chỉ nhận hàng:';
+const String ORDER_LIST_SEARCH_BILL_CODE = 'Tìm kiếm theo mã bill';
+const String ORDER_LIST_SELECT_ALL = 'Chọn tất cả';
+const String ORDER_LIST_PACKING_SEND_BACK = 'Đóng gói hàng gửi về';
+const String ORDER_LIST_CLOSED_SEND_BACK = 'Bạn đã đóng 2 đơn hàng gửi về';
+const String ORDER_LIST_DEATAILS = 'Chi tiết đơn hàng về';
+const String ORDER_LIST_JOURNEY = 'Hành trình đơn hàng';
+const String ORDER_LIST_DELIVERY_SUCCESSFUL = 'Giao hàng thành công';
+const String ORDER_LIST_DELIVERY_IN_PROGRESS = 'Đang giao hàng ';
+const String ORDER_LIST_ARRIVED_SG_WAREHOUSE = 'Đơn hàng đã đến kho Sài Gòn';
+const String ORDER_LIST_ARRIVED_HN_WAREHOUSE = 'Đơn hàng đã đến Tổng kho Hà Nội';
+const String ORDER_LIST_IMPORT_PROCEDURES = 'Đơn hàng đang làm thủ tục nhập khẩu';
+const String ORDER_LIST_ARRIVED_BORDER_WAREHOUSE = 'Đơn hàng đã đến kho Cửa khẩu';
+const String ORDER_LIST_CHINA_WAREHOUSE = 'Kho Trung Quốc';
+const String ORDER_LIST_EVALUATE = 'Đánh  giá';
 
 
 
+ 
 
 
+ 
+  
+  
+ 
 
+ 
 
-
-
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
 
 
 
