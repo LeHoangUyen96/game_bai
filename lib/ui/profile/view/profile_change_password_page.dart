@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
+import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class ProfileChangePasswordPage extends GetView<ProfileController> {
@@ -28,14 +30,23 @@ class ProfileChangePasswordPage extends GetView<ProfileController> {
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: Size(double.infinity, 55),
-      child: InitialWidget(
-        child: Container(),
-        titleAppBar: PROFILE_BT_CHANGE_PASS,
-        
-        backgroundAppBar: WHITE,
-         isShowBack: true,
-        iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
-       
+      child: AppBar(
+        title: TextCustomized(
+          text: PROFILE_BT_CHANGE_PASS,
+          color: WHITE,
+          font: SanFranciscoText,
+          ),
+        flexibleSpace: Image(
+          image: AssetImage(BG_IMG),
+          fit: BoxFit.cover,
+        ),
+        backgroundColor: Colors.transparent,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(Icons.arrow_back_ios, color: WHITE,),
+        ),
       ),
     );
   }
@@ -54,10 +65,13 @@ class ProfileChangePasswordPage extends GetView<ProfileController> {
             weight: FontWeight.w400,
             color: MAIN_BLACK,
             ),
-            TextFieldCustom(
+            SizedBox(height: 5),
+            TextFieldCustomized(
               //textController: ,
               //errorText: ,
-              hint: PROFILE_OLD_PASS,    
+              hint: PROFILE_OLD_PASS,
+              isSuffixIcon: true,
+              isObscured: true,    
             ),
             SizedBox(height: 15,),
             TextCustomized(
@@ -66,10 +80,13 @@ class ProfileChangePasswordPage extends GetView<ProfileController> {
             weight: FontWeight.w400,
             color: MAIN_BLACK,
             ),
-            TextFieldCustom(
+            SizedBox(height: 5),
+            TextFieldCustomized(
               //textController: ,
               //errorText: ,
-              hint: PROFILE_NEW_PASS,    
+              hint: PROFILE_NEW_PASS,
+              isSuffixIcon: true,
+              isObscured: true,    
             ),
             SizedBox(height: 15,),
             TextCustomized(
@@ -78,10 +95,13 @@ class ProfileChangePasswordPage extends GetView<ProfileController> {
             weight: FontWeight.w400,
             color: MAIN_BLACK,
             ),
-            TextFieldCustom(
+            SizedBox(height: 5),
+            TextFieldCustomized(
               //textController: ,
               //errorText: ,
-              hint: PROFILE_CONFIRM_PASS,    
+              hint: PROFILE_CONFIRM_PASS,
+              isSuffixIcon: true,
+              isObscured: true,    
             ),
             SizedBox(height: 15,),
             

@@ -11,7 +11,6 @@ import 'package:viet_trung_mobile/data/response/upload_images_response.dart';
 
 
 abstract class ProfileRepositories {
-  //Future<ProfileResponse> onGetProfile();
   Future<UpdateProfileResponse> onEditProfile(EditProfileRequest request);
   Future<String> onUploadImageProfile(List<File> request);
   Future<UploadImagesResponse> onUploadAvatarProfile(String images);

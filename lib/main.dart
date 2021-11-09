@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/ui/auth/register/controller/register_controlle
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
+import 'package:viet_trung_mobile/ui/profile/controller/profile_edit_controller.dart';
 import 'package:viet_trung_mobile/ui/splash/controller/splash_controller.dart';
 import 'package:viet_trung_mobile/ui/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -54,5 +55,6 @@ class _Binding extends Bindings {
     Get.lazyPut<AddAddressController>(() => AddAddressController(), fenix: true);
     Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(), fenix: true);
     Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
+    Get.lazyPut<ProfileEditController>(() => ProfileEditController(), fenix: true);
   }
 }

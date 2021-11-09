@@ -5,6 +5,7 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
@@ -27,32 +28,63 @@ class ProfilePage extends GetView<ProfileController> {
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
         body:  controller.mDataProfile != null ?
-                 buildBody() 
+                 SingleChildScrollView(child: buildBody()) 
                : Container(child: LoadingSpinKit(),),
+        backgroundColor: GRAY6,
       ),
     );
   }
   PreferredSize buildAppBar() {
     return PreferredSize(
-      preferredSize: Size(double.infinity, 55),
-      child: InitialWidget(
-        child: Container(),
-        titleAppBar: PROFILE_PERSONAL_INFOMATION,
-        
-        backgroundAppBar: WHITE,
-         isShowBack: true,
-        iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
-        floatingActionButton: InkWell(
-          onTap: () {
-            //Get.to(ProfileEditPage());
-            Get.to(OrderInfoPage());
-          },
-          child: SvgPicture.asset(
-            IC_EDIT,
-            width: 20,
-            height: 20,
-            ),
+      preferredSize: sizeHeader,
+      // child: InitialWidget(
+      //   child: Container(),
+      //   titleAppBar: PROFILE_PERSONAL_INFOMATION,
+      //   titleAppBarColor: BLACK,
+      //   backgroundAppBar: WHITE,
+      //    //isShowBack: true,
+      //   //iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
+      //   floatingActionButton: InkWell(
+      //     onTap: () {
+      //       Get.to(ProfileEditPage());
+      //       //Get.to(OrderInfoPage());
+      //     },
+      //     child: SvgPicture.asset(
+      //       IC_EDIT,
+      //       width: 20,
+      //       height: 20,
+      //       ),
+      //   ),
+      // ),
+      child: AppBar(
+        centerTitle: true,
+        title: TextCustomized(
+          text: PROFILE_PERSONAL_INFOMATION,
+          color: WHITE,
+          font: SanFranciscoText,
+          isCenter: true,
+          ),
+        flexibleSpace: Image(
+          image: AssetImage(BG_IMG),
+          fit: BoxFit.cover,
         ),
+        backgroundColor: Colors.transparent,
+        actions: [
+          InkWell(
+            onTap: () {
+            Get.to(ProfileEditPage());
+          },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal:15.0),
+              child: SvgPicture.asset(
+              IC_EDIT,
+              color: WHITE,
+              width: 20,
+              height: 20,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -66,21 +98,20 @@ class ProfilePage extends GetView<ProfileController> {
           Container(
             padding: EdgeInsets.all(10),
             decoration: const BoxDecoration(
-             boxShadow: [
-                   BoxShadow(
-                   color: GRAY4,
-                   blurRadius: 8,
-                   offset: Offset(4, 6), // Shadow position
-                   ),
-                ],
+            //  boxShadow: [
+            //        BoxShadow(
+            //        color: GRAY4,
+            //        blurRadius: 8,
+            //        offset: Offset(4, 6), // Shadow position
+            //        ),
+            //     ],
               borderRadius: BorderRadius.all( 
                 Radius.circular(15),
                 ),
-                
-                color: BG_GRAY,
+                color: GRAY6,
             ),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Stack(
                 children: [
@@ -92,17 +123,50 @@ class ProfilePage extends GetView<ProfileController> {
                 ),
                  ],
                 ),
-                SizedBox(width: 10,),
+                SizedBox(width: 15,),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.all(5),
-                    child: TextCustomized(
-                      text: controller.mDataProfile!.data!.name!.toString(),
-                      font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                      size: normalXSize,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                       TextCustomized(
+                        text: controller.mDataProfile!.data!.name!.toString(),
+                        font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: MAIN_BLACK,
+                        size: normalXSize,
+                        ),
+                        SizedBox(height: 5),
+                         Wrap(
+                           spacing: 5.0,
+                          children: [
+                            SvgPicture.asset(IC_ACCOUNT, fit: BoxFit.cover,),
+                            TextCustomized(
+                              text: controller.mDataProfile!.data!.user_code.toString(),
+                              font: SanFranciscoUIText,
+                              weight: FontWeight.w400,
+                              color: MAIN_BLACK,
+                              size: smallSize,
+                              ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Wrap(
+                          spacing: 5.0,
+                          children: [
+                            SvgPicture.asset(IC_PHONE, fit: BoxFit.cover, height: 20, width: 20,),
+                            TextCustomized(
+                              text: controller.mDataProfile!.data!.phone.toString(),
+                              font: SanFranciscoUIText,
+                              weight: FontWeight.w400,
+                              color: MAIN_BLACK,
+                              size: smallSize,
+                              ),
+                          ],
+                        ),
+                      ]
+                    ),
                       
                   ),
                   ),
@@ -111,8 +175,72 @@ class ProfilePage extends GetView<ProfileController> {
             
           ),
           SizedBox(height: 25,),
+         Container(
+           decoration: BoxDecoration(
+             borderRadius: BorderRadius.circular(8),
+             color: WHITE,
+           ),
+           padding: EdgeInsets.all(10),
+           child: Column(
+             children: [
+          //       Container(
+          //   padding: EdgeInsets.all(10),
+          //   decoration: const BoxDecoration(
+          //     border: Border(
+          //       bottom: BorderSide(
+          //         color: COLOR_MESSAGE_USER,
+          //       )
+          //     )
+          //   ),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       TextCustomized(
+          //         text: PROFILE_CUSTOMERE_CODE,
+          //         font: SanFranciscoText,
+          //             weight: FontWeight.w400,
+          //             color: MAIN_BLACK,
+          //         ),
+          //         TextCustomized(
+          //         text: controller.mDataProfile!.data!.user_code.toString(),
+          //         font: SanFranciscoText,
+          //             weight: FontWeight.w400,
+          //             color: MAIN_GRAY,
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          // SizedBox(height: 10,),
+          // Container(
+          //   padding: EdgeInsets.all(10),
+          //   decoration: const BoxDecoration(
+          //     border: Border(
+          //       bottom: BorderSide(
+          //         color: COLOR_MESSAGE_USER,
+          //       )
+          //     )
+          //   ),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       TextCustomized(
+          //         text: LOGIN_PHONE,
+          //         font: SanFranciscoText,
+          //             weight: FontWeight.w400,
+          //             color: MAIN_BLACK,
+          //         ),
+          //        TextCustomized(
+          //         text: controller.mDataProfile!.data!.phone.toString(),
+          //         font: SanFranciscoText,
+          //             weight: FontWeight.w400,
+          //             color: MAIN_GRAY,
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          // SizedBox(height: 10,),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(5),
             decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -123,68 +251,20 @@ class ProfilePage extends GetView<ProfileController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextCustomized(
-                  text: PROFILE_CUSTOMERE_CODE,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                  ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 5.0,
+                  children:[ 
+                  SvgPicture.asset(IC_EMAIL,width: 25,height: 25,),
                   TextCustomized(
-                  text: controller.mDataProfile!.data!.user_code.toString(),
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_GRAY,
-                  ),
-              ],
-            ),
-          ),
-          SizedBox(height: 10,),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: COLOR_MESSAGE_USER,
-                )
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                  text: LOGIN_PHONE,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                  ),
-                 TextCustomized(
-                  text: controller.mDataProfile!.data!.phone.toString(),
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_GRAY,
-                  ),
-              ],
-            ),
-          ),
-          SizedBox(height: 10,),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: COLOR_MESSAGE_USER,
-                )
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                  text: LOGIN_EMAIL,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                  ),
+                    text: LOGIN_EMAIL,
+                    font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: MAIN_BLACK,
+                    ),
+                  ]
+                ),
                   TextCustomized(
                   text: controller.mDataProfile!.data!.email.toString(),
                   font: SanFranciscoText,
@@ -195,134 +275,167 @@ class ProfilePage extends GetView<ProfileController> {
             ),
           ),
           SizedBox(height: 10,),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: COLOR_MESSAGE_USER,
-                )
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                  text: PROFILE_BT_CHANGE_PASS,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                  ),
-                  InkWell(
-                    onTap: (){
+          InkWell(
+            onTap: (){
                       Get.to(ProfileChangePasswordPage());
                     },
-                    child: SvgPicture.asset(
-                      IC_ARROWS_RIGHT,
-                      width: 12,
-                      height: 12,
-                      ),
-                  ),
-              ],
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: COLOR_MESSAGE_USER,
+                  )
+                )
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 5.0,
+                  children:[ 
+                  SvgPicture.asset(IC_LOCK,width: 25,height: 25,),
+                  TextCustomized(
+                    text: PROFILE_BT_CHANGE_PASS,
+                    font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: MAIN_BLACK,
+                    ),
+                  ]
+                ),
+                   SvgPicture.asset(
+                        IC_ARROWS_RIGHT,
+                        width: 12,
+                        height: 12,
+                        ),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 10,),
-           Container(
-            padding: EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: COLOR_MESSAGE_USER,
+           InkWell(
+             onTap: (){Get.to(()=>AddressPage());},
+             child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: COLOR_MESSAGE_USER,
+                  )
                 )
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                  text: PROFILE_ADDRESS,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Get.to(()=>AddressPage());
-                    },
-                    child: SvgPicture.asset(
-                      IC_ARROWS_RIGHT,
-                      width: 12,
-                      height: 12,
-                      ),
-                  ),
-              ],
-            ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 5.0,
+                  children:[ 
+                  SvgPicture.asset(IC_MENUCARD,width: 25,height: 25,),
+                  TextCustomized(
+                    text: PROFILE_ADDRESS,
+                    font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: MAIN_BLACK,
+                    ),
+                  ]
+                ),
+                     SvgPicture.asset(
+                        IC_ARROWS_RIGHT,
+                        width: 12,
+                        height: 12,
+                        ),
+                ],
+              ),
           ),
+           ),
+            InkWell(
+              onTap: (){Get.to(OrderInfoPage());},
+              child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: COLOR_MESSAGE_USER,
+                  )
+                )
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // TextCustomized(
+                  //   text: ORDER_LIST_APP_BAR,
+                  //   font: SanFranciscoText,
+                  //       weight: FontWeight.w400,
+                  //       color: MAIN_BLACK,
+                  //   ),
+                   Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 5.0,
+                  children:[ 
+                  SvgPicture.asset(IC_STAR,width: 20,height: 20,),
+                  TextCustomized(
+                    text: ORDER_LIST_APP_BAR,
+                    font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: MAIN_BLACK,
+                    ),
+                  ]
+                ),
+                    SvgPicture.asset(
+                        IC_ARROWS_RIGHT,
+                        width: 12,
+                        height: 12,
+                        ),
+                ],
+              ),
+          ),
+            ),
            SizedBox(height: 10,),
-           Container(
-            padding: EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: COLOR_MESSAGE_USER,
+           InkWell(
+              onTap: (){controller.onLogout();},
+             child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: COLOR_MESSAGE_USER,
+                  )
                 )
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                  text: PROFILE_LOGOUT,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                      Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 5.0,
+                      children:[ 
+                      SvgPicture.asset(IC_POWER,width: 25,height: 25,),
+                      TextCustomized(
+                        text: PROFILE_LOGOUT,
+                        font: SanFranciscoText,
+                            weight: FontWeight.w400,
+                            color: MAIN_BLACK,
+                        ),
+                      ]
+                    ),
+                    SvgPicture.asset(
+                        IC_ARROWS_RIGHT,
+                        width: 12,
+                        height: 12,
+                        ),
+                    ],
                   ),
-                  InkWell(
-                    onTap: (){
-                      controller.onLogout();
-                    },
-                    child: SvgPicture.asset(
-                      IC_ARROWS_RIGHT,
-                      width: 12,
-                      height: 12,
-                      ),
-                  ),
-              ],
-            ),
-          ),
-          SizedBox(height: 10,),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: COLOR_MESSAGE_USER,
-                )
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                  text: ORDER_LIST_APP_BAR,
-                  font: SanFranciscoText,
-                      weight: FontWeight.w400,
-                      color: MAIN_BLACK,
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Get.to(OrderInfoPage());
-                    },
-                    child: SvgPicture.asset(
-                      IC_ARROWS_RIGHT,
-                      width: 12,
-                      height: 12,
-                      ),
-                  ),
-              ],
-            ),
-          ),
-          SizedBox(height: 10,),
+              ),
+              ),
+             ],
+           ),
+         ),
         ],
       ),
 
@@ -346,8 +459,8 @@ class ProfilePage extends GetView<ProfileController> {
           child: ImageCustomized(
            path: controller.mDataProfile!.data!.avatar.toString().isEmpty ? LOGO_IMG : controller.mDataProfile!.data!.avatar.toString() , 
            fit: BoxFit.cover,
-          width: 60,
-          height: 60,
+          width: 80,
+          height: 80,
         ),
         ),
       ),
@@ -356,10 +469,10 @@ class ProfilePage extends GetView<ProfileController> {
  
 
   Widget buildEditIcon() => buildCircle(
-        color: BG_GRAY,
+        color: GRAY6,
         all: 1,
         child: buildCircle(
-          color: BG_GRAY,
+          color: GRAY6,
           all: 2,
           child: SvgPicture.asset(
             IC_EDIT_PROFILE,
