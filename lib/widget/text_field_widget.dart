@@ -85,7 +85,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustom> {
                    fontWeight: FontWeight.w400,
                    color: boderTextFieldEnabledColor,
                    fontSize: normalSize,
-                   fontFamily: SanFranciscoText),
+                   fontFamily: SanFranciscoTextLight),
                controller: widget.textController,
                keyboardType: widget.textInputType,
                textInputAction: widget.textInputAction,

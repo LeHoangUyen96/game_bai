@@ -1,8 +1,10 @@
 
 import 'package:screenshot/screenshot.dart';
+import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/register_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
+import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:get/get.dart';
@@ -56,6 +58,7 @@ class RegisterController extends GetxController implements RegisterContract{
     super.onInit();
     _authRepository = Injector().auth;
     contract = this;
+    //onRegister();
   }
 
   void onRegister() {
@@ -93,15 +96,9 @@ class RegisterController extends GetxController implements RegisterContract{
     if (phoneNumberController.text.length < 9 || phoneNumberController.text.length > 11) {
         isPhoneNumberValid = false;
         phoneNumberError = "Số điện thoại không được để trống";
-    }else {
+    }else  {
         isPhoneNumberValid = true;
-      }
-    if (usernameController.text.isEmpty) {
-      isUserNameValid = false;
-      userNameError = "Tên đăng nhập không được để trống";
-    } else {
-      isUserNameValid = true;
-    }
+      } 
     if (nameController.text.isEmpty) {
       isNameValid = false;
       nameError = "Họ và tên không được để trống";
@@ -109,14 +106,13 @@ class RegisterController extends GetxController implements RegisterContract{
       isNameValid = true;
     }
 
-    if (isEmailValid && isPasswordValid && isConfirmPassValid && isPhoneNumberValid && isNameValid && isUserNameValid) {
+    if (isEmailValid && isPasswordValid && isConfirmPassValid && isPhoneNumberValid && isNameValid ) {
       AuthRequest _request = AuthRequest(
           email: emailController.text,
           phone: phoneNumberController.text,
           name: nameController.text,
-          userName: usernameController.text,
           password: passwordController.text,
-        confirmPassword: confirmPassController.text
+          password_confirmation: confirmPassController.text
       );
       _authRepository.onRegister(_request, NetworkConfig.REGISTER).then((value) {
          return contract.onSuccess(value);
@@ -131,7 +127,12 @@ class RegisterController extends GetxController implements RegisterContract{
 
   @override
   void onError(ErrorResponse msg) {
-    Get.snackbar(NOTIFY,msg.message.toString());
+    //Get.snackbar(NOTIFY,msg.message.toString());
+    if (msg.error!.phoneError!.toList().isNotEmpty) {
+      isPhoneNumberValid = false;
+      phoneNumberError = msg.error!.phoneError![0].toString();
+      update();
+    } else {isPhoneNumberValid = true; update();}
 
     if (msg.error!.emailError!.toList().isNotEmpty) {
       isEmailValid = false;
@@ -139,17 +140,9 @@ class RegisterController extends GetxController implements RegisterContract{
       update();
     } else {isEmailValid = true; update();}
 
-    if (msg.error!.phoneError!.toList().isNotEmpty) {
-      isPhoneNumberValid = false;
-      phoneNumberError = msg.error!.phoneError![0].toString();
-      update();
-    } else {isPhoneNumberValid = true; update();}
+    
 
-    if (msg.error!.namedError!.toList().isNotEmpty) {
-      isUserNameValid = false;
-      userNameError = (msg.error!.namedError?[0].toString() ?? null)!;
-      update();
-    } else {isUserNameValid = true; update();}
+    update();
   }
 
   @override
@@ -164,7 +157,8 @@ class RegisterController extends GetxController implements RegisterContract{
     _authRepository.onAuth(_request, NetworkConfig.LOGIN).then((value) {
       // tokens.save(value.token);
       tokens.write(KEY_TOKEN, value.token.toString());
-      Get.offAll(() => MainPage());
+      //Get.offAll(() => MainPage());
+      Get.offAll(() => ProfilePage());
       Get.snackbar(NOTIFY,AUTH_REGISTER_SUCCESS);
       print("Successss");
       update();
@@ -173,6 +167,11 @@ class RegisterController extends GetxController implements RegisterContract{
       Get.snackbar(NOTIFY,AUTH_REGISTER_ERROR);
       update();
     });
+  }
+
+  @override
+  void onSuccessGetAddress(RegisterAddressResponse response) {
+    // TODO: implement onSuccessGetAddress
   }
 
 

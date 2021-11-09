@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/widget/image_customized.dart';
 
 class InitialWidget extends StatefulWidget {
   final Widget child;
@@ -95,6 +97,7 @@ class _InitialWidgetState extends State<InitialWidget> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           floatingActionButton: widget.floatingActionButton,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           backgroundColor: widget.backgroundColor ?? Colors.white,
           appBar: widget.titleAppBar != null ||
                   (widget.isShowBack != null && widget.isShowBack!)
@@ -122,15 +125,39 @@ class _InitialWidgetState extends State<InitialWidget> {
                               ),
                         )
                       : Container(),
-                  title: Text(
-                    widget.titleAppBar != null
-                        ? widget.titleAppBar!
-                        : "",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: _isDark ? widget.titleAppBarColor : Colors.white),
-                  ),
-                )
+                    flexibleSpace: Container(
+                      decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                            image: new AssetImage(
+                              'assets/images/bg_appbar.png',
+                            ),
+                            fit: BoxFit.cover,
+                          )),
+                      child:  ImageCustomized(
+                        path: "assets/images/retangle.png",
+                        width: Get.width,
+                        height: Get.height,
+                        fit: BoxFit.cover,
+                      ),
+                ),
+                  title: Container(
+                            width: Get.width,
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                Text(
+                                  widget.titleAppBar != null
+                                      ? widget.titleAppBar!
+                                      : "",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: _isDark ? widget.titleAppBarColor : Colors.white),
+                                ),
+                                ]
+                            )
+                    )
+              )
               : null,
           bottomNavigationBar: widget.bottomNavigationBar,
           body: SafeArea(

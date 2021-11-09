@@ -4,10 +4,10 @@ import 'package:get_storage/get_storage.dart';
 
 class NetworkConfig {
 
-  // static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
-  static const String URL_SERVER = "https://api.baoden.vn/api/v2";
-  // static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
-  static const String URL_SERVER_BASE_CDN = "https://api.baoden.vn";
+   //static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
+  static const String URL_SERVER = "http://backend-viettrung.tekup.vn/api/v1";
+  //static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
+  static const String URL_SERVER_BASE_CDN = "http://backend-viettrung.tekup.vn";
 
   static Map<String, String> onBuildHeader({bool? isMultipart})  {
     String? token = GetStorage().read(KEY_TOKEN);
@@ -15,7 +15,7 @@ class NetworkConfig {
       HttpHeaders.contentTypeHeader: isMultipart != null && isMultipart
           ? 'multipart/form-data'
           : "application/json",
-      HttpHeaders.authorizationHeader: (token != null) ? "Bearer $token" : ""
+      HttpHeaders.authorizationHeader: (token != null) ? "Bearer $token" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYmFja2VuZC12aWV0dHJ1bmcudGVrdXAudm4vYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2MzY0MzI5MTEsImV4cCI6MTYzNjQzNjUxMSwibmJmIjoxNjM2NDMyOTExLCJqdGkiOiJMY0ZvcmdnNW4zMG15bldRIiwic3ViIjoxMCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.p4glogSrPr6C7pb7FXJqd6JCaUk1NYuevbOgGG_zvBg"
     };
 
     return header;

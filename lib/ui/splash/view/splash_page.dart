@@ -17,11 +17,9 @@ class SplashPage extends GetView<SplashController> {
               image: DecorationImage(
                 image: AssetImage(BG_IMG),
                 fit: BoxFit.cover,
-                
                 )
             ),
             child: Center(
-              
                   child: ImageCustomized(
                     path: LOGO_IMG,
                     width: 178,

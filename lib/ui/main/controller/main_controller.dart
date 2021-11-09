@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
@@ -42,13 +43,14 @@ class MainController extends GetxController implements MainContract {
   }
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     repository = Injector().notification;
     homeRepositories = Injector().home;
     contract = this;
+    //await Firebase.initializeApp();
     getNotificationCount();
-    initFirebaseMessage();
+    //initFirebaseMessage();
     getHomeData();
   }
 
@@ -95,51 +97,51 @@ class MainController extends GetxController implements MainContract {
     update();
   }
 
-  initFirebaseMessage() async {
-    /// Update the iOS foreground notification presentation options to allow
-    /// heads up notifications.
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+  // initFirebaseMessage() async {
+  //   /// Update the iOS foreground notification presentation options to allow
+  //   /// heads up notifications.
+  //   await FirebaseMessaging.instance
+  //       .setForegroundNotificationPresentationOptions(
+  //     alert: true,
+  //     badge: true,
+  //     sound: true,
+  //   );
 
-    await FirebaseMessaging.instance.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+  //   await FirebaseMessaging.instance.requestPermission(
+  //     alert: true,
+  //     badge: true,
+  //     sound: true,
+  //   );
 
-    LocalNotificationService.initialize(Get.context!);
+  //   LocalNotificationService.initialize(Get.context!);
 
-    // Firebase token, used to call API
-    String? token = await FirebaseMessaging.instance.getToken();
+  //   // Firebase token, used to call API
+  //   String? token = await FirebaseMessaging.instance.getToken();
 
-    deviceToken.write(DEVICE_TOKEN, token);
+  //   deviceToken.write(DEVICE_TOKEN, token);
 
-    FirebaseMessaging.instance.getInitialMessage().then((value) {
-      // Case app is killed
-      if (value != null) {
-        print(value.notification!.title);
-        Get.to(() => MainPage());
-      }
-    });
+  //   FirebaseMessaging.instance.getInitialMessage().then((value) {
+  //     // Case app is killed
+  //     if (value != null) {
+  //       print(value.notification!.title);
+  //       Get.to(() => MainPage());
+  //     }
+  //   });
 
-    FirebaseMessaging.onMessage.listen((event) {
-      // Case app is in foreground
-      if (event.notification != null) {
-        print(event.notification!.title);
-        print(event.notification!.body);
-        LocalNotificationService.display(event);
-      }
-    });
+  //   FirebaseMessaging.onMessage.listen((event) {
+  //     // Case app is in foreground
+  //     if (event.notification != null) {
+  //       print(event.notification!.title);
+  //       print(event.notification!.body);
+  //       LocalNotificationService.display(event);
+  //     }
+  //   });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      // Case app is in background and user tap in push notification
-      final routeMessage = event.data['route'];
-      print(routeMessage);
-      Get.to(() => MainPage());
-    });
-  }
+  //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
+  //     // Case app is in background and user tap in push notification
+  //     final routeMessage = event.data['route'];
+  //     print(routeMessage);
+  //     Get.to(() => MainPage());
+  //   });
+  // }
 }

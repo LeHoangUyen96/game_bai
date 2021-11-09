@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
+import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
+import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:get/get.dart';
@@ -27,10 +29,10 @@ class MainPage extends GetView<MainController> {
               index: controller.tabIndex.value,
               // children: controller.screensData.map(_buildIndexedPageFlow).toList(),
               children: [
-                HomePage(),
-                HomePage(),
-                HomePage(),
-                HomePage(),
+                NotificationPage(),
+                NotificationPage(),
+                NotificationPage(),
+                NotificationPage(),
               ],
             ),
           ),

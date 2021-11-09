@@ -8,9 +8,11 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/controller/forgot_password_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/view/confirm_password_page.dart';
+import 'package:viet_trung_mobile/ui/auth/forgot_password/view/forgot_password_step_1.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class ForgotPage extends GetView<ForgotController> {
@@ -76,47 +78,62 @@ class ForgotPage extends GetView<ForgotController> {
                               color: BLACK,
                               weight: FontWeight.w400,
                           ),
+                          const SizedBox(height: 15),
+                           TextCustomized(
+                              text: LOGIN_ENTER_EMAIL,
+                              font: SanFranciscoUIText,
+                              size: smallSize,
+                              color: GRAY,
+                              weight: FontWeight.w400,
+                          ),
                           const SizedBox(height: 25),
                               TextCustomized(
-                    textAlign: TextAlign.left,
-                    text: LOGIN_EMAIL_OR_PHONE,
-                    size: 14 ,
-                    weight: FontWeight.w400,
-                    style: FontStyle.normal,
-                    font: SanFranciscoText,
-                    color: boderTextFieldEnabledColor,
-                  ),
-                TextFieldCustom(
+                                textAlign: TextAlign.left,
+                                text: LOGIN_EMAIL_OR_PHONE,
+                                size: 14 ,
+                                weight: FontWeight.w400,
+                                style: FontStyle.normal,
+                                font: SanFranciscoText,
+                                color: boderTextFieldEnabledColor,
+                              ),
+                              // TextFieldCustom(
+                              //  textController: controller.emailController,
+                              //  errorText: !controller.isEmailValid ? controller.emailError : null,
+                              //  hint: LOGIN_EMAIL_OR_PHONE,
+                               
+                              //   ),
+                              SizedBox(height: 5,),
+                              TextFieldCustomized(
                                textController: controller.emailController,
                                errorText: !controller.isEmailValid ? controller.emailError : null,
                                hint: LOGIN_EMAIL_OR_PHONE,
                                
-                           ),
-                SizedBox(height: 5,),
-                 Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      controller.isEmailValid == false
-                          ? TextCustomized(
-                        text: controller.emailError!,
-                        font: SanFranciscoText,
-                        size: 12,
-                        weight: FontWeight.w400,
-                        color: boderTextFieldErrorColor,
-                      )
-                          : Container(),
-                    ],
-                  ),
-                
-                SizedBox(height: 16,),
-                 ButtonCustomized(
-                    LOGIN_RESET,
-                    onTap: (){
-                      controller.onForgotPass();
-                      //Get.to(ConfirmPage());
-                    },
-                    backgroundColor: MAIN_BLACK,
-                  ),
+                                ),
+                                SizedBox(height: 5,),
+                                Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      controller.isEmailValid == false
+                                          ? TextCustomized(
+                                        text: controller.emailError!,
+                                        font: SanFranciscoText,
+                                        size: 12,
+                                        weight: FontWeight.w400,
+                                        color: boderTextFieldErrorColor,
+                                      )
+                                          : Container(),
+                                    ],
+                                  ),
+                                
+                                SizedBox(height: 16,),
+                                ButtonCustomized(
+                                    LOGIN_RESET,
+                                    onTap: (){
+                                      //controller.onForgotPass();
+                                      Get.to(ForgotStepOnePage());
+                                    },
+                                    backgroundColor: MAIN_BLACK,
+                                  ),
                
                               ]
                               ),
