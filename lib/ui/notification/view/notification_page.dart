@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:background_app_bar/background_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +13,6 @@ import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.
 import 'package:viet_trung_mobile/ui/address/view/add_address_page.dart';
 import 'package:viet_trung_mobile/ui/address/view/update_address_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/header_widget.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';

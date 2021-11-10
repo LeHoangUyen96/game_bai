@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/ui/auth/register/controller/register_controlle
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
+import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/ui/splash/controller/splash_controller.dart';
@@ -32,7 +33,7 @@ Widget _app() => LayoutBuilder(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: AddressPage(),
+          home: ConfirmOrderPage(),
           theme: ThemeData(
             brightness: Brightness.light,
             primaryColor: MAIN_COLOR,

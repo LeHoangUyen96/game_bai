@@ -15,7 +15,7 @@ class NetworkConfig {
       HttpHeaders.contentTypeHeader: isMultipart != null && isMultipart
           ? 'multipart/form-data'
           : "application/json",
-      HttpHeaders.authorizationHeader: (token != null) ? "Bearer $token" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYmFja2VuZC12aWV0dHJ1bmcudGVrdXAudm4vYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2MzY0MzI5MTEsImV4cCI6MTYzNjQzNjUxMSwibmJmIjoxNjM2NDMyOTExLCJqdGkiOiJMY0ZvcmdnNW4zMG15bldRIiwic3ViIjoxMCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.p4glogSrPr6C7pb7FXJqd6JCaUk1NYuevbOgGG_zvBg"
+      HttpHeaders.authorizationHeader: (token != null) ? "Bearer $token" : ""
     };
 
     return header;

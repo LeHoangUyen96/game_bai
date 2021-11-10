@@ -24,19 +24,27 @@ class AddressPage extends GetView<AddressController> {
           titleAppBarColor: Colors.white,
           backgroundAppBar: Colors.black26,
           isShowBack: true,
-          floatingActionButton:  FloatingActionButton(
-            onPressed: () {
-              Get.to(()=> AddAddressPage())!.then((value){
-                if(value != null){
-                  controller.onGetAddressAll();
-                }
-              });
-            },
-            child: const Icon(
+          // floatingActionButton:  FloatingActionButton(
+          //   onPressed: () {
+          //     Get.to(()=> AddAddressPage())!.then((value){
+          //       if(value != null){
+          //         controller.onGetAddressAll();
+          //       }
+          //     });
+          //   },
+          //   child: const Icon(
+          //     Icons.add_rounded,
+          //     color: Colors.black,
+          //   ),
+          //   backgroundColor: Colors.white,
+          // ),
+          iconAdd: TextButton(
+            child: Icon(
               Icons.add_rounded,
-              color: Colors.black,
+              color: Colors.white,
+              size: 30,
             ),
-            backgroundColor: Colors.white,
+            onPressed: () => Get.to(()=> AddAddressPage()),
           ),
           iconBack: TextButton(
             child: Icon(
@@ -114,6 +122,7 @@ class AddressPage extends GetView<AddressController> {
                                   text: controller.mdatas![index].name!,
                                   weight: FontWeight.w900,
                                   size: 16,
+                                  color: Colors.black,
                                   font: SanFranciscoTextLight,
                                 ),
                                 TextCustomized(
@@ -189,6 +198,7 @@ class AddressPage extends GetView<AddressController> {
                               text: controller.mdatas![index].name!,
                               weight: FontWeight.w900,
                               size: 16,
+                              color: Colors.black,
                               font: SanFranciscoTextLight,
                             ),
                             SizedBox(
@@ -244,18 +254,5 @@ class AddressPage extends GetView<AddressController> {
         });
 
 
-  }
-
-  Widget _buildBottom(){
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16,vertical: 20),
-        child: ButtonCustomized(
-          BT_NEXT,
-          onTap: () {
-            print('continue on pressed');
-          },
-          backgroundColor: Colors.black,
-        )
-    );
   }
 }

@@ -34,13 +34,13 @@ class SplashController extends GetxController {
 
     Future.delayed(Duration(seconds: 3), () {
       //if token != null => MainPage, this one is just for testing
-      if(token != null) {
+      if(token != "" ){
         //Get.offAll(() => MainPage());
-        Get.offAll(() => ProfilePage());
+        Get.offAll(() => LoginPage());
       } else {
         Get.offAll(() => LoginPage());
       }
-          });
+    });
   }
 
 
