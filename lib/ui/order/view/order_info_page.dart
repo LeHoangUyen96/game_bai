@@ -28,9 +28,8 @@ class OrderInfoPage extends GetView<OrderInfoController> {
       child: InitialWidget(
         child: Container(),
         titleAppBar: ORDER_LIST_APP_BAR,
-        backgroundAppBar: WHITE,
-         isShowBack: true,
-        iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
+        backgroundAppBar: Colors.black26,
+         isShowBack: false,
         
       ),
     );
@@ -60,7 +59,7 @@ class OrderInfoPage extends GetView<OrderInfoController> {
                       textAlign: TextAlign.center,
                       text: ORDER_LIST_ARRIVED,
                       color: Colors.black,
-                      size: 12,
+                      size: 14,
                       weight: FontWeight.w800,
                     ),
                   ),
@@ -70,11 +69,10 @@ class OrderInfoPage extends GetView<OrderInfoController> {
                       textAlign: TextAlign.center,
                       text: ORDER_LIST_STOCK,
                       color: Colors.black,
-                      size: 12,
+                      size: 14,
                       weight: FontWeight.w800,
                     ),
                   ),
-                  
                 ],
               ),
             ),

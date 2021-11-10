@@ -244,6 +244,7 @@ Widget  _buildListOrder(){
           SizedBox(height: 5,),     
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextCustomized(
                 text: ORDER_LIST_DELIVERY_ADDRESS,
@@ -251,12 +252,16 @@ Widget  _buildListOrder(){
                 weight: FontWeight.w700,
                 color: GRAY1,
                 ),
-                TextCustomized(
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BLACK,
-                ),
+                Expanded(
+                  flex: 5,
+                  child:  TextCustomized(
+                  text: "Lê Thanh Toàn, 0937123123, 320 Hoàng Diệu, Phường Bình Hiên, Quận Hải Châu, thành phố Đà Nẵng",
+                  font: SanFranciscoText,
+                  weight: FontWeight.w400,
+                  color: BLACK,
+                    textAlign: TextAlign.end,
+                ),),
+
             ],
           ),    
         ],
