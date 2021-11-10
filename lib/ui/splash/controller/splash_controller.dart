@@ -36,7 +36,7 @@ class SplashController extends GetxController {
       //if token != null => MainPage, this one is just for testing
       if(token != null) {
         //Get.offAll(() => MainPage());
-        Get.offAll(() => ProfilePage());
+        Get.offAll(() => MainPage());
       } else {
         Get.offAll(() => LoginPage());
       }

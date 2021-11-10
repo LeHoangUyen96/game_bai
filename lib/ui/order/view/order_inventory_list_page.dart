@@ -327,7 +327,8 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
 
   Widget _buildBottomNav(){
     return Container(
-      //height: 80,
+      height: 80,
+      padding: EdgeInsets.all(5),
        decoration:  BoxDecoration(
          color: WHITE,
          borderRadius: BorderRadius.only(
@@ -343,14 +344,24 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
             ),
             ],
        ),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: ButtonCustomized(
-            ORDER_LIST_PACKING_SEND_BACK,
-            
-          ),
+        child: InkWell(
+            child: Center(
+              // widthFactor: 50,
+              // heightFactor: 50,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: BLACK,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8)
+                  ),
+                ),
+                child : TextCustomized(
+                text: ORDER_LIST_PACKING_SEND_BACK,
+                color: WHITE,
+                )
+              ),
+            ),
         ),
       
     );

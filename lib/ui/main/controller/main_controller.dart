@@ -49,40 +49,40 @@ class MainController extends GetxController implements MainContract {
     homeRepositories = Injector().home;
     contract = this;
     //await Firebase.initializeApp();
-    getNotificationCount();
+    //getNotificationCount();
     //initFirebaseMessage();
-    getHomeData();
+    //getHomeData();
   }
 
-  void getHomeData() {
-    homeRepositories!.onGetHome().then((value) {
-      if (value.data != null) {
-        if (value.data!.number_product! > 0) {
-          navigateItem[1].badgeCount = value.data!.number_product!;
-          navigateItem[1].showBadge = true;
-        }
-      }
-      update();
-    }).catchError((onError) {
-      // Get.defaultDialog(
-      //     title: (onError as ErrorResponse).message.toString(), middleText: '');
-    });
-    update();
-  }
+  // void getHomeData() {
+  //   homeRepositories!.onGetHome().then((value) {
+  //     if (value.data != null) {
+  //       if (value.data!.number_product! > 0) {
+  //         navigateItem[1].badgeCount = value.data!.number_product!;
+  //         navigateItem[1].showBadge = true;
+  //       }
+  //     }
+  //     update();
+  //   }).catchError((onError) {
+  //     // Get.defaultDialog(
+  //     //     title: (onError as ErrorResponse).message.toString(), middleText: '');
+  //   });
+  //   update();
+  // }
 
-  void getNotificationCount() {
-    repository.onGetUnreadCount(3).then((value) {
-      return contract.onSuccess(value);
-    }).catchError((onError) {
-      print('$onError');
-    });
+  // void getNotificationCount() {
+  //   repository.onGetUnreadCount(3).then((value) {
+  //     return contract.onSuccess(value);
+  //   }).catchError((onError) {
+  //     print('$onError');
+  //   });
 
-    repository.onGetUnreadCount(4).then((value) {
-      return contract.onSuccess(value);
-    }).catchError((onError) {
-      print('$onError');
-    });
-  }
+  //   repository.onGetUnreadCount(4).then((value) {
+  //     return contract.onSuccess(value);
+  //   }).catchError((onError) {
+  //     print('$onError');
+  //   });
+  // }
 
   @override
   void onError(ErrorResponse error) {}

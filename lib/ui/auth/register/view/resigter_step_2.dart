@@ -282,7 +282,7 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
                                                         fontSize: 16,
                                                         height: 0.5,
                                                       ),
-                                                      borderRadius: BorderRadius.circular(8),
+                                                      // borderRadius: BorderRadius.circular(8),
                                                       // underline: Container(
                                                       //   height: 1,
                                                       //   color: MAIN_LINE,

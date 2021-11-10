@@ -28,6 +28,7 @@ class OrderInfoPage extends GetView<OrderInfoController> {
       child: InitialWidget(
         child: Container(),
         titleAppBar: ORDER_LIST_APP_BAR,
+        titleAppBarColor: BLACK,
         backgroundAppBar: WHITE,
          isShowBack: true,
         iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
