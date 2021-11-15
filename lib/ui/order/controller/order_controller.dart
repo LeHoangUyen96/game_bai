@@ -17,7 +17,7 @@ class OrderController extends GetxController implements OrderContract {
   }
 
   void onGetListOrder(){
-    orderRepositories!.onGetListOrder().then((value) {
+    orderRepositories!.onGetListOrder(1).then((value) {
       orderResponse = value;
       update();
     }).catchError((onError){

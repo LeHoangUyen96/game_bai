@@ -58,6 +58,8 @@ class NetworkConfig {
   static const String ORDER_SAVE_LINK= URL_SERVER + "/order/save-link";
   static const String ORDER_LIST_SHOP = URL_SERVER + "/list-shop-domain";
   static const String ORDER_LIST_STATUS = URL_SERVER + "/order/list-status-order";
+  static const String WAREHOUSE = URL_SERVER + "/order/list-storage-receive";
+  static const String PACKING_ORDER = URL_SERVER + "/order/change-type";
 
   //Wallet
   static const String WALLET_INFO = URL_SERVER + "/wallet/check-wallets";

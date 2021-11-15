@@ -26,6 +26,7 @@ class DataOrder {
   double? transport_fee;
   String? created_at;
   String? updated_at;
+  bool? selected;
 
   DataOrder({
     this.id,
@@ -40,6 +41,7 @@ class DataOrder {
     this.transport_fee,
     this.created_at,
     this.updated_at,
+    this.selected
 
   });
 
@@ -56,6 +58,7 @@ class DataOrder {
     transport_fee = json['transport_fee'];
     created_at = json['created_at'];
     updated_at = json['updated_at'];
+    selected = true;
   }
 
   Map<String, dynamic> toJson() {

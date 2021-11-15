@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/order_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_inventory_list_controller.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile/widget/popup_packing_order.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
@@ -20,11 +25,10 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
     return GetBuilder<OrderInventoryListController>(
       init: OrderInventoryListController(),
       builder: (value) => Scaffold(
-        body:   buildBody(),
-        backgroundColor: GRAY_BG,
+        body:   controller.orderResponse!.data!.length != 0 ? buildBody() : Container(),
+        backgroundColor: MAIN_BG,
         bottomNavigationBar: _buildBottomNav(),    
-        ) 
-               
+        )
       );
     
   }
@@ -33,107 +37,60 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: WHITE,
-                ),
-                 child: Row(
-                   crossAxisAlignment: CrossAxisAlignment.center,
-                   children: [
-                     Expanded(
-                       flex: 1,
-                       child: InkWell(
-                         onTap: (){},
-                         child: SvgPicture.asset(
-                           IC_SEARCH,
-                           height: 20,
-                           width: 20,
-                           ),
-                       ),
-                     ),
-                     Expanded(
-                       flex: 6,
-                       child: TextField(
-                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                           hintText: ORDER_LIST_SEARCH_BILL_CODE,
-                           hintStyle: TextStyle(
-                             fontFamily: SanFranciscoTextLight,
-                             fontWeight: FontWeight.w400,
-                             color: GRAY
-                           ),
-                         ),
-                          
-                       ),
-                     ),
-                      Expanded(
-                        flex: 1,
-                       child: InkWell(
-                         onTap: (){},
-                         child: SvgPicture.asset(
-                           IC_FILTER,
-                           height: 18,
-                           width: 18,
-                           ),
-                       ),
-                     ),
-                   ],
-                 ),
-              ),
-            ),
-            Container( 
-              color: WHITE,
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child:
-                  Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 16,
-                            width: 16,
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                top: BorderSide(width: 1.0, color: Colors.grey),
-                                left: BorderSide(width: 1.0, color: Colors.grey),
-                                right: BorderSide(width: 1.0, color: Colors.grey),
-                                bottom: BorderSide(width: 1.0, color: Colors.grey),
-                              ),
-                            ),
-                            child: Checkbox(
-                              checkColor: Colors.red,
-                              activeColor: Colors.white38,
-                              value: controller.isCheck,
-                              tristate: true,
-                              onChanged: (value) {
-                                controller.onChangeDefault();
-                              },
-                            ),
-                          ),
-                          SizedBox(width: 10.0),
-                          TextCustomized(
-                            text: ORDER_LIST_SELECT_ALL,
-                            font:SanFranciscoUIText,
-                            weight: FontWeight.w700,
-                            color: MAIN_BLACK,
-                            ),
-                        ],
-                      ),
-                
-              ),
-            ),
             SizedBox(height: 10.0),
+            GestureDetector(
+              onTap: () {
+                controller.selectAllProduct();
+              },
+              child:  Container(
+                color: WHITE,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child:
+                  Row(
+                    children: [
+                      Container(
+                        width: 5.0.w,
+                        height: 5.0.w,
+                        //margin: EdgeInsets.only(left: 3.0.w, right: 3.0.w),
+                        decoration: BoxDecoration(
+                          color: BG_WHITE,
+                          border: Border.all(
+                            color: TEXT_GREY_IN_CART,
+                            width: 0.5.w,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(1.0.w),
+                          ),
+                        ),
+                        child: Icon(
+                            Icons.check,
+                            size: 4.0.w,
+                            color: controller.selectedAll == true ? MAIN_COLOR : Colors.white,
+                            //color: MAIN_COLOR
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      TextCustomized(
+                        text: SELECT_ALL_SHOPPING,
+                        font: SanFranciscoText,
+                        size: 16,
+                        color: TEXT_ON_WHITE_BG_COLOR,
+                        weight: FontWeight.w400,
+                      ),
+                    ],
+                  ),
+
+                ),
+              ),
+            ),
             Container(
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: listInventory.length,
+                itemCount: controller.orderResponse!.data!.length,
                 itemBuilder: (BuildContext context, int index ){
-                  return _buildListInventory();
+                  return _buildListInventory(controller.orderResponse!.data![index]);
                 },
                 ),
             ),
@@ -144,7 +101,7 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
     );
   }
 
-  Widget _buildListInventory(){
+  Widget _buildListInventory(DataOrder data){
     return Card(
       child: Container( 
               color: WHITE,
@@ -158,163 +115,142 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: Container(
-                              height: 16,
-                              width: 16,
-                              decoration: const BoxDecoration(
-                                // border: Border(
-                                //   top: BorderSide(width: 1.0, color: Colors.grey),
-                                //   left: BorderSide(width: 1.0, color: Colors.grey),
-                                //   right: BorderSide(width: 1.0, color: Colors.grey),
-                                //   bottom: BorderSide(width: 1.0, color: Colors.grey),
-                                // ),
-                              ),
-                              child: Checkbox(
-                                shape: RoundedRectangleBorder(
-                                   borderRadius: BorderRadius.circular(3),
-                                 ),
-                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                //fillColor: MaterialStateProperty.all(GRAY1),
-                                checkColor: Colors.red,
-                                activeColor: WHITE,
-                                value: controller.isCheck,
-                                tristate: true,
-                                onChanged: (value) {
-                                  controller.onChangeDefault();
+                            child:  Container(
+                              width: 5.0.w,
+                              // color: Colors.deepOrangeAccent,
+                              //height: 53.0.w,
+                              alignment: Alignment.topCenter,
+                              child: GestureDetector(
+                                onTap: () {
+                                   controller.onToggleSelect(data.id!);
                                 },
+                                child: Container(
+                                  width: 5.0.w,
+                                  height: 5.0.w,
+                                  margin: EdgeInsets.only(top: 5.0.w),
+                                  decoration: BoxDecoration(
+                                    color: BG_WHITE,
+                                    border: Border.all(
+                                      color: TEXT_GREY_IN_CART,
+                                      width: 0.5.w,
+                                    ),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(1.0),
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.check,
+                                    size: 4.0.w,
+                                    color: data.selected == true ? MAIN_COLOR : Colors.white,
+                                    //color:  MAIN_COLOR ,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                          // Theme(
-                          // data: ThemeData(unselectedWidgetColor: Colors.red),
-                          // child: Checkbox(
-                          //   value: controller.isCheck, 
-                          //   tristate: false, 
-                          //   onChanged: ( value) {
-                          //     controller.onChangeDefault();
-                          //   },
-                          //   )),
                           SizedBox(width: 10),
                           Expanded(
                             flex: 8,
                             child: Column(
                              crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                            TextCustomized(
-                            text: '#DH0123456',
-                            font: SanFranciscoText,
-                            weight: FontWeight.w700,
-                            color: MAIN_BLACK,
-                             ),
-                            TextCustomized(
-                            text: 'Kho Cửa Khẩu',
-                            font: SanFranciscoText,
-                            weight: FontWeight.w400,
-                            color: BG_ID_PD,
-                            ),
-                            ],
-                            ),
-                            SizedBox(height: 5,),
-                         TextCustomized(
-                         text: '10:10 21/10/2021',
-                         font: SanFranciscoTextLight,
-                         weight: FontWeight.w400,
-                         color: MAIN_GRAY,
-                         ),
-                        SizedBox(height: 5,),     
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        TextCustomized(
-                        text: ORDER_LIST_BILL_CODE,
-                        font: SanFranciscoTextLight,
-                        weight: FontWeight.w700,
-                        color: GRAY1,
-                        ),
-                        TextCustomized(
-                        text: ORDER_NULL,
-                        font: SanFranciscoText,
-                        weight: FontWeight.w400,
-                        color: BLACK,
-                        ),
-                        ],
-                        ), 
-                        SizedBox(height: 5,),     
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        TextCustomized(
-                        text: ORDER_LIST_PARCELS,
-                        font: SanFranciscoTextLight,
-                        weight: FontWeight.w700,
-                        color: GRAY1,
-                        ),
-                        TextCustomized(
-                        text: ORDER_NULL,
-                        font: SanFranciscoText,
-                        weight: FontWeight.w400,
-                        color: BLACK,
-                         ),
-                         ],
-                         ),   
-                        SizedBox(height: 5,),     
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        TextCustomized(
-                         text: ORDER_LIST_ITEMS,
-                         font: SanFranciscoTextLight,
-                         weight: FontWeight.w700,
-                         color: GRAY1,
-                            ),
-                         TextCustomized(
-                            text: ORDER_NULL,
-                             font: SanFranciscoText,
-                            weight: FontWeight.w400,
-                             color: BLACK,
-                         ),
-            ],
-          ), 
-          SizedBox(height: 5,),     
-           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextCustomized(
-                text: ORDER_LIST_PACKING_FORM,
-                font: SanFranciscoTextLight,
-                weight: FontWeight.w700,
-                color: GRAY1,
-                ),
-                TextCustomized(
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BLACK,
-                ),
-            ],
-          ), 
-          SizedBox(height: 5,),     
-           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextCustomized(
-                text: ORDER_LIST_COD,
-                font: SanFranciscoTextLight,
-                weight: FontWeight.w700,
-                color: GRAY1,
-                ),
-                TextCustomized(
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BLACK,
-                ),
-            ],
-          ), 
-        ]
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                        TextCustomized(
+                                        text: data.bill_code.toString(),
+                                        font: SanFranciscoText,
+                                        weight: FontWeight.w700,
+                                        color: MAIN_BLACK,
+                                         ),
+                                        TextCustomized(
+                                        text: data.order_status_name.toString(),
+                                        font: SanFranciscoText,
+                                        weight: FontWeight.w400,
+                                        color: BG_ID_PD,
+                                        ),
+                                    ],
+                                    ),
+                                    SizedBox(height: 5,),
+                                 TextCustomized(
+                                 text: data.created_at.toString(),
+                                 font: SanFranciscoTextLight,
+                                 weight: FontWeight.w400,
+                                 color: MAIN_GRAY,
+                                 ),
+                                SizedBox(height: 5,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                    TextCustomized(
+                                    text: ORDER_LIST_PARCELS,
+                                    font: SanFranciscoTextLight,
+                                    weight: FontWeight.w700,
+                                    color: GRAY1,
+                                    ),
+                                    TextCustomized(
+                                    text: data.number_package.toString(),
+                                    font: SanFranciscoText,
+                                    weight: FontWeight.w400,
+                                    color: BLACK,
+                                     ),
+                                 ],
+                                 ),
+                                SizedBox(height: 5,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                      TextCustomized(
+                                         text: ORDER_LIST_ITEMS,
+                                         font: SanFranciscoTextLight,
+                                         weight: FontWeight.w700,
+                                         color: GRAY1,
+                                            ),
+                                       TextCustomized(
+                                          text: data.item.toString(),
+                                           font: SanFranciscoText,
+                                          weight: FontWeight.w400,
+                                           color: BLACK,
+                                       ),
+                                  ],
+                                ),
+                                SizedBox(height: 5,),
+                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextCustomized(
+                                      text: ORDER_LIST_PACKING_FORM,
+                                      font: SanFranciscoTextLight,
+                                      weight: FontWeight.w700,
+                                      color: GRAY1,
+                                      ),
+                                      TextCustomized(
+                                      text: data.packing_form.toString(),
+                                      font: SanFranciscoText,
+                                      weight: FontWeight.w400,
+                                      color: BLACK,
+                                      ),
+                                  ],
+                                ),
+                                SizedBox(height: 5,),
+                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextCustomized(
+                                      text: ORDER_LIST_COD,
+                                      font: SanFranciscoTextLight,
+                                      weight: FontWeight.w700,
+                                      color: GRAY1,
+                                      ),
+                                      TextCustomized(
+                                      text: "¥"+data.transport_fee.toString(),
+                                      font: SanFranciscoText,
+                                      weight: FontWeight.w400,
+                                      color: BLACK,
+                                      ),
+                                  ],
+                                ),
+                              ]
                             ),
                           ),
                         ],
@@ -327,7 +263,8 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
 
   Widget _buildBottomNav(){
     return Container(
-      //height: 80,
+      height: 80,
+      padding: EdgeInsets.all(5),
        decoration:  BoxDecoration(
          color: WHITE,
          borderRadius: BorderRadius.only(
@@ -343,14 +280,36 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
             ),
             ],
        ),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: ButtonCustomized(
-            ORDER_LIST_PACKING_SEND_BACK,
-            
-          ),
+        child: InkWell(
+          onTap: (){
+            for (var i = 0; i < controller.orderResponse!.data!.length; i++) {
+              if (controller.orderResponse!.data![i].selected == true) {
+                controller.listOrderId.add(controller.orderResponse!.data![i].id!);
+              }
+            }
+            Get.dialog(PackingOrderWidget(listOrderId: controller.listOrderId,)).then((value){
+              if(value != null){
+                controller.onGetListOrder();
+              }
+            });
+            },
+            child: Center(
+              // widthFactor: 50,
+              // heightFactor: 50,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: BT_CONFIRM,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8)
+                  ),
+                ),
+                child : TextCustomized(
+                text: ORDER_LIST_PACKING_SEND_BACK,
+                color: WHITE,
+                )
+              ),
+            ),
         ),
       
     );

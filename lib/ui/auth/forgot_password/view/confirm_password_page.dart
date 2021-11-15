@@ -10,6 +10,7 @@ import 'package:viet_trung_mobile/ui/auth/forgot_password/controller/confirm_pas
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class ConfirmPage extends GetView<ConfirmPasswordController> {
@@ -82,12 +83,14 @@ class ConfirmPage extends GetView<ConfirmPasswordController> {
                               weight: FontWeight.w400,
                               color: BLACK,
                           ),
-                          TextFieldCustom(
-                      textController: controller.passController,
-                      hint: CP_PASSWORD,
-                      path: icon_password,
-                      isObscured: true,
-                    ),
+                          const SizedBox(height: 5),
+                          TextFieldCustomized(
+                            textController: controller.passController,
+                            hint: CP_PASSWORD,
+                            path: icon_password,
+                            isObscured: true,
+                            isSuffixIcon: true,
+                          ),
                 
                      Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,11 +114,13 @@ class ConfirmPage extends GetView<ConfirmPasswordController> {
                               weight: FontWeight.w400,
                               color: BLACK,
                           ),
-                TextFieldCustom(
+                SizedBox(height: 5),          
+                TextFieldCustomized(
                       textController: controller.confirmPassController,
                       hint: BT_CONFIRMPASSWORD,
                       path: icon_password,
                       isObscured: true,
+                      isSuffixIcon: true,
                     ),
                      Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,11 +137,10 @@ class ConfirmPage extends GetView<ConfirmPasswordController> {
                     ],
                   ),
                 
-                SizedBox(height: 20,),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                SizedBox(height: 30,),
+                Container(
                   child: ButtonCustomized(
-                   ORDER_SAVE,
+                   AUTH_CONFIRM,
                     onTap: (){
                      controller.onConfirmPass();
                     },

@@ -97,7 +97,6 @@ class ConfirmOrderPage extends GetView<AddressController> {
                         textColor: Colors.white,
                         backgroundColor: BT_CONFIRM,
                         onTap: (){
-                          Get.dialog(PackingOrderWidget());
                         },
                       ),
                     ),

@@ -97,7 +97,7 @@ class _InitialWidgetState extends State<InitialWidget> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           floatingActionButton: widget.floatingActionButton,
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           backgroundColor: widget.backgroundColor ?? Colors.white,
           appBar: widget.titleAppBar != null ||
                   (widget.isShowBack != null && widget.isShowBack!)

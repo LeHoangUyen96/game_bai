@@ -83,25 +83,24 @@ class ForgotStepOnePage extends GetView<ForgotStepOneController> {
                               weight: FontWeight.w400,
                           ),
                           const SizedBox(height: 25),
-                              TextCustomized(
-                                textAlign: TextAlign.left,
-                                text: LOGIN_EMAIL_OR_PHONE,
-                                size: 14 ,
-                                weight: FontWeight.w400,
-                                style: FontStyle.normal,
-                                font: SanFranciscoText,
-                                color: boderTextFieldEnabledColor,
+                          TextFieldCustomized(
+                            hint: "Nhập mã xác nhận",
+                          ),
+                          SizedBox(height: 15,),
+                              Center(
+                                child: TextCustomized(
+                                  textAlign: TextAlign.center,
+                                  text: AUTH_VERIFY_IN_TIME,
+                                  size: 14 ,
+                                  weight: FontWeight.w400,
+                                  style: FontStyle.normal,
+                                  font: SanFranciscoText,
+                                  color: boderTextFieldEnabledColor,
+                                ),
                               ),
-                              // TextFieldCustom(
-                              //  textController: controller.emailController,
-                              //  errorText: !controller.isEmailValid ? controller.emailError : null,
-                              //  hint: LOGIN_EMAIL_OR_PHONE,
-                               
-                              //   ),
                               SizedBox(height: 5,),
-                              // Padding(
-                              //       padding: const EdgeInsets.symmetric(
-                              //           vertical: 8.0, horizontal: 30),
+                              // Container(
+                              //       //padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 30),
                               //       child: PinCodeTextField(
                               //         appContext: context,
                               //         pastedTextStyle: TextStyle(
@@ -109,20 +108,10 @@ class ForgotStepOnePage extends GetView<ForgotStepOneController> {
                               //           fontWeight: FontWeight.bold,
                               //         ),
                               //         length: 6,
-                              //         obscureText: true,
+                              //         obscureText: false,
                               //         obscuringCharacter: '*',
-                              //         obscuringWidget: FlutterLogo(
-                              //           size: 24,
-                              //         ),
                               //         blinkWhenObscuring: true,
-                              //         animationType: AnimationType.fade,
-                              //         validator: (v) {
-                              //           if (v!.length < 3) {
-                              //             return "I'm from validator";
-                              //           } else {
-                              //             return null;
-                              //           }
-                              //         },
+                              //         animationType: AnimationType.scale,        
                               //         pinTheme: PinTheme(
                               //           shape: PinCodeFieldShape.box,
                               //           borderRadius: BorderRadius.circular(5),
@@ -160,38 +149,44 @@ class ForgotStepOnePage extends GetView<ForgotStepOneController> {
                               //           return true;
                               //         },
                               //       )),
-                               
-
-                              // TextFieldCustomized(
-                              //  textController: controller.emailController,
-                              //  errorText: !controller.isEmailValid ? controller.emailError : null,
-                              //  hint: LOGIN_EMAIL_OR_PHONE,
-                               
-                              //   ),
-                              //   SizedBox(height: 5,),
-                              //   Row(
-                              //       crossAxisAlignment: CrossAxisAlignment.start,
-                              //       children: [
-                              //         controller.isEmailValid == false
-                              //             ? TextCustomized(
-                              //           text: controller.emailError!,
-                              //           font: SanFranciscoText,
-                              //           size: 12,
-                              //           weight: FontWeight.w400,
-                              //           color: boderTextFieldErrorColor,
-                              //         )
-                              //             : Container(),
-                              //       ],
-                              //     ),
-                                
+                                Center(
+                                  child: TweenAnimationBuilder<Duration>(
+                                      duration: Duration(minutes: 5),
+                                      tween: Tween(begin: Duration(minutes: 5), end: Duration.zero),
+                                      onEnd: () {
+                                        print('Timer ended');
+                                      },
+                                      builder: (BuildContext context, Duration value, Widget? child) {
+                                        final minutes = value.inMinutes;
+                                        final seconds = value.inSeconds % 60;
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 5),
+                                          child: Text('$minutes:$seconds',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                  fontFamily: SanFranciscoUIText,
+                                                  color: RED,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: normalSize
+                                                  )));
+                                        }),
+                                ),
                                 SizedBox(height: 16,),
                                 ButtonCustomized(
-                                    LOGIN_RESET,
+                                    AUTH_CONFIRM,
                                     onTap: (){
                                       //controller.onForgotPass();
                                       Get.to(ConfirmPage());
                                     },
                                     backgroundColor: MAIN_BLACK,
+                                  ),
+                                SizedBox(height: 25),
+                                ButtonCustomized(
+                                    AUTH_CONFIRMATION_CODE,
+                                    textColor: BLACK,
+                                    onTap: (){},
+                                    backgroundColor: WHITE,
+                                    borderColor: BLACK,
                                   ),
                
                               ]
