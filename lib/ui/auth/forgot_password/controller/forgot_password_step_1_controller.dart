@@ -39,8 +39,4 @@ class ForgotStepOneController extends GetxController  {
     _authRepository = Injector().auth;
     startTimeout();
   }
-
-
-  
-
 }

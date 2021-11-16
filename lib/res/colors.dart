@@ -70,6 +70,7 @@ const Color RED = Color(0xFFFF0000);
 const Color BLUE = Color(0xFF2522BB);
 const Color BLACK = Color(0xFF000000);
 const Color GRAY3 = Color(0xFF999999);
+const Color GRAY7 = Color(0xFFF0EFF4);
 const Color PINK = Color(0xFFFF9999);
 const Color GRAY6 = Color(0xFFE5E5E5);
 const Color MAIN_BLACK = Color(0xFF131416);

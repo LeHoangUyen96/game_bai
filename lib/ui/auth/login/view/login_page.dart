@@ -2,6 +2,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/view/forgot_password_page.dart';
 import 'package:viet_trung_mobile/ui/auth/register/view/register_page.dart';
 import 'package:viet_trung_mobile/ui/auth/register/view/register_step_1.dart';
@@ -179,7 +180,8 @@ class LoginPage extends GetView<LoginController> {
                                 children: [
                                   InkWell(
                                         onTap: (){
-                                          Get.to(ForgotPage());
+                                          //Get.to(ForgotPage());
+                                          Get.to(FindingCustomerPage());
                                         },
                                         child:  TextCustomized(
                                           text: LOGIN_FORGOTPASSWORD,
