@@ -7,6 +7,8 @@ import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
 import 'package:viet_trung_mobile/data/response/register_response.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/register_step_1_response.dart';
+import 'package:viet_trung_mobile/data/response/register_step_2_response.dart';
 import 'auth_repository.dart';
 
 
@@ -57,6 +59,28 @@ class AuthImpl extends GetConnect implements AuthRepository {
       return ForgotPassResponse.fromJson(responseJson.body);
     }
     throw Exception(responseJson.body);
+  }
+
+  @override
+  Future<RegisterStep1Response> onRegisterStep1(AuthRequest request, String url) async {
+    final header = NetworkConfig.onBuildHeader();
+    final body = json.encode(request);
+    final responseJson = await post(url, body, headers: header);
+    if(responseJson.statusCode! >= 200 && responseJson.statusCode! < 300){
+       return RegisterStep1Response.fromJson(responseJson.body);
+    }
+      throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<RegisterStep2Response> onRegisterStep2(AuthRequest request, String url) async {
+   final header = NetworkConfig.onBuildHeader();
+    final body = json.encode(request);
+    final responseJson = await post(url, body, headers: header);
+    if(responseJson.statusCode! >= 200 && responseJson.statusCode! < 300){
+       return RegisterStep2Response.fromJson(responseJson.body);
+    }
+      throw ErrorResponse.fromJson(responseJson.body);
   }
 
 }

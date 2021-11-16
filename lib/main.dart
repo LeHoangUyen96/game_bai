@@ -5,6 +5,9 @@ import 'package:viet_trung_mobile/ui/address/controller/update_address_controlle
 import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
+import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_1_controller.dart';
+import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_2_controller.dart';
+import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_3_controller.dart';
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
@@ -56,5 +59,8 @@ class _Binding extends Bindings {
     Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(), fenix: true);
     Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
     Get.lazyPut<ProfileEditController>(() => ProfileEditController(), fenix: true);
+    Get.lazyPut<RegisterStepOneController>(() => RegisterStepOneController(), fenix: true);
+    Get.lazyPut<RegisterStepTwoController>(() => RegisterStepTwoController(), fenix: true);
+    Get.lazyPut<RegisterStepThreeController>(() => RegisterStepThreeController(), fenix: true);
   }
 }

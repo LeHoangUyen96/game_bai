@@ -153,6 +153,7 @@ class RegisterStepThreePage extends GetView<RegisterStepThreeController> {
                                           child: ButtonCustomized(
                                             LOGIN_REGISTER,
                                             onTap: (){
+                                              controller.onRegister();
                                             },
                                             backgroundColor: MAIN_BLACK,
                                           ),

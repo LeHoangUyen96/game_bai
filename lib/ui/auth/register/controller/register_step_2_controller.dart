@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
+import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/request/address_request.dart';
+import 'package:viet_trung_mobile/data/request/auth_request.dart';
 import 'package:viet_trung_mobile/data/response/city_response.dart';
 import 'package:viet_trung_mobile/data/response/district_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/register_response.dart';
+import 'package:viet_trung_mobile/data/response/register_step_1_response.dart';
+import 'package:viet_trung_mobile/data/response/register_step_2_response.dart';
 import 'package:viet_trung_mobile/data/response/wards_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
+import 'package:viet_trung_mobile/ui/auth/register/view/register_step_3.dart';
 import 'package:viet_trung_mobile/widget/loading_dialog_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class RegisterStepTwoController extends GetxController implements RegisterContract {
-
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
   late RegisterContract contract;
@@ -30,19 +32,18 @@ class RegisterStepTwoController extends GetxController implements RegisterContra
   List<DataWards>? mwards;
   bool onChange = false;
   bool check = false;
+  String ? email;
+  String? name;
+  String? phone;
 
   DataCity? selectedCity;
   DataDistrict? selectedDistrict;
   DataWards? selectedWards;
   bool isCheck = false;
-  bool nameValid = true;
-  bool phoneValid = true;
   bool addressValid = true;
   bool cityValid = true;
   bool districtValid = true;
   bool wardsValid = true;
-  String? nameError;
-  String? phoneError;
   String? addressError;
   String? cityError;
   String? districtError;
@@ -50,15 +51,33 @@ class RegisterStepTwoController extends GetxController implements RegisterContra
   int city = 0;
   int district = 0;
   int wards = 0;
-  int defaults = 0;
+  late AuthRepository _authRepository;
 
 
   @override
   void onInit() {
     super.onInit();
     addressRepository = Injector().address;
+    _authRepository = Injector().auth;
     contract = this;
     onGetListCity();
+    if(Get.arguments != null){
+      if(Get.arguments['email'] == null){
+        email = null;
+      } else{
+        email = Get.arguments['email'];
+      }
+      if(Get.arguments['phone'] == null){
+        phone = null;
+      } else{
+        phone = Get.arguments['phone'];
+      }
+      if(Get.arguments['name'] == null){
+        name = null;
+      } else{
+        name = Get.arguments['name'];
+      }
+    }
   }
 
   void onGetListCity(){
@@ -83,21 +102,7 @@ class RegisterStepTwoController extends GetxController implements RegisterContra
     update();
   }
 
-  // Future<List<DataDistrict>> getDataReason() async {
-  //   Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-  //   addressRepository.onGetDistric(city).then((value) {
-  //     Get.back();
-  //     mdistric = value;
-  //     print(mdistric!.length.toString());
-  //     update();
-  //     // return contract.onSuccess(value);
-  //   }).catchError((onError){
-  //    // Get.back();
-  //    // Get.defaultDialog(title: (onError).message.toString(), middleText: '');
-  //     print("Error");
-  //   });
-  //   return mdistric!;
-  // }
+  
 
   void onGetListDistrict(int id){
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
@@ -144,29 +149,8 @@ class RegisterStepTwoController extends GetxController implements RegisterContra
     update();
   }
 
-  void onChangeDefault(){
-    isCheck = !isCheck;
-    if(isCheck==true){
-      defaults = 1;
-    } else defaults = 0;
-    print("$defaults");
-    update();
-  }
 
-  void onRegisterAddress() {
-    if (nameController.text.isEmpty) {
-      nameValid = false;
-      nameError = ERROR_NAME;
-    } else {
-      nameValid = true;
-    }
-
-    if (phoneController.text.length < 9 || phoneController.text.length > 11) {
-      phoneValid = false;
-      phoneError = ERROR_PHONE;
-    }else {
-      phoneValid = true;
-    }
+  void onRegisterStep2() {
     if (addressController.text.isEmpty) {
       addressValid = false;
       addressError = ERROR_ADDRESS;
@@ -195,18 +179,15 @@ class RegisterStepTwoController extends GetxController implements RegisterContra
     }
 
 
-    if (nameValid && phoneValid && addressValid && cityValid && districtValid && wardsValid) {
-      AddressRequest _request = AddressRequest(
-          name: nameController.text,
-          phone: phoneController.text,
+    if (addressValid && cityValid && districtValid && wardsValid) {
+      AuthRequest _request = AuthRequest(
           address: addressController.text,
           city_id: city,
           district_id: district,
           wards_id: wards,
-          defaults: defaults
       );
-      addressRepository.onRegisterAddress(_request).then((value) {
-        return contract.onSuccessGetAddress(value);
+      _authRepository.onRegisterStep2(_request,NetworkConfig.REGISTER_STEP_2).then((value) {
+        return contract.onSuccessRegisterStep2(value);
       }).catchError((onError) {
         return contract.onError(onError);
       });
@@ -235,6 +216,28 @@ class RegisterStepTwoController extends GetxController implements RegisterContra
     Future.delayed(Duration(seconds: 3), () {
       Get.back();
     });
+    update();
+  }
+
+  @override
+  void onSuccessRegisterStep1(RegisterStep1Response response) {
+    // TODO: implement onSuccessRegisterStep1
+  }
+
+  @override
+  void onSuccessRegisterStep2(RegisterStep2Response response) {
+    Get.to(
+      RegisterStepThreePage(),
+      arguments: {
+      'email' : email,
+      'phone' : phone,
+      'name': name,
+      'city_id': city,
+      'district_id': district,
+      'wards_id': wards,
+      'address': addressController.text,
+      }
+    );
     update();
   }
 

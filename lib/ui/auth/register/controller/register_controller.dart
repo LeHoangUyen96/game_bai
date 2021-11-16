@@ -2,6 +2,8 @@
 import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/register_response.dart';
+import 'package:viet_trung_mobile/data/response/register_step_1_response.dart';
+import 'package:viet_trung_mobile/data/response/register_step_2_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
@@ -25,7 +27,7 @@ class RegisterController extends GetxController implements RegisterContract{
   TextEditingController usernameController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-  ScreenshotController screenshotController = ScreenshotController();
+  // ScreenshotController screenshotController = ScreenshotController();
 
 
 
@@ -172,6 +174,16 @@ class RegisterController extends GetxController implements RegisterContract{
   @override
   void onSuccessGetAddress(RegisterAddressResponse response) {
     // TODO: implement onSuccessGetAddress
+  }
+
+  @override
+  void onSuccessRegisterStep1(RegisterStep1Response response) {
+    // TODO: implement onSuccessRegisterStep1
+  }
+
+  @override
+  void onSuccessRegisterStep2(RegisterStep2Response response) {
+    // TODO: implement onSuccessRegisterStep2
   }
 
 
