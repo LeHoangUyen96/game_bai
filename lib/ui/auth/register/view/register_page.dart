@@ -27,9 +27,7 @@ class RegisterPage extends GetView<RegisterController> {
     );
   }
   Widget _buildBody(){
-    return Screenshot(
-        controller: controller.screenshotController,
-        child: Stack(
+    return  Stack(
           alignment: Alignment.center, 
           fit: StackFit.expand, 
         children: <Widget>[
@@ -242,7 +240,7 @@ class RegisterPage extends GetView<RegisterController> {
           ),
           
         ]
-        )
+        
         );    
   }
   Widget imgBackGround(){

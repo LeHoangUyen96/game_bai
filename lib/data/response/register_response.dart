@@ -18,41 +18,35 @@ class RegisterResponse {
 }
 
 class Data {
-  String? username;
   String? avatar;
-  String? user_no;
+  String? user_code;
   String? name;
   String? phone;
   String? email;
-  int? type;
 
   Data(
-      {this.username,
+      {
         this.avatar,
-        this.user_no,
+        this.user_code,
         this.name,
         this.phone,
-        this.type,
         this.email,});
 
   Data.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    username = json['username'];
     email = json['email'];
     phone = json['phone'];
-    type = json['type'];
     avatar = json['avatar'];
-    user_no = json['user_no'];
+    user_code = json['user_code'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
-    data['username'] = this.username;
     data['email'] = this.email;
     data['phone'] = this.phone;
     data['avatar'] = this.avatar;
-    data['user_no'] = this.user_no;
+    data['user_code'] = this.user_code;
     return data;
   }
 }

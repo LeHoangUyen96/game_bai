@@ -183,62 +183,6 @@ class ProfilePage extends GetView<ProfileController> {
            padding: EdgeInsets.all(10),
            child: Column(
              children: [
-          //       Container(
-          //   padding: EdgeInsets.all(10),
-          //   decoration: const BoxDecoration(
-          //     border: Border(
-          //       bottom: BorderSide(
-          //         color: COLOR_MESSAGE_USER,
-          //       )
-          //     )
-          //   ),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       TextCustomized(
-          //         text: PROFILE_CUSTOMERE_CODE,
-          //         font: SanFranciscoText,
-          //             weight: FontWeight.w400,
-          //             color: MAIN_BLACK,
-          //         ),
-          //         TextCustomized(
-          //         text: controller.mDataProfile!.data!.user_code.toString(),
-          //         font: SanFranciscoText,
-          //             weight: FontWeight.w400,
-          //             color: MAIN_GRAY,
-          //         ),
-          //     ],
-          //   ),
-          // ),
-          // SizedBox(height: 10,),
-          // Container(
-          //   padding: EdgeInsets.all(10),
-          //   decoration: const BoxDecoration(
-          //     border: Border(
-          //       bottom: BorderSide(
-          //         color: COLOR_MESSAGE_USER,
-          //       )
-          //     )
-          //   ),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       TextCustomized(
-          //         text: LOGIN_PHONE,
-          //         font: SanFranciscoText,
-          //             weight: FontWeight.w400,
-          //             color: MAIN_BLACK,
-          //         ),
-          //        TextCustomized(
-          //         text: controller.mDataProfile!.data!.phone.toString(),
-          //         font: SanFranciscoText,
-          //             weight: FontWeight.w400,
-          //             color: MAIN_GRAY,
-          //         ),
-          //     ],
-          //   ),
-          // ),
-          // SizedBox(height: 10,),
           Container(
             padding: EdgeInsets.all(5),
             decoration: const BoxDecoration(
@@ -366,12 +310,6 @@ class ProfilePage extends GetView<ProfileController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // TextCustomized(
-                  //   text: ORDER_LIST_APP_BAR,
-                  //   font: SanFranciscoText,
-                  //       weight: FontWeight.w400,
-                  //       color: MAIN_BLACK,
-                  //   ),
                    Wrap(
                   alignment: WrapAlignment.center,
                   crossAxisAlignment: WrapCrossAlignment.center,

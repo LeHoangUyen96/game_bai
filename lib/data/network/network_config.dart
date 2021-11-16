@@ -33,6 +33,8 @@ class NetworkConfig {
   static const String REGISTER_ADDRESS = URL_SERVER + "/addresses/make";
   static const String UPDATE_ADDRESS = URL_SERVER + "/addresses/update";
   static const String LOGOUT = URL_SERVER + "/auth/logout";
+  static const String REGISTER_STEP_1 = URL_SERVER + "/auth/signup-step1";
+  static const String REGISTER_STEP_2 = URL_SERVER + "/auth/signup-step2";
 
   //cart
   static const String CARTS = URL_SERVER + "/carts";

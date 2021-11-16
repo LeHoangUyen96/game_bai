@@ -696,7 +696,7 @@ const String AUTH_LOGIN_ERROR_PASS_EMPTY = 'Mật khẩu không được để t
 const String AUTH_FORGOT_PASS_ERROR_INPUT = 'Email/Số điện thoại không được để trống';
 const String AUTH_FORGOT_PASS_ERROR_CONFIRM_PASS = 'Mật khẩu không trùng khớp';
 const String AUTH_FORGOT_PASS_ERROR_CONFIRM_SUCCESS = 'Đổi mật khẩu thành công, Vui lòng đăng nhập để tiếp tục sử dụng App';
-const String AUTH_REGISTER_SUCCESS = 'Đăng ký thành công, chào mừng bạn đến với Báo Đen';
+const String AUTH_REGISTER_SUCCESS = 'Đăng ký thành công';
 const String AUTH_REGISTER_ERROR = 'Đăng ký không thành công';
 
 const String CONSIGNMENT_NO_CLAIM = 'Không tồn tại phiếu giao hàng nào ';
