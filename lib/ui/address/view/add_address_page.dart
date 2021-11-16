@@ -30,8 +30,8 @@ class AddAddressPage extends GetView<AddAddressController> {
   Widget _buildBody(){
     return InitialWidget(
       titleAppBar: ADD_ADDRESS,
-      titleAppBarColor: Colors.black,
-      backgroundAppBar: Colors.white,
+      titleAppBarColor: Colors.white,
+      backgroundAppBar: Colors.black26,
       isAdd: false,
       statusBarColor: Colors.blue,
       isShowBack: true,
@@ -39,7 +39,7 @@ class AddAddressPage extends GetView<AddAddressController> {
         child: Icon(
           Icons.arrow_back_ios,
           size: 25,
-          color: Colors.grey,
+          color: Colors.white,
         ),
         onPressed: () => Get.back(result: true),
       ),
@@ -57,7 +57,7 @@ class AddAddressPage extends GetView<AddAddressController> {
                     children: [
                       TextCustomized(text: NAME, weight: FontWeight.w700),
                       SizedBox(height: 5),
-                      TextFieldCustom(
+                      TextFieldCustomized(
                         textController: controller.nameController,
                         hint: NAME,
                         textInputType: TextInputType.text,
@@ -79,7 +79,7 @@ class AddAddressPage extends GetView<AddAddressController> {
                     children: [
                       TextCustomized(text: PHONE, weight: FontWeight.w700),
                       SizedBox(height: 5),
-                      TextFieldCustom(
+                      TextFieldCustomized(
                         textController: controller.phoneController,
                         hint: PHONE,
                         textInputType: TextInputType.number,
@@ -103,66 +103,59 @@ class AddAddressPage extends GetView<AddAddressController> {
                     SizedBox(height: 5),
                     Container(
                         width: Get.width,
-                        //padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Center(
-                            child: Align(
-                                alignment: Alignment.topRight,
-                                child: controller.mcity != null
-                                    ? DropdownButton(
-                                  value: controller.selectedCity != null ? controller.selectedCity : null,
-                                  icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  isExpanded: true,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    height: 0.5,
-                                  ),
-                                  underline: Container(
-                                    height: 1,
-                                    color: MAIN_LINE,
-                                  ),
-                                  items: controller.mcity!.map((DataCity value){
-                                    return DropdownMenuItem<DataCity>(
-                                      value: value,
-                                      child: Container(
-                                        child: Text(
-                                          value.name.toString(),
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (DataCity? value){
-                                    controller.onChangeCity(value!, value.id!);
-                                  },
-                                  hint: Text(ONCHANGE_CITY),
-                                ) : DropdownButton(
-                                  icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  isExpanded: true,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    height: 0.5,
-                                  ),
-                                  underline: Container(
-                                    height: 1,
-                                    color: MAIN_LINE,
-                                  ),
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "1",
-                                      child: Center(
-                                        child: Text(NO_CITY),
-                                      ),
-                                    ),
-                                  ],
-                                  onChanged: (value){},
-                                  hint: Text(ONCHANGE_CITY),
-                                )
-                            )
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 1.0,color: MAIN_LINE),
+                            borderRadius: BorderRadius.circular(9)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child:  controller.mcity != null
+                                        ? DropdownButton(
+                                            value: controller.selectedCity != null ? controller.selectedCity : null,
+                                            icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                                            iconSize: 24,
+                                            elevation: 16,
+                                            isExpanded: true,
+                                            items: controller.mcity!.map((DataCity value){
+                                              return DropdownMenuItem<DataCity>(
+                                                value: value,
+                                                child: Container(
+                                                  child: Text(
+                                                    value.name.toString(),
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                            onChanged: (DataCity? value){
+                                              controller.onChangeCity(value!, value.id!);
+                                            },
+                                            hint: Text(ONCHANGE_CITY),
+                                    )
+                                        : DropdownButton(
+                                          icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                                          iconSize: 24,
+                                          elevation: 16,
+                                          isExpanded: true,
+                                          items: [
+                                            DropdownMenuItem<String>(
+                                              value: "1",
+                                              child: Center(
+                                                child: Text(NO_CITY),
+                                              ),
+                                            ),
+                                          ],
+                                          onChanged: (value){},
+                                          hint: Text(ONCHANGE_CITY),
+                                    )
+                                ),
+                              ),
+                            ),
+                          ],
                         )
                     ),
                     SizedBox(height: 5),
@@ -182,66 +175,59 @@ class AddAddressPage extends GetView<AddAddressController> {
                     SizedBox(height: 5),
                     Container(
                         width: Get.width,
-                        //padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Center(
-                            child: Align(
-                                alignment: Alignment.topRight,
-                                child: controller.mdistric != null
-                                    ? DropdownButton(
-                                  value: controller.selectedDistrict != null ? controller.selectedDistrict : null,
-                                  icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  isExpanded: true,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    height: 0.5,
-                                  ),
-                                  underline: Container(
-                                    height: 1,
-                                    color: MAIN_LINE,
-                                  ),
-                                  items: controller.mdistric!.map((DataDistrict value){
-                                    return DropdownMenuItem<DataDistrict>(
-                                      value: value,
-                                      child: Container(
-                                        child: Text(
-                                          value.name.toString(),
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (DataDistrict? value){
-                                    controller.onChangeDistrict(value!, value.id!);
-                                  },
-                                  hint: Text(ONCHANGE_DISTRICT),
-                                ) : DropdownButton(
-                                  icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  isExpanded: true,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    height: 0.5,
-                                  ),
-                                  underline: Container(
-                                    height: 1,
-                                    color: MAIN_LINE,
-                                  ),
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "1",
-                                      child: Center(
-                                        child: Text(NO_DISTRICT),
-                                      ),
-                                    ),
-                                  ],
-                                  onChanged: (value){},
-                                  hint: Text(ONCHANGE_DISTRICT),
-                                )
-                            )
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 1.0,color: MAIN_LINE),
+                            borderRadius: BorderRadius.circular(9)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: controller.mdistric != null
+                                        ? DropdownButton(
+                                            value: controller.selectedDistrict != null ? controller.selectedDistrict : null,
+                                            icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                                            iconSize: 24,
+                                            elevation: 16,
+                                            isExpanded: true,
+                                            items: controller.mdistric!.map((DataDistrict value){
+                                              return DropdownMenuItem<DataDistrict>(
+                                                value: value,
+                                                child: Container(
+                                                  child: Text(
+                                                    value.name.toString(),
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                            onChanged: (DataDistrict? value){
+                                              controller.onChangeDistrict(value!, value.id!);
+                                            },
+                                            hint: Text(ONCHANGE_DISTRICT),
+                                    )
+                                        : DropdownButton(
+                                            icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                                            iconSize: 24,
+                                            elevation: 16,
+                                            isExpanded: true,
+                                            items: [
+                                              DropdownMenuItem<String>(
+                                                value: "1",
+                                                child: Center(
+                                                  child: Text(NO_DISTRICT),
+                                                ),
+                                              ),
+                                            ],
+                                            onChanged: (value){},
+                                            hint: Text(ONCHANGE_DISTRICT),
+                                    )
+                                ),
+                              ),
+                            ),
+                          ],
                         )
                     ),
                     SizedBox(height: 5),
@@ -262,66 +248,61 @@ class AddAddressPage extends GetView<AddAddressController> {
                     Container(
                         width: Get.width,
                         //padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Center(
-                            child: Align(
-                                alignment: Alignment.topRight,
-                                child: controller.mwards != null
-                                    ? DropdownButton(
-                                  value: controller.selectedWards != null ? controller.selectedWards : null,
-                                  icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  isExpanded: true,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    height: 0.5,
-                                  ),
-                                  underline: Container(
-                                    height: 1,
-                                    color: MAIN_LINE,
-                                  ),
-                                  items: controller.mwards!.map((DataWards value){
-                                    return DropdownMenuItem<DataWards>(
-                                      value: value,
-                                      child: Container(
-                                        child: Text(
-                                          value.name.toString(),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1.0,color: MAIN_LINE),
+                          borderRadius: BorderRadius.circular(9)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                  alignedDropdown: true,
+                                  child: controller.mwards != null
+                                      ? DropdownButton(
+                                    value: controller.selectedWards != null ? controller.selectedWards : null,
+                                    icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                                    iconSize: 24,
+                                    elevation: 16,
+                                    isExpanded: true,
+
+                                    items: controller.mwards!.map((DataWards value){
+                                      return DropdownMenuItem<DataWards>(
+                                        value: value,
+                                        child: Container(
+                                          child: Text(
+                                            value.name.toString(),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (DataWards? value){
+                                      controller.onChangeWards(value!, value.id!);
+                                    },
+                                    hint: Text(ONCHANGE_WARDS),
+                                  )
+                                      : DropdownButton(
+                                    icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                                    iconSize: 24,
+                                    elevation: 16,
+                                    isExpanded: true,
+                                    items: [
+                                      DropdownMenuItem<String>(
+                                        value: "1",
+                                        child: Center(
+                                          child: Text(NO_WARDS),
                                         ),
                                       ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (DataWards? value){
-                                    controller.onChangeWards(value!, value.id!);
-                                  },
-                                  hint: Text(ONCHANGE_WARDS),
-                                ) : DropdownButton(
-                                  icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  isExpanded: true,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    height: 0.5,
-                                  ),
-                                  underline: Container(
-                                    height: 1,
-                                    color: MAIN_LINE,
-                                  ),
-                                  items: [
-                                    DropdownMenuItem<String>(
-                                      value: "1",
-                                      child: Center(
-                                        child: Text(NO_WARDS),
-                                      ),
-                                    ),
-                                  ],
-                                  onChanged: (value){},
-                                  hint: Text(ONCHANGE_WARDS),
-                                )
-                            )
-                        )
+                                    ],
+                                    onChanged: (value){},
+                                    hint: Text(ONCHANGE_WARDS),
+                                  )
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                     ),
                     SizedBox(height: 5),
                     controller.wardsValid == false
@@ -338,7 +319,7 @@ class AddAddressPage extends GetView<AddAddressController> {
                     children: [
                       TextCustomized(text: ADDRESS, weight: FontWeight.w700),
                       SizedBox(height: 5),
-                      TextFieldCustom(
+                      TextFieldCustomized(
                         textController: controller.addressController,
                         hint: ADDRESS,
                         textInputType: TextInputType.text,

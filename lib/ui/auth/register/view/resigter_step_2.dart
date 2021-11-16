@@ -283,6 +283,7 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
                                                         height: 0.5,
                                                       ),
                                                       // borderRadius: BorderRadius.circular(8),
+                                                      //borderRadius: BorderRadius.circular(8),
                                                       // underline: Container(
                                                       //   height: 1,
                                                       //   color: MAIN_LINE,
@@ -317,7 +318,7 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
                                                       ),
                                                       items: [
                                                         DropdownMenuItem<String>(
-                                                          alignment: Alignment.center,
+                                                          //alignment: Alignment.center,
                                                           value: "1",
                                                           child: Center(
                                                             child: Text(NO_WARDS),
