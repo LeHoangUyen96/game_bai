@@ -10,6 +10,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/controller/finding_customer_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/view/enter_warehouse_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -100,7 +101,9 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
                 radius: Radius.circular(20),
                 borderType: BorderType.Rect, 
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Get.to(GenaeralManagePage());
+                  },
                   child: Container(
                     height: 8.0.w,
                     //width: Get.width*0.65,

@@ -4,8 +4,11 @@ import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.
 import 'package:viet_trung_mobile/ui/address/controller/update_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/controller/finding_customer_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/general_management/controller/general_management_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/add_image_enter_warehouse_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/enter_warehouse_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/manager_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_1_controller.dart';
@@ -68,5 +71,8 @@ class _Binding extends Bindings {
     Get.lazyPut<FindingCustomerController>(() => FindingCustomerController(), fenix: true);
     Get.lazyPut<EnterWarehouseController>(() => EnterWarehouseController(), fenix: true);
     Get.lazyPut<EnterWarehouseUploadImageController>(() => EnterWarehouseUploadImageController(), fenix: true);
+    Get.lazyPut<GenaralManageController>(() => GenaralManageController(), fenix: true);
+    Get.lazyPut<ManagerBagController>(() => ManagerBagController(), fenix: true);
+    Get.lazyPut<CreateBagController>(() => CreateBagController(), fenix: true);
   }
 }

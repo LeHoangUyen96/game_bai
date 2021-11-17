@@ -798,6 +798,7 @@ const String MANAGE_PACKAGE_PACKING_FORM = 'Hình thức đóng gói';
 const String MANAGE_PACKAGE_WEIGHT = 'Cân nặng';
 const String MANAGE_PACKAGE_TOTAL_COD = 'Tổng thu hộ';
 const String MANAGE_PACKAGE_LIST_BILL = 'Danh sách Bill hàng';
+const String MANAGE_PACKAGE_SEARCH_BAG = 'Tìm kiếm bao hàng';
 
 
  

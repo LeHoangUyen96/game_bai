@@ -140,4 +140,12 @@ class NetworkConfig {
   static const String Get_Conversation = URL_SERVER + "/admin/chat/get-conversation";
   static const String SEND_MESSEGER = URL_SERVER + "/admin/chat/send-message";
 
+  //Bag
+  static const String BAG_LIST_STATUS = URL_SERVER + "/admin/bag/list-status";
+  static const String BAG_LIST_WAREHOUSE_BACK = URL_SERVER + "/admin/bag/list-warehouse-back";
+
+  //Setting
+  static const String SETTING_PACKING_FORM = URL_SERVER + "/admin/setting/packing-form/list";
+  static const String SETTING_TRANSPORT_FORM = URL_SERVER + "/admin/setting/transport-form/list";
+
 }

@@ -1,4 +1,5 @@
 import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
+import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/home/view/home_page.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class MainPage extends GetView<MainController> {
               // children: controller.screensData.map(_buildIndexedPageFlow).toList(),
               children: [
                 ProfilePage(),
-                ProfilePage(),
+                FindingCustomerPage(),
                 ProfilePage(),
                 ProfilePage(),
               ],
