@@ -1,4 +1,8 @@
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/ui/%20%20order_management/controller/order_management_controller.dart';
+import 'package:viet_trung_mobile/ui/%20%20order_management/controller/valid_order_controller.dart';
+import 'package:viet_trung_mobile/ui/%20%20order_management/view/order_details_admin_page.dart';
+import 'package:viet_trung_mobile/ui/%20%20order_management/view/order_management_page.dart';
 import 'package:viet_trung_mobile/ui/address/controller/add_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/update_address_controller.dart';
@@ -36,7 +40,7 @@ Widget _app() => LayoutBuilder(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashPage(),
+          home: OrderDetailsAdminPage(),
           theme: ThemeData(
             brightness: Brightness.light,
             primaryColor: MAIN_COLOR,
@@ -61,5 +65,7 @@ class _Binding extends Bindings {
     Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(), fenix: true);
     Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
     Get.lazyPut<ProfileEditController>(() => ProfileEditController(), fenix: true);
+    Get.lazyPut<OrderManagementController>(() => OrderManagementController(), fenix: true);
+    Get.lazyPut<ValidOrderController>(() => ValidOrderController(), fenix: true);
   }
 }

@@ -758,6 +758,7 @@ const String AUTH_SENT_PIN_CODE = 'Chúng tôi vừa gửi cho bạn một dãy 
 const String AUTH_VERIFY_IN_TIME = 'Vui lòng xác minh trong thời gian';
 const String AUTH_CONFIRMATION_CODE = 'Gửi lại mã xác nhận';
 const String AUTH_CONFIRM = 'Xác nhận ';
+const String CREATE_ORDER = 'Tạo bao';
 
 
  
