@@ -70,6 +70,8 @@ const Color RED = Color(0xFFFF0000);
 const Color BLUE = Color(0xFF2522BB);
 const Color BLACK = Color(0xFF000000);
 const Color GRAY3 = Color(0xFF999999);
+const Color GRAY7 = Color(0xFFF0EFF4);
+const Color GRAY8 = Color(0xFF757A8C);
 const Color PINK = Color(0xFFFF9999);
 const Color GRAY6 = Color(0xFFE5E5E5);
 const Color MAIN_BLACK = Color(0xFF131416);
@@ -81,8 +83,13 @@ const Color MAIN_BT_SAVE_ADDRESS = Color(0xFF828282);
 const Color MAIN_BT_CANCEL_ADDRESS = Color(0xFFE0E0E0);
 const Color MAIN_DELETE_ADDRESS = Color(0xFFEB5757);
 const Color BT_GRAY = Color(0xFFDCDDE7);
+
+const Color BLACK_1 = Color(0xFF0A0822);
+const Color RED_1 = Color(0xFFA7173B);
+
 const Color TEXT_DATETIME_NT = Color(0xFFBABDCA);
 const Color BT_CONFIRM = Color(0xFF0A0822);
 const Color MAIN_BG = Color(0xFFF7F7FB);
 const Color TITLE_POPUP = Color(0xFF757A8C);
+
 

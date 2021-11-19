@@ -759,13 +759,87 @@ const String AUTH_VERIFY_IN_TIME = 'Vui lòng xác minh trong thời gian';
 const String AUTH_CONFIRMATION_CODE = 'Gửi lại mã xác nhận';
 const String AUTH_CONFIRM = 'Xác nhận ';
 
+const String ADMIN_FINDING_CUSTOMERS = 'Tìm kiếm khách hàng';
+const String ADMIN_ENTER_PHONE_OR_CUSTOMERS_CODE = 'Nhập số điện thoại hoặc mã khách hàng';
+const String ADMIN_ENTER_AVIATION_INFORMATION = 'Nhập Hàng Không Thông Tin';
+const String ADMIN_SEARCH = 'Tìm Kiếm';
+const String ADMIN_ENTER_WAREHOUSE = 'Nhập kho';
+const String ADMIN_CUSTOMER_CODE = 'Mã khách hàng';
+const String ADMIN_CUSTOMER_NAME = 'Tên khách hàng';
+const String ADMIN_ENTER_BILL_CODE = 'Nhập mã bill';
+const String ADMIN_ITEMS = 'Mặt hàng';
+const String ADMIN_NAME_ITEMS = 'Tên mặt hàng ';
+const String ADMIN_COD = 'Thu hộ phí vận chuyển (COD)';
+const String ADMIN_ENTER_AMOUNT = 'Nhập số tiền (¥)';
+const String ADMIN_NUMBER_PACKAGES = 'Số kiện hàng';
+const String ADMIN_ENTER_PARCEL_NUMBER = 'Nhập số kiện hàng';
+const String ADMIN_IMG = 'Hình ảnh';
+const String ADMIN_ITEM_CANNOT_SHIP = 'Hàng không vận chuyển được';
+const String ADMIN_UNKNOWN = 'Không xác định';
+const String MANAGE_PACKAGE_GENERAL = 'Quản lý chung';
+const String MANAGE_PACKAGE_EMPLOYEE = 'Quản lý nhân viên';
+const String MANAGE_PACKAGE_CUSTOMER = 'Quản lý khách hàng';
+const String MANAGE_PACKAGE_FEEDBACK = 'Phản hồi - Đánh giá';
+const String MANAGE_PACKAGE = 'Quản lý bao hàng';
+const String MANAGE_PACKAGE_TOTAL_BAG = 'Tổng bao:';
+const String MANAGE_PACKAGE_TYPE_BAG = 'Kiểu bao';
+const String MANAGE_PACKAGE_NUMBER_PACKAGE = 'Số hàng';
+const String MANAGE_PACKAGE_WARE_HOUSE_MOVE_BACK = 'Kho chuyển về';
+const String MANAGE_PACKAGE_TRANSFER_FORM = 'Hình thức chuyển';
+const String MANAGE_PACKAGE_NUMBER_OF_CUSTOMER = 'Số khách hàng';
+const String MANAGE_PACKAGE_UPDATE_DAY = 'Ngày cập nhật';
+const String MANAGE_PACKAGE_MOVE_GOOD = 'Thêm hàng';
+const String MANAGE_PACKAGE_ENVELOPE_STATUS = 'Trạng thái bao';
+const String MANAGE_PACKAGE_FORM_TRANSPORTANT = 'Hình thức vận chuyển';
+const String MANAGE_PACKAGE_SINCE = 'Từ ngày';
+const String MANAGE_PACKAGE_TO_DATE = 'Tới ngày';
+const String MANAGE_PACKAGE_CREATE_NEW = 'Tạo mới';
+const String MANAGE_PACKAGE_PACKING_FORM = 'Hình thức đóng gói';
+const String MANAGE_PACKAGE_WEIGHT = 'Cân nặng';
+const String MANAGE_PACKAGE_TOTAL_COD = 'Tổng thu hộ';
+const String MANAGE_PACKAGE_LIST_BILL = 'Danh sách Bill hàng';
+const String MANAGE_PACKAGE_SEARCH_BAG = 'Tìm kiếm bao hàng';
+
 
  
 
 
  
+ 
+ 
+
+ 
+ 
+ 
+
+
+ 
+
+ 
+ 
+ 
+ 
+  
+ 
+
+
   
   
+
+
+
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+ 
+
  
 
  

@@ -37,25 +37,6 @@ class ProfilePage extends GetView<ProfileController> {
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
-      // child: InitialWidget(
-      //   child: Container(),
-      //   titleAppBar: PROFILE_PERSONAL_INFOMATION,
-      //   titleAppBarColor: BLACK,
-      //   backgroundAppBar: WHITE,
-      //    //isShowBack: true,
-      //   //iconBack: Icon(Icons.arrow_back_ios, color: MAIN_GRAY,),
-      //   floatingActionButton: InkWell(
-      //     onTap: () {
-      //       Get.to(ProfileEditPage());
-      //       //Get.to(OrderInfoPage());
-      //     },
-      //     child: SvgPicture.asset(
-      //       IC_EDIT,
-      //       width: 20,
-      //       height: 20,
-      //       ),
-      //   ),
-      // ),
       child: AppBar(
         centerTitle: true,
         title: TextCustomized(
