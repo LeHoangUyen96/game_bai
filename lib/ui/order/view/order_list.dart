@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/order_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class OrderListPage extends GetView<OrderController> {
@@ -24,7 +26,7 @@ class OrderListPage extends GetView<OrderController> {
     return GetBuilder<OrderController>(
       init: OrderController(),
       builder: (value) => Scaffold(
-        body:   buildBody(),
+        body:   controller.orderResponse != null ? buildBody() : LoadingSpinKit(),
         backgroundColor: GRAY_BG,    
         ) 
                
@@ -87,11 +89,11 @@ class OrderListPage extends GetView<OrderController> {
              Container(
                   child: SingleChildScrollView(
                     child: ListView.builder(
-                      itemCount: listOrder.length,
+                      itemCount: controller.orderResponse!.data!.length,
                       shrinkWrap: true,
                       physics:NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index){
-                        return _buildListOrder();
+                        return _buildListOrder(controller.orderResponse!.data![index]);
                       },
                     ),
                   ),
@@ -102,7 +104,7 @@ class OrderListPage extends GetView<OrderController> {
       ),
     );
   }
-Widget  _buildListOrder(){
+Widget  _buildListOrder(DataOrder dataOrder){
   return Card(
     child: Container(
       padding: EdgeInsets.all(15),
@@ -113,13 +115,13 @@ Widget  _buildListOrder(){
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextCustomized(
-                text: '#DH0123456',
+                text: dataOrder.bill_code.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w700,
                 color: MAIN_BLACK,
                 ),
                 TextCustomized(
-                text: 'Kho Cửa Khẩu',
+                text: dataOrder.order_status_name.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BG_ID_PD,
@@ -128,30 +130,12 @@ Widget  _buildListOrder(){
           ),
           SizedBox(height: 5,),
           TextCustomized(
-                text: '10:10 21/10/2021',
+                text: dataOrder.created_at.toString(),
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w400,
                 color: MAIN_GRAY,
                 ),
-           SizedBox(height: 5,),     
-           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextCustomized(
-                text: ORDER_LIST_BILL_CODE,
-                font: SanFranciscoTextLight,
-                weight: FontWeight.w700,
-                color: GRAY1,
-                ),
-                TextCustomized(
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BLACK,
-                ),
-            ],
-          ), 
-           SizedBox(height: 5,),     
+           SizedBox(height: 5,),
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -162,7 +146,7 @@ Widget  _buildListOrder(){
                 color: GRAY1,
                 ),
                 TextCustomized(
-                text: ORDER_NULL,
+                text: dataOrder.number_package.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -180,7 +164,7 @@ Widget  _buildListOrder(){
                 color: GRAY1,
                 ),
                 TextCustomized(
-                text: ORDER_NULL,
+                text: dataOrder.item.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -198,7 +182,7 @@ Widget  _buildListOrder(){
                 color: GRAY1,
                 ),
                 TextCustomized(
-                text: ORDER_NULL,
+                text: dataOrder.packing_form.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -216,7 +200,7 @@ Widget  _buildListOrder(){
                 color: GRAY1,
                 ),
                 TextCustomized(
-                text: ORDER_NULL,
+                text: "¥"+dataOrder.transport_fee.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -226,6 +210,7 @@ Widget  _buildListOrder(){
           SizedBox(height: 5,),     
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextCustomized(
                 text: ORDER_LIST_DELIVERY_METHOD,
@@ -233,17 +218,22 @@ Widget  _buildListOrder(){
                 weight: FontWeight.w700,
                 color: GRAY1,
                 ),
-                TextCustomized(
-                text: ORDER_NULL,
+              Expanded(
+                flex: 5,
+                child: TextCustomized(
+                text: dataOrder.delivery_form.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
+                  textAlign: TextAlign.end,
                 ),
+              )
             ],
           ),
           SizedBox(height: 5,),     
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextCustomized(
                 text: ORDER_LIST_DELIVERY_ADDRESS,
@@ -251,12 +241,16 @@ Widget  _buildListOrder(){
                 weight: FontWeight.w700,
                 color: GRAY1,
                 ),
-                TextCustomized(
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BLACK,
-                ),
+                Expanded(
+                  flex: 5,
+                  child:  TextCustomized(
+                  text: dataOrder.address.toString(),
+                  font: SanFranciscoText,
+                  weight: FontWeight.w400,
+                  color: BLACK,
+                    textAlign: TextAlign.end,
+                ),),
+
             ],
           ),    
         ],
