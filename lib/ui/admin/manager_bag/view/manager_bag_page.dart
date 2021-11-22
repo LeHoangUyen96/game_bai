@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/manager_bag_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/view/bag_details_page.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/create_bag_page.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -180,13 +181,18 @@ class ManagerBagPage extends GetView<ManagerBagController> {
                  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextCustomized(
-                    text: '#DH0123456',
-                    font: SanFranciscoText,
-                    weight: FontWeight.w700,
-                    color: MAIN_BLACK,
-                    size: normalSize,
-                    ),
+                  InkWell(
+                    onTap: (){
+                      Get.to(BagDeatailsPage());
+                    },
+                    child: TextCustomized(
+                      text: '#DH0123456',
+                      font: SanFranciscoText,
+                      weight: FontWeight.w700,
+                      color: MAIN_BLACK,
+                      size: normalSize,
+                      ),
+                  ),
                     TextCustomized(
                     text: 'Kho Cửa Khẩu',
                     font: SanFranciscoText,

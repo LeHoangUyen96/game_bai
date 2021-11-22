@@ -517,7 +517,7 @@ const String DELIVERY_KG ='Kg';
 const String DELIVERY_NOTE_PAYMENT ='Đã thanh toán';
 const String DELIVERY_NOTE_NO_PAYMENT ='Chưa thanh toán';
 const String DELIVERY_NOTE_NUMBER_PARCEL ='Số kiện hàng: ';
-const String DELIVERY_NOTE_NUMBER_PARCEL_HD ='Số kiện hàng ';
+const String DELIVERY_NOTE_NUMBER_PARCEL_HD ='Kiện hàng:';
 const String DELIVERY_NOTE ='Ghi chú';
 const String DELIVERY_CHAT ='Trao đổi với nhân viên';
 const String DELIVERY_NOTE_TOTAL_WEIGHT ='Tổng cân nặng';
@@ -736,7 +736,7 @@ const String ORDER_LIST_BILL_CODE = 'Mã Bill:';
 const String ORDER_LIST_PARCELS = 'Số kiện hàng:';
 const String ORDER_LIST_ITEMS = 'Mặt hàng:';
 const String ORDER_LIST_PACKING_FORM = 'Hình thức đóng gói:';
-const String ORDER_LIST_COD = 'Thu hộ phí vẫn chuyển(COD)';
+const String ORDER_LIST_COD = 'Thu hộ(COD)';
 const String ORDER_LIST_DELIVERY_METHOD = 'Hình thức nhận hàng:';
 const String ORDER_LIST_DELIVERY_ADDRESS = 'Địa chỉ nhận hàng:';
 const String ORDER_LIST_SEARCH_BILL_CODE = 'Tìm kiếm theo mã bill';
@@ -799,7 +799,11 @@ const String MANAGE_PACKAGE_WEIGHT = 'Cân nặng';
 const String MANAGE_PACKAGE_TOTAL_COD = 'Tổng thu hộ';
 const String MANAGE_PACKAGE_LIST_BILL = 'Danh sách Bill hàng';
 const String MANAGE_PACKAGE_SEARCH_BAG = 'Tìm kiếm bao hàng';
-
+const String MANAGE_PACKAGE_SURCHARGE = 'Phụ phí';
+const String MANAGE_PACKAGE_CUSTOMER_NAME = 'Tên KH:';
+const String MANAGE_PACKAGE_DETAILS_BAG = 'Chi tiết bao hàng';
+const String MANAGE_PACKAGE_INFO_BAG = 'Thông tin bao hàng';
+const String MANAGE_PACKAGE_BAG_JOURNEY = 'Hành trình bao hàng';
 
  
 
