@@ -234,7 +234,8 @@ class RegisterStepOnePage extends GetView<RegisterStepOneController> {
                               child: ButtonCustomized(
                                 BT_NEXT,
                                 onTap: (){
-                                  Get.to(RegisterStepTwoPage());
+                                  //Get.to(RegisterStepTwoPage());
+                                  controller.onResgiterStep1();
                                 },
                                 backgroundColor: MAIN_BLACK,
                               ),

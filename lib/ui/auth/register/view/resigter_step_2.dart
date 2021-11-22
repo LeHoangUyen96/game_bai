@@ -356,7 +356,6 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
                                             hint: ADDRESS,
                                             textInputType: TextInputType.text,
                                             textInputAction: TextInputAction.done,
-                                            // textController: controller.usernameController,
                                           ),
                                           SizedBox(height: 5),
                                           controller.addressValid == false
@@ -387,7 +386,8 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
                                     child: ButtonCustomized(
                                       BT_NEXT,
                                       onTap: (){
-                                        Get.to(RegisterStepThreePage());
+                                        controller.onRegisterStep2();
+                                        //Get.to(RegisterStepThreePage());
                                       },
                                       backgroundColor: MAIN_BLACK,
                                     ),

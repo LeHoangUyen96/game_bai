@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:timeline_tile/timeline_tile.dart';
-import 'package:timelines/timelines.dart';
+import 'package:timeline_tile/timeline_tile.dart';
+//import 'package:timelines/timelines.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -45,6 +45,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
       margin: EdgeInsets.only(top: Get.height * 0.01),
       // padding: EdgeInsets.symmetric(horizontal: Get.width*0.2),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -197,22 +198,46 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
           SizedBox(height: 10),
           Container(
             //width: Get.width/,
-            padding: EdgeInsets.only(right: 100),
+            //padding: EdgeInsets.only(left: 2),
             child:  TimelineTile(
-              crossAxisExtent: 500,
-              contents:Container(
-                padding: EdgeInsets.all(8.0),
-                child: TextCustomized(
-                    text:'Kho Trung Quốc, đang đóng hàng về',
-                  color: Colors.green,
+              isFirst: true,
+              alignment: TimelineAlign.manual,
+              lineXY: 0.4,
+              indicatorStyle: IndicatorStyle(
+                color: Colors.green,
+                height: 10,
+                width: 10,
+                drawGap: false,
+                indicatorXY: 0,
+              ),
+              beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
+              endChild: Container(
+                padding: EdgeInsets.only(left: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextCustomized(
+                      text: "Kho Trung Quốc, đang đóng hàng về",
+                      font: SanFranciscoTextLight,
+                      weight: FontWeight.w400,
+                      color: Colors.green,
+                    ),
+                    SizedBox(height: 50,),
+                  ],
                 ),
               ),
-              node: TimelineNode(
-                indicator: DotIndicator(),
-                //startConnector: SolidLineConnector(),
-                endConnector: DashedLineConnector(),
+              startChild: Container(
+                child: Container(
+                  alignment: const Alignment(0.7, -0.800),
+                  child: TextCustomized(
+                    text: "11/11/2021",
+                    font: SanFranciscoTextLight,
+                    weight: FontWeight.w400,
+                    color: MAIN_GRAY,
+                    ),
+                  ),
+                ),
               ),
-            )
           ),
         ],
       ),

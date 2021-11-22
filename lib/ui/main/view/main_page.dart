@@ -33,7 +33,7 @@ class MainPage extends GetView<MainController> {
                 OrderInfoPage(),
                 NotificationPage(),
                 NotificationPage(),
-                NotificationPage(),
+                ProfilePage(),
               ],
             ),
           ),
