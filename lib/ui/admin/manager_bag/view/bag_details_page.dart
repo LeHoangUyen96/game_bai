@@ -454,7 +454,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextCustomized(
-                                  text: "Kho Trung Quốc",
+                                  text: "Kho Trung Quốc ",
                                   font: SanFranciscoTextLight,
                                   weight: FontWeight.w400,
                                   color: Colors.green,

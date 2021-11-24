@@ -804,8 +804,9 @@ const String MANAGE_PACKAGE_CUSTOMER_NAME = 'Tên KH:';
 const String MANAGE_PACKAGE_DETAILS_BAG = 'Chi tiết bao hàng';
 const String MANAGE_PACKAGE_INFO_BAG = 'Thông tin bao hàng';
 const String MANAGE_PACKAGE_BAG_JOURNEY = 'Hành trình bao hàng';
-
- 
+const String MANAGE_PACKAGE_BAG = 'Bao';
+const String MANAGE_PACKAGE_BAG_NAME = 'Tên bao';
+const String MANAGE_PACKAGE_ENTER_WEIGHT = 'Nhập số cân';
 
 
  
