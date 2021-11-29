@@ -807,6 +807,7 @@ const String MANAGE_PACKAGE_BAG_JOURNEY = 'Hành trình bao hàng';
 const String MANAGE_PACKAGE_BAG = 'Bao';
 const String MANAGE_PACKAGE_BAG_NAME = 'Tên bao';
 const String MANAGE_PACKAGE_ENTER_WEIGHT = 'Nhập số cân';
+const String MANAGE_PACKAGE_ORDER = 'Đơn hàng';
 
 
  

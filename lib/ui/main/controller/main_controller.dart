@@ -35,7 +35,7 @@ class MainController extends GetxController implements MainContract {
     if (index == 1) {
       navigateItem[index].showBadge = false;
     }
-    navigateItem[index].color = MAIN_COLOR;
+    navigateItem[index].color = BLACK_1;
     for (var i = 0; i < navigateItem.length; i++) {
       if (i != index) navigateItem[i].color = DISABLED_COLOR;
     }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
+import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/find_user_reponse.dart';
 
 class FindUserImpl extends GetConnect implements FindUserRepositories {
@@ -13,7 +14,7 @@ class FindUserImpl extends GetConnect implements FindUserRepositories {
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return FindUserResponse.fromJson(responseJson.body);
     }
-    throw FindUserResponse.fromJson(responseJson.body);
+    throw ErrorResponse.fromJson(responseJson.body);
   }
 
  
