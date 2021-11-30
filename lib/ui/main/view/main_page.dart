@@ -31,10 +31,10 @@ class MainPage extends GetView<MainController> {
               index: controller.tabIndex.value,
               // children: controller.screensData.map(_buildIndexedPageFlow).toList(),
               children: [
-                ProfilePage(),
-                FindingCustomerPage(),
                 OrderInfoPage(),
+                FindingCustomerPage(),
                 NotificationPage(),
+                ProfilePage(),
               ],
             ),
           ),
