@@ -5,11 +5,9 @@ import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_re
 import 'package:viet_trung_mobile/data/response/list_packing_form_response.dart';
 import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
-
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
 
-
-class CreateBagController extends GetxController  {
+class CreateBagOrdValidController extends GetxController  {
   List< DataListWareHouseBackResponse> ? mDataListWareHouseBackResponse =[];
   List< DataListStatusBagResponse> ? mDataListStatusBagResponse =[];
   List< DataListTransportFormResponse> ? mDataListTransportFormResponse = [];
@@ -22,6 +20,8 @@ class CreateBagController extends GetxController  {
   ListWareHouseBackResponse ? listWareHouseBackResponse;
   String? item_code;
   bool changeBill = false;
+  int listBag = 1;
+  int defaultsStatus = 0;
   @override
   void onInit() {
     super.onInit();
@@ -68,7 +68,16 @@ class CreateBagController extends GetxController  {
     }
     update();
   }
-
-
+  void addBagItem(){
+    listBag = listBag +1;
+    update();
+  }
+  void onDelBagItem(){
+      listBag = listBag -1;
+      update();
+    }
+  void onChangeColorBag(int index) {
+    defaultsStatus = index;
+    update();
+  }
 }
-

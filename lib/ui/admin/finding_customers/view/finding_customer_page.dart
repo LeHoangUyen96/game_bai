@@ -83,13 +83,16 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   controller.isPhoneValid == false
-                      ? TextCustomized(
-                    text: controller.phoneErros,
-                    font: SanFranciscoText,
-                    size: 12,
-                    weight: FontWeight.w400,
-                    color: RED,
-                  )
+                      ? Expanded(
+                        child: TextCustomized(
+                          text: controller.phoneErros,
+                          font: SanFranciscoText,
+                          size: 12,
+                          maxLine: 2,
+                          weight: FontWeight.w400,
+                          color: RED,
+                        ),
+                      )
                       : Container(),
                 ],
             ),
@@ -102,7 +105,11 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
                 borderType: BorderType.Rect, 
                 child: InkWell(
                   onTap: (){
-                    Get.to(GenaeralManagePage());
+                    // Get.to(EnterWarehousePage(),
+                    //    arguments: {
+                    //      'phone' : controller.phoneValueController.text,
+                    //    });
+                    controller.onImportStorageNoInfo();
                   },
                   child: Container(
                     height: 8.0.w,
@@ -118,9 +125,10 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
             ),
             SizedBox(height: 20),
             ButtonCustomized(
-              ADMIN_SEARCH,
+              ADMIN_ENTER_WAREHOUSE,
               onTap: (){
-                Get.to(EnterWarehousePage());
+                ///Get.to(EnterWarehousePage());
+                controller.onFindUser();
               },
               backgroundColor: BLACK,
             ),

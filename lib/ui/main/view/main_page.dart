@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile/widget/home_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:get/get.dart';
@@ -31,8 +32,11 @@ class MainPage extends GetView<MainController> {
               index: controller.tabIndex.value,
               // children: controller.screensData.map(_buildIndexedPageFlow).toList(),
               children: [
+                //ProfilePage(),
+                //FindingCustomerPage(),
+                HomeViewsPage(),
                 OrderInfoPage(),
-                FindingCustomerPage(),
+                ProfilePage(),
                 NotificationPage(),
                 ProfilePage(),
               ],
@@ -60,7 +64,7 @@ class MainPage extends GetView<MainController> {
         backgroundColor: BG_NAVIGATION_COLOR,
         currentIndex: controller.tabIndex.value,
         onTap: controller.changeTabIndex,
-        strokeColor: MAIN_COLOR,
+        strokeColor: BLACK_1,
 
         items: navigateItem.map((NavigateEmblem navigateEmblem) {
           return CustomNavigationBarItem(

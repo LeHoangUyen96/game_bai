@@ -27,15 +27,15 @@ class NotificationPage extends GetView<AddressController> {
           titleAppBarColor: Colors.white,
           backgroundAppBar: Colors.black26,
           isCenterTitle: false,
-          isShowBack: true,
-          iconBack: TextButton(
-            child: Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: COLOR_ORDER_PENDING_DEPOSIT,
-            ),
-            onPressed: () => Get.back(result: true),
-          ),
+          //isShowBack: true,
+          // iconBack: TextButton(
+          //   child: Icon(
+          //     Icons.arrow_back_ios,
+          //     size: 20,
+          //     color: COLOR_ORDER_PENDING_DEPOSIT,
+          //   ),
+          //   onPressed: () => Get.back(result: true),
+          // ),
           child: Center(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),

@@ -5,6 +5,8 @@ import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_impl.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_impl.dart';
+import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_impl.dart';
@@ -31,6 +33,7 @@ class Injector {
 
   BagRepositories get bag => BagImpl();
   SettingRepositories get setting => SettingImpl();
+  FindUserRepositories get findUser => FindUserImpl();
 
   OrderRepositories get order => OrderImpl();
 

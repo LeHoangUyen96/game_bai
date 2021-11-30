@@ -150,4 +150,10 @@ class NetworkConfig {
   static const String SETTING_PACKING_FORM = URL_SERVER + "/admin/setting/packing-form/list";
   static const String SETTING_TRANSPORT_FORM = URL_SERVER + "/admin/setting/transport-form/list";
 
+  //Find_User
+  static const String FIND_USER = URL_SERVER + "/admin/order/find-user";
+  //EnterWarehouse
+  static const String ENTER_WAREHOUSE = URL_SERVER + "/admin/order/import-storage";
+  //Ramdom Bill Order
+  static const String RAMDOM_BILL_ORDER = URL_SERVER + "/admin/order/random-bill-code";
 }

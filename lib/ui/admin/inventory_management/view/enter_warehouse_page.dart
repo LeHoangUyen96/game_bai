@@ -88,7 +88,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                           weight: FontWeight.w700,
                           ),
                         TextCustomized(
-                          text: ADMIN_UNKNOWN,
+                          text: controller.user_id != null ? controller.user_id.toString() : "Không xác định",
                           font: SanFranciscoUIText,
                           color: BLACK,
                           size: normalSize,
@@ -111,7 +111,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                             ),
                         ),
                         TextCustomized(
-                          text: ADMIN_UNKNOWN,
+                          text:  controller.name.toString(),
                           font: SanFranciscoUIText,
                           color: BLACK,
                           size: normalSize,
@@ -145,7 +145,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                           spacing: 5.0,
                           children :[ 
                           TextCustomized(
-                            text: ADMIN_UNKNOWN,
+                            text: controller.phone.toString(),
                             font: SanFranciscoUIText,
                             color: BLACK,
                             size: normalSize,
@@ -182,7 +182,6 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                 children: [
                   Expanded(
                     child: TextField(
-                      
                       controller: controller.barCodeValueController,
                       decoration:InputDecoration(
                         border: InputBorder.none,
@@ -198,7 +197,9 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                     spacing: 8.0,
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          controller.onRamdomBillOrder();
+                        },
                         child: SvgPicture.asset(IC_REFRESH),
                       ),
                       InkWell(
