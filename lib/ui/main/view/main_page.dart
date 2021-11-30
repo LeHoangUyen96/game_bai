@@ -38,6 +38,7 @@ class MainPage extends GetView<MainController> {
                 OrderInfoPage(),
                 ProfilePage(),
                 NotificationPage(),
+                ProfilePage(),
               ],
             ),
           ),

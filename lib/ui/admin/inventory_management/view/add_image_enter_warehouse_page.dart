@@ -51,15 +51,17 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular(25)),
                               child: Container(
-                                padding: EdgeInsets.all(15),
+                                padding: EdgeInsets.all(13),
                                 color: GRAY7,
                                 //width: Get.width*0.2,
                                 //height: Get.height*0.16,
-                                child: SvgPicture.asset(
-                                  IC_CAMERA,
-                                  width: Get.width*0.1-20,
-                                  height: Get.height*0.1-25.0,
-                                  )
+                                child: Center(
+                                  child: SvgPicture.asset(
+                                    IC_CAMERA,
+                                    width: Get.width*0.1-20,
+                                    height: Get.height*0.1-25.0,
+                                    ),
+                                )
                               ),
                             )),
                       ),

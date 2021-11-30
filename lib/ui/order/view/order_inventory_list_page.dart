@@ -25,9 +25,9 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
     return GetBuilder<OrderInventoryListController>(
       init: OrderInventoryListController(),
       builder: (value) => Scaffold(
-        body:   controller.orderResponse!.data!.length != 0 ? buildBody() : Container(),
+        body:   controller.orderResponse!.data != null ? buildBody() : LoadingSpinKit(),
         backgroundColor: MAIN_BG,
-        bottomNavigationBar: _buildBottomNav(),    
+        bottomNavigationBar:  controller.orderResponse!.data!.length != 0 ? _buildBottomNav() : null,
         )
       );
     
@@ -47,6 +47,7 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child:
+                  controller.orderResponse!.data!.length != 0 ?
                   Row(
                     children: [
                       Container(
@@ -79,7 +80,8 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
                         weight: FontWeight.w400,
                       ),
                     ],
-                  ),
+                  )
+                  : Container(),
 
                 ),
               ),

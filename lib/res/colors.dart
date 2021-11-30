@@ -86,6 +86,8 @@ const Color BT_GRAY = Color(0xFFDCDDE7);
 
 const Color BLACK_1 = Color(0xFF0A0822);
 const Color RED_1 = Color(0xFFA7173B);
+const Color RED_2 = Color(0xFFDF1245);
+const Color TEXT_ORDER_W_CONFIRM = Color(0xFFEE8B17);
 
 const Color TEXT_DATETIME_NT = Color(0xFFBABDCA);
 const Color BT_CONFIRM = Color(0xFF0A0822);
