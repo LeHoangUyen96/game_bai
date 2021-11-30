@@ -88,7 +88,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                           weight: FontWeight.w700,
                           ),
                         TextCustomized(
-                          text: controller.user_id != null ? controller.user_id.toString() : "Không xác định",
+                          text: controller.user_code != null ? controller.user_code.toString() : "Không xác định",
                           font: SanFranciscoUIText,
                           color: BLACK,
                           size: normalSize,
@@ -224,6 +224,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
             SizedBox(height: 10),
             TextFieldCustomized(
               hint: ADMIN_NAME_ITEMS,
+              textController: controller.itemValueController,
             ),
              SizedBox(height: 15),
              TextCustomized(
@@ -236,6 +237,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
             SizedBox(height: 10),
             TextFieldCustomized(
               hint: ADMIN_ENTER_AMOUNT,
+              textController: controller.transportFeeController,
             ),
             SizedBox(height: 15),
              TextCustomized(
@@ -248,6 +250,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
             SizedBox(height: 10),
             TextFieldCustomized(
               hint: ADMIN_ENTER_PARCEL_NUMBER,
+              textController: controller.numberPackageController,
             ),
             SizedBox(height: 15),
              TextCustomized(
@@ -303,7 +306,9 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
             SizedBox(height: 15),
             ButtonCustomized(
               ADMIN_ENTER_WAREHOUSE,
-              onTap: (){},
+              onTap: (){
+                controller.onEnterWareHouse();
+              },
               backgroundColor: BLACK,
             )
         ],

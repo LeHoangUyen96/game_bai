@@ -50,3 +50,4 @@ const String IC_FILTER_ART = "assets/images/icon_filter_art.svg";
 const String IC_ADD_CIRCLE = "assets/images/icon_add_circle_outline.svg";
 const String IC_ARROW_DOWN = "assets/images/icon_arrows_down.svg";
 const String IC_CANCEL = "assets/images/icon_cancel.svg";
+const String IC_NOTIFICATION_UNREAD = "assets/images/ic_journey.svg";

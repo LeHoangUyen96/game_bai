@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
@@ -12,16 +14,19 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/ui/address/view/add_address_page.dart';
 import 'package:viet_trung_mobile/ui/address/view/update_address_page.dart';
+import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
+import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
+import 'package:viet_trung_mobile/ui/notification/view/item_notification.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
-class NotificationPage extends GetView<AddressController> {
+class NotificationPage extends GetView<NotificationListController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AddressController>(
-      init: AddressController(),
+    return GetBuilder<NotificationListController>(
+      init: NotificationListController(),
       builder: (value) =>InitialWidget(
           titleAppBar: NOTIFICATION_APP_BAR,
           titleAppBarColor: Colors.white,
@@ -36,29 +41,55 @@ class NotificationPage extends GetView<AddressController> {
           //   ),
           //   onPressed: () => Get.back(result: true),
           // ),
-          child: Center(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              color: MAIN_ADDRESS_GRAY,
-              height: Get.height,
-              width: Get.width,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    _addressBody(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ),
+          child: SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: true,
+          onRefresh: controller.onListRefresh,
+          header: WaterDropHeader(
+            refresh: SpinKitCircle(
+              color: MAIN_COLOR,
+              size: 30,
             ),
-          )
+            complete: SpinKitCircle(
+              color: MAIN_COLOR,
+              size: 40,
+            ),
+          ),
+          onLoading: controller.onListLoading,
+          footer: CustomFooter(
+            builder: (BuildContext context, LoadStatus? mode) {
+              Widget body;
+              if (mode == LoadStatus.idle) {
+                body = Container();
+              } else if (mode == LoadStatus.loading) {
+                body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+              } else if (mode == LoadStatus.failed) {
+                body = Text("Load Failed!Click retry!");
+              } else if (mode == LoadStatus.canLoading) {
+                body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+              } else {
+                body = Text("No more Data");
+              }
+              return Container(
+                height: 55.0,
+                child: Center(child: body),
+              );
+            },
+          ),
+          controller: controller.refreshController,
+          child: ListView.builder(
+              itemCount: controller.listNotification.length,
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (context, i) {
+                return InkWell(
+                  onTap: () => controller.onItemNotificationClick(i),
+                  // onTap: (){
+                  //   Get.to(ConfirmOrderPage());
+                  // },
+                  child: ItemNotification(controller.listNotification[i]),
+                );
+              }),
+        ),
       )
 
     );

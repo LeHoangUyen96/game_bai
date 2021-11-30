@@ -62,6 +62,8 @@ class NetworkConfig {
   static const String ORDER_LIST_STATUS = URL_SERVER + "/order/list-status-order";
   static const String WAREHOUSE = URL_SERVER + "/order/list-storage-receive";
   static const String PACKING_ORDER = URL_SERVER + "/order/change-type";
+  static const String ORDER_DETAILS = URL_SERVER + "/order/detail/";
+  static const String ORDER_CONFIRM = URL_SERVER + "/order/confirm";
 
   //Wallet
   static const String WALLET_INFO = URL_SERVER + "/wallet/check-wallets";
@@ -156,4 +158,5 @@ class NetworkConfig {
   static const String ENTER_WAREHOUSE = URL_SERVER + "/admin/order/import-storage";
   //Ramdom Bill Order
   static const String RAMDOM_BILL_ORDER = URL_SERVER + "/admin/order/random-bill-code";
+  
 }

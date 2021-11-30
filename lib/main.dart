@@ -17,6 +17,7 @@ import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_3_co
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
+import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
@@ -79,5 +80,6 @@ class _Binding extends Bindings {
     Get.lazyPut<GenaralManageController>(() => GenaralManageController(), fenix: true);
     Get.lazyPut<ManagerBagController>(() => ManagerBagController(), fenix: true);
     Get.lazyPut<CreateBagController>(() => CreateBagController(), fenix: true);
+    Get.lazyPut<NotificationListController>(() => NotificationListController(), fenix: true);
   }
 }

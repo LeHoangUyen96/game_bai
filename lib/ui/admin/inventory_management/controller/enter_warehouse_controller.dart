@@ -6,36 +6,44 @@ import 'package:get/get.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile/data/request/enter_warehouse_request.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/ramdom_bill_order_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 
 class EnterWarehouseController extends GetxController  {
   TextEditingController barCodeValueController = TextEditingController();
   TextEditingController billCodeValueController = TextEditingController();
+  TextEditingController itemValueController = TextEditingController();
+  TextEditingController transportFeeController = TextEditingController();
+  TextEditingController numberPackageController = TextEditingController();
+  //int? is_prohibited_item;
   String  phoneErros = '';
   bool isPhoneValid = true;
   bool isCheck = false;
-  int defaults = 1;
+  int is_prohibited_item = 1;
   String? scanBarcode = "Khong co gi het";
   bool? isCheckInfoUser;
-  String? user_id;
+  String? user_code;
+  int? user_id;
   String? name;
   String? phone;
+  String? image;
   RamdomBillOrderResponse? ramdomBillOrderResponse;
   OrderRepositories? orderRepositories;
   @override
   void onInit() {
     super.onInit();
     if(Get.arguments != null){
-      if(Get.arguments['user_id'] == null){
+      if(Get.arguments['user_code'] == null){
         //this.onError(ErrorResponse(message: 'Mã khách hàng trống'));
-        user_id = "";
+        user_code = null;
       }else{
-        user_id = Get.arguments['user_id'];
+        user_code = Get.arguments['user_code'];
       }
       if(Get.arguments['phone'] == null){
-        this.onError(ErrorResponse(message: 'Số điện thoại trống'));
+        //this.onError(ErrorResponse(message: 'Số điện thoại trống'));
       }else{
         phone = Get.arguments['phone'];
       }
@@ -44,10 +52,14 @@ class EnterWarehouseController extends GetxController  {
         name ="Không xác định";
       }else{
         name = Get.arguments['name'];
+      }
+      if(Get.arguments['user_id'] == null){
+        user_id = null;
+      }else{
+        user_id = Get.arguments['user_id'];
       }  
     }
     orderRepositories =Injector().order; 
-    
   }
   
   
@@ -74,23 +86,48 @@ class EnterWarehouseController extends GetxController  {
     update();
   }
   void onRamdomBillOrder(){
-    orderRepositories!.onRamdomBillOrder(user_id!).then((value){
+    if(user_id != null){
+      orderRepositories!.onRamdomBillOrder(user_id!).then((value){
       ramdomBillOrderResponse = value;
       barCodeValueController = TextEditingController(text: ramdomBillOrderResponse!.data!.bill_code);
       print("isRamdomBillCode + ${ramdomBillOrderResponse!.data!.bill_code.toString()}");
        update();
     }).catchError((onError){
       print('isErorrs');
-      update();
+     
     });
+    } 
+     update();
+     print(user_id);
   }
+ 
+
+  void onEnterWareHouse(){
+      EnterWareHouseRequest request = EnterWareHouseRequest(
+        user_id : ParseNumber.parseInt(user_id),
+        phone : phone,
+        bill_code: barCodeValueController.text.toString(),
+        item : itemValueController.text.toString(),
+        transport_fee: ParseNumber.parseDouble(transportFeeController.text),
+        number_package: ParseNumber.parseInt(numberPackageController.text),
+        images: image,
+        is_prohibited_item: is_prohibited_item,
+      );
+      orderRepositories!.onEnterWarehouse(request).then((value){
+        Get.snackbar(NOTIFY, "Nhập kho thành công");
+          }).catchError((onError) {
+            return onError(onError);
+          });
+      Get.back(result: request);
+      update();
+   }
 
   void onChangeDefault(){
     isCheck = !isCheck;
     if(isCheck==true){
-      defaults = 2;
-    } else defaults = 1;
-    print("$defaults");
+      is_prohibited_item = 2;
+    } else is_prohibited_item = 1;
+    print("$is_prohibited_item");
     update();
   }
     @override

@@ -5,9 +5,10 @@ abstract class NotificationRepository {
 
   Future<NotificationListResponse> onGetOrderNotification(int page, int perPage);
 
-  Future<int> onGetUnreadCount(int type);
+  Future<int> onGetUnreadCount();
 
-  Future onReadAllNotification(int type);
+  Future onReadAllNotification();
 
   Future onReadOneNotification(int notificationId);
+  Future<NotificationListResponse> onGetListNotification(int page, int perPage);
 }

@@ -33,8 +33,8 @@ class MainPage extends GetView<MainController> {
               // children: controller.screensData.map(_buildIndexedPageFlow).toList(),
               children: [
                 //ProfilePage(),
-                //FindingCustomerPage(),
-                HomeViewsPage(),
+                FindingCustomerPage(),
+                //HomeViewsPage(),
                 OrderInfoPage(),
                 ProfilePage(),
                 NotificationPage(),

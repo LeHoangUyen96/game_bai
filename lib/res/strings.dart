@@ -808,7 +808,14 @@ const String MANAGE_PACKAGE_BAG = 'Bao';
 const String MANAGE_PACKAGE_BAG_NAME = 'Tên bao';
 const String MANAGE_PACKAGE_ENTER_WEIGHT = 'Nhập số cân';
 const String MANAGE_PACKAGE_ORDER = 'Đơn hàng';
-
+const String ORDER_EXPORT_TO_CHINA = 'Xuất Kho Trung Quốc';
+const String ORDER_BORDER_WAREHOUSE = 'Kho Cửa Khẩu';
+const String ORDER_PROCESS = 'Làm thủ tục';
+const String ORDER_HN_WAREHOUSE = 'Tổng kho Hà Nội';
+const String ORDER_SG_WAREHOUSE = 'Kho Sài Gòn';
+const String ORDER_DN_WAREHOUSE = 'Kho Đà Nẵng';
+const String ORDER_DELIVERY_IN_PROGRESS = 'Đang giao hàng';
+const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
 
  
  

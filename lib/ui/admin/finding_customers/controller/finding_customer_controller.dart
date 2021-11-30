@@ -35,7 +35,8 @@ class FindingCustomerController extends GetxController  {
       print("onFindUser findUserResponse ${findUserResponse!.data!.name}");
       Get.to(EnterWarehousePage(),
          arguments: {
-           'user_id' : findUserResponse!.data!.user_code,
+           'user_code' : findUserResponse!.data!.user_code,
+           'user_id' : findUserResponse!.data!.id,
            'phone': findUserResponse!.data!.phone,
            'name' : findUserResponse!.data!.name,
 
