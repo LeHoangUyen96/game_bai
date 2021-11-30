@@ -1,12 +1,14 @@
 import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/ui/%20%20order_management/controller/order_management_controller.dart';
-import 'package:viet_trung_mobile/ui/%20%20order_management/controller/valid_order_controller.dart';
-import 'package:viet_trung_mobile/ui/%20%20order_management/view/order_details_admin_page.dart';
-import 'package:viet_trung_mobile/ui/%20%20order_management/view/order_management_page.dart';
 import 'package:viet_trung_mobile/ui/address/controller/add_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/update_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
+import 'package:viet_trung_mobile/ui/admin/finding_customers/controller/finding_customer_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/general_management/controller/general_management_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/add_image_enter_warehouse_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/enter_warehouse_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/manager_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_1_controller.dart';
@@ -18,6 +20,15 @@ import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
+import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/controller/valid_order_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_detail_waitting_for_confirm_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_management_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_not_shipped_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_shipping_details_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_shipping_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_waitting_for_confirm_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/valid_order_page.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_edit_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
@@ -43,7 +54,7 @@ Widget _app() => LayoutBuilder(
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: OrderDetailsAdminPage(),
+          home: SplashPage(),
           theme: ThemeData(
             brightness: Brightness.light,
             primaryColor: MAIN_COLOR,
@@ -73,5 +84,11 @@ class _Binding extends Bindings {
     Get.lazyPut<RegisterStepOneController>(() => RegisterStepOneController(), fenix: true);
     Get.lazyPut<RegisterStepTwoController>(() => RegisterStepTwoController(), fenix: true);
     Get.lazyPut<RegisterStepThreeController>(() => RegisterStepThreeController(), fenix: true);
+    Get.lazyPut<FindingCustomerController>(() => FindingCustomerController(), fenix: true);
+    Get.lazyPut<EnterWarehouseController>(() => EnterWarehouseController(), fenix: true);
+    Get.lazyPut<EnterWarehouseUploadImageController>(() => EnterWarehouseUploadImageController(), fenix: true);
+    Get.lazyPut<GenaralManageController>(() => GenaralManageController(), fenix: true);
+    Get.lazyPut<ManagerBagController>(() => ManagerBagController(), fenix: true);
+    Get.lazyPut<CreateBagController>(() => CreateBagController(), fenix: true);
   }
 }

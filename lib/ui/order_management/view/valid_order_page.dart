@@ -7,7 +7,7 @@ import 'package:viet_trung_mobile/data/response/order_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/%20%20order_management/controller/valid_order_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/controller/valid_order_controller.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/datepicker_customized.dart';

@@ -3,6 +3,8 @@ import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_im
 import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
+import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_impl.dart';
+import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_impl.dart';
@@ -11,6 +13,8 @@ import 'package:viet_trung_mobile/data/repository/order_repository/order_impl.da
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_impl.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_impl.dart';
+import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
 
 class Injector {
   factory Injector() {
@@ -24,6 +28,11 @@ class Injector {
   HomeRepositories get home => HomeImpl();
   NotificationRepository get notification => NotificationImpl();
   AddressRepository get address => AddressImpl();
+
+  BagRepositories get bag => BagImpl();
+  SettingRepositories get setting => SettingImpl();
+
   OrderRepositories get order => OrderImpl();
+
 
 }
