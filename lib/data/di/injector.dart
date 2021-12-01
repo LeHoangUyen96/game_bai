@@ -1,4 +1,3 @@
-
 import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_impl.dart';
 import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart';
@@ -11,6 +10,8 @@ import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dar
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_impl.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
+import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_imp.dart';
+import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/order_repository/order_impl.dart';
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_impl.dart';
@@ -36,6 +37,5 @@ class Injector {
   FindUserRepositories get findUser => FindUserImpl();
 
   OrderRepositories get order => OrderImpl();
-
-
+  OrderAdminRepositories get orderAmin => OrderAdminImpl();
 }

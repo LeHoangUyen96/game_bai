@@ -30,9 +30,7 @@ const Color BG_SHOPPING_CART = Color(0xFFF0994E);
 
 const Color BG_ID_PD = Color(0xFF2522BB);
 
-
 const Color COLOR_PRICE_SELL = Color(0xFFFF5A36);
-
 
 const Color COLOR_BT_COMPLAIN = Color(0xFFBC0000);
 const Color COLOR_BT_SAVE_LINK = Color(0xFFDF7112);
@@ -92,6 +90,4 @@ const Color TEXT_ORDER_W_CONFIRM = Color(0xFFEE8B17);
 const Color TEXT_DATETIME_NT = Color(0xFFBABDCA);
 const Color BT_CONFIRM = Color(0xFF0A0822);
 const Color MAIN_BG = Color(0xFFF7F7FB);
-const Color TITLE_POPUP = Color(0xFF757A8C);
-
-
+const Color COLOR_BT = Color(0xFF262440);

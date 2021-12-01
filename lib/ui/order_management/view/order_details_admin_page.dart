@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-//import 'package:timelines/timelines.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/view/valid_order_page.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/view/add_image_enter_warehouse_page.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_inventory_list_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class OrderDetailsAdminPage extends GetView<OrderManagementController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<OrderManagementController>(
       init: OrderManagementController(),
-      builder: (value) => Scaffold(
-          appBar: buildAppBar(),
-          body:   buildBody()
-
-      ),
+      builder: (value) => Scaffold(appBar: buildAppBar(), body: buildBody()),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: Size(double.infinity, 55),
@@ -37,17 +27,14 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
         titleAppBar: ORDER_LIST_APP_BAR,
         backgroundAppBar: Colors.black26,
         isShowBack: false,
-
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Container(
-      height: MediaQuery.of(mContext!).size.height ,
-      width: MediaQuery.of(mContext!).size.width,
       color: GRAY7,
-      //margin: EdgeInsets.only(top: Get.height * 0.01),
-       padding: EdgeInsets.only(top: Get.height * 0.01),
+      padding: EdgeInsets.only(top: Get.height * 0.01),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -98,14 +85,18 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         TextCustomized(
                           text: "10:10 21/10/2021",
                           font: SanFranciscoTextLight,
                           weight: FontWeight.w400,
                           color: MAIN_GRAY,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -123,7 +114,9 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -141,7 +134,9 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -159,13 +154,17 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           width: Get.width,
                           height: 0.5,
                           color: GRAY1,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -183,7 +182,9 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,7 +207,9 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             )
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -215,7 +218,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
             ),
             SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               color: WHITE,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,9 +238,8 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
             Container(
               color: WHITE,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 15),
-                child:
-                Column(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+                child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -267,23 +269,25 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                         SizedBox(width: 10.0),
                         TextCustomized(
                           text: ADMIN_ITEM_CANNOT_SHIP,
-                          font:SanFranciscoUIText,
+                          font: SanFranciscoUIText,
                           weight: FontWeight.w700,
                           color: MAIN_BLACK,
                         ),
                       ],
                     ),
                     SizedBox(height: 10),
-                    ButtonCustomized("Lưu", backgroundColor: Colors.grey,)
+                    ButtonCustomized(
+                      "Lưu",
+                      backgroundColor: Colors.grey,
+                    )
                   ],
                 ),
-
               ),
             ),
             SizedBox(height: 10),
             Container(
               color: WHITE,
-              child:  Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -302,7 +306,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                     color: GRAY1,
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 10,bottom: 10),
+                    padding: EdgeInsets.only(top: 10, bottom: 10),
                     child: Column(
                       children: [
                         TimelineTile(
@@ -316,7 +320,8 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                             drawGap: false,
                             indicatorXY: 0,
                           ),
-                          beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
+                          beforeLineStyle:
+                              LineStyle(color: BT_GRAY, thickness: 2),
                           endChild: Container(
                             padding: EdgeInsets.only(left: 10),
                             child: Column(
@@ -328,7 +333,9 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                                   weight: FontWeight.w400,
                                   color: Colors.green,
                                 ),
-                                SizedBox(height: 50,),
+                                SizedBox(
+                                  height: 50,
+                                ),
                               ],
                             ),
                           ),
@@ -340,10 +347,10 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                                 font: SanFranciscoTextLight,
                                 weight: FontWeight.w400,
                                 color: MAIN_GRAY,
-                                ),
                               ),
                             ),
                           ),
+                        ),
                       ],
                     ),
                   ),

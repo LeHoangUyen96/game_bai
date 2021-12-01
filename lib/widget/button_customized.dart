@@ -17,29 +17,43 @@ class ButtonCustomized extends StatelessWidget {
   final double? width;
   final double? height;
 
-  ButtonCustomized(this.text, {this.margin, this.borderRadius, this.textStyle, this.textColor, this.backgroundColor, this.onTap, this.borderColor, this.borderWidth, this.width
-  , this.height});
+  ButtonCustomized(this.text,
+      {this.margin,
+      this.borderRadius,
+      this.textStyle,
+      this.textColor,
+      this.backgroundColor,
+      this.onTap,
+      this.borderColor,
+      this.borderWidth,
+      this.width,
+      this.height});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => onTap != null ? onTap!() : null,
       child: Container(
-        child: Container(
-          height: height ?? 48,
-          width: width ?? double.infinity,
-          padding: EdgeInsets.all(10),
-          margin: margin,
-          decoration: BoxDecoration(
-            border: Border.all(width: borderWidth ?? 2.0, color: borderColor ?? (backgroundColor ?? GRAY)),
-            color: backgroundColor ?? GRAY,
-            borderRadius: borderRadius ?? BorderRadius.circular(9),
-          ),
-          child: Text(
-            text!,
-            style: textStyle ?? TextStyle(fontSize: customSize, fontFamily: SanFranciscoText, fontWeight: FontWeight.w800, color: textColor ?? Colors.white),
-            textAlign: TextAlign.center,
-          ),
+        height: height ?? 48,
+        width: width ?? double.infinity,
+        padding: EdgeInsets.all(10),
+        margin: margin,
+        decoration: BoxDecoration(
+          border: Border.all(
+              width: borderWidth ?? 2.0,
+              color: borderColor ?? (backgroundColor ?? GRAY)),
+          color: backgroundColor ?? GRAY,
+          borderRadius: borderRadius ?? BorderRadius.circular(9),
+        ),
+        child: Text(
+          text!,
+          style: textStyle ??
+              TextStyle(
+                  fontSize: customSize,
+                  fontFamily: SanFranciscoText,
+                  fontWeight: FontWeight.w800,
+                  color: textColor ?? Colors.white),
+          textAlign: TextAlign.center,
         ),
       ),
     );
