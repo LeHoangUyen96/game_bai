@@ -15,6 +15,11 @@ class OrderInfoController extends GetxController with SingleGetTickerProviderMix
     // id = Get.arguments;
     // print("$id");
   }
+  @override
+  void dispose() {
+    tabController!.dispose();
+    super.dispose();
+  }
   void onChangePage(int index){
     tabController!.animateTo(index);
     switch (tabController!.index) {

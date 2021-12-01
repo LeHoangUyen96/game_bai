@@ -133,7 +133,7 @@ class NetworkConfig {
   static const String NOTIFICATION_UNREAD_COUNT = URL_SERVER + "/notifications/unread";
   static const String NOTIFICATION_READ_ALL = URL_SERVER + "/notifications/read-all";
   static const String NOTIFICATION_READ_ONE = URL_SERVER + "/notifications/read-detail";
-
+  static const String NOTIFICATION_ADMIN = URL_SERVER + "/admin/notifications/list";
   //ExchangeRate
   static const String EXCHANGE_RATE = URL_SERVER + "/exchange-rate";
 

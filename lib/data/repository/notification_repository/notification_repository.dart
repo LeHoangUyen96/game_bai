@@ -1,3 +1,4 @@
+import 'package:viet_trung_mobile/data/response/notification_admin_response.dart';
 import 'package:viet_trung_mobile/data/response/notification_response.dart';
 
 abstract class NotificationRepository {
@@ -11,4 +12,5 @@ abstract class NotificationRepository {
 
   Future onReadOneNotification(int notificationId);
   Future<NotificationListResponse> onGetListNotification(int page, int perPage);
+  Future<NotificationAdminResponse> onGetListNotificationAdmin();
 }

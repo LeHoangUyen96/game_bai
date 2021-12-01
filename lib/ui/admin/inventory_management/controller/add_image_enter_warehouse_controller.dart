@@ -10,8 +10,7 @@ import 'package:viet_trung_mobile/ulti/helper/handle_image.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 
-class EnterWarehouseUploadImageController extends GetxController
-    with SingleGetTickerProviderMixin {
+class EnterWarehouseUploadImageController extends GetxController {
   int? selectedReason;
  List<DataImagesEnterWareHouseResponse>? mImages = [];
 

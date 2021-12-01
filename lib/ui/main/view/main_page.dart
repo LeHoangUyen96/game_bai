@@ -2,6 +2,7 @@ import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
+import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
 import 'package:viet_trung_mobile/ui/home/view/home_page.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,8 +29,7 @@ class MainPage extends GetView<MainController> {
           //Get.key.currentState!.maybePop();
           return false;
         },
-        child: controller.mDataProfile != null && controller.mDataProfile!.data!.is_admin == 1   ? 
-        Scaffold(
+        child: Scaffold(
           extendBody: false,
           body: Obx(
             () => IndexedStack(
@@ -38,7 +38,7 @@ class MainPage extends GetView<MainController> {
               children: [
                 //ProfilePage(),
                 //FindingCustomerPage(),
-                HomeViewsPage(),
+               controller.mDataProfile!.data!.is_admin == 1 ? NotificationAdminPage(): HomeViewsPage(),
                 OrderInfoPage(),
                 controller.mDataProfile!.data!.is_admin == 1 ? GenaeralManagePage() : ProfilePage(),
                 controller.mDataProfile!.data!.is_admin == 1 ? ProfilePage() : NotificationPage(),
@@ -51,8 +51,7 @@ class MainPage extends GetView<MainController> {
           //floatingActionButton: floatActionButton(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-        )
-        : LoadingSpinKit(),
+        ),
       ),
     );
   }

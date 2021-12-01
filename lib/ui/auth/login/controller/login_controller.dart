@@ -105,8 +105,7 @@ class LoginController extends GetxController  implements LoginContract{
     profileRepositories!.onGetProfile().then((value) {
       mDataProfile = value;
        Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
-       //Get.offAll(() => MainPage(),arguments: mDataProfile!.data!.is_admin);
-       Get.to(MainPage(),arguments: mDataProfile!.data!.is_admin);
+       Get.offAll(() => MainPage(),arguments: mDataProfile!.data!.is_admin);
        print('is_admin: ${mDataProfile!.data!.is_admin}');
        update();
     }).catchError((onError) {

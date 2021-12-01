@@ -89,6 +89,12 @@ class MainController extends GetxController implements MainContract {
     });
     update();
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // animationController.dispose() instead of your controller.dispose 
+  }
 
   // void getHomeData() {
   //   homeRepositories!.onGetHome().then((value) {
