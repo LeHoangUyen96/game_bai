@@ -6,6 +6,8 @@ const String NAV_HOME = 'Trang chủ';
 const String NAV_CART = 'Giỏ hàng';
 const String NAV_NOTIFICATION = 'Thông báo';
 const String NAV_PROFILE = 'Cá nhân';
+const String NAV_SETTING = 'Cài đặt';
+
 
 const String NAME = "Họ và tên";
 const String PHONE ="Số điện thoại";
@@ -777,6 +779,7 @@ const String ADMIN_IMG = 'Hình ảnh';
 const String ADMIN_ITEM_CANNOT_SHIP = 'Hàng không vận chuyển được';
 const String ADMIN_UNKNOWN = 'Không xác định';
 const String MANAGE_PACKAGE_GENERAL = 'Quản lý chung';
+const String MANAGE = 'Quản lý';
 const String MANAGE_PACKAGE_EMPLOYEE = 'Quản lý nhân viên';
 const String MANAGE_PACKAGE_CUSTOMER = 'Quản lý khách hàng';
 const String MANAGE_PACKAGE_FEEDBACK = 'Phản hồi - Đánh giá';

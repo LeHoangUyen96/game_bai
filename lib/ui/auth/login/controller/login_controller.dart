@@ -1,9 +1,12 @@
 import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/data/models/user.dart';
+import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
+import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/login/contract/login.dart';
+import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
@@ -16,7 +19,7 @@ import 'package:viet_trung_mobile/data/request/auth_request.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LoginController extends GetxController implements LoginContract{
+class LoginController extends GetxController  implements LoginContract{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   // TextEditingController emailController = TextEditingController(text: "baohq@gmail.com");
@@ -24,6 +27,8 @@ class LoginController extends GetxController implements LoginContract{
   ScreenshotController screenshotController = ScreenshotController();
 
   late LoginContract contract;
+  ProfileRepositories? profileRepositories;
+  ProfileResponse ? mDataProfile;
 
   bool isEmailValid = true;
   bool isPasswordValid = true;
@@ -41,6 +46,7 @@ class LoginController extends GetxController implements LoginContract{
   void onInit() {
     super.onInit();
     _authRepository = Injector().auth;
+    profileRepositories =  Injector().profile;
     contract = this;
   }
 
@@ -96,9 +102,18 @@ class LoginController extends GetxController implements LoginContract{
 
   @override
   void onSuccess(User response) {
-    Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
-    //Get.offAll(() => MainPage());
-    Get.offAll(() => MainPage());
+    profileRepositories!.onGetProfile().then((value) {
+      mDataProfile = value;
+       Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
+       //Get.offAll(() => MainPage(),arguments: mDataProfile!.data!.is_admin);
+       Get.to(MainPage(),arguments: mDataProfile!.data!.is_admin);
+       print('is_admin: ${mDataProfile!.data!.is_admin}');
+       update();
+    }).catchError((onError) {
+      print('onError $onError');
+    });
+    update();
+    
     print("Successss");
     // TODO: implement onSuccess
   }

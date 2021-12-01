@@ -49,7 +49,7 @@ class FindingCustomerController extends GetxController  {
       update();
     });
      }
-    print('${phoneValueController.text}');
+    // print('${phoneValueController.text}');
     update();
   }
   

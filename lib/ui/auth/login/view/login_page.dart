@@ -180,8 +180,7 @@ class LoginPage extends GetView<LoginController> {
                                 children: [
                                   InkWell(
                                         onTap: (){
-                                          //Get.to(ForgotPage());
-                                          Get.to(FindingCustomerPage());
+                                          Get.to(ForgotPage());
                                         },
                                         child:  TextCustomized(
                                           text: LOGIN_FORGOTPASSWORD,

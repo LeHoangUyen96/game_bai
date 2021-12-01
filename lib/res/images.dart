@@ -12,6 +12,7 @@ const String IC_NAV_HOME = "assets/images/navbar/home.png";
 const String IC_NAV_CART = "assets/images/navbar/cart.png";
 const String IC_NAV_NOTIFICATION = "assets/images/navbar/notification.png";
 const String IC_NAV_PROFILE = "assets/images/navbar/profile.png";
+const String IC_NAV_SETTING = "assets/images/navbar/setting.png";
 
 const String IC_SAD = "assets/images/icon_sad.svg";
 const String IC_SHOPPING_CART = "assets/images/icon_shopping_cart.svg";
@@ -51,3 +52,5 @@ const String IC_ADD_CIRCLE = "assets/images/icon_add_circle_outline.svg";
 const String IC_ARROW_DOWN = "assets/images/icon_arrows_down.svg";
 const String IC_CANCEL = "assets/images/icon_cancel.svg";
 const String IC_NOTIFICATION_UNREAD = "assets/images/ic_journey.svg";
+const String IC_ORDER = "assets/images/icon_order.svg";
+const String IC_SETTING = "assets/images/icon_setting.svg";

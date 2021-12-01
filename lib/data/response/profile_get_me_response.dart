@@ -1,3 +1,5 @@
+import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+
 class ProfileResponse{
   DataProfile ? data;
 
@@ -16,6 +18,7 @@ class DataProfile{
   String? phone;
   String? avatar;
   String? user_code;
+  int? is_admin;
 
   DataProfile({
      this.name,
@@ -23,6 +26,7 @@ class DataProfile{
      this.phone,
      this.avatar,
      this.user_code,
+     this.is_admin,
   });
 
   DataProfile.fromJson(Map<String, dynamic> json){
@@ -31,6 +35,7 @@ class DataProfile{
     phone = json["phone"] != null ? json["phone"] : '';
     avatar =  json["avatar"] != null ? json["avatar"] : '';
     user_code = json["user_code"] != null ? json["user_code"] : '';
+    is_admin = ParseNumber.parseInt(json['is_admin']);
   }
   
 
