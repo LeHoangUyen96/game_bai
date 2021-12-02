@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_admin_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/widget/home_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
@@ -21,7 +22,7 @@ class MainPage extends GetView<MainController> {
     return GetBuilder<MainController>(
       builder: (value) => WillPopScope(
         // onWillPop: () => _backPressed(controller.screensData[controller.tabIndex.value].navigatorKey),
-        onWillPop: ()  async {
+        onWillPop: () async {
           Get.key.currentState!.maybePop();
           return false;
         },
@@ -35,7 +36,8 @@ class MainPage extends GetView<MainController> {
                 //ProfilePage(),
                 //FindingCustomerPage(),
                 HomeViewsPage(),
-                OrderInfoPage(),
+                // OrderInfoPage(),
+                OrderAdminPage(),
                 ProfilePage(),
                 NotificationPage(),
                 ProfilePage(),
@@ -65,7 +67,6 @@ class MainPage extends GetView<MainController> {
         currentIndex: controller.tabIndex.value,
         onTap: controller.changeTabIndex,
         strokeColor: BLACK_1,
-
         items: navigateItem.map((NavigateEmblem navigateEmblem) {
           return CustomNavigationBarItem(
             badgeCount: navigateEmblem.badgeCount,

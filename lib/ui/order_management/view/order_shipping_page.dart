@@ -12,6 +12,7 @@ import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/view/order_shipping_details_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/datepicker_customized.dart';
+import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -25,53 +26,20 @@ class OrderShippingPage extends GetView<ValidOrderController> {
     return GetBuilder<ValidOrderController>(
         init: ValidOrderController(),
         builder: (value) => Scaffold(
-          appBar: buildAppBar(),
-          body:   buildBody(),
-          //bottomNavigationBar: controller.checkAction == true ? _buildBottomNav() : null,
-          backgroundColor: GRAY_BG,
-        )
-
-    );
+              appBar: buildAppBar('Đơn hàng đã chuyển'),
+              body: buildBody(),
+              backgroundColor: GRAY_BG,
+            ));
   }
 
-
-  PreferredSize buildAppBar() {
-    return PreferredSize(
-      preferredSize: Size(double.infinity, 55),
-      child: InitialWidget(
-        child: Container(),
-        titleAppBar: "Đơn hàng đã chuyển",
-        backgroundAppBar: Colors.black26,
-        isShowBack: true,
-        iconBack:  InkWell(
-          onTap: (){
-            Get.back();
-          },
-          child: Icon(Icons.arrow_back_ios, color: WHITE,),
-        ),
-        isAdd: true,
-        iconAdd: Container(
-          padding: EdgeInsets.only(right: 10),
-          child: InkWell(
-            onTap: (){
-              Get.back();
-            },
-            child: Icon(Icons.search, color: WHITE,),
-          ),
-        ),
-      ),
-    );
-  }
-
-
-  Widget buildBody(){
+  Widget buildBody() {
     return Container(
-      //width: double.infinity,
-      //height: double.infinity,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             // Container(
             //   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             //   child: Row(
@@ -217,14 +185,16 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                 child: ListView.builder(
                   itemCount: 10,
                   shrinkWrap: true,
-                  physics:NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index){
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
                     return _buildListOrder();
                   },
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
           ],
         ),
       ),
@@ -385,14 +355,14 @@ class OrderShippingPage extends GetView<ValidOrderController> {
   //   );
   // }
 
-  Widget  _buildListOrder(){
+  Widget _buildListOrder() {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: controller.checkAction == false ? 10 : 0, vertical: 5),
+      margin: EdgeInsets.symmetric(
+          horizontal: controller.checkAction == false ? 10 : 0, vertical: 5),
       elevation: 20,
       shape: RoundedRectangleBorder(
-          side:  BorderSide(color: Colors.white,width: 3),
-          borderRadius: BorderRadius.all(Radius.circular(15))
-      ),
+          side: BorderSide(color: Colors.white, width: 3),
+          borderRadius: BorderRadius.all(Radius.circular(15))),
       borderOnForeground: true,
       child: Container(
         padding: EdgeInsets.all(15),
@@ -403,8 +373,8 @@ class OrderShippingPage extends GetView<ValidOrderController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: (){
-                    Get.to(()=>OrderShippingDetailsPage());
+                  onTap: () {
+                    Get.to(() => OrderShippingDetailsPage());
                   },
                   child: TextCustomized(
                     text: "211003TODWE4MD",
@@ -421,14 +391,18 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             TextCustomized(
               text: "10:10 21/10/2021",
               font: SanFranciscoTextLight,
               weight: FontWeight.w400,
               color: MAIN_GRAY,
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -446,7 +420,9 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -464,7 +440,9 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -482,7 +460,9 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -505,14 +485,16 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                 )
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildBottomNav(){
+  Widget _buildBottomNav() {
     return Container(
       height: 50,
       //padding: EdgeInsets.symmetric(horizontal: 10),
@@ -536,7 +518,7 @@ class OrderShippingPage extends GetView<ValidOrderController> {
           Expanded(
             flex: 5,
             child: InkWell(
-              onTap: (){},
+              onTap: () {},
               child: Center(
                 // widthFactor: 50,
                 // heightFactor: 50,
@@ -549,20 +531,19 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                       //     Radius.circular(8)
                       // ),
                     ),
-                    child : Center(
+                    child: Center(
                       child: TextCustomized(
                         text: BT_CANCEL,
                         color: WHITE,
                       ),
-                    )
-                ),
+                    )),
               ),
             ),
           ),
           Expanded(
             flex: 5,
             child: InkWell(
-              onTap: (){},
+              onTap: () {},
               child: Center(
                 // widthFactor: 50,
                 // heightFactor: 50,
@@ -575,24 +556,22 @@ class OrderShippingPage extends GetView<ValidOrderController> {
                       //     Radius.circular(8)
                       // ),
                     ),
-                    child : Center(
+                    child: Center(
                       child: TextCustomized(
                         text: CREATE_ORDER,
                         color: WHITE,
                       ),
-                    )
-                ),
+                    )),
               ),
             ),
           ),
         ],
       ),
-
     );
   }
-
 }
+
 class Status {
-  final  String ? status;
+  final String? status;
   Status(this.status);
 }
