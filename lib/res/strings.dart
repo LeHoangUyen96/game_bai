@@ -785,6 +785,8 @@ const String MANAGE = 'Quản lý';
 const String MANAGE_PACKAGE_EMPLOYEE = 'Quản lý nhân viên';
 const String MANAGE_PACKAGE_CUSTOMER = 'Quản lý khách hàng';
 const String MANAGE_PACKAGE_FEEDBACK = 'Phản hồi - Đánh giá';
+const String REVIEW_ORDER = 'Đánh giá đơn hàng';
+const String RATING = 'Đánh giá ';
 const String MANAGE_PACKAGE = 'Quản lý bao hàng';
 const String MANAGE_PACKAGE_TOTAL_BAG = 'Tổng bao:';
 const String MANAGE_PACKAGE_TYPE_BAG = 'Kiểu bao';
@@ -823,6 +825,7 @@ const String ORDER_DELIVERY_IN_PROGRESS = 'Đang giao hàng';
 const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
 const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
 const String ORDER_STOCK = 'Hàng lưu kho';
+const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
  
  
  
