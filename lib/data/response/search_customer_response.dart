@@ -1,40 +1,35 @@
 class SearchCustomerResponse {
-  String? message;
+  List<DataSearchCustomer>? data;
 
   SearchCustomerResponse({
-    this.message,
+    this.data,
   });
 
   SearchCustomerResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'] ?? '';
+    data = json['data'] != null
+        ? json['data']
+            .map<DataSearchCustomer>((e) => DataSearchCustomer.fromJson(e))
+            .toList()
+        : [];
   }
 }
 
 class DataSearchCustomer {
-  int? id;
   String? name;
   String? phone;
-  String? email;
   String? avatar;
   String? userCode;
-  int? isAdmin;
 
   DataSearchCustomer({
-    this.id,
     this.name,
     this.phone,
-    this.email,
     this.avatar,
     this.userCode,
-    this.isAdmin,
   });
   DataSearchCustomer.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? 0;
     name = json['name'] ?? '';
     phone = json['phone'] ?? '';
-    email = json['email'] ?? '';
     avatar = json['avatar'] ?? '';
     userCode = json['user_code'] ?? '';
-    isAdmin = json['is_admin'] ?? 0;
   }
 }

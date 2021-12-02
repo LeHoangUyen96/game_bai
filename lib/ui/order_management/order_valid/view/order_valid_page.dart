@@ -5,7 +5,6 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/view/valid_order_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class ValidOrderPage extends GetView<OrderManagementController> {
