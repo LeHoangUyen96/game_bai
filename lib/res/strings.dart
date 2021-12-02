@@ -166,6 +166,7 @@ const String HOME_ORDER = '6 đơn';
 const String HOME_PD = '8 sản phẩm';
 const String HOME_NUMBER = '8';
 const String HOME_SHOW_MORE = 'Xem thêm';
+const String HOME_SHOW_ALL = 'Xem tất cả';
 const String HOME_ORDER_CODE = 'Mã đơn hàng: ';
 const String HOME_INFO_ORDER = 'Thông tin đơn hàng mới cập nhật';
 const String HOME_VND_CNY = ' VNĐ/CNY';
@@ -398,7 +399,7 @@ const String PROFILE_AVAILABLE_BALANCE = "Số dư khả dụng";
 const String PROFILE_ORDER_MANAGEMENT = "Quản lý đơn hàng";
 const String PROFILE_ORDER_LIST = "Danh sách đơn hàng";
 const String PROFILE_PARCEL_LIST = "Danh sách kiện hàng";
-const String PROFILE_ARRIVAL_ORDER_LIST = "Danh sách hàng về";
+const String PROFILE_ARRIVAL_ORDER_LIST = "Hàng về";
 const String PROFILE_COMPLAIN_LIST = "Danh sách khiếu nại";
 const String PROFILE_DELIVERY_MANAGEMENT = "Quản lý giao hàng";
 const String PROFILE_REQUEST_LIST = "Danh sách yêu cầu giao";
@@ -760,6 +761,7 @@ const String AUTH_SENT_PIN_CODE = 'Chúng tôi vừa gửi cho bạn một dãy 
 const String AUTH_VERIFY_IN_TIME = 'Vui lòng xác minh trong thời gian';
 const String AUTH_CONFIRMATION_CODE = 'Gửi lại mã xác nhận';
 const String AUTH_CONFIRM = 'Xác nhận ';
+const String CREATE_ORDER = 'Tạo bao';
 
 const String ADMIN_FINDING_CUSTOMERS = 'Tìm kiếm khách hàng';
 const String ADMIN_ENTER_PHONE_OR_CUSTOMERS_CODE = 'Nhập số điện thoại hoặc mã khách hàng';
@@ -819,7 +821,8 @@ const String ORDER_SG_WAREHOUSE = 'Kho Sài Gòn';
 const String ORDER_DN_WAREHOUSE = 'Kho Đà Nẵng';
 const String ORDER_DELIVERY_IN_PROGRESS = 'Đang giao hàng';
 const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
-
+const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
+const String ORDER_STOCK = 'Hàng lưu kho';
  
  
  

@@ -142,7 +142,7 @@ class _InitialWidgetState extends State<InitialWidget> {
                 ),
                   title: Container(
                             width: Get.width,
-                            child: Row(
+                            child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -152,7 +152,11 @@ class _InitialWidgetState extends State<InitialWidget> {
                                       : "",
                                   style: TextStyle(
                                       fontSize: 20,
-                                      color: _isDark ? widget.titleAppBarColor : Colors.white),
+                                      color: _isDark ? widget.titleAppBarColor : Colors.white,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  softWrap: false,
                                 ),
                                 ]
                             )

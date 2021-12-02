@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/login/contract/login.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
+import 'package:viet_trung_mobile/ui/main/view/main_page_admin.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -105,7 +106,12 @@ class LoginController extends GetxController  implements LoginContract{
     profileRepositories!.onGetProfile().then((value) {
       mDataProfile = value;
        Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
-       Get.offAll(() => MainPage(),arguments: mDataProfile!.data!.is_admin);
+       if(mDataProfile!.data!.is_admin == 1 ){
+         Get.offAll(() => MainPageAdmin());
+       }else{
+          Get.offAll(() => MainPage());
+       }
+      //  Get.offAll(() => MainPage(),arguments: mDataProfile!.data!.is_admin);
        print('is_admin: ${mDataProfile!.data!.is_admin}');
        update();
     }).catchError((onError) {

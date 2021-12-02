@@ -54,3 +54,5 @@ const String IC_CANCEL = "assets/images/icon_cancel.svg";
 const String IC_NOTIFICATION_UNREAD = "assets/images/ic_journey.svg";
 const String IC_ORDER = "assets/images/icon_order.svg";
 const String IC_SETTING = "assets/images/icon_setting.svg";
+const String BG_IMG_DASHBOARD = "assets/images/img_background_dashboard.png";
+const String IMG_DASHBOARD = "assets/images/image_notify.png";

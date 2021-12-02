@@ -162,8 +162,10 @@ class TextFieldCustomized extends StatefulWidget {
   final ValueChanged<String>? onSubmitted;
   final bool Function()? validator;
   final bool? isSuffixIcon;
+  final int? maxLine;
+  final double? height;
 
-  TextFieldCustomized({this.invalid, this.textInputAction, this.path, this.textInputType, this.title, this.errorText, this.hint, this.textController, this.isObscured, this.suffixIcon, this.borderTop, this.borderBottom, this.focusNode, this.filled, this.onChanged, this.validator, this.onSubmitted, this.icon, this.isSuffixIcon, });
+  TextFieldCustomized({this.invalid, this.textInputAction, this.path, this.textInputType, this.title, this.errorText, this.hint, this.textController, this.isObscured, this.suffixIcon, this.borderTop, this.borderBottom, this.focusNode, this.filled, this.onChanged, this.validator, this.onSubmitted, this.icon, this.isSuffixIcon, this.maxLine, this.height});
 
   @override
   State<StatefulWidget> createState() {
@@ -198,7 +200,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      height: widget.height ?? 48,
       width: Get.width,
       decoration: BoxDecoration(
           color: Colors.white,
@@ -278,7 +280,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
               keyboardType: widget.textInputType,
               textInputAction: widget.textInputAction,
               obscureText: widget.isObscured ==null ? false : _obscureText,
-              maxLines: 1,
+              maxLines: widget.maxLine ?? 1,
               focusNode: _focusNode,
               onTap: () {
                 setState(() {

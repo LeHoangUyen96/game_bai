@@ -4,6 +4,7 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/controller/notification_admin_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/item_notification_admin.dart';
 import 'package:viet_trung_mobile/ui/notification/view/item_notification.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_detail_waitting_for_confirm_page.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 
 class NotificationAdminPage extends GetView<NotificationAdminController> {
@@ -31,9 +32,10 @@ class NotificationAdminPage extends GetView<NotificationAdminController> {
               itemBuilder: (context, i) {
                 return InkWell(
                   //onTap: () => controller.onItemNotificationClick(i),
-                  // onTap: (){
-                  //   Get.to(ConfirmOrderPage());
-                  // },
+                  onTap: (){
+                    Get.to(OrderDetailsWaitingForConfirmPage());
+                  },
+
                   child: ItemNotificationAdmin(controller.listNotification[i]),
                 );
               }),
