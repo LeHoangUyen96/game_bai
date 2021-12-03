@@ -49,40 +49,55 @@ class NotificationListController extends GetxController implements NotificationC
   }
 
   void readOneNotification(int notificationId){
-    repository.onReadOneNotification(notificationId).then((value) {
-      onListRefresh();
+    repository.onReadOneNotification(listNotification[notificationId].id!).then((value) {
+     // onListRefresh();
+       onItemNotificationClick(notificationId);
     }).catchError((onError) {
       print('$onError');
     });
   }
 
   void onItemNotificationClick(int index) {
-    readOneNotification(listNotification[index].id!);
     orderRepositories!.onGetDetailsOrder(listNotification[index].relation_id!).then((value) {
-    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    // Get.dialog(LoadingSpinKit(), barrierDismissible: false);
       orderDetailsResponse = value;
-      if(orderDetailsResponse!.dataOrderDetails!.type! > 0){
-        Get.to(ConfirmOrderPage(),arguments: listNotification[index].relation_id)!.then((value){
-          print('is----${listNotification[index].relation_id}');
+      // if(orderDetailsResponse!.dataOrderDetails!.type != null){
+      //   // Get.to(ConfirmOrderPage(),arguments: listNotification[index].relation_id)!.then((value){
+      //   //   print('is----${listNotification[index].relation_id}');
+      //   //   if(value != null ){
+      //   //     onListRefresh();
+      //   //     }
+      //   //   });
+      //   Get.to(ConfirmOrderPage(),arguments:{ 
+      //     'id' : listNotification[index].relation_id,
+      //     'orderDetailsResponse' : orderDetailsResponse
+      //   });
+      // } else{
+      //   //  Get.to(OrderDetailReceivePage(),arguments: listNotification[index].relation_id)!.then((value){
+      //   //   print('is----${listNotification[index].relation_id}');
+      //   //   // if(value != null ){
+      //   //   //   onListRefresh();
+      //   //   //   }
+      //   //    });
+      //   Get.to(OrderDetailReceivePage(),arguments: listNotification[index].relation_id);
+      // }
+      // update();
+      Get.to(()=>ConfirmOrderPage(),arguments:{ 
+          'id' : listNotification[index].relation_id,
+          'orderDetailsResponse' : orderDetailsResponse,
+          'type' : orderDetailsResponse!.dataOrderDetails!.type
+        })!.then((value){
           if(value != null ){
             onListRefresh();
             }
-          });
-      } else{
-         Get.to(OrderDetailReceivePage(),arguments: listNotification[index].relation_id)!.then((value){
-          print('is----${listNotification[index].relation_id}');
-          if(value != null ){
-            onListRefresh();
-            }
-           });
-      }
-      update();
+        });
     }).catchError((onError){
       print(onError);
       //return onGetOrderDetailsError(onError);
       update();
     });
-     update();
+     //update();
+      //  readOneNotification(listNotification[index].id!);
    
   }
   void onGetOrderDetailsError(ErrorResponse msg) {

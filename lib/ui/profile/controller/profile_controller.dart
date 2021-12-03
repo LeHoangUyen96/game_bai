@@ -17,6 +17,7 @@ class ProfileController extends GetxController implements ProfileContract {
 ProfileRepositories? profileRepositories;
 AuthRepository? authRepository;
 final tokens = GetStorage();
+final isAdmin = GetStorage();
 ProfileContract? contract;
 ProfileResponse ? mDataProfile;
 
@@ -43,9 +44,11 @@ ProfileResponse ? mDataProfile;
   void onLogout() {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     authRepository!.onLogout().then((value) {
-      MainController controller = Get.find();
-      controller.changeTabIndex(0);
+      // MainController controller = Get.find();
+      // controller.changeTabIndex(0);
+      // controller.changeTabIndexAdmin(0);
       tokens.remove(KEY_TOKEN);
+      GetStorage().remove(KEY_ADMIN);
       Get.offAll(() => LoginPage());
       Get.snackbar(NOTIFY, value.message.toString());
       print(value.message.toString());

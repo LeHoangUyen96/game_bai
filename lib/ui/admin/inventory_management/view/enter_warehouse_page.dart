@@ -55,7 +55,11 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
     );
   }
   Widget buildBody(){
-    return Container(
+    return  GestureDetector(
+      onTap: () {
+        FocusScope.of(Get.context!).requestFocus(FocusNode());
+      },
+      child: Container(
       padding: EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -313,6 +317,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
             )
         ],
       ),
+      )
     );
   }
 } 

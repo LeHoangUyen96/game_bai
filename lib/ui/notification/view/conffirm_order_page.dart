@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 import 'package:viet_trung_mobile/data/response/address_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
@@ -42,8 +43,8 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
               ),
               onPressed: () => Get.back(result: true),
             ),
-            child: controller.orderDetailsResponse != null ?
-            Container(
+            //child: controller.orderDetailsResponse != null ?
+           child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
               color: MAIN_BG,
               height: Get.height,
@@ -58,7 +59,11 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
                     ),
                     _bodyInfo(),
                     SizedBox(height: 10),
-                    Wrap(
+                   controller.type! == 0 ?  
+                    Container(
+                      child: Column(
+                        children: [
+                          Wrap(
                       spacing: 2.0 ,
                       children:[ 
                       TextCustomized(
@@ -124,10 +129,107 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
                     SizedBox(
                       height: 50,
                     ),
+                        ],
+                      ),
+                    )
+                    : Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: WHITE 
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: ORDER_LIST_JOURNEY,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
+                              ),
+                              SizedBox(height: 20,),
+                            ListView.builder(
+                              itemCount: controller.orderDetailsResponse!.dataOrderDetails!.order_journey!.length,
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              itemBuilder: (BuildContext context, index){
+                                return _buildListJourney(index);
+                              }
+                              ),
+                          ],
+                        ),
+                      ),
+                    // Wrap(
+                    //   spacing: 2.0 ,
+                    //   children:[ 
+                    //   TextCustomized(
+                    //     text: "Đơn hàng mã"  ),
+                    //   TextCustomized(
+                    //     text:  "#" + controller.orderDetailsResponse!.dataOrderDetails!.bill_code.toString(),
+                    //     color: COLOR_ORDER_CHINESE_WAREHOUSE,
+                    //   ),  
+                    //   TextCustomized(
+                    //     text: "đã về Kho Trung Quốc. Vui lòng xác nhận và chọn 1 trong 2 phương án sau:"),
+                    //   ]
+                    // ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Row(
+                    //       children: [
+                    //         Radio(
+                    //             value: 1,
+                    //             groupValue: controller.selectedType,
+                    //             activeColor: Colors.black,
+                    //             onChanged: (int? value){
+                    //               controller.onSelecteType(value!);
+                    //             }
+                    //         ),
+                    //         Text("Đóng gói gửi hàng về"),
+                    //       ],
+                    //     ),
+                    //     Row(
+                    //       children: [
+                    //         Radio(
+                    //             value: 2,
+                    //             groupValue: controller.selectedType,
+                    //             activeColor: Colors.black,
+                    //             onChanged: (int? value){
+                    //               controller.onSelecteType(value!);
+                    //             }
+                    //         ),
+                    //         Text("Lưu kho"),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: 10
+                    // ),
+                    // _bodySelectedForm(),
+                    // SizedBox(
+                    //     height: 25
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //   child: ButtonCustomized(
+                    //     AUTH_CONFIRM,
+                    //     textColor: Colors.white,
+                    //     backgroundColor: BT_CONFIRM,
+                    //     onTap: (){
+                    //       controller.onConfirmOrder();
+                    //     },
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 50,
+                    // ),
                   ],
                 ),
               ),
-            ): LoadingSpinKit(),
+           )
+            //): LoadingSpinKit(),
         )
 
     );
@@ -251,7 +353,7 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextCustomized(
-                          text: controller.orderDetailsResponse!.dataOrderDetails!.item.toString(),
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.item!.toString(),
                           color: BLACK_1,
                           weight: FontWeight.w600, 
                           size: 14)
@@ -426,4 +528,51 @@ class ConfirmOrderPage extends GetView<ConfirmOrderController> {
       ),
     );
   }
+   Widget _buildListJourney(index){
+   return Center(
+     child: TimelineTile(
+               isFirst: index == 0,
+               isLast: index == controller.orderDetailsResponse!.dataOrderDetails!.order_journey!.length -1,
+              //  isLast: true,
+               hasIndicator: true,
+              axis: TimelineAxis.vertical,
+              alignment: TimelineAlign.center,
+              lineXY: 0.1,
+              indicatorStyle: IndicatorStyle(
+                color: BT_GRAY,
+                height: 10,
+                width: 10,
+                drawGap: true,
+                indicatorXY: 0.3,
+              ),
+              beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 1),
+              endChild: Container(
+                padding: EdgeInsets.only(left: 10),
+                height: 50,
+                child:  TextCustomized(
+                            text: controller.orderDetailsResponse!.dataOrderDetails!.order_journey![index].status_name.toString(),
+                            font: SanFranciscoTextLight,
+                            size: normalSize,
+                            weight: FontWeight.w600,
+                            color: GRAY,
+                          ),
+              ),
+              startChild: Container(
+                height: 50,
+                padding: EdgeInsets.only(left: 20),
+                child: TextCustomized(
+                  text: controller.orderDetailsResponse!.dataOrderDetails!.order_journey![index].created_at.toString(),
+                  font: SanFranciscoTextLight,
+                  size: smallSize,
+                  weight: FontWeight.w400,
+                  color: BT_GRAY,
+                  ),
+              ),
+              
+            ),
+   );
+ }
+
+
+  
 }

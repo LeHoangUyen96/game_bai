@@ -1,58 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:timeline_tile/timeline_tile.dart';
-//import 'package:timelines/timelines.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/view/valid_order_page.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/view/add_image_enter_warehouse_page.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_inventory_list_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
 class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<OrderManagementController>(
       init: OrderManagementController(),
       builder: (value) => Scaffold(
-          appBar: buildAppBar(),
-          body:   buildBody()
-
+        appBar: buildAppBar(ORDER_HEADER_DETAILS),
+        body: buildBody(),
       ),
     );
   }
-  PreferredSize buildAppBar() {
-    return PreferredSize(
-        preferredSize: Size(double.infinity, 55),
-        child: InitialWidget(
-          child: Container(),
-          titleAppBar: ORDER_HEADER_DETAILS,
-          backgroundAppBar: Colors.black26,
-          isShowBack: true,
-          iconBack: InkWell(
-            onTap: (){
-              Get.back();
-            },
-            child: Icon(Icons.arrow_back_ios, color: WHITE,),
-          ),
-        )
-    );
-  }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Container(
-      height: MediaQuery.of(mContext!).size.height ,
-      width: MediaQuery.of(mContext!).size.width,
       color: GRAY7,
-      //margin: EdgeInsets.only(top: Get.height * 0.01),
       padding: EdgeInsets.only(top: Get.height * 0.01),
       child: SingleChildScrollView(
         child: Column(
@@ -75,7 +47,6 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                       color: Colors.black,
                     ),
                   ),
-                  //SizedBox(height: 5),
                   Container(
                     width: Get.width,
                     height: 0.5,
@@ -104,14 +75,18 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         TextCustomized(
                           text: "10:10 21/10/2021",
                           font: SanFranciscoTextLight,
                           weight: FontWeight.w400,
                           color: MAIN_GRAY,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -129,7 +104,9 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -147,7 +124,9 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -165,7 +144,9 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -183,7 +164,9 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -201,13 +184,17 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           width: Get.width,
                           height: 0.5,
                           color: GRAY1,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -225,7 +212,9 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,7 +237,9 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                             )
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -257,7 +248,7 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
             ),
             SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               color: WHITE,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,8 +277,7 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                           activeColor: Colors.black,
                           onChanged: (int? value) {
                             //controller.onSelectedSex(value!);
-                          }
-                      ),
+                          }),
                       TextCustomized(text: "Trả về nhà cung cấp"),
                     ],
                   ),
@@ -299,18 +289,18 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                           activeColor: Colors.black,
                           onChanged: (int? value) {
                             //controller.onSelectedSex(value!);
-                          }
-                      ),
+                          }),
                       TextCustomized(text: "Lưu kho"),
                     ],
                   ),
                   SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16),
-                    child:  Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextCustomized(text: NOTES_IN_CART, weight: FontWeight.w700),
+                        TextCustomized(
+                            text: NOTES_IN_CART, weight: FontWeight.w700),
                         SizedBox(height: 5),
                         TextFieldCustomized(
                           //textController: controller.nameController,
@@ -331,7 +321,10 @@ class OrderDetailNotShippedPage extends GetView<OrderManagementController> {
                   SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ButtonCustomized("Lưu", backgroundColor: Colors.grey,),
+                    child: ButtonCustomized(
+                      "Lưu",
+                      backgroundColor: Colors.grey,
+                    ),
                   )
                 ],
               ),

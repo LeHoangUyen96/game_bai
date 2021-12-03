@@ -54,7 +54,7 @@ class EnterWarehouseController extends GetxController  {
         name = Get.arguments['name'];
       }
       if(Get.arguments['user_id'] == null){
-        user_id = null;
+        user_id = 0;
       }else{
         user_id = Get.arguments['user_id'];
       }  
@@ -86,7 +86,6 @@ class EnterWarehouseController extends GetxController  {
     update();
   }
   void onRamdomBillOrder(){
-    if(user_id != null){
       orderRepositories!.onRamdomBillOrder(user_id!).then((value){
       ramdomBillOrderResponse = value;
       barCodeValueController = TextEditingController(text: ramdomBillOrderResponse!.data!.bill_code);
@@ -96,7 +95,7 @@ class EnterWarehouseController extends GetxController  {
       print('isErorrs');
      
     });
-    } 
+    
      update();
      print(user_id);
   }
@@ -119,6 +118,7 @@ class EnterWarehouseController extends GetxController  {
             return onError(onError);
           });
       Get.back(result: request);
+      
       update();
    }
 

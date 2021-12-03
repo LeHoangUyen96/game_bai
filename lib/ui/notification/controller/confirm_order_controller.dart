@@ -25,15 +25,33 @@ class ConfirmOrderController extends GetxController {
   Color? color;
   int? selectedType = 1;
   int address = 0;
+  int? type;
 @override
   void onInit() {
     super.onInit();
     orderRepositories = Injector().order;
     addressRepository = Injector().address;
-    id = Get.arguments;
-    print("$id");
-    onGetDetailsOrder();
+    // id = Get.arguments;
+    // print("$id");
+    //onGetDetailsOrder();
     onGetAddressAll();
+     if(Get.arguments != null){
+      if(Get.arguments['id'] == null){
+        id = null;
+      }else{
+        id = Get.arguments['id'];
+      }
+      if(Get.arguments['orderDetailsResponse'] == null){
+      }else{
+        orderDetailsResponse = Get.arguments['orderDetailsResponse'];
+      }
+      if(Get.arguments['type'] == null){
+        type = 0;
+      }else{
+        type = Get.arguments['type'];
+      }
+     }
+     print("isType $type");
   }
    Color ColorStatusName( String order_status_name) {
     switch (order_status_name) {
@@ -102,16 +120,16 @@ class ConfirmOrderController extends GetxController {
     update();
   }
 
-  void onGetDetailsOrder(){
-    orderRepositories!.onGetDetailsOrder(id!).then((value) {
-      orderDetailsResponse = value;
-      update();
-    }).catchError((onError){
-      Get.defaultDialog(title: (onError).message.toString(), middleText: '');
-      update();
-    });
-    update();
-  }
+  // void onGetDetailsOrder(){
+  //   orderRepositories!.onGetDetailsOrder(id!).then((value) {
+  //     orderDetailsResponse = value;
+  //     update();
+  //   }).catchError((onError){
+  //     Get.defaultDialog(title: (onError).message.toString(), middleText: '');
+  //     update();
+  //   });
+  //   update();
+  // }
   void onConfirmOrder(){
     if(address != 0){
       ConfirmOrderRequest request = ConfirmOrderRequest(

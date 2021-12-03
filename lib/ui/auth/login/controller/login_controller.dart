@@ -42,6 +42,7 @@ class LoginController extends GetxController  implements LoginContract{
   late AuthRepository _authRepository;
 
   final tokens = GetStorage();
+  final isAdmin = GetStorage();
 
   @override
   void onInit() {
@@ -105,13 +106,14 @@ class LoginController extends GetxController  implements LoginContract{
   void onSuccess(User response) {
     profileRepositories!.onGetProfile().then((value) {
       mDataProfile = value;
-       Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
-       if(mDataProfile!.data!.is_admin == 1 ){
-         Get.offAll(() => MainPageAdmin());
-       }else{
-          Get.offAll(() => MainPage());
-       }
-      //  Get.offAll(() => MainPage(),arguments: mDataProfile!.data!.is_admin);
+      GetStorage().write(KEY_ADMIN, mDataProfile!.data!.is_admin);
+      //  Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
+      //  if(mDataProfile!.data!.is_admin == 1 ){
+      //    Get.offAll(() => MainPageAdmin());
+      //  }else{
+      //     Get.offAll(() => MainPage());
+      //  }
+       Get.offAll(() => MainPageAdmin());
        print('is_admin: ${mDataProfile!.data!.is_admin}');
        update();
     }).catchError((onError) {

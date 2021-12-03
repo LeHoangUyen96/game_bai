@@ -56,3 +56,5 @@ const String IC_ORDER = "assets/images/icon_order.svg";
 const String IC_SETTING = "assets/images/icon_setting.svg";
 const String BG_IMG_DASHBOARD = "assets/images/img_background_dashboard.png";
 const String IMG_DASHBOARD = "assets/images/image_notify.png";
+const String bg_card = "assets/images/viettrung_bg.png";
+const String IMG_LOGO = "assets/images/img_logo.png";

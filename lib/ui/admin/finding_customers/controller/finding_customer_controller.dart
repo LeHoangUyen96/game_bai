@@ -33,6 +33,7 @@ class FindingCustomerController extends GetxController  {
         phoneErros = findUserResponse!.message.toString();
       }
       print("onFindUser findUserResponse ${findUserResponse!.data!.name}");
+      phoneValueController.clear();
       Get.to(EnterWarehousePage(),
          arguments: {
            'user_code' : findUserResponse!.data!.user_code,
@@ -65,6 +66,7 @@ class FindingCustomerController extends GetxController  {
       isPhoneValid = true;
     } 
     if(isPhoneValid){
+      phoneValueController.clear();
       Get.to(EnterWarehousePage(),arguments: {'phone': phoneValueController.text} );
     }
     update();

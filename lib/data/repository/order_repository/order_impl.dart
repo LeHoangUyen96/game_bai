@@ -66,7 +66,8 @@ class OrderImpl extends GetConnect implements OrderRepositories {
   Future<RamdomBillOrderResponse> onRamdomBillOrder(int user_id) async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.RAMDOM_BILL_ORDER + "?user_id=$user_id";
-    final responseJson = await get(url, headers: header);
+    final urls = NetworkConfig.RAMDOM_BILL_ORDER;
+    final responseJson = await get(user_id != 0  ? url: urls, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return RamdomBillOrderResponse.fromJson(responseJson.body);
     }

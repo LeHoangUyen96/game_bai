@@ -7,13 +7,16 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
+import 'package:viet_trung_mobile/ui/dashboard_user/view/dashboard_user_page.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
+import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class MainPageAdmin extends GetView<MainController> {
+  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
     print('Call MainPage build');
@@ -33,17 +36,15 @@ class MainPageAdmin extends GetView<MainController> {
               children: [
                 //ProfilePage(),
                 //FindingCustomerPage(),
-                NotificationAdminPage(),
+                controller.isAdmin ==1 ?NotificationAdminPage() :DashboardUserPage(),
                 OrderInfoPage(),
-                GenaeralManagePage(),
-                ProfilePage() ,
+                controller.isAdmin ==1 ? GenaeralManagePage():ProfilePage(),
+                controller.isAdmin ==1 ?ProfilePage() : NotificationPage(),
               ],
             ),
           ),
-           bottomNavigationBar:  _buildBottomNavigationAdmin() ,
-          floatingActionButton:   floatActionButton(),
-          //bottomNavigationBar: _buildBottomNavigationAdmin(),
-          //floatingActionButton: floatActionButton(),
+           bottomNavigationBar: controller.isAdmin ==1 ? _buildBottomNavigationAdmin() : _buildBottomNavigation() ,
+          floatingActionButton:  controller.isAdmin ==1 ? floatActionButton(): Container(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
         ),
@@ -107,28 +108,24 @@ class MainPageAdmin extends GetView<MainController> {
               );
             }).toList(),
       );
-
-
-
-  // Widget _buildBottomNavigation() => CustomNavigationBar(
-  //       backgroundColor: BG_NAVIGATION_COLOR,
-  //       currentIndex: controller.tabIndex.value,
-  //       onTap: controller.changeTabIndex,
-  //       strokeColor: BLACK_1,
-
-  //       items: navigateItem.map((NavigateEmblem navigateEmblem) {
-  //         return CustomNavigationBarItem(
-  //           badgeCount: navigateEmblem.badgeCount,
-  //           showBadge: navigateEmblem.id == 1 ? true : navigateEmblem.showBadge,
-  //           icon: ImageCustomized(
-  //             path: navigateEmblem.image,
-  //             color: navigateEmblem.color,
-  //           ),
-  //           title: TextCustomized(
-  //             text: navigateEmblem.title,
-  //             color: navigateEmblem.color,
-  //           ),
-  //         );
-  //       }).toList(),
-  //     );
+       Widget _buildBottomNavigation() => CustomNavigationBar(
+        backgroundColor: BG_NAVIGATION_COLOR,
+        currentIndex: controller.tabIndex.value,
+        onTap: controller.changeTabIndex,
+        strokeColor: BLACK_1,
+        items: navigateItem.map((NavigateEmblem navigateEmblem) {
+          return CustomNavigationBarItem(
+            badgeCount: navigateEmblem.badgeCount,
+            showBadge: navigateEmblem.id == 1 ? true : navigateEmblem.showBadge,
+            icon: ImageCustomized(
+              path: navigateEmblem.image,
+              color: navigateEmblem.color,
+            ),
+            title: TextCustomized(
+              text: navigateEmblem.title,
+              color: navigateEmblem.color,
+            ),
+          );
+        }).toList(),
+      );
 }

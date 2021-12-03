@@ -30,6 +30,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
         children: <Widget>[
           imgBackGround(),
           SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Container(
               //padding: EdgeInsets.only(top: 20),
               alignment: Alignment.center,
@@ -65,6 +66,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                               TextCustomized(
                                 text: "abc",
                                 color: WHITE,
+                                size: mediumSize,
                                 weight: FontWeight.w700,
                               ),
                             ],
@@ -78,8 +80,8 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             child: ImageCustomized(
                               path: IC_NAV_NOTIFICATION,
                               color: WHITE,
-                              width: 20,
-                              height: 20,
+                              width: 28,
+                              height: 28,
                             ),
                           ),
                         ),
@@ -105,7 +107,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                               ),
                               TextCustomized(
                                 text: PROFILE_ARRIVAL_ORDER_LIST,
-                                size: normalXSize,
+                                size: smallSize,
                                 color: WHITE,
                                 weight: FontWeight.w700,
                               ),
@@ -124,7 +126,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                               ),
                               TextCustomized(
                                 text: ORDER_STOCK,
-                                size: normalXSize,
+                                size: smallSize,
                                 color: WHITE,
                                 weight: FontWeight.w700,
                               ),
@@ -148,7 +150,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                       //mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             border: Border(bottom: BorderSide(color: BT_GRAY))
                           ),
@@ -176,7 +178,6 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                           ),
                         ),
                           Container(
-                            height: Get.height*0.52,
                               child: ListView.separated(
                                 itemBuilder: (BuildContext context, int index){
                                   return  _builListItem();
@@ -211,7 +212,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
   }
   Widget _builListItem(){
     return Container(
-      padding: EdgeInsets.only(left: 10,right: 10,bottom: 10),
+      padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
       color: WHITE,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

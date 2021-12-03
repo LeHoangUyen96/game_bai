@@ -57,7 +57,11 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
     );
   }
   Widget buildBody(){
-    return Center(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(mContext!).requestFocus(FocusNode());
+      },
+      child:Center(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 30),
         //alignment: Alignment.center,
@@ -136,6 +140,7 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
           ],
         ),
       ),
+      )
     );
   }
 }

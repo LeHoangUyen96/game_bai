@@ -82,7 +82,7 @@ class NotificationPage extends GetView<NotificationListController> {
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, i) {
                 return InkWell(
-                  onTap: () => controller.onItemNotificationClick(i),
+                  onTap: () => controller.readOneNotification(i),
                   // onTap: (){
                   //   Get.to(ConfirmOrderPage());
                   // },

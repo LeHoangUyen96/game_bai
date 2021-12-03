@@ -31,7 +31,8 @@ class MainController extends GetxController implements MainContract {
       FlutterLocalNotificationsPlugin();
   late AndroidNotificationChannel channel;
   final deviceToken = GetStorage();
-  int ? isAdmin;
+  //final  isAdmin = GetStorage();
+  int? isAdmin ;
   void changeTabIndex(int index) {
     tabIndex.value = index;
     if (index == 2) {
@@ -69,14 +70,22 @@ class MainController extends GetxController implements MainContract {
     repository = Injector().notification;
     homeRepositories = Injector().home;
     contract = this;
-    isAdmin = Get.arguments;
-    print("getIsAdmin: $isAdmin");
+    // isAdmin = Get.arguments;
+    // print("getIsAdmin: $isAdmin");
     profileRepositories =  Injector().profile;
     onGetProfile();
+    getAdmin();
     //await Firebase.initializeApp();
     //getNotificationCount();
     //initFirebaseMessage();
     //getHomeData();
+  }
+  void getAdmin(){
+    if(GetStorage().read(KEY_ADMIN)!=null){
+      isAdmin = GetStorage().read(KEY_ADMIN);
+      print("++++++++++++++++++++++++++++++++${isAdmin}");
+      update();
+    }
   }
   void onGetProfile(){
     profileRepositories!.onGetProfile().then((value) {
@@ -89,12 +98,7 @@ class MainController extends GetxController implements MainContract {
     });
     update();
   }
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    // animationController.dispose() instead of your controller.dispose 
-  }
+ 
 
   // void getHomeData() {
   //   homeRepositories!.onGetHome().then((value) {
@@ -169,52 +173,4 @@ class MainController extends GetxController implements MainContract {
     }
     update();
   }
-
-  // initFirebaseMessage() async {
-  //   /// Update the iOS foreground notification presentation options to allow
-  //   /// heads up notifications.
-  //   await FirebaseMessaging.instance
-  //       .setForegroundNotificationPresentationOptions(
-  //     alert: true,
-  //     badge: true,
-  //     sound: true,
-  //   );
-
-  //   await FirebaseMessaging.instance.requestPermission(
-  //     alert: true,
-  //     badge: true,
-  //     sound: true,
-  //   );
-
-  //   LocalNotificationService.initialize(Get.context!);
-
-  //   // Firebase token, used to call API
-  //   String? token = await FirebaseMessaging.instance.getToken();
-
-  //   deviceToken.write(DEVICE_TOKEN, token);
-
-  //   FirebaseMessaging.instance.getInitialMessage().then((value) {
-  //     // Case app is killed
-  //     if (value != null) {
-  //       print(value.notification!.title);
-  //       Get.to(() => MainPage());
-  //     }
-  //   });
-
-  //   FirebaseMessaging.onMessage.listen((event) {
-  //     // Case app is in foreground
-  //     if (event.notification != null) {
-  //       print(event.notification!.title);
-  //       print(event.notification!.body);
-  //       LocalNotificationService.display(event);
-  //     }
-  //   });
-
-  //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
-  //     // Case app is in background and user tap in push notification
-  //     final routeMessage = event.data['route'];
-  //     print(routeMessage);
-  //     Get.to(() => MainPage());
-  //   });
-  // }
 }

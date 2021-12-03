@@ -21,7 +21,7 @@ class SplashPage extends GetView<SplashController> {
             ),
             child: Center(
                   child: ImageCustomized(
-                    path: LOGO_IMG,
+                    path: IMG_LOGO,
                     width: 178,
                     height: 250,
                   ),
