@@ -37,6 +37,7 @@ class OrderOwnerlessConfirmController extends GetxController
   List<DataTransportForm>? transportForm;
   DataPackingForm? selectedPackingForm;
   DataTransportForm? selectedTransportForm;
+  MethodSend? selectedMethodSend;
 
   bool nameValid = true;
   bool phoneValid = true;
@@ -62,6 +63,7 @@ class OrderOwnerlessConfirmController extends GetxController
   int packing = 0;
   int transport = 0;
   int? orderId;
+  int? method = 0;
   bool isShow = false;
 
   DataSearchCustomer? user;
@@ -165,6 +167,11 @@ class OrderOwnerlessConfirmController extends GetxController
     selectedWards = null;
     onGetListDistrict(id);
     update();
+  }
+
+  void onChangeMethodSend(MethodSend value, int id) {
+    selectedMethodSend = value;
+    method = id;
   }
 
   void onGetListDistrict(int id) {
@@ -290,6 +297,7 @@ class OrderOwnerlessConfirmController extends GetxController
         wardId: selectedWards!.id,
         transportId: selectedTransportForm!.id,
         packingId: selectedPackingForm!.id,
+        type: selectedMethodSend!.id,
       );
       onSave(request);
     }
@@ -317,6 +325,7 @@ class OrderOwnerlessConfirmController extends GetxController
         transportId: selectedTransportForm!.id,
         packingId: selectedPackingForm!.id,
         userId: data.id!,
+        type: selectedMethodSend!.id,
       );
       onSave(request);
     }

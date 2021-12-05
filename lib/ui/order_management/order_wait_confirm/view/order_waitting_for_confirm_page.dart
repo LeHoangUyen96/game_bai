@@ -6,7 +6,6 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/controller/order_wait_confirm_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/view/order_detail_waitting_for_confirm_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 

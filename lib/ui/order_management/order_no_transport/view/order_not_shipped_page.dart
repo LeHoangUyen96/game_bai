@@ -110,7 +110,6 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
             SizedBox(height: 10),
             _itemInfoOrder(MANAGE_PACKAGE_SURCHARGE,
                 "¥${response.surcharge!.toString()}", BLACK),
-            SizedBox(height: 10),
           ],
         ),
       ),

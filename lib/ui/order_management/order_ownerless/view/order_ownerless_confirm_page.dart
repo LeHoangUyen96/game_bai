@@ -179,7 +179,10 @@ class OwneslessOrderConfirmPage
                       groupValue: controller.currentMethodSend,
                       activeColor: COLOR_BT,
                       onChanged: (int? value) {
-                        controller.currentMethodSend = value!;
+                        controller.onChangeMethodSend(
+                          controller.methodSend[index],
+                          value!,
+                        );
                       }),
                   Text(controller.methodSend[index].name!),
                 ],
