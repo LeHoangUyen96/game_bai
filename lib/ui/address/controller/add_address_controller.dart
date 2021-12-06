@@ -11,6 +11,7 @@ import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/wards_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/address/contract/address_contract.dart';
+import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/widget/loading_dialog_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
@@ -223,11 +224,12 @@ class AddAddressController extends GetxController implements AddressContract{
   @override
   void onSuccess(RegisterAddressResponse response) {
     Get.back(result: 1);
-    Get.back(result: 1);
     Get.dialog(LoadingDialogWidget(title: PROFILE_NOTIFY_SUCCESS,text: PROFILE_ADD_ADDRESS_SUCCESS,));
-    Future.delayed(Duration(seconds: 3), () {
+    Get.find<AddressController>().onGetAddressAll();
+    Future.delayed(Duration(seconds: 1), () {
       Get.back();
     });
+    
     update();
   }
 
