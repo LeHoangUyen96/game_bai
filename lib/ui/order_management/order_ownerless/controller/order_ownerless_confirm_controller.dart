@@ -70,7 +70,7 @@ class OrderOwnerlessConfirmController extends GetxController
 
   int? currentMethodSend = 0;
   final methodSend = [
-    MethodSend(0, sendVerifi),
+    MethodSend(0, waitConfirm),
     MethodSend(1, packOrderBack),
     MethodSend(2, storage),
   ];

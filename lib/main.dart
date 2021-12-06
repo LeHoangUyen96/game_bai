@@ -16,11 +16,8 @@ import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_3_co
 import 'package:viet_trung_mobile/ui/dashboard_user/controller/dashboard_user_controller.dart';
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
-import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/valid_order_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_confirm_controller.dart';
@@ -98,8 +95,10 @@ class _Binding extends Bindings {
     Get.lazyPut<ManagerBagController>(() => ManagerBagController(),
         fenix: true);
     Get.lazyPut<CreateBagController>(() => CreateBagController(), fenix: true);
-    Get.lazyPut<NotificationListController>(() => NotificationListController(), fenix: true);
-    Get.lazyPut<DashboardUserController>(() => DashboardUserController(), fenix: true);
+    Get.lazyPut<NotificationListController>(() => NotificationListController(),
+        fenix: true);
+    Get.lazyPut<DashboardUserController>(() => DashboardUserController(),
+        fenix: true);
     Get.lazyPut<OrderOwnerlessController>(() => OrderOwnerlessController(),
         fenix: true);
     Get.lazyPut<OrderOwnerlessConfirmController>(

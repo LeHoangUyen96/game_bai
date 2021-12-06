@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
+import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
 
 class OrderNoTransportController extends GetxController {
   OrderAdminRepositories? orderAminRepositories;
-  OrderOwnerlessResponse? orderNotTranport;
+  OrderAdminResponse? orderNotTranport;
   RefreshController refreshOrderController =
       RefreshController(initialRefresh: false);
   int? total;

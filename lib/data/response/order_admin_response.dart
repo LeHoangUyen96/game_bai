@@ -1,25 +1,25 @@
-class OrderOwnerlessResponse {
-  List<DataOrderOwnerless>? data;
+class OrderAdminResponse {
+  List<DataOrderAdmin>? data;
   Paginate? paginate;
 
-  OrderOwnerlessResponse({
+  OrderAdminResponse({
     this.data,
     this.paginate,
   });
 
-  OrderOwnerlessResponse.fromJson(Map<String, dynamic> json) {
+  OrderAdminResponse.fromJson(Map<String, dynamic> json) {
     paginate =
         json['paginate'] != null ? Paginate.fromJson(json['paginate']) : null;
     if (json['data'] != null) {
-      data = <DataOrderOwnerless>[];
+      data = <DataOrderAdmin>[];
       json['data'].forEach((v) {
-        data!.add(new DataOrderOwnerless.fromJson(v));
+        data!.add(new DataOrderAdmin.fromJson(v));
       });
     }
   }
 }
 
-class DataOrderOwnerless {
+class DataOrderAdmin {
   int? id;
   String? billCode;
   String? orderStatus;
@@ -34,7 +34,7 @@ class DataOrderOwnerless {
   int? numberPackage;
   dynamic surcharge;
 
-  DataOrderOwnerless({
+  DataOrderAdmin({
     this.id,
     this.billCode,
     this.orderStatus,
@@ -50,7 +50,7 @@ class DataOrderOwnerless {
     this.surcharge,
   });
 
-  DataOrderOwnerless.fromJson(Map<String, dynamic> json) {
+  DataOrderAdmin.fromJson(Map<String, dynamic> json) {
     id = json['id'] ?? 0;
     billCode = json['bill_code'] ?? '';
     orderStatus = json['order_status'] ?? '';

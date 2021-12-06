@@ -58,3 +58,4 @@ const String BG_IMG_DASHBOARD = "assets/images/img_background_dashboard.png";
 const String IMG_DASHBOARD = "assets/images/image_notify.png";
 const String bg_card = "assets/images/viettrung_bg.png";
 const String IMG_LOGO = "assets/images/img_logo.png";
+const String ic_edit = "assets/images/edit_icon.png";

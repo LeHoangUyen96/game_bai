@@ -4,7 +4,7 @@ import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter_holo_date_picker/widget/date_picker_widget.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
+import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -212,7 +212,7 @@ class OrderValidStorage extends GetView<ValidOrderController> {
     );
   }
 
-  Widget _buildListOrders(DataOrderOwnerless response) {
+  Widget _buildListOrders(DataOrderAdmin response) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       elevation: 20,

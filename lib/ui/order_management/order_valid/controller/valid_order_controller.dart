@@ -3,7 +3,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
+import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
 import 'package:viet_trung_mobile/data/response/order_response.dart';
 import 'package:viet_trung_mobile/ui/order/contract/order_contract.dart';
 
@@ -11,8 +11,8 @@ class ValidOrderController extends GetxController implements OrderContract {
   OrderRepositories? orderRepositories;
   OrderResponse? orderResponse;
   OrderAdminRepositories? orderAminRepositories;
-  OrderOwnerlessResponse? orderShipBack;
-  OrderOwnerlessResponse? orderStorage;
+  OrderAdminResponse? orderShipBack;
+  OrderAdminResponse? orderStorage;
   RefreshController refreshOrderShipBackController =
       RefreshController(initialRefresh: false);
 

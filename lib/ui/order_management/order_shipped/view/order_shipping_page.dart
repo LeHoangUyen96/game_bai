@@ -5,7 +5,7 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/valid_order_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/view/order_shipping_details_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_ship_back_detail_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
@@ -364,9 +364,7 @@ class OrderShippingPage extends GetView<ValidOrderController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () {
-                    Get.to(() => OrderShippingDetailsPage());
-                  },
+                  onTap: () {},
                   child: TextCustomized(
                     text: "211003TODWE4MD",
                     font: SanFranciscoText,
@@ -459,7 +457,7 @@ class OrderShippingPage extends GetView<ValidOrderController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextCustomized(
-                  text: "Phụ phí",
+                  text: MANAGE_PACKAGE_SURCHARGE,
                   font: SanFranciscoTextLight,
                   weight: FontWeight.w700,
                   color: GRAY1,

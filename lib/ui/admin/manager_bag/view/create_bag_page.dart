@@ -20,7 +20,7 @@ import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class CreateBagPage extends GetView<CreateBagController> {
   BuildContext? mContext;
-  List listBill = [{},{},{},{}];
+  List listBill = [{}, {}, {}, {}];
   @override
   Widget build(BuildContext context) {
     mContext = context;
@@ -28,11 +28,12 @@ class CreateBagPage extends GetView<CreateBagController> {
       init: CreateBagController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:  SingleChildScrollView(child: buildBody()) ,
+        body: SingleChildScrollView(child: buildBody()),
         backgroundColor: WHITE,
       ),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
@@ -43,22 +44,26 @@ class CreateBagPage extends GetView<CreateBagController> {
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
-          ),
+        ),
         flexibleSpace: Image(
           image: AssetImage(BG_IMG),
           fit: BoxFit.cover,
         ),
         backgroundColor: Colors.transparent,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back_ios, color: WHITE,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: WHITE,
+          ),
         ),
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Container(
       padding: EdgeInsets.all(15),
       child: Column(
@@ -70,281 +75,285 @@ class CreateBagPage extends GetView<CreateBagController> {
             size: normalSize,
             weight: FontWeight.w600,
             color: BLACK_1,
-            ),
-            SizedBox(height: 15),
-             Container(
-              child: DropdownSearch<DataListWareHouseBackResponse>(
-                mode: Mode.MENU,
-                maxHeight: 120,
-                popupSafeArea: PopupSafeArea(),
-                onFind: (String? filter) => controller.getDataWareHouseBack(),
-                hint: "Chọn kiểu bao",
-                onChanged:( data ){
-                  print('$data');
-                  controller.item_code = data!.status_code!;
-                  controller.update();
-                  },
-                itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
-                dropdownButtonBuilder: (_)=> Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+          ),
+          SizedBox(height: 15),
+          Container(
+            child: DropdownSearch<DataListWareHouseBackResponse>(
+              mode: Mode.MENU,
+              maxHeight: 120,
+              popupSafeArea: PopupSafeArea(),
+              onFind: (String? filter) => controller.getDataWareHouseBack(),
+              hint: "Chọn kiểu bao",
+              onChanged: (data) {
+                print('$data');
+                controller.item_code = data!.status_code!;
+                controller.update();
+              },
+              itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
+              dropdownButtonBuilder: (_) => Container(
+                padding: EdgeInsets.all(10.0),
+                child: SvgPicture.asset(
+                  IC_ARROW_DOWN,
+                  color: GRAY,
                 ),
-                popupShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),                
-                    ),
-                popupItemBuilder: _customDropdown,
-                ),
+              ),
+              popupShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              popupItemBuilder: _customDropdown,
             ),
-            SizedBox(height: 15),
+          ),
+          SizedBox(height: 15),
           TextCustomized(
             text: MANAGE_PACKAGE_WARE_HOUSE_MOVE_BACK,
             font: SanFranciscoUIText,
             size: normalSize,
             weight: FontWeight.w600,
             color: BLACK_1,
-            ),
-            SizedBox(height: 15),
-             Container(
-              child: DropdownSearch<DataListWareHouseBackResponse>(
-                mode: Mode.MENU,
-                maxHeight: 120,
-                popupSafeArea: PopupSafeArea(),
-                onFind: (String? filter) => controller.getDataWareHouseBack(),
-                hint: "Chọn kho",
-                onChanged:( data ){
-                  print('$data');
-                  controller.item_code = data!.status_code!;
-                  controller.update();
-                  },
-                itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
-                dropdownButtonBuilder: (_)=> Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+          ),
+          SizedBox(height: 15),
+          Container(
+            child: DropdownSearch<DataListWareHouseBackResponse>(
+              mode: Mode.MENU,
+              maxHeight: 120,
+              popupSafeArea: PopupSafeArea(),
+              onFind: (String? filter) => controller.getDataWareHouseBack(),
+              hint: "Chọn kho",
+              onChanged: (data) {
+                print('$data');
+                controller.item_code = data!.status_code!;
+                controller.update();
+              },
+              itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
+              dropdownButtonBuilder: (_) => Container(
+                padding: EdgeInsets.all(10.0),
+                child: SvgPicture.asset(
+                  IC_ARROW_DOWN,
+                  color: GRAY,
                 ),
-                popupShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),                
-                    ),
-                popupItemBuilder: _customDropdown,
-                ),
+              ),
+              popupShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              popupItemBuilder: _customDropdown,
             ),
-            SizedBox(height: 15),
-            TextCustomized(
+          ),
+          SizedBox(height: 15),
+          TextCustomized(
             text: MANAGE_PACKAGE_TRANSFER_FORM,
             font: SanFranciscoUIText,
             size: normalSize,
             weight: FontWeight.w600,
             color: BLACK_1,
-            ),
-            SizedBox(height: 15),
-             Container(
-              child: DropdownSearch<DataListTransportFormResponse>(
-                mode: Mode.MENU,
-                maxHeight: 120,
-                popupSafeArea: PopupSafeArea(),
-                onFind: (String? filter) => controller.getDataTransportForm(),
-                hint: "Chọn hình thức vận chuyển",
-                onChanged:( data ){
-                  print('$data');
-                  controller.item_code = data!.name!;
-                  controller.update();
-                  },
-                itemAsString: (DataListTransportFormResponse u) => u.name!,
-                dropdownButtonBuilder: (_)=> Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+          ),
+          SizedBox(height: 15),
+          Container(
+            child: DropdownSearch<DataListTransportFormResponse>(
+              mode: Mode.MENU,
+              maxHeight: 120,
+              popupSafeArea: PopupSafeArea(),
+              onFind: (String? filter) => controller.getDataTransportForm(),
+              hint: "Chọn hình thức vận chuyển",
+              onChanged: (data) {
+                print('$data');
+                controller.item_code = data!.name!;
+                controller.update();
+              },
+              itemAsString: (DataListTransportFormResponse u) => u.name!,
+              dropdownButtonBuilder: (_) => Container(
+                padding: EdgeInsets.all(10.0),
+                child: SvgPicture.asset(
+                  IC_ARROW_DOWN,
+                  color: GRAY,
                 ),
-                popupShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),                
-                    ),
-                popupItemBuilder: _customDropdownTransportForm,
-                ),
+              ),
+              popupShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              popupItemBuilder: _customDropdownTransportForm,
             ),
-             SizedBox(height: 15),
-            TextCustomized(
+          ),
+          SizedBox(height: 15),
+          TextCustomized(
             text: MANAGE_PACKAGE_PACKING_FORM,
             font: SanFranciscoUIText,
             size: normalSize,
             weight: FontWeight.w600,
             color: BLACK_1,
-            ),
-            SizedBox(height: 15),
-             Container(
-              child: DropdownSearch<DataListPackingFormFormResponse>(
-                mode: Mode.MENU,
-                maxHeight: 120,
-                popupSafeArea: PopupSafeArea(),
-                onFind: (String? filter) => controller.getDataListTransport(),
-                hint: "Chọn hình thức đóng gói",
-                onChanged:( data ){
-                  print('$data');
-                  controller.item_code = data!.name!;
-                  controller.update();
-                  },
-                itemAsString: (DataListPackingFormFormResponse u) => u.name!,
-                dropdownButtonBuilder: (_)=> Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+          ),
+          SizedBox(height: 15),
+          Container(
+            child: DropdownSearch<DataListPackingFormFormResponse>(
+              mode: Mode.MENU,
+              maxHeight: 120,
+              popupSafeArea: PopupSafeArea(),
+              onFind: (String? filter) => controller.getDataListTransport(),
+              hint: "Chọn hình thức đóng gói",
+              onChanged: (data) {
+                print('$data');
+                controller.item_code = data!.name!;
+                controller.update();
+              },
+              itemAsString: (DataListPackingFormFormResponse u) => u.name!,
+              dropdownButtonBuilder: (_) => Container(
+                padding: EdgeInsets.all(10.0),
+                child: SvgPicture.asset(
+                  IC_ARROW_DOWN,
+                  color: GRAY,
                 ),
-                popupShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),                
-                    ),
-                popupItemBuilder: _customDropdownPackingForm,
-                ),
+              ),
+              popupShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              popupItemBuilder: _customDropdownPackingForm,
             ),
-            SizedBox(height: 15),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+          SizedBox(height: 15),
+          Row(crossAxisAlignment: CrossAxisAlignment.start,
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-              Expanded(
-                flex: 2,
-                //width: Get.width*0.4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextCustomized(
-                      text: MANAGE_PACKAGE_WEIGHT,
-                      font: SanFranciscoUIText,
-                      size: normalSize,
-                      weight: FontWeight.w600,
-                      color: BLACK_1,
-                      ),
-                      SizedBox(height: 5,),
-                      Container(
-                        //width: Get.width*0.4,
-                        child: TextFieldCustomized(
-                          hint: "Nhập số cân",
-                        ),
-                      )
-                  ]
-                )
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                flex: 2,
-                //width: Get.width*0.4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextCustomized(
-                      text: DELIVERY_PACKAGE,
-                      font: SanFranciscoUIText,
-                      size: normalSize,
-                      weight: FontWeight.w600,
-                      color: BLACK_1,
-                      ),
-                      SizedBox(height: 5,),
-                      Container(
-                        //width: Get.width*0.5,
-                        child: TextFieldCustomized(
-                          hint: ORDER_LIST_NULL,
-                        ),
-                      )
-                  ]
-                )
-              ),
-              ]
-            ),
-            SizedBox(height: 15),
-            TextCustomized(
-                text: MANAGE_PACKAGE_TOTAL_COD,
-                font: SanFranciscoUIText,
-                size: normalSize,
-                weight: FontWeight.w600,
-                color: BLACK_1,
-                ),
-            SizedBox(height: 5),
-            TextFieldCustomized(
-              hint: ORDER_LIST_NULL,
-            ),
-            SizedBox(height: 15),
-            Container(
-            width: Get.width,
-            padding: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: BT_GRAY
-                ),
-              )
-            ),
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                      flex: 10,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                Expanded(
+                    flex: 2,
+                    //width: Get.width*0.4,
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextCustomized(
+                            text: MANAGE_PACKAGE_WEIGHT,
+                            font: SanFranciscoUIText,
+                            size: normalSize,
+                            weight: FontWeight.w600,
+                            color: BLACK_1,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            //width: Get.width*0.4,
+                            child: TextFieldCustomized(
+                              hint: "Nhập số cân",
+                            ),
+                          )
+                        ])),
+                SizedBox(width: 10),
+                Expanded(
+                    flex: 2,
+                    //width: Get.width*0.4,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextCustomized(
+                            text: ADMIN_NUMBER_PACKAGES,
+                            font: SanFranciscoUIText,
+                            size: normalSize,
+                            weight: FontWeight.w600,
+                            color: BLACK_1,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            //width: Get.width*0.5,
+                            child: TextFieldCustomized(
+                              hint: ORDER_LIST_NULL,
+                            ),
+                          )
+                        ])),
+              ]),
+          SizedBox(height: 15),
+          TextCustomized(
+            text: MANAGE_PACKAGE_TOTAL_COD,
+            font: SanFranciscoUIText,
+            size: normalSize,
+            weight: FontWeight.w600,
+            color: BLACK_1,
+          ),
+          SizedBox(height: 5),
+          TextFieldCustomized(
+            hint: ORDER_LIST_NULL,
+          ),
+          SizedBox(height: 15),
+          Container(
+              width: Get.width,
+              padding: EdgeInsets.symmetric(vertical: 10),
+              decoration: BoxDecoration(
+                  border: Border(
+                bottom: BorderSide(color: BT_GRAY),
+              )),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                        flex: 10,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
                               text: MANAGE_PACKAGE_LIST_BILL,
                               font: SanFranciscoUIText,
                               size: normalSize,
                               weight: FontWeight.w600,
                               color: BLACK_1,
-                          ),
-                        ],
-                      )
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          InkWell(
-                              onTap: (){controller.onChange(1);},
-                              child: controller.changeBill == true
-                                  ? Icon(
-                                  Icons.keyboard_arrow_up
-                                   )
-                                  : Icon(
-                                  Icons.keyboard_arrow_down
-                              )
-                          ),
-                        ],
-                      )
-                  ),
-                ],
-              ),
-            )
+                            ),
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            InkWell(
+                                onTap: () {
+                                  controller.onChange(1);
+                                },
+                                child: controller.changeBill == true
+                                    ? Icon(Icons.keyboard_arrow_up)
+                                    : Icon(Icons.keyboard_arrow_down)),
+                          ],
+                        )),
+                  ],
+                ),
+              )),
+          SizedBox(
+            height: 10,
           ),
-          SizedBox(height: 10,),
-          controller.changeBill == true 
-            ? Container(
-              child: ListView.separated(
-                itemCount: listBill.length,
-                shrinkWrap: true,
-                separatorBuilder: (context, index) {
-                  return SizedBox(height: 10);
-                },
-                physics: ClampingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index){
-                  return _buildListBill();
-                }
-                )
-            )
-            : Container(),
-            SizedBox(height: 15),
+          controller.changeBill == true
+              ? Container(
+                  child: ListView.separated(
+                      itemCount: listBill.length,
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 10);
+                      },
+                      physics: ClampingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return _buildListBill();
+                      }))
+              : Container(),
+          SizedBox(height: 15),
           Container(
             alignment: Alignment.center,
             child: InkWell(
-              onTap: (){
-                 Get.dialog(AddProductDialog());
+              onTap: () {
+                Get.dialog(AddProductDialog());
               },
               child: Wrap(
                 spacing: 5.0,
                 children: [
-                  SvgPicture.asset(IC_ADD_CIRCLE, color: GRAY8,),
+                  SvgPicture.asset(
+                    IC_ADD_CIRCLE,
+                    color: GRAY8,
+                  ),
                   TextCustomized(
                     text: MANAGE_PACKAGE_MOVE_GOOD,
                     size: normalSize,
                     color: GRAY8,
                     weight: FontWeight.w700,
-                    ),
+                  ),
                 ],
               ),
             ),
@@ -360,30 +369,25 @@ class CreateBagPage extends GetView<CreateBagController> {
             backgroundColor: WHITE,
             textColor: BT_CONFIRM,
             borderColor: BT_GRAY,
-            
-            
           ),
         ],
       ),
     );
   }
-   Widget _buildListBill(){
-    return  Container(
+
+  Widget _buildListBill() {
+    return Container(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-             Container(
-               padding: EdgeInsets.only(top: 5,bottom: 10),
-               decoration: BoxDecoration(
-                 border: Border(
-                   bottom: BorderSide(color: BT_GRAY)
-                 )
-               ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+          Container(
+            padding: EdgeInsets.only(top: 5, bottom: 10),
+            decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: BT_GRAY))),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -392,20 +396,22 @@ class CreateBagPage extends GetView<CreateBagController> {
                     weight: FontWeight.w700,
                     color: MAIN_BLACK,
                     size: normalSize,
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: TextCustomized(
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: TextCustomized(
                       text: 'Xoá',
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: RED_1,
-                      ),
                     ),
+                  ),
                 ],
               ),
-              SizedBox(height: 5,),     
-               Row(
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -414,36 +420,40 @@ class CreateBagPage extends GetView<CreateBagController> {
                     weight: FontWeight.w500,
                     size: normalSize,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: ORDER_NULL,
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
-              ), 
-               SizedBox(height: 5,),     
-               Row(
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
-                    text: DELIVERY_PACKAGE,
+                    text: ADMIN_NUMBER_PACKAGES,
                     font: SanFranciscoUIText,
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: ORDER_NULL,
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
-              ),   
-              SizedBox(height: 5,),     
-               Row(
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -452,17 +462,19 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: ORDER_NULL,
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
-              ), 
-              SizedBox(height: 5,),     
-               Row(
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -471,17 +483,19 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: ORDER_NULL,
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: RED_1,
-                    ),
+                  ),
                 ],
-              ), 
-              SizedBox(height: 5,),     
-               Row(
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -490,111 +504,101 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: ORDER_NULL,
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
-              ), 
-                ]
               ),
-             )
-          ]
-        )
+            ]),
+          )
+        ]));
+  }
+
+  Widget _customDropdown(BuildContext context,
+      DataListWareHouseBackResponse item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.status_name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
+              //  Flexible(
+              //    child: SvgPicture.asset(IC_CHECK1),
+              //    )
+            ],
+          )),
     );
   }
 
-  Widget _customDropdown (BuildContext context, DataListWareHouseBackResponse item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
+  Widget _customDropdownTransportForm(BuildContext context,
+      DataListTransportFormResponse item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.status_name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
+              //    )
+            ],
+          )),
+    );
+  }
 
-      ), 
-
-   );
- }
-  Widget _customDropdownTransportForm (BuildContext context, DataListTransportFormResponse item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
+  Widget _customDropdownPackingForm(BuildContext context,
+      DataListPackingFormFormResponse item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
-
-      ), 
-
-   );
- }
-  Widget _customDropdownPackingForm (BuildContext context, DataListPackingFormFormResponse item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
-              //  Flexible(
-              //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
-
-      ), 
-
-   );
- }
+              //    )
+            ],
+          )),
+    );
+  }
 }

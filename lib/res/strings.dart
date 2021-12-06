@@ -7,7 +7,6 @@ const String NAV_NOTIFICATION = 'Thông báo';
 const String NAV_PROFILE = 'Cá nhân';
 const String NAV_SETTING = 'Cài đặt';
 
-
 const String NAME = "Họ và tên";
 const String PHONE = "Số điện thoại";
 const String ADDRESS = "Địa chỉ";
@@ -528,14 +527,12 @@ const String DELIVERY_CHANGE_CHANNELS_NULL =
 const String DELIVERY_ADDRESS = 'Địa chỉ giao hàng';
 const String DELIVERY_CHANGE_ADDRESS = 'Chọn địa chỉ giao hàng';
 const String DELIVERY_ADDRESS_NULL = '"Bạn chưa có địa chỉ giao hàng nào"';
-const String DELIVERY_PACKAGE = 'Số kiện hàng';
 const String DELIVERY_ORDER_TYPE = 'Loại đơn';
 const String DELIVERY_CANCEL = 'Huỷ giao hàng';
 const String DELIVERY_NOTE_WEIGHT = 'Cân nặng';
 const String DELIVERY_KG = 'Kg';
 const String DELIVERY_NOTE_PAYMENT = 'Đã thanh toán';
 const String DELIVERY_NOTE_NO_PAYMENT = 'Chưa thanh toán';
-const String DELIVERY_NOTE_NUMBER_PARCEL = 'Số kiện hàng: ';
 const String DELIVERY_NOTE_NUMBER_PARCEL_HD = 'Kiện hàng:';
 const String DELIVERY_NOTE = 'Ghi chú';
 const String DELIVERY_CHAT = 'Trao đổi với nhân viên';
@@ -607,12 +604,10 @@ const String CONSIGNMENT_COMPLETE = 'Hoàn thành';
 const String CONSIGNMENT_DELIVERY_TICKET = 'Số phiếu giao hàng: ';
 const String CONSIGNMENT_DATE_CREATE = 'Ngày tạo ';
 const String CONSIGNMENT_DIRECTION = 'Chiều ký gửi ';
-const String CONSIGNMENT_NUMBER_PACKAGES = 'Số kiện hàng ';
 const String CONSIGNMENT_TOTAL_WEIGHT = 'Tổng cân nặng ';
 const String CONSIGNMENT_TALK_TO_STAFF = 'Trao đổi với nhân viên ';
 const String CONSIGNMENT_DELIVERY_ADDRESS = 'Địa chỉ nhận hàng:';
 const String CONSIGNMENT_NOTE = 'Ghi chú ';
-const String CONSIGNMENT_NUMBER_PARCELS = 'Số kiện hàng:';
 const String CONSIGNMENT_LADING_CODE = 'Mã vận đơn';
 const String CONSIGNMENT_PD_NAME = 'Tên sản phẩm ';
 const String CONSIGNMENT_STATUS = 'Trạng thái ';
@@ -848,60 +843,6 @@ const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
 const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
 const String ORDER_STOCK = 'Hàng lưu kho';
 const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
- 
- 
- 
-
- 
- 
- 
-
-
- 
-
- 
- 
- 
- 
-  
- 
-
-
-  
-  
-
-
-
- 
- 
- 
- 
-
-
-
-
- 
- 
- 
-
- 
-
- 
-
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
 
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';
@@ -912,10 +853,9 @@ const String goodsNotShipper = 'Hàng không vận chuyển được';
 const String orderValid = 'Đơn hàng hợp lệ';
 const String totalOrder = 'Tổng đơn: ';
 const String verifi = 'Xác minh';
-const String transport = 'Phụ phí';
 const String packOrderBack = "Đóng gói hàng gửi về";
 const String storage = "Lưu kho";
-const String sendVerifi = "Chờ xác nhận";
+const String waitConfirm = 'Chờ xác nhận';
 const String transformeFormat = 'Hình thức vận chuyển';
 const String packFormat = 'Hình thức đóng gói';
 const String save = 'Lưu';
@@ -937,3 +877,7 @@ const String usersCode = 'Mã khách hàng';
 const String orderNotTransport = "Đơn hàng không vận chuyển được";
 const String orderShipBack = "Hàng chuyển về";
 const String orderStorage = "Hàng lưu kho";
+const String infoOrder = "Thông tin đơn hàng";
+const String customer = "Khách hàng";
+const String returnSupplie = 'Trả về nhà cung cấp';
+const String orderJourney = "Hành trình đơn hàng";

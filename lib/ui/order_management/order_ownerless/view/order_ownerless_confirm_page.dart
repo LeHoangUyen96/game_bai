@@ -314,11 +314,13 @@ class OwneslessOrderConfirmPage
                       : Container(),
                 ],
               ),
-              _itemTextAndTextField(
-                note,
-                controller.noteController,
-                Get.width,
-                TextInputType.text,
+              TextFieldCustomized(
+                textController: controller.noteController,
+                hint: NOTES_IN_CART,
+                maxLine: 5,
+                height: 100,
+                textInputType: TextInputType.text,
+                textInputAction: TextInputAction.next,
               ),
             ])),
       ],
