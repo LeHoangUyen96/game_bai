@@ -19,17 +19,20 @@ class DataSearchCustomer {
   String? phone;
   String? avatar;
   String? userCode;
+  int? id;
 
   DataSearchCustomer({
     this.name,
     this.phone,
     this.avatar,
     this.userCode,
+    this.id,
   });
   DataSearchCustomer.fromJson(Map<String, dynamic> json) {
     name = json['name'] ?? '';
     phone = json['phone'] ?? '';
     avatar = json['avatar'] ?? '';
     userCode = json['user_code'] ?? '';
+    id = json['id'] ?? 0;
   }
 }

@@ -22,9 +22,8 @@ import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart'
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/controller/valid_order_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerleess_confirm_controller_step1.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerleess_confirm_controller_step2.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/valid_order_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_confirm_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_edit_controller.dart';
@@ -103,11 +102,8 @@ class _Binding extends Bindings {
     Get.lazyPut<DashboardUserController>(() => DashboardUserController(), fenix: true);
     Get.lazyPut<OrderOwnerlessController>(() => OrderOwnerlessController(),
         fenix: true);
-    Get.lazyPut<OrderOwnerlessConfirmControllerStep1>(
-        () => OrderOwnerlessConfirmControllerStep1(),
-        fenix: true);
-    Get.lazyPut<OrderOwnerlessConfirmControllerStep2>(
-        () => OrderOwnerlessConfirmControllerStep2(),
+    Get.lazyPut<OrderOwnerlessConfirmController>(
+        () => OrderOwnerlessConfirmController(),
         fenix: true);
     Get.lazyPut<ConfirmOrderPage>(() => ConfirmOrderPage(), fenix: true);
   }

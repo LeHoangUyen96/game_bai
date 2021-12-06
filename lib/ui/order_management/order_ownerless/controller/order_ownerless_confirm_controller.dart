@@ -4,6 +4,7 @@ import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/models/method_send.dart';
 import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile/data/request/verifi_order_ownerless.dart';
 import 'package:viet_trung_mobile/data/response/city_response.dart';
 import 'package:viet_trung_mobile/data/response/district_response.dart';
 import 'package:viet_trung_mobile/data/response/packing_form_response.dart';
@@ -11,10 +12,9 @@ import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
 import 'package:viet_trung_mobile/data/response/transport_form_response.dart';
 import 'package:viet_trung_mobile/data/response/wards_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/order_ownerless_confirm_page_step2.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-class OrderOwnerlessConfirmControllerStep1 extends GetxController
+class OrderOwnerlessConfirmController extends GetxController
     with SingleGetTickerProviderMixin {
   TextEditingController searchController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -37,8 +37,8 @@ class OrderOwnerlessConfirmControllerStep1 extends GetxController
   List<DataTransportForm>? transportForm;
   DataPackingForm? selectedPackingForm;
   DataTransportForm? selectedTransportForm;
+  MethodSend? selectedMethodSend;
 
-  bool isCheck = false;
   bool nameValid = true;
   bool phoneValid = true;
   bool emailValid = true;
@@ -62,6 +62,11 @@ class OrderOwnerlessConfirmControllerStep1 extends GetxController
   int wards = 0;
   int packing = 0;
   int transport = 0;
+  int? orderId;
+  int? method = 0;
+  bool isShow = false;
+
+  DataSearchCustomer? user;
 
   int currentMethodSend = 1;
   final methodSend = [
@@ -70,14 +75,36 @@ class OrderOwnerlessConfirmControllerStep1 extends GetxController
     MethodSend(null, sendVerifi),
   ];
 
+  final FocusNode focusNode = FocusNode();
+  bool enabled = false;
+  bool onSelect = false;
+  bool onInput = false;
+  bool onSearch = false;
+
   @override
   void onInit() async {
     super.onInit();
+    focusNode.addListener(() {
+      if (!focusNode.hasFocus) {
+        enabled = false;
+      }
+    });
     orderAminRepositories = Injector().orderAmin;
     addressRepository = Injector().address;
     onGetListCity();
     onGetListPacking();
     onGetListTransport();
+    if (Get.arguments == null) {
+      orderId = null;
+    } else {
+      orderId = Get.arguments;
+    }
+  }
+
+  void isShowCard(DataSearchCustomer data) {
+    isShow = true;
+    user = data;
+    update();
   }
 
   void onGetListSearch(String? phone) {
@@ -140,6 +167,11 @@ class OrderOwnerlessConfirmControllerStep1 extends GetxController
     selectedWards = null;
     onGetListDistrict(id);
     update();
+  }
+
+  void onChangeMethodSend(MethodSend value, int id) {
+    selectedMethodSend = value;
+    method = id;
   }
 
   void onGetListDistrict(int id) {
@@ -254,7 +286,60 @@ class OrderOwnerlessConfirmControllerStep1 extends GetxController
         wardsValid &&
         transportValid &&
         packingValid) {
-      Get.to(OwneslessOrderConfirmPageStep2());
+      VerifiOrderOwnerlessRequest request = VerifiOrderOwnerlessRequest(
+        orderId: orderId,
+        name: nameController.text,
+        phone: phoneController.text,
+        email: emailController.text,
+        address: addressController.text,
+        cityId: selectedCity!.id,
+        districtId: selectedDistrict!.id,
+        wardId: selectedWards!.id,
+        transportId: selectedTransportForm!.id,
+        packingId: selectedPackingForm!.id,
+        type: selectedMethodSend!.id,
+      );
+      onSave(request);
     }
+    update();
+  }
+
+  void onVerifiOrder(DataSearchCustomer data) {
+    if (transport == 0) {
+      transportValid = false;
+      transportError = errorTransport;
+    } else {
+      transportValid = true;
+    }
+
+    if (packing == 0) {
+      packingValid = false;
+      packingError = errorPacking;
+    } else {
+      packingValid = true;
+    }
+    if (transportValid && packingValid) {
+      VerifiOrderOwnerlessRequest request = VerifiOrderOwnerlessRequest(
+        orderId: orderId,
+        name: data.name!,
+        transportId: selectedTransportForm!.id,
+        packingId: selectedPackingForm!.id,
+        userId: data.id!,
+        type: selectedMethodSend!.id,
+      );
+      onSave(request);
+    }
+    update();
+  }
+
+  void onSave(VerifiOrderOwnerlessRequest request) {
+    orderAminRepositories!.onVerifiOrderOwnerless(request).then((value) {
+      Get.snackbar('Thông báo', 'Đã xác minh đơn hàng');
+      Get.back();
+      update();
+    }).catchError((onError) {
+      print("Error");
+      update();
+    });
   }
 }

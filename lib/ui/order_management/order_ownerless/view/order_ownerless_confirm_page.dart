@@ -1,26 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:viet_trung_mobile/data/response/city_response.dart';
 import 'package:viet_trung_mobile/data/response/district_response.dart';
 import 'package:viet_trung_mobile/data/response/packing_form_response.dart';
+import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
 import 'package:viet_trung_mobile/data/response/transport_form_response.dart';
 import 'package:viet_trung_mobile/data/response/wards_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerleess_confirm_controller_step1.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_confirm_controller.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
+import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/search_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
-class OwneslessOrderConfirmPageStep1
-    extends GetView<OrderOwnerlessConfirmControllerStep1> {
+class OwneslessOrderConfirmPage
+    extends GetView<OrderOwnerlessConfirmController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OrderOwnerlessConfirmControllerStep1>(
-        init: OrderOwnerlessConfirmControllerStep1(),
+    return GetBuilder<OrderOwnerlessConfirmController>(
+        init: OrderOwnerlessConfirmController(),
         builder: (value) => Scaffold(
               appBar: PreferredSize(
                   preferredSize: Size(double.infinity, 55),
@@ -50,170 +54,10 @@ class OwneslessOrderConfirmPageStep1
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10),
-          SearchTextField(
-            searchController: controller.searchController,
-          ),
-          SizedBox(height: 15),
-          Container(
-            height: 16,
-            color: GRAY5,
-          ),
-          _itemInfoOrder(),
-          ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            children: controller.methodSend
-                .map(
-                  (method) => Row(
-                    children: [
-                      Radio(
-                          value: 1,
-                          groupValue: controller.currentMethodSend,
-                          activeColor: COLOR_BT,
-                          onChanged: (int? value) {
-                            controller.currentMethodSend = value!;
-                          }),
-                      Text(method.name!),
-                    ],
-                  ),
-                )
-                .toList(),
-          ),
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _itemTitle(transformeFormat),
-                    SizedBox(height: 5),
-                    _itemDropdown(
-                        Expanded(
-                          child: DropdownButtonHideUnderline(
-                            child: ButtonTheme(
-                                alignedDropdown: true,
-                                child: controller.transportForm != null
-                                    ? DropdownButton(
-                                        value: controller
-                                                    .selectedTransportForm !=
-                                                null
-                                            ? controller.selectedTransportForm
-                                            : null,
-                                        icon: _iconDropdown(),
-                                        iconSize: 24,
-                                        elevation: 16,
-                                        isExpanded: true,
-                                        items: controller.transportForm!
-                                            .map((DataTransportForm value) {
-                                          return DropdownMenuItem<
-                                              DataTransportForm>(
-                                            value: value,
-                                            child: Text(
-                                              value.name.toString(),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (DataTransportForm? value) {
-                                          controller.onChangeTransport(
-                                              value!, value.id!);
-                                        },
-                                        hint: Text(transformeFormat),
-                                      )
-                                    : DropdownButton(
-                                        icon: _iconDropdown(),
-                                        iconSize: 24,
-                                        elevation: 16,
-                                        isExpanded: true,
-                                        items: [
-                                          DropdownMenuItem<String>(
-                                            value: "1",
-                                            child: Text(transformeFormat),
-                                          ),
-                                        ],
-                                        onChanged: (value) {},
-                                        hint: Text(transformeFormat),
-                                      )),
-                          ),
-                        ),
-                        Get.width),
-                    SizedBox(height: 5),
-                    controller.wardsValid == false
-                        ? TextCustomized(
-                            text: controller.wardsError.toString(),
-                            color: Colors.red,
-                            size: 12,
-                          )
-                        : Container(),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _itemTitle(packFormat),
-                    SizedBox(height: 5),
-                    _itemDropdown(
-                        Expanded(
-                          child: DropdownButtonHideUnderline(
-                            child: ButtonTheme(
-                                alignedDropdown: true,
-                                child: controller.packingForm != null
-                                    ? DropdownButton(
-                                        value: controller.selectedPackingForm !=
-                                                null
-                                            ? controller.selectedPackingForm
-                                            : null,
-                                        icon: _iconDropdown(),
-                                        iconSize: 24,
-                                        elevation: 16,
-                                        isExpanded: true,
-                                        items: controller.packingForm!
-                                            .map((DataPackingForm value) {
-                                          return DropdownMenuItem<
-                                              DataPackingForm>(
-                                            value: value,
-                                            child: Text(
-                                              value.name.toString(),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (DataPackingForm? value) {
-                                          controller.onChangePacking(
-                                              value!, value.id!);
-                                        },
-                                        hint: Text(packFormat),
-                                      )
-                                    : DropdownButton(
-                                        icon: _iconDropdown(),
-                                        iconSize: 24,
-                                        elevation: 16,
-                                        isExpanded: true,
-                                        items: [
-                                          DropdownMenuItem<String>(
-                                            value: "1",
-                                            child: Text(packFormat),
-                                          ),
-                                        ],
-                                        onChanged: (value) {},
-                                        hint: Text(packFormat),
-                                      )),
-                          ),
-                        ),
-                        Get.width),
-                    SizedBox(height: 5),
-                    controller.wardsValid == false
-                        ? TextCustomized(
-                            text: controller.wardsError.toString(),
-                            color: Colors.red)
-                        : Container(),
-                  ],
-                ),
-                _itemTextAndTextField(
-                  note,
-                  controller.noteController,
-                  Get.width,
-                  TextInputType.text,
-                ),
-              ])),
+          controller.isShow == true
+              ? _itemCard(controller.user!)
+              : _buildInfoOrder(),
+          _buildInfoTransport(),
           SizedBox(height: 30),
           Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -222,7 +66,9 @@ class OwneslessOrderConfirmPageStep1
                   save,
                   textColor: Colors.white,
                   onTap: () {
-                    controller.onVerifi();
+                    controller.isShow == true
+                        ? controller.onVerifiOrder(controller.user!)
+                        : controller.onVerifi();
                   },
                   backgroundColor: COLOR_BT,
                   height: 48,
@@ -244,6 +90,249 @@ class OwneslessOrderConfirmPageStep1
           SizedBox(height: 15),
         ],
       ),
+    );
+  }
+
+  Widget _itemCard(DataSearchCustomer response) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Stack(children: [
+          SizedBox(
+            width: Get.width * 0.9,
+            child: ImageCustomized(path: bg_card),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: GRAY7,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            width: Get.width * 0.89,
+            margin: EdgeInsets.all(1),
+            padding: EdgeInsets.symmetric(vertical: Get.width * 0.14),
+          ),
+          Container(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+              child: Row(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextCustomized(
+                        text: usersCode,
+                        weight: FontWeight.w500,
+                      ),
+                      SizedBox(height: 8),
+                      TextCustomized(
+                        text: ADMIN_CUSTOMER_NAME,
+                        weight: FontWeight.w500,
+                      ),
+                      SizedBox(height: 8),
+                      TextCustomized(
+                        text: PHONE,
+                        weight: FontWeight.w500,
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 30),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextCustomized(text: response.userCode!),
+                      SizedBox(height: 8),
+                      TextCustomized(text: response.name!),
+                      SizedBox(height: 8),
+                      Row(
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                launch(('tel://${response.phone!}'));
+                              },
+                              child: TextCustomized(
+                                text: response.phone!,
+                                weight: FontWeight.w500,
+                              )),
+                          SizedBox(width: 2),
+                          Icon(Icons.phone, size: 16, color: Colors.black)
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ))
+        ]));
+  }
+
+  Widget _buildInfoTransport() {
+    return Column(
+      children: [
+        ListView.builder(
+            itemCount: controller.methodSend.length,
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  Radio(
+                      value: index,
+                      groupValue: controller.currentMethodSend,
+                      activeColor: COLOR_BT,
+                      onChanged: (int? value) {
+                        controller.onChangeMethodSend(
+                          controller.methodSend[index],
+                          value!,
+                        );
+                      }),
+                  Text(controller.methodSend[index].name!),
+                ],
+              );
+            }),
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _itemTitle(transformeFormat),
+                  SizedBox(height: 5),
+                  _itemDropdown(
+                      Expanded(
+                        child: DropdownButtonHideUnderline(
+                          child: ButtonTheme(
+                              alignedDropdown: true,
+                              child: controller.transportForm != null
+                                  ? DropdownButton(
+                                      value: controller.selectedTransportForm !=
+                                              null
+                                          ? controller.selectedTransportForm
+                                          : null,
+                                      icon: _iconDropdown(),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      isExpanded: true,
+                                      items: controller.transportForm!
+                                          .map((DataTransportForm value) {
+                                        return DropdownMenuItem<
+                                            DataTransportForm>(
+                                          value: value,
+                                          child: Text(
+                                            value.name.toString(),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (DataTransportForm? value) {
+                                        controller.onChangeTransport(
+                                            value!, value.id!);
+                                      },
+                                      hint: Text(transformeFormat),
+                                    )
+                                  : DropdownButton(
+                                      icon: _iconDropdown(),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      isExpanded: true,
+                                      items: [
+                                        DropdownMenuItem<String>(
+                                          value: "1",
+                                          child: Text(transformeFormat),
+                                        ),
+                                      ],
+                                      onChanged: (value) {},
+                                      hint: Text(transformeFormat),
+                                    )),
+                        ),
+                      ),
+                      Get.width),
+                  SizedBox(height: 5),
+                  controller.transportValid == false
+                      ? TextCustomized(
+                          text: controller.transportError.toString(),
+                          color: Colors.red,
+                        )
+                      : Container(),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _itemTitle(packFormat),
+                  SizedBox(height: 5),
+                  _itemDropdown(
+                      Expanded(
+                        child: DropdownButtonHideUnderline(
+                          child: ButtonTheme(
+                              alignedDropdown: true,
+                              child: controller.packingForm != null
+                                  ? DropdownButton(
+                                      value:
+                                          controller.selectedPackingForm != null
+                                              ? controller.selectedPackingForm
+                                              : null,
+                                      icon: _iconDropdown(),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      isExpanded: true,
+                                      items: controller.packingForm!
+                                          .map((DataPackingForm value) {
+                                        return DropdownMenuItem<
+                                            DataPackingForm>(
+                                          value: value,
+                                          child: Text(
+                                            value.name.toString(),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (DataPackingForm? value) {
+                                        controller.onChangePacking(
+                                            value!, value.id!);
+                                      },
+                                      hint: Text(packFormat),
+                                    )
+                                  : DropdownButton(
+                                      icon: _iconDropdown(),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      isExpanded: true,
+                                      items: [
+                                        DropdownMenuItem<String>(
+                                          value: "1",
+                                          child: Text(packFormat),
+                                        ),
+                                      ],
+                                      onChanged: (value) {},
+                                      hint: Text(packFormat),
+                                    )),
+                        ),
+                      ),
+                      Get.width),
+                  SizedBox(height: 5),
+                  controller.packingValid == false
+                      ? TextCustomized(
+                          text: controller.packingError.toString(),
+                          color: Colors.red)
+                      : Container(),
+                ],
+              ),
+              _itemTextAndTextField(
+                note,
+                controller.noteController,
+                Get.width,
+                TextInputType.text,
+              ),
+            ])),
+      ],
+    );
+  }
+
+  Widget _buildInfoOrder() {
+    return Column(
+      children: [
+        SearchTextField(searchController: controller.searchController),
+        SizedBox(height: 15),
+        Container(height: 16, color: GRAY5),
+        _itemInfoOrder(),
+      ],
     );
   }
 

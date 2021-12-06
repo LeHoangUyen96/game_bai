@@ -5,21 +5,22 @@ import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/order_ownerless_confirm_page.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/controller/order_wait_confirm_controller.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
-class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
+class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
+  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OrderOwnerlessController>(
-        init: OrderOwnerlessController(),
+    mContext = context;
+    return GetBuilder<OrderWaitConfirmController>(
+        init: OrderWaitConfirmController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar(ownerlessOrder),
-              body:
-                  controller.orderOwnerless != null ? buildBody() : SizedBox(),
+              appBar: buildAppBar('Đơn hàng chờ xác nhận'),
+              body: controller.orderWaitConfirm != null
+                  ? buildBody()
+                  : SizedBox(),
               backgroundColor: GRAY_BG,
             ));
   }
@@ -27,27 +28,31 @@ class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
   Widget buildBody() {
     return SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
+          SizedBox(
+            height: 10,
+          ),
           Container(
-              padding: EdgeInsets.symmetric(horizontal: 11.5),
-              child: TextCustomized(
-                text: totalOrder + '${controller.orderOwnerless!.data!.length}',
-                size: 14,
-                color: Colors.black,
-                weight: FontWeight.w500,
-              )),
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: TextCustomized(
+              text: "Tổng đơn: ${controller.orderWaitConfirm!.data!.length}",
+              size: 14,
+              font: SanFranciscoText,
+              weight: FontWeight.w700,
+              color: BLACK,
+            ),
+          ),
+          SizedBox(height: 5),
           Container(
             child: SingleChildScrollView(
               child: ListView.builder(
-                itemCount: controller.orderOwnerless!.data!.length,
+                itemCount: controller.orderWaitConfirm!.data!.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return _buildListOrder(
-                      controller.orderOwnerless!.data![index]);
+                      controller.orderWaitConfirm!.data![index]);
                 },
               ),
             ),
@@ -108,20 +113,6 @@ class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
             _itemInfoOrder(MANAGE_PACKAGE_SURCHARGE,
                 "¥${response.surcharge!.toString()}", BLACK),
             SizedBox(height: 10),
-            ButtonCustomized(
-              verifi,
-              textColor: Colors.black,
-              borderColor: Colors.grey,
-              onTap: () {
-                Get.to(
-                  OwneslessOrderConfirmPage(),
-                  arguments: response.id!,
-                );
-              },
-              backgroundColor: Colors.white,
-              height: 48,
-              width: Get.width,
-            ),
           ],
         ),
       ),

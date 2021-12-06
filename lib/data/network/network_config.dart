@@ -191,10 +191,20 @@ class NetworkConfig {
   static const String listPackingForm = URL_SERVER + "/admin/list-packing-form";
   static const String listTransportForm =
       URL_SERVER + "/admin/list-transport-form";
+  static const String onVerifiOrderOwnerless =
+      URL_SERVER + "/admin/order/verification";
 
   //order admin store China
-  static const String listOrderStorage =
+  static const String listOrderValidStorage =
       URL_SERVER + "/admin/order/list-order?type=1";
-  static const String listOrderShipper =
+  static const String listOrderValidShipBack =
       URL_SERVER + "/admin/order/list-order?type=2";
+
+  //order admin no transport
+  static const String listOrderNoTransport =
+      URL_SERVER + "/admin/order/list-order-no-transportation";
+
+  //order admin wait confirm
+  static const String listOrderWaitConfirm =
+      URL_SERVER + "/admin/order/list-order-wait-confirm";
 }

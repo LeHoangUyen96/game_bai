@@ -1,22 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
-import 'package:flutter_holo_date_picker/widget/date_picker_widget.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/controller/valid_order_controller.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/valid_order_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/view/order_shipping_details_page.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/datepicker_customized.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
 class OrderShippingPage extends GetView<ValidOrderController> {
   BuildContext? mContext;
