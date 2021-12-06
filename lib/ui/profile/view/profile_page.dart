@@ -13,6 +13,7 @@ import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_change_password_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
+import 'package:viet_trung_mobile/ui/rating_order/view/rating_order_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -278,7 +279,7 @@ class ProfilePage extends GetView<ProfileController> {
           ),
            ),
             InkWell(
-              onTap: (){Get.to(OrderInfoPage());},
+              onTap: (){Get.to(RatingOrderPage());},
               child: Container(
               padding: EdgeInsets.all(10),
               decoration: const BoxDecoration(
@@ -298,7 +299,7 @@ class ProfilePage extends GetView<ProfileController> {
                   children:[ 
                   SvgPicture.asset(IC_STAR,width: 20,height: 20,),
                   TextCustomized(
-                    text: ORDER_LIST_APP_BAR,
+                    text: RATING_ORDER ,
                     font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: MAIN_BLACK,

@@ -21,51 +21,55 @@ class NotificationListResponse{
 class NotificationResponse {
   int? id;
   String? title;
+  DataSender ? sender;
+  DataReceiver ? receiver; 
   String? content;
-  String? redirect_link;
-  String? createTime;
-  String? moment;
-  String? image;
   int? status;
+  int? type;
+  int? permission_id;
+  int? relation_id;
+  String? created_at;
+  String? updated_at;
+  String? moment_string;
+  String? click_action;
+  String? image;
+  
 
-  NotificationResponse({this.id, this.title, this.content, this.createTime, this.moment, this.redirect_link, this.image,  this.status});
+  NotificationResponse({
+    this.id, 
+    this.title, 
+    this.content, 
+    this.sender, 
+    this.receiver, 
+    this.permission_id,
+    this.relation_id, 
+    this.image,  
+    this.status,
+    this.click_action,
+    this.created_at,
+    this.moment_string,
+    this.type,
+    this.updated_at,
+    });
 
   NotificationResponse.fromJson(Map<String, dynamic> json) {
     this.id = ParseNumber.parseInt(json['id']);
     this.title = json["title"] != null ? json["title"] : '';
     this.content = json["content"] != null ? json["content"] : '';
-    this.redirect_link = json["redirect_link"] != null ? json["redirect_link"] : '';
-    this.createTime = json["created_at"] != null ? json["created_at"] : '';
-    this.moment = json["moment_string"] != null ? json["moment_string"] : '';
-    this.image = json["image"] != null ? json["image"] : '';
+    this.sender = json["sender"] != null ? DataSender.fromJson(json["sender"]) : DataSender.empty();
+    this.receiver = json["receiver"] != null ? DataReceiver.fromJson(json["receiver"]) : DataReceiver.empty();
     this.status = ParseNumber.parseInt(json['status']);
+    this.content = json["content"] != null ? json["content"] : '';
+    this.type = ParseNumber.parseInt(json['type']);
+    this.permission_id = ParseNumber.parseInt(json['permission_id']);
+    this.relation_id = ParseNumber.parseInt(json['relation_id']);
+    this.created_at = json["created_at"] != null ? json["created_at"] : '';
+    this.updated_at = json["updated_at"] != null ? json["updated_at"] : '';
+    this.moment_string = json["moment_string"] != null ? json["moment_string"] : '';
+    this.click_action = json["click_action"] != null ? json["click_action"] : '';
+    this.image = json["image"] != null ? json["image"] : '';
+    
   }
-
-  // "id": 378,
-  // "title": "Thông báo từ Báo đen",
-  // "sender": {
-  // "id": 63,
-  // "name": "Admin Master",
-  // "user_no": null,
-  // "avatar": "/uploads/avatar/10092021215203_vn.png"
-  // },
-  // "receiver": {
-  // "id": 161,
-  // "name": "xsss",
-  // "user_no": "2080",
-  // "avatar": null
-  // },
-  // "status": 0,
-  // "content": "Đơn hàng mã #KIN1 đã được cập nhật phí vận chuyển TQ - VN - 0",
-  // "type": 3,
-  // "permission_id": null,
-  // "redirect_link": "order-detail/264",
-  // "user_id": null,
-  // "created_at": "03:52 21/09/2021",
-  // "updated_at": "03:52 21/09/2021",
-  // "moment_string": " 1 ngày trước",
-  // "click_action": "FLUTTER_NOTIFICATION_CLICK",
-  // "image": "https://gd2.alicdn.com/imgextra/i1/2206604154499/O1CN0104lByK1j6aZzVFcdO_!!2206604154499.jpg"
 
 
 }
@@ -73,12 +77,58 @@ class NotificationResponse {
 class DataSender{
   int? id;
   String? name;
-  dynamic user_no;
+  String? user_code;
   String? avatar;
-  // "id": 63,
-  // "name": "Admin Master",
-  // "user_no": null,
-  // "avatar": "/uploads/avatar/10092021215203_vn.png"
+  DataSender({
+    this.id,
+    this.name,
+    this.user_code,
+    this.avatar,
+
+  });
+
+   DataSender.empty(){
+    this.id = -1;
+    this.name = '';
+    this.user_code = '';
+    this.avatar = '';
+  }
+
+   DataSender.fromJson(Map<String, dynamic> json) {
+    print(' DataSender.fromJson ${json}');
+    this.id= ParseNumber.parseInt(json['id']);
+    this.name = json["name"] != null ? json["name"] : '';
+    this.user_code = json["user_code"] != null ? json["user_code"] : '';
+    this.avatar = json["avatar"] != null ? json["avatar"] : '';
+  }
+}
+class DataReceiver{
+  int? id;
+  String? name;
+  String? user_code;
+  String? avatar;
+  DataReceiver({
+    this.id,
+    this.name,
+    this.user_code,
+    this.avatar,
+
+  });
+
+   DataReceiver.empty(){
+    this.id = -1;
+    this.name = '';
+    this.user_code = '';
+    this.avatar = '';
+  }
+
+   DataReceiver.fromJson(Map<String, dynamic> json) {
+    print(' DataReceiver.fromJson ${json}');
+    this.id= ParseNumber.parseInt(json['id']);
+    this.name = json["name"] != null ? json["name"] : '';
+    this.user_code = json["user_code"] != null ? json["user_code"] : '';
+    this.avatar = json["avatar"] != null ? json["avatar"] : '';
+  }
 }
 
 class DataPaginateResponse {

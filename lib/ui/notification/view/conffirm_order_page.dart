@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:timeline_tile/timeline_tile.dart';
+import 'package:viet_trung_mobile/data/response/address_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
@@ -13,18 +15,20 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/ui/address/view/add_address_page.dart';
 import 'package:viet_trung_mobile/ui/address/view/update_address_page.dart';
+import 'package:viet_trung_mobile/ui/notification/controller/confirm_order_controller.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/popup_packing_order.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
-class ConfirmOrderPage extends GetView<AddressController> {
+class ConfirmOrderPage extends GetView<ConfirmOrderController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AddressController>(
-        init: AddressController(),
+    return GetBuilder<ConfirmOrderController>(
+        init: ConfirmOrderController(),
         builder: (value) =>InitialWidget(
             titleAppBar: ORDER_HEADER_DETAILS,
             titleAppBarColor: Colors.white,
@@ -39,7 +43,8 @@ class ConfirmOrderPage extends GetView<AddressController> {
               ),
               onPressed: () => Get.back(result: true),
             ),
-            child: Container(
+            //child: controller.orderDetailsResponse != null ?
+           child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
               color: MAIN_BG,
               height: Get.height,
@@ -54,7 +59,23 @@ class ConfirmOrderPage extends GetView<AddressController> {
                     ),
                     _bodyInfo(),
                     SizedBox(height: 10),
-                    TextCustomized(text: "Đơn hàng mã #211003TODWE4MD đã về Kho Trung Quốc. Vui lòng xác nhận và chọn 1 trong 2 phương án sau:"),
+                   controller.type! == 0 ?  
+                    Container(
+                      child: Column(
+                        children: [
+                          Wrap(
+                      spacing: 2.0 ,
+                      children:[ 
+                      TextCustomized(
+                        text: "Đơn hàng mã"  ),
+                      TextCustomized(
+                        text:  "#" + controller.orderDetailsResponse!.dataOrderDetails!.bill_code.toString(),
+                        color: COLOR_ORDER_CHINESE_WAREHOUSE,
+                      ),  
+                      TextCustomized(
+                        text: "đã về Kho Trung Quốc. Vui lòng xác nhận và chọn 1 trong 2 phương án sau:"),
+                      ]
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,9 +84,11 @@ class ConfirmOrderPage extends GetView<AddressController> {
                           children: [
                             Radio(
                                 value: 1,
-                                groupValue: 1,
+                                groupValue: controller.selectedType,
                                 activeColor: Colors.black,
-                                onChanged: (value){}
+                                onChanged: (int? value){
+                                  controller.onSelecteType(value!);
+                                }
                             ),
                             Text("Đóng gói gửi hàng về"),
                           ],
@@ -73,10 +96,12 @@ class ConfirmOrderPage extends GetView<AddressController> {
                         Row(
                           children: [
                             Radio(
-                                value: 1,
-                                groupValue: 0,
+                                value: 2,
+                                groupValue: controller.selectedType,
                                 activeColor: Colors.black,
-                                onChanged: (value){}
+                                onChanged: (int? value){
+                                  controller.onSelecteType(value!);
+                                }
                             ),
                             Text("Lưu kho"),
                           ],
@@ -93,20 +118,118 @@ class ConfirmOrderPage extends GetView<AddressController> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: ButtonCustomized(
-                        "Xác nhận",
+                        AUTH_CONFIRM,
                         textColor: Colors.white,
                         backgroundColor: BT_CONFIRM,
                         onTap: (){
+                          controller.onConfirmOrder();
                         },
                       ),
                     ),
                     SizedBox(
                       height: 50,
                     ),
+                        ],
+                      ),
+                    )
+                    : Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: WHITE 
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: ORDER_LIST_JOURNEY,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
+                              ),
+                              SizedBox(height: 20,),
+                            ListView.builder(
+                              itemCount: controller.orderDetailsResponse!.dataOrderDetails!.order_journey!.length,
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              itemBuilder: (BuildContext context, index){
+                                return _buildListJourney(index);
+                              }
+                              ),
+                          ],
+                        ),
+                      ),
+                    // Wrap(
+                    //   spacing: 2.0 ,
+                    //   children:[ 
+                    //   TextCustomized(
+                    //     text: "Đơn hàng mã"  ),
+                    //   TextCustomized(
+                    //     text:  "#" + controller.orderDetailsResponse!.dataOrderDetails!.bill_code.toString(),
+                    //     color: COLOR_ORDER_CHINESE_WAREHOUSE,
+                    //   ),  
+                    //   TextCustomized(
+                    //     text: "đã về Kho Trung Quốc. Vui lòng xác nhận và chọn 1 trong 2 phương án sau:"),
+                    //   ]
+                    // ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Row(
+                    //       children: [
+                    //         Radio(
+                    //             value: 1,
+                    //             groupValue: controller.selectedType,
+                    //             activeColor: Colors.black,
+                    //             onChanged: (int? value){
+                    //               controller.onSelecteType(value!);
+                    //             }
+                    //         ),
+                    //         Text("Đóng gói gửi hàng về"),
+                    //       ],
+                    //     ),
+                    //     Row(
+                    //       children: [
+                    //         Radio(
+                    //             value: 2,
+                    //             groupValue: controller.selectedType,
+                    //             activeColor: Colors.black,
+                    //             onChanged: (int? value){
+                    //               controller.onSelecteType(value!);
+                    //             }
+                    //         ),
+                    //         Text("Lưu kho"),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: 10
+                    // ),
+                    // _bodySelectedForm(),
+                    // SizedBox(
+                    //     height: 25
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //   child: ButtonCustomized(
+                    //     AUTH_CONFIRM,
+                    //     textColor: Colors.white,
+                    //     backgroundColor: BT_CONFIRM,
+                    //     onTap: (){
+                    //       controller.onConfirmOrder();
+                    //     },
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 50,
+                    // ),
                   ],
                 ),
               ),
-            ),
+           )
+            //): LoadingSpinKit(),
         )
 
     );
@@ -115,6 +238,8 @@ class ConfirmOrderPage extends GetView<AddressController> {
 
 
   Widget _bodyInfo(){
+     final Color color;
+    color = controller.ColorStatusName(controller.orderDetailsResponse!.dataOrderDetails!.order_status_name.toString());
     return DottedBorder(
       dashPattern: [8, 4],
       strokeWidth: 2,
@@ -127,7 +252,7 @@ class ConfirmOrderPage extends GetView<AddressController> {
       // space: 8.0,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16),
-        height: Get.height*0.23,
+        height: Get.height*0.28,
         width: Get.width,
         color: Colors.white,
         child: Column(
@@ -143,9 +268,15 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextCustomized(text: "211003TODWE4MD", size: 14,),
+                        TextCustomized(
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.bill_code.toString(), 
+                          size: 14,),
                         SizedBox(height: 10),
-                        TextCustomized(text: "10:10 21/10/2021", size: 10,)
+                        TextCustomized(
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.created_at.toString(), 
+                          size: 10,
+                          color: TEXT_DATETIME_NT
+                          )
                       ],
                     )
                 ),
@@ -155,7 +286,11 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        TextCustomized(text: "Kho Trung Quoc", size: 14)
+                        TextCustomized(
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.order_status_name.toString(), 
+                          size: 14,
+                          color: color,
+                          )
                       ],
                     )
                 ),
@@ -172,7 +307,9 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextCustomized(text: "Số kiện hàng", size: 14)
+                        TextCustomized(
+                          text: "Số kiện hàng", 
+                          size: 14)
                       ],
                     )
                 ),
@@ -182,7 +319,11 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        TextCustomized(text: "10", size: 14)
+                        TextCustomized(
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.number_package.toString(),
+                          color: BLACK_1,
+                          weight: FontWeight.w600, 
+                          size: 14)
                       ],
                     )
                 ),
@@ -199,7 +340,9 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextCustomized(text: "Mặt hàng", size: 14)
+                        TextCustomized(
+                          text: "Mặt hàng", 
+                          size: 14)
                       ],
                     )
                 ),
@@ -209,7 +352,11 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        TextCustomized(text: "Máy phun khử khuẩn", size: 14)
+                        TextCustomized(
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.item!.toString(),
+                          color: BLACK_1,
+                          weight: FontWeight.w600, 
+                          size: 14)
                       ],
                     )
                 ),
@@ -236,7 +383,11 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        TextCustomized(text: "Xốp + gỗ", size: 14)
+                        TextCustomized(
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.packing_form.toString(),
+                          color: BLACK_1,
+                          weight: FontWeight.w600, 
+                          size: 14)
                       ],
                     )
                 ),
@@ -263,7 +414,11 @@ class ConfirmOrderPage extends GetView<AddressController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        TextCustomized(text: "¥269.00", size: 14)
+                        TextCustomized(
+                          text: "¥"+controller.orderDetailsResponse!.dataOrderDetails!.transport_fee.toString(),
+                          color: BLACK_1,
+                          weight: FontWeight.w600, 
+                          size: 14)
                       ],
                     )
                 ),
@@ -288,112 +443,23 @@ class ConfirmOrderPage extends GetView<AddressController> {
               TextCustomized(text: "Ghi chú", weight: FontWeight.w700),
               SizedBox(height: 5),
               TextFieldCustomized(
-                //textController: controller.nameController,
-                hint: NAME,
+                textController: controller.noteValueController,
+                hint: NOTES_IN_CART,
                 textInputType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                // textController: controller.usernameController,
               ),
               SizedBox(height: 5),
-              // controller.nameValid == false
-              //     ? TextCustomized(text: controller.nameError.toString(), color: Colors.red,)
-              //     : Container(),
             ],
           ),
           SizedBox(height: 16),
-          Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextCustomized(text: "Hình thức giao hàng", weight: FontWeight.w700),
-            SizedBox(height: 5),
-            Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1.0,color: MAIN_LINE),
-                    borderRadius: BorderRadius.circular(9),
-                  color: Colors.white
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: DropdownButtonHideUnderline(
-                        child: ButtonTheme(
-                            alignedDropdown: true,
-                            child: DropdownButton(
-                              icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                              iconSize: 24,
-                              elevation: 16,
-                              isExpanded: true,
-                              items: [
-                                DropdownMenuItem<String>(
-                                  value: "1",
-                                  child: Center(
-                                    child: Text("Chưa có hình thức giao hàng"),
-                                  ),
-                                ),
-                              ],
-                              onChanged: (value){},
-                              hint: Text("Chọn hình thức giao hàng"),
-                            )
-
-                          // controller.mcity != null
-                          //     ? DropdownButton(
-                          //   value: controller.selectedCity != null ? controller.selectedCity : null,
-                          //   icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                          //   iconSize: 24,
-                          //   elevation: 16,
-                          //   isExpanded: true,
-                          //   items: controller.mcity!.map((DataCity value){
-                          //     return DropdownMenuItem<DataCity>(
-                          //       value: value,
-                          //       child: Container(
-                          //         child: Text(
-                          //           value.name.toString(),
-                          //         ),
-                          //       ),
-                          //     );
-                          //   }).toList(),
-                          //   onChanged: (DataCity? value){
-                          //     controller.onChangeCity(value!, value.id!);
-                          //   },
-                          //   hint: Text(ONCHANGE_CITY),
-                          // )
-                          //     : DropdownButton(
-                          //   icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                          //   iconSize: 24,
-                          //   elevation: 16,
-                          //   isExpanded: true,
-                          //   items: [
-                          //     DropdownMenuItem<String>(
-                          //       value: "1",
-                          //       child: Center(
-                          //         child: Text(NO_CITY),
-                          //       ),
-                          //     ),
-                          //   ],
-                          //   onChanged: (value){},
-                          //   hint: Text(ONCHANGE_CITY),
-                          // )
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-            ),
-            SizedBox(height: 5),
-            // controller.cityValid == false
-            //     ? TextCustomized(text: controller.cityError.toString(), color: Colors.red)
-            //     : Container(),
-          ],
-        ),
-          SizedBox(height: 16),
+       
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextCustomized(text: "Địa chỉ nhận hàng", weight: FontWeight.w700),
               SizedBox(height: 5),
               Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
                   width: Get.width,
                   decoration: BoxDecoration(
                       border: Border.all(width: 1.0,color: MAIN_LINE),
@@ -405,66 +471,48 @@ class ConfirmOrderPage extends GetView<AddressController> {
                     children: [
                       Expanded(
                         child: DropdownButtonHideUnderline(
-                          child: ButtonTheme(
-                              alignedDropdown: true,
-                              child: DropdownButton(
-                                icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                                iconSize: 24,
-                                elevation: 16,
-                                isExpanded: true,
-                                items: [
-                                  DropdownMenuItem<String>(
-                                    value: "1",
-                                    child: Center(
-                                      child: Text("Chưa có địa chỉ nhận hàng"),
+                          child: 
+                            controller.mdataAddress != null
+                                ? DropdownButton(
+                              value: controller.selectAddress != null ? controller.selectAddress : null,
+                              icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                              iconSize: 24,
+                              elevation: 16,
+                              isExpanded: true,
+                              items: controller.mdataAddress!.map((DataAddress value){
+                                return DropdownMenuItem<DataAddress>(
+                                  value: value,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                    child: TextCustomized(
+                                     text: value.full_address.toString(),
                                     ),
                                   ),
-                                ],
-                                onChanged: (value){},
-                                hint: Text("Chọn địa chỉ nhận hàng"),
-                              )
-
-                            // controller.mcity != null
-                            //     ? DropdownButton(
-                            //   value: controller.selectedCity != null ? controller.selectedCity : null,
-                            //   icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                            //   iconSize: 24,
-                            //   elevation: 16,
-                            //   isExpanded: true,
-                            //   items: controller.mcity!.map((DataCity value){
-                            //     return DropdownMenuItem<DataCity>(
-                            //       value: value,
-                            //       child: Container(
-                            //         child: Text(
-                            //           value.name.toString(),
-                            //         ),
-                            //       ),
-                            //     );
-                            //   }).toList(),
-                            //   onChanged: (DataCity? value){
-                            //     controller.onChangeCity(value!, value.id!);
-                            //   },
-                            //   hint: Text(ONCHANGE_CITY),
-                            // )
-                            //     : DropdownButton(
-                            //   icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-                            //   iconSize: 24,
-                            //   elevation: 16,
-                            //   isExpanded: true,
-                            //   items: [
-                            //     DropdownMenuItem<String>(
-                            //       value: "1",
-                            //       child: Center(
-                            //         child: Text(NO_CITY),
-                            //       ),
-                            //     ),
-                            //   ],
-                            //   onChanged: (value){},
-                            //   hint: Text(ONCHANGE_CITY),
-                            // )
+                                );
+                              }).toList(),
+                              onChanged: (DataAddress? value){
+                                controller.onChangeAddress(value!, value.id!);
+                              },
+                              hint: Text("Chọn địa chỉ"),
+                            )
+                                : DropdownButton(
+                              icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
+                              iconSize: 24,
+                              elevation: 16,
+                              isExpanded: true,
+                              items: [
+                                DropdownMenuItem<String>(
+                                  value: "1",
+                                  child: Center(
+                                    child: Text("Chưa có địa chỉ"),
+                                  ),
+                                ),
+                              ],
+                              onChanged: (value){},
+                              hint: Text("Chọn địa chỉ"),
+                            )
                           ),
                         ),
-                      ),
                     ],
                   )
               ),
@@ -475,94 +523,56 @@ class ConfirmOrderPage extends GetView<AddressController> {
             ],
           ),
 
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     TextCustomized(text: "Kho hàng", weight: FontWeight.w700),
-          //     SizedBox(height: 5),
-          //     Container(
-          //         width: Get.width,
-          //         decoration: BoxDecoration(
-          //             border: Border.all(width: 1.0,color: MAIN_LINE),
-          //             borderRadius: BorderRadius.circular(9),
-          //             color: Colors.white
-          //         ),
-          //         child: Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             Expanded(
-          //               child: DropdownButtonHideUnderline(
-          //                 child: ButtonTheme(
-          //                     alignedDropdown: true,
-          //                     child: DropdownButton(
-          //                       icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-          //                       iconSize: 24,
-          //                       elevation: 16,
-          //                       isExpanded: true,
-          //                       items: [
-          //                         DropdownMenuItem<String>(
-          //                           value: "1",
-          //                           child: Center(
-          //                             child: Text("Chưa có kho hàng"),
-          //                           ),
-          //                         ),
-          //                       ],
-          //                       onChanged: (value){},
-          //                       hint: Text("Chọn kho hàng"),
-          //                     )
-          //
-          //                   // controller.mcity != null
-          //                   //     ? DropdownButton(
-          //                   //   value: controller.selectedCity != null ? controller.selectedCity : null,
-          //                   //   icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-          //                   //   iconSize: 24,
-          //                   //   elevation: 16,
-          //                   //   isExpanded: true,
-          //                   //   items: controller.mcity!.map((DataCity value){
-          //                   //     return DropdownMenuItem<DataCity>(
-          //                   //       value: value,
-          //                   //       child: Container(
-          //                   //         child: Text(
-          //                   //           value.name.toString(),
-          //                   //         ),
-          //                   //       ),
-          //                   //     );
-          //                   //   }).toList(),
-          //                   //   onChanged: (DataCity? value){
-          //                   //     controller.onChangeCity(value!, value.id!);
-          //                   //   },
-          //                   //   hint: Text(ONCHANGE_CITY),
-          //                   // )
-          //                   //     : DropdownButton(
-          //                   //   icon: Icon(Icons.keyboard_arrow_down, color: MAIN_LINE,),
-          //                   //   iconSize: 24,
-          //                   //   elevation: 16,
-          //                   //   isExpanded: true,
-          //                   //   items: [
-          //                   //     DropdownMenuItem<String>(
-          //                   //       value: "1",
-          //                   //       child: Center(
-          //                   //         child: Text(NO_CITY),
-          //                   //       ),
-          //                   //     ),
-          //                   //   ],
-          //                   //   onChanged: (value){},
-          //                   //   hint: Text(ONCHANGE_CITY),
-          //                   // )
-          //                 ),
-          //               ),
-          //             ),
-          //           ],
-          //         )
-          //     ),
-          //     SizedBox(height: 5),
-          //     // controller.cityValid == false
-          //     //     ? TextCustomized(text: controller.cityError.toString(), color: Colors.red)
-          //     //     : Container(),
-          //   ],
-          // ),
+         
         ],
       ),
     );
   }
+   Widget _buildListJourney(index){
+   return Center(
+     child: TimelineTile(
+               isFirst: index == 0,
+               isLast: index == controller.orderDetailsResponse!.dataOrderDetails!.order_journey!.length -1,
+              //  isLast: true,
+               hasIndicator: true,
+              axis: TimelineAxis.vertical,
+              alignment: TimelineAlign.center,
+              lineXY: 0.1,
+              indicatorStyle: IndicatorStyle(
+                color: BT_GRAY,
+                height: 10,
+                width: 10,
+                drawGap: true,
+                indicatorXY: 0.3,
+              ),
+              beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 1),
+              endChild: Container(
+                padding: EdgeInsets.only(left: 10),
+                height: 50,
+                child:  TextCustomized(
+                            text: controller.orderDetailsResponse!.dataOrderDetails!.order_journey![index].status_name.toString(),
+                            font: SanFranciscoTextLight,
+                            size: normalSize,
+                            weight: FontWeight.w600,
+                            color: GRAY,
+                          ),
+              ),
+              startChild: Container(
+                height: 50,
+                padding: EdgeInsets.only(left: 20),
+                child: TextCustomized(
+                  text: controller.orderDetailsResponse!.dataOrderDetails!.order_journey![index].created_at.toString(),
+                  font: SanFranciscoTextLight,
+                  size: smallSize,
+                  weight: FontWeight.w400,
+                  color: BT_GRAY,
+                  ),
+              ),
+              
+            ),
+   );
+ }
+
+
+  
 }

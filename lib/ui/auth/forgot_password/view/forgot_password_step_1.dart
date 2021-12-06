@@ -25,7 +25,11 @@ class ForgotStepOnePage extends GetView<ForgotStepOneController> {
     );
   }
   Widget _buildBody(BuildContext context){
-    return  Stack(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(Get.context!).requestFocus(FocusNode());
+      },
+      child: Stack(
           alignment: Alignment.center, 
           fit: StackFit.expand, 
         children: <Widget>[
@@ -42,7 +46,7 @@ class ForgotStepOnePage extends GetView<ForgotStepOneController> {
                           padding: EdgeInsets.only(top:30),
                           child:
                             ImageCustomized(
-                              path: LOGO_IMG,
+                              path: IMG_LOGO,
                               height: 150,
                               width: 150,
                             )
@@ -199,6 +203,7 @@ class ForgotStepOnePage extends GetView<ForgotStepOneController> {
           ),
           
         ]
+      )
         );    
   }
   Widget imgBackGround(){

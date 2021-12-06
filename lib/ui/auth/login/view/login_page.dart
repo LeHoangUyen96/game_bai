@@ -33,9 +33,11 @@ class LoginPage extends GetView<LoginController> {
     );
   }
   Widget _buildBody(){
-    return Screenshot(
-        controller: controller.screenshotController,
-        child: Stack(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(Get.context!).requestFocus(FocusNode());
+      },
+      child: Stack(
           alignment: Alignment.center, 
           fit: StackFit.expand, 
         children: <Widget>[
@@ -52,7 +54,8 @@ class LoginPage extends GetView<LoginController> {
                           padding: EdgeInsets.only(top:30),
                           child:
                             ImageCustomized(
-                              path: LOGO_IMG,
+                              //path: LOGO_IMG,
+                              path: IMG_LOGO,
                               height: 150,
                               width: 150,
                             )
@@ -180,8 +183,7 @@ class LoginPage extends GetView<LoginController> {
                                 children: [
                                   InkWell(
                                         onTap: (){
-                                          //Get.to(ForgotPage());
-                                          Get.to(FindingCustomerPage());
+                                          Get.to(ForgotPage());
                                         },
                                         child:  TextCustomized(
                                           text: LOGIN_FORGOTPASSWORD,
@@ -231,7 +233,7 @@ class LoginPage extends GetView<LoginController> {
           ),
           
         ]
-        )
+      )
         );    
   }
   Widget imgBackGround(){

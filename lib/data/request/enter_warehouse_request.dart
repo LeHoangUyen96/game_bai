@@ -1,11 +1,11 @@
 class EnterWareHouseRequest {
-  String? user_id;
+  int? user_id;
   String? phone;
   String? bill_code;
   String? item;
   double? transport_fee;
   int? number_package;
-  List<String>? images;
+  String? images;
   int? is_prohibited_item;
 
   EnterWareHouseRequest(

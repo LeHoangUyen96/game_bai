@@ -33,9 +33,11 @@ class FindingCustomerController extends GetxController  {
         phoneErros = findUserResponse!.message.toString();
       }
       print("onFindUser findUserResponse ${findUserResponse!.data!.name}");
+      phoneValueController.clear();
       Get.to(EnterWarehousePage(),
          arguments: {
-           'user_id' : findUserResponse!.data!.user_code,
+           'user_code' : findUserResponse!.data!.user_code,
+           'user_id' : findUserResponse!.data!.id,
            'phone': findUserResponse!.data!.phone,
            'name' : findUserResponse!.data!.name,
 
@@ -48,7 +50,7 @@ class FindingCustomerController extends GetxController  {
       update();
     });
      }
-    print('${phoneValueController.text}');
+    // print('${phoneValueController.text}');
     update();
   }
   
@@ -64,6 +66,7 @@ class FindingCustomerController extends GetxController  {
       isPhoneValid = true;
     } 
     if(isPhoneValid){
+      phoneValueController.clear();
       Get.to(EnterWarehousePage(),arguments: {'phone': phoneValueController.text} );
     }
     update();
