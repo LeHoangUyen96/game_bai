@@ -66,6 +66,8 @@ class NetworkConfig {
       URL_SERVER + "/order/list-status-order";
   static const String WAREHOUSE = URL_SERVER + "/order/list-storage-receive";
   static const String PACKING_ORDER = URL_SERVER + "/order/change-type";
+  static const String ORDER_DETAILS = URL_SERVER + "/order/detail/";
+  static const String ORDER_CONFIRM = URL_SERVER + "/order/confirm";
 
   //Wallet
   static const String WALLET_INFO = URL_SERVER + "/wallet/check-wallets";
@@ -143,13 +145,10 @@ class NetworkConfig {
 
   //Notification
   static const String NOTIFICATION_LIST = URL_SERVER + "/notifications/list";
-  static const String NOTIFICATION_UNREAD_COUNT =
-      URL_SERVER + "/notifications/unread";
-  static const String NOTIFICATION_READ_ALL =
-      URL_SERVER + "/notifications/read-all";
-  static const String NOTIFICATION_READ_ONE =
-      URL_SERVER + "/notifications/read-detail";
-
+  static const String NOTIFICATION_UNREAD_COUNT = URL_SERVER + "/notifications/unread";
+  static const String NOTIFICATION_READ_ALL = URL_SERVER + "/notifications/read-all";
+  static const String NOTIFICATION_READ_ONE = URL_SERVER + "/notifications/read-detail";
+  static const String NOTIFICATION_ADMIN = URL_SERVER + "/admin/notifications/list";
   //ExchangeRate
   static const String EXCHANGE_RATE = URL_SERVER + "/exchange-rate";
 

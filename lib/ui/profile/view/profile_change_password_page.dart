@@ -52,7 +52,11 @@ class ProfileChangePasswordPage extends GetView<ProfileController> {
   }
 
   Widget buildBody(){
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(mContext!).requestFocus(FocusNode());
+      },
+      child: Container(
       padding: EdgeInsets.all(20),
       height: Get.height,
       width: Get.width,
@@ -107,7 +111,7 @@ class ProfileChangePasswordPage extends GetView<ProfileController> {
             
         ],
       ),
-
+      )
     );
   }
 

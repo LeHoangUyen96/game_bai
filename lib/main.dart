@@ -13,8 +13,14 @@ import 'package:viet_trung_mobile/ui/auth/register/controller/register_controlle
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_1_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_2_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_3_controller.dart';
+import 'package:viet_trung_mobile/ui/dashboard_user/controller/dashboard_user_controller.dart';
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
+import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
+import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
+import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/valid_order_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerleess_confirm_controller_step1.dart';
@@ -93,6 +99,8 @@ class _Binding extends Bindings {
     Get.lazyPut<ManagerBagController>(() => ManagerBagController(),
         fenix: true);
     Get.lazyPut<CreateBagController>(() => CreateBagController(), fenix: true);
+    Get.lazyPut<NotificationListController>(() => NotificationListController(), fenix: true);
+    Get.lazyPut<DashboardUserController>(() => DashboardUserController(), fenix: true);
     Get.lazyPut<OrderOwnerlessController>(() => OrderOwnerlessController(),
         fenix: true);
     Get.lazyPut<OrderOwnerlessConfirmControllerStep1>(
@@ -101,5 +109,6 @@ class _Binding extends Bindings {
     Get.lazyPut<OrderOwnerlessConfirmControllerStep2>(
         () => OrderOwnerlessConfirmControllerStep2(),
         fenix: true);
+    Get.lazyPut<ConfirmOrderPage>(() => ConfirmOrderPage(), fenix: true);
   }
 }

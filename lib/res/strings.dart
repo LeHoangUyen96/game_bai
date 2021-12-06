@@ -5,6 +5,8 @@ const String NAV_HOME = 'Trang chủ';
 const String NAV_CART = 'Giỏ hàng';
 const String NAV_NOTIFICATION = 'Thông báo';
 const String NAV_PROFILE = 'Cá nhân';
+const String NAV_SETTING = 'Cài đặt';
+
 
 const String NAME = "Họ và tên";
 const String PHONE = "Số điện thoại";
@@ -162,6 +164,7 @@ const String HOME_ORDER = '6 đơn';
 const String HOME_PD = '8 sản phẩm';
 const String HOME_NUMBER = '8';
 const String HOME_SHOW_MORE = 'Xem thêm';
+const String HOME_SHOW_ALL = 'Xem tất cả';
 const String HOME_ORDER_CODE = 'Mã đơn hàng: ';
 const String HOME_INFO_ORDER = 'Thông tin đơn hàng mới cập nhật';
 const String HOME_VND_CNY = ' VNĐ/CNY';
@@ -403,7 +406,7 @@ const String PROFILE_AVAILABLE_BALANCE = "Số dư khả dụng";
 const String PROFILE_ORDER_MANAGEMENT = "Quản lý đơn hàng";
 const String PROFILE_ORDER_LIST = "Danh sách đơn hàng";
 const String PROFILE_PARCEL_LIST = "Danh sách kiện hàng";
-const String PROFILE_ARRIVAL_ORDER_LIST = "Danh sách hàng về";
+const String PROFILE_ARRIVAL_ORDER_LIST = "Hàng về";
 const String PROFILE_COMPLAIN_LIST = "Danh sách khiếu nại";
 const String PROFILE_DELIVERY_MANAGEMENT = "Quản lý giao hàng";
 const String PROFILE_REQUEST_LIST = "Danh sách yêu cầu giao";
@@ -800,9 +803,12 @@ const String ADMIN_IMG = 'Hình ảnh';
 const String ADMIN_ITEM_CANNOT_SHIP = 'Hàng không vận chuyển được';
 const String ADMIN_UNKNOWN = 'Không xác định';
 const String MANAGE_PACKAGE_GENERAL = 'Quản lý chung';
+const String MANAGE = 'Quản lý';
 const String MANAGE_PACKAGE_EMPLOYEE = 'Quản lý nhân viên';
 const String MANAGE_PACKAGE_CUSTOMER = 'Quản lý khách hàng';
 const String MANAGE_PACKAGE_FEEDBACK = 'Phản hồi - Đánh giá';
+const String REVIEW_ORDER = 'Đánh giá đơn hàng';
+const String RATING = 'Đánh giá ';
 const String MANAGE_PACKAGE = 'Quản lý bao hàng';
 const String MANAGE_PACKAGE_TOTAL_BAG = 'Tổng bao:';
 const String MANAGE_PACKAGE_TYPE_BAG = 'Kiểu bao';
@@ -831,6 +837,71 @@ const String MANAGE_PACKAGE_BAG = 'Bao';
 const String MANAGE_PACKAGE_BAG_NAME = 'Tên bao';
 const String MANAGE_PACKAGE_ENTER_WEIGHT = 'Nhập số cân';
 const String MANAGE_PACKAGE_ORDER = 'Đơn hàng';
+const String ORDER_EXPORT_TO_CHINA = 'Xuất Kho Trung Quốc';
+const String ORDER_BORDER_WAREHOUSE = 'Kho Cửa Khẩu';
+const String ORDER_PROCESS = 'Làm thủ tục';
+const String ORDER_HN_WAREHOUSE = 'Tổng kho Hà Nội';
+const String ORDER_SG_WAREHOUSE = 'Kho Sài Gòn';
+const String ORDER_DN_WAREHOUSE = 'Kho Đà Nẵng';
+const String ORDER_DELIVERY_IN_PROGRESS = 'Đang giao hàng';
+const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
+const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
+const String ORDER_STOCK = 'Hàng lưu kho';
+const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+
+ 
+
+ 
+ 
+ 
+ 
+  
+ 
+
+
+  
+  
+
+
+
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
 
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';

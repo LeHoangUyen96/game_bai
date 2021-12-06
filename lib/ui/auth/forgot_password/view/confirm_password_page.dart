@@ -25,9 +25,11 @@ class ConfirmPage extends GetView<ConfirmPasswordController> {
     );
   }
   Widget _buildBody(){
-    return Screenshot(
-        controller: controller.screenshotController,
-        child: Stack(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(Get.context!).requestFocus(FocusNode());
+      },
+      child:  Stack(
           alignment: Alignment.center, 
           fit: StackFit.expand, 
         children: <Widget>[
@@ -44,7 +46,7 @@ class ConfirmPage extends GetView<ConfirmPasswordController> {
                           padding: EdgeInsets.only(top:30),
                           child:
                             ImageCustomized(
-                              path: LOGO_IMG,
+                              path: IMG_LOGO,
                               height: 150,
                               width: 150,
                             )

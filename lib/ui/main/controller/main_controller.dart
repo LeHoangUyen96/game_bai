@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
+import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile/ui/main/contract/main_contract.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
@@ -15,18 +17,22 @@ import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/ulti/services/local_notification_services.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class MainController extends GetxController implements MainContract {
   var tabIndex = 0.obs;
   late NotificationRepository repository;
   late MainContract contract;
   HomeRepositories? homeRepositories;
+  ProfileRepositories? profileRepositories;
+  ProfileResponse ? mDataProfile;
   var sumUnread = 0;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   late AndroidNotificationChannel channel;
   final deviceToken = GetStorage();
-
+  //final  isAdmin = GetStorage();
+  int? isAdmin ;
   void changeTabIndex(int index) {
     tabIndex.value = index;
     if (index == 2) {
@@ -41,6 +47,22 @@ class MainController extends GetxController implements MainContract {
     }
     update();
   }
+  void changeTabIndexAdmin(int index) {
+    tabIndex.value = navigateItemAdmin[index].id;
+
+    if (index != 2) {
+      //navigateItem[index].image = getNavImage(navigateItem[index].id, true);
+      navigateItemAdmin[index].color = BLACK_1;
+      for (var i = 0; i < navigateItemAdmin.length; i++) {
+        if (i != index) {
+          //navigateItem[i].image = getNavImage(navigateItem[i].id, false);
+        }
+        if (i != index) navigateItemAdmin[i].color = BLACK_1;
+      }
+    }
+
+    update();
+  }
 
   @override
   void onInit() async {
@@ -48,6 +70,95 @@ class MainController extends GetxController implements MainContract {
     repository = Injector().notification;
     homeRepositories = Injector().home;
     contract = this;
+    // isAdmin = Get.arguments;
+    // print("getIsAdmin: $isAdmin");
+    profileRepositories =  Injector().profile;
+    onGetProfile();
+    getAdmin();
+    //await Firebase.initializeApp();
+    //getNotificationCount();
+    //initFirebaseMessage();
+    //getHomeData();
+  }
+  void getAdmin(){
+    if(GetStorage().read(KEY_ADMIN)!=null){
+      isAdmin = GetStorage().read(KEY_ADMIN);
+      print("++++++++++++++++++++++++++++++++${isAdmin}");
+      update();
+    }
+  }
+  void onGetProfile(){
+    profileRepositories!.onGetProfile().then((value) {
+      if (value.data != null) {  
+      mDataProfile = value;
+      }
+      update();
+    }).catchError((onError) {
+      print('onError $onError');
+    });
+    update();
+  }
+ 
+
+  // void getHomeData() {
+  //   homeRepositories!.onGetHome().then((value) {
+  //     if (value.data != null) {
+  //       if (value.data!.number_product! > 0) {
+  //         navigateItem[1].badgeCount = value.data!.number_product!;
+  //         navigateItem[1].showBadge = true;
+  //       }
+  //     }
+  //     update();
+  //   }).catchError((onError) {
+  //     // Get.defaultDialog(
+  //     //     title: (onError as ErrorResponse).message.toString(), middleText: '');
+  //   });
+  //   update();
+  // }
+
+  // void getNotificationCount() {
+  //   repository.onGetUnreadCount(3).then((value) {
+  //     return contract.onSuccess(value);
+  //   }).catchError((onError) {
+  //     print('$onError');
+  //   });
+
+  //   repository.onGetUnreadCount(4).then((value) {
+  //     return contract.onSuccess(value);
+  //   }).catchError((onError) {
+  //     print('$onError');
+  //   });
+  // }
+  String getNavImage(int id, bool isActive) {
+    switch (id)
+ {
+      case 0:
+        if (isActive) {
+          return 'aaaa';
+        } else {
+          return "icNavHome";
+        }
+      case 1:
+        if (isActive) {
+          return "icNavOrderActive";
+        } else {
+          return "icNavOrder";
+        }
+      case 2:
+        if (isActive) {
+          return "icNavNotificationActive";
+        } else {
+          return "icNavNotification";
+        }
+      case 3:
+        if (isActive) {
+          return "icNavProfileActive";
+        } else {
+          return "icNavProfile";
+        }
+      default:
+        return '';
+    }
   }
 
   @override

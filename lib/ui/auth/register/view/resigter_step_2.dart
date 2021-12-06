@@ -28,7 +28,11 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
     );
   }
   Widget _buildBody(){
-    return Stack(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(Get.context!).requestFocus(FocusNode());
+      },
+      child: Stack(
           alignment: Alignment.center, 
           fit: StackFit.expand, 
         children: <Widget>[
@@ -45,7 +49,7 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
                           padding: EdgeInsets.only(top:30),
                           child:
                             ImageCustomized(
-                              path: LOGO_IMG,
+                              path: IMG_LOGO,
                               height: 150,
                               width: 150,
                             )
@@ -407,6 +411,7 @@ class RegisterStepTwoPage extends GetView<RegisterStepTwoController> {
           ),
           
         ]
+      )
         );    
   }
   Widget imgBackGround(){
