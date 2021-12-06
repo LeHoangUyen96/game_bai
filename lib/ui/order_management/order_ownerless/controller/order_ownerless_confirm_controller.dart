@@ -68,11 +68,11 @@ class OrderOwnerlessConfirmController extends GetxController
 
   DataSearchCustomer? user;
 
-  int currentMethodSend = 1;
+  int? currentMethodSend = 0;
   final methodSend = [
+    MethodSend(0, sendVerifi),
     MethodSend(1, packOrderBack),
     MethodSend(2, storage),
-    MethodSend(null, sendVerifi),
   ];
 
   final FocusNode focusNode = FocusNode();
@@ -170,8 +170,8 @@ class OrderOwnerlessConfirmController extends GetxController
   }
 
   void onChangeMethodSend(MethodSend value, int id) {
-    selectedMethodSend = value;
-    method = id;
+    currentMethodSend = value.id;
+    update();
   }
 
   void onGetListDistrict(int id) {
@@ -298,6 +298,7 @@ class OrderOwnerlessConfirmController extends GetxController
         transportId: selectedTransportForm!.id,
         packingId: selectedPackingForm!.id,
         type: selectedMethodSend!.id,
+        note: noteController.text,
       );
       onSave(request);
     }
@@ -319,26 +320,38 @@ class OrderOwnerlessConfirmController extends GetxController
       packingValid = true;
     }
     if (transportValid && packingValid) {
-      VerifiOrderOwnerlessRequest request = VerifiOrderOwnerlessRequest(
+      VerifiOrderConfirmRequest request = VerifiOrderConfirmRequest(
         orderId: orderId,
         name: data.name!,
         transportId: selectedTransportForm!.id,
         packingId: selectedPackingForm!.id,
         userId: data.id!,
-        type: selectedMethodSend!.id,
+        type: currentMethodSend,
+        note: noteController.text,
       );
-      onSave(request);
+      onSaves(request);
     }
     update();
   }
 
   void onSave(VerifiOrderOwnerlessRequest request) {
     orderAminRepositories!.onVerifiOrderOwnerless(request).then((value) {
-      Get.snackbar('Thông báo', 'Đã xác minh đơn hàng');
       Get.back();
+      Get.snackbar('Thông báo', value.message!);
       update();
     }).catchError((onError) {
-      print("Error");
+      print(onError);
+      update();
+    });
+  }
+
+  void onSaves(VerifiOrderConfirmRequest request) {
+    orderAminRepositories!.onVerifiOrder(request).then((value) {
+      Get.back();
+      Get.snackbar('Thông báo', value.message!);
+      update();
+    }).catchError((onError) {
+      print(onError);
       update();
     });
   }

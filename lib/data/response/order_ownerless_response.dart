@@ -1,9 +1,15 @@
 class OrderOwnerlessResponse {
   List<DataOrderOwnerless>? data;
+  Paginate? paginate;
 
-  OrderOwnerlessResponse({this.data});
+  OrderOwnerlessResponse({
+    this.data,
+    this.paginate,
+  });
 
   OrderOwnerlessResponse.fromJson(Map<String, dynamic> json) {
+    paginate =
+        json['paginate'] != null ? Paginate.fromJson(json['paginate']) : null;
     if (json['data'] != null) {
       data = <DataOrderOwnerless>[];
       json['data'].forEach((v) {
@@ -60,5 +66,15 @@ class DataOrderOwnerless {
     name = json['name'] ?? '';
     phone = json['phone'] ?? '';
     surcharge = json['surcharge'] ?? 0.0;
+  }
+}
+
+class Paginate {
+  int? total;
+  Paginate({
+    this.total,
+  });
+  Paginate.fromJson(Map<String, dynamic> json) {
+    total = json['total'] ?? 0;
   }
 }

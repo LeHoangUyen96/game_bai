@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
@@ -12,6 +13,11 @@ class ValidOrderController extends GetxController implements OrderContract {
   OrderAdminRepositories? orderAminRepositories;
   OrderOwnerlessResponse? orderShipBack;
   OrderOwnerlessResponse? orderStorage;
+  RefreshController refreshOrderShipBackController =
+      RefreshController(initialRefresh: false);
+
+  RefreshController refreshOrderStorageController =
+      RefreshController(initialRefresh: false);
 
   bool checkFilter = false;
   bool checkFromDay = false;
@@ -58,6 +64,26 @@ class ValidOrderController extends GetxController implements OrderContract {
       print(onError);
       update();
     });
+  }
+
+  void onRefreshOrderShipBack() async {
+    onGetListOrderShipBack();
+    refreshOrderShipBackController.refreshCompleted();
+  }
+
+  void onLoadingOrderShipBack() async {
+    onGetListOrderShipBack();
+    refreshOrderShipBackController.refreshCompleted();
+  }
+
+  void onRefreshOrderStorage() async {
+    onGetListOrderStorage();
+    refreshOrderStorageController.refreshCompleted();
+  }
+
+  void onLoadingOrderStorage() async {
+    onGetListOrderStorage();
+    refreshOrderStorageController.refreshCompleted();
   }
 
   void onCheckFilter() {

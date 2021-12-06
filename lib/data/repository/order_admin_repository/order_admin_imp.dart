@@ -89,6 +89,18 @@ class OrderAdminImpl extends GetConnect implements OrderAdminRepositories {
     throw ErrorResponse.fromJson(responseJson.body);
   }
 
+  Future<ForgotPassResponse> onVerifiOrder(
+      VerifiOrderConfirmRequest request) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.onVerifiOrderOwnerless;
+    final body = json.encode(request);
+    final responseJson = await post(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return ForgotPassResponse.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
   Future<OrderOwnerlessResponse> onGetListOrderNoTransport() async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.listOrderNoTransport;

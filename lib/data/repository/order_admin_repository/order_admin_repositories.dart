@@ -14,6 +14,7 @@ abstract class OrderAdminRepositories {
   Future<OrderOwnerlessResponse> onGetListOrderValidStorage();
   Future<ForgotPassResponse> onVerifiOrderOwnerless(
       VerifiOrderOwnerlessRequest rquest);
+  Future<ForgotPassResponse> onVerifiOrder(VerifiOrderConfirmRequest rquest);
   Future<OrderOwnerlessResponse> onGetListOrderNoTransport();
   Future<OrderOwnerlessResponse> onGetListOrderWaitConfirm();
 }

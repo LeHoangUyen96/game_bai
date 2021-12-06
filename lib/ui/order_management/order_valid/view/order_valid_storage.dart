@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter_holo_date_picker/widget/date_picker_widget.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
@@ -18,7 +19,19 @@ class OrderValidStorage extends GetView<ValidOrderController> {
     return GetBuilder<ValidOrderController>(
         init: ValidOrderController(),
         builder: (value) => Scaffold(
-              body: controller.orderStorage != null ? buildBody() : SizedBox(),
+              body: SmartRefresher(
+                  enablePullUp: true,
+                  enablePullDown: true,
+                  controller: controller.refreshOrderStorageController,
+                  onRefresh: () {
+                    controller.onRefreshOrderStorage();
+                  },
+                  onLoading: () {
+                    controller.onLoadingOrderStorage();
+                  },
+                  child: controller.orderStorage != null
+                      ? buildBody()
+                      : SizedBox()),
               bottomNavigationBar:
                   controller.checkAction == true ? _buildBottomNav() : null,
               backgroundColor: GRAY_BG,

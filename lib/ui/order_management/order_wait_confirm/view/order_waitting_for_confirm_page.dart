@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
@@ -17,10 +18,20 @@ class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
     return GetBuilder<OrderWaitConfirmController>(
         init: OrderWaitConfirmController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar('Đơn hàng chờ xác nhận'),
-              body: controller.orderWaitConfirm != null
-                  ? buildBody()
-                  : SizedBox(),
+              appBar: buildAppBar(orderWaitConfirm),
+              body: SmartRefresher(
+                  enablePullUp: true,
+                  enablePullDown: true,
+                  controller: controller.refreshOrderController,
+                  onRefresh: () {
+                    controller.onRefreshOrder();
+                  },
+                  onLoading: () {
+                    controller.onLoadingOrder();
+                  },
+                  child: controller.orderWaitConfirm != null
+                      ? buildBody()
+                      : SizedBox()),
               backgroundColor: GRAY_BG,
             ));
   }
@@ -36,7 +47,7 @@ class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: TextCustomized(
-              text: "Tổng đơn: ${controller.orderWaitConfirm!.data!.length}",
+              text: "Tổng đơn: ${controller.total!}",
               size: 14,
               font: SanFranciscoText,
               weight: FontWeight.w700,
