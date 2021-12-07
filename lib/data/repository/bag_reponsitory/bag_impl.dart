@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/request/manager_bag_filter_request.dart';
+import 'package:viet_trung_mobile/data/response/bag_details_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/list_bag_resoonse.dart';
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
@@ -67,6 +68,17 @@ class BagImpl extends GetConnect implements BagRepositories {
     final responseJson = await get(url, headers: header);
     if(responseJson.statusCode! >= 200 && responseJson.statusCode! < 300){
       return ListBagResponse.fromJson(responseJson.body as Map<String, dynamic>);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<BagDetailsResponse> onGetDetailsBag(int id)async{
+     final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_DETAIL + "$id";
+    final responseJson = await get(url, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return BagDetailsResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }

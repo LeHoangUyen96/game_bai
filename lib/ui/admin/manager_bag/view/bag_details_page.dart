@@ -22,7 +22,10 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
       init: BagDetailsController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:  SingleChildScrollView(child: buildBody()) ,
+        body:  SingleChildScrollView(
+           child: buildBody(),
+           physics: BouncingScrollPhysics(),
+           ) ,
         backgroundColor: BT_GRAY,
       ),
     );

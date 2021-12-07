@@ -73,18 +73,22 @@ class CreateBagPage extends GetView<CreateBagController> {
             ),
             SizedBox(height: 15),
              Container(
-              child: DropdownSearch<DataListWareHouseBackResponse>(
+              child: DropdownSearch<DataBagType>(
                 mode: Mode.MENU,
-                maxHeight: 120,
+                maxHeight: 80,
                 popupSafeArea: PopupSafeArea(),
-                onFind: (String? filter) => controller.getDataWareHouseBack(),
+                items: [
+                  DataBagType(codeBagType: "graft_bag", nameBagType: "Bao ghép"),
+                  DataBagType(codeBagType: "intact_bag", nameBagType: "Bao nguyên"),
+                ],
+                //onFind: (String? filter) => getData(filter),
                 hint: "Chọn kiểu bao",
                 onChanged:( data ){
                   print('$data');
-                  controller.item_code = data!.status_code!;
+                  controller.item_code = data!.codeBagType!;
                   controller.update();
                   },
-                itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
+                itemAsString: (DataBagType u) => u.nameBagType!,
                 dropdownButtonBuilder: (_)=> Container(
                   padding: EdgeInsets.all(10.0),
                   child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
@@ -124,7 +128,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                 popupShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),                
                     ),
-                popupItemBuilder: _customDropdown,
+                popupItemBuilder: _customDropdownWareHouseBack,
                 ),
             ),
             SizedBox(height: 15),
@@ -507,7 +511,37 @@ class CreateBagPage extends GetView<CreateBagController> {
     );
   }
 
-  Widget _customDropdown (BuildContext context, DataListWareHouseBackResponse item, bool isSelected){
+  Widget _customDropdown (BuildContext context, DataBagType item, bool isSelected){
+   return Container(
+     padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
+              //borderRadius: BorderRadius.circular(5),
+              //color: bdredColor,
+            ),
+           child: InkWell(
+             onTap: (){},
+            child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+               Flexible(
+                 child: TextCustomized(
+                   text: item.nameBagType?.toString()??'',
+                   font: SanFranciscoUIText,
+                   weight: FontWeight.w400,
+                   )
+                   ),
+              //  Flexible(
+              //    child: SvgPicture.asset(IC_CHECK1),
+              //    )    
+             ],
+           )
+
+      ), 
+
+   );
+ }
+ Widget _customDropdownWareHouseBack (BuildContext context, DataListWareHouseBackResponse item, bool isSelected){
    return Container(
      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -598,3 +632,17 @@ class CreateBagPage extends GetView<CreateBagController> {
    );
  }
 }
+
+class DataBagType {
+  String? codeBagType;
+  String? nameBagType;
+  DataBagType({
+   required this.codeBagType,
+   required this.nameBagType
+    });
+}
+List<DataBagType> dataBagType = <DataBagType>[
+  DataBagType(codeBagType: "graft_bag", nameBagType: "Bao ghép"),
+  DataBagType(codeBagType: "intact_bag", nameBagType: "Bao nguyên"),
+  
+];

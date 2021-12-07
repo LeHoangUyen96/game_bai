@@ -9,10 +9,13 @@ class BagDetailsController extends GetxController  {
   ListStatusBagResponse ? listStatusBagResponse;
   String? item_code;
   bool changeBill = false;
+  int? id;
   @override
   void onInit() {
     super.onInit();
     bagRepositories = Injector().bag;
+    id = Get.arguments;
+    print('$id');
   }
   Future<List<DataListStatusBagResponse>> getDataStatusBag () async {
     bagRepositories!.onGetListBagStatus().then((value){

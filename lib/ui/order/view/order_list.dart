@@ -5,6 +5,7 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_details_receive.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -114,12 +115,17 @@ Widget  _buildListOrder(DataOrder dataOrder){
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextCustomized(
-                text: dataOrder.bill_code.toString(),
-                font: SanFranciscoText,
-                weight: FontWeight.w700,
-                color: MAIN_BLACK,
-                ),
+              InkWell(
+                onTap: (){
+                  Get.to(OrderDetailReceivePage(),arguments: dataOrder.id );
+                },
+                child: TextCustomized(
+                  text: dataOrder.bill_code.toString(),
+                  font: SanFranciscoText,
+                  weight: FontWeight.w700,
+                  color: MAIN_BLACK,
+                  ),
+              ),
                 TextCustomized(
                 text: dataOrder.order_status_name.toString(),
                 font: SanFranciscoText,
