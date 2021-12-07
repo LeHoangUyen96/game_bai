@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
@@ -14,14 +13,12 @@ import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/login/view/login_page.dart';
 import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
-import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
-import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile/ui/main/view/main_page_admin.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-class RegisterStepThreeController extends GetxController implements RegisterContract {
-
-
+class RegisterStepThreeController extends GetxController
+    implements RegisterContract {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
 
@@ -41,16 +38,15 @@ class RegisterStepThreeController extends GetxController implements RegisterCont
   String confirmPassError = "";
 
   String errorAPI = "";
-  String ? email;
+  String? email;
   String? name;
   String? phone;
-  int? city ;
-  int? district ;
-  int? wards ;
+  int? city;
+  int? district;
+  int? wards;
   String? address;
 
   late AuthRepository _authRepository;
-
 
   final tokens = GetStorage();
 
@@ -58,48 +54,47 @@ class RegisterStepThreeController extends GetxController implements RegisterCont
   void onInit() {
     super.onInit();
     _authRepository = Injector().auth;
-    contract =this;
-    if(Get.arguments != null){
-      if(Get.arguments['email'] == null){
+    contract = this;
+    if (Get.arguments != null) {
+      if (Get.arguments['email'] == null) {
         email = null;
-      } else{
+      } else {
         email = Get.arguments['email'];
       }
-      if(Get.arguments['phone'] == null){
+      if (Get.arguments['phone'] == null) {
         phone = null;
-      } else{
+      } else {
         phone = Get.arguments['phone'];
       }
-      if(Get.arguments['name'] == null){
+      if (Get.arguments['name'] == null) {
         name = null;
-      } else{
+      } else {
         name = Get.arguments['name'];
       }
-      if(Get.arguments['city_id'] == null){
+      if (Get.arguments['city_id'] == null) {
         city = null;
-      } else{
+      } else {
         city = Get.arguments['city_id'];
       }
-      if(Get.arguments['district_id'] == null){
+      if (Get.arguments['district_id'] == null) {
         district = null;
-      } else{
+      } else {
         district = Get.arguments['district_id'];
       }
-      if(Get.arguments['wards_id'] == null){
+      if (Get.arguments['wards_id'] == null) {
         wards = null;
-      } else{
+      } else {
         wards = Get.arguments['wards_id'];
       }
-      if(Get.arguments['address'] == null){
+      if (Get.arguments['address'] == null) {
         address = null;
-      } else{
+      } else {
         address = Get.arguments['address'];
       }
-     
     }
   }
 
-   void onRegister() {
+  void onRegister() {
     if (passwordController.text.isEmpty) {
       isPasswordValid = false;
       passwordError = "Mật khẩu không được để trống";
@@ -108,13 +103,13 @@ class RegisterStepThreeController extends GetxController implements RegisterCont
       passwordError = "Mật khẩu tối thiểu 8 kí tự";
     } else {
       isPasswordValid = true;
-      }
+    }
 
-      if (confirmPassController.text.isEmpty) {
+    if (confirmPassController.text.isEmpty) {
       isConfirmPassValid = false;
       confirmPassError = "Mật khẩu không được để trống";
     } else {
-      if(confirmPassController.text != passwordController.text){
+      if (confirmPassController.text != passwordController.text) {
         isConfirmPassValid = false;
         confirmPassError = "Mật khẩu không trùng khớp";
       } else {
@@ -122,77 +117,67 @@ class RegisterStepThreeController extends GetxController implements RegisterCont
       }
     }
 
-    if ( isPasswordValid && isConfirmPassValid  ) {
+    if (isPasswordValid && isConfirmPassValid) {
       AuthRequest _request = AuthRequest(
-          email: email,
-          phone: phone,
-          name: name,
-          password: passwordController.text,
-          password_confirmation: confirmPassController.text,
-          city_id : city,
-          district_id : district,
-          wards_id : wards,
-          address : address,
+        email: email,
+        phone: phone,
+        name: name,
+        password: passwordController.text,
+        password_confirmation: confirmPassController.text,
+        city_id: city,
+        district_id: district,
+        wards_id: wards,
+        address: address,
       );
-      _authRepository.onRegister(_request, NetworkConfig.REGISTER).then((value) {
-         return contract.onSuccess(value);
+      _authRepository
+          .onRegister(_request, NetworkConfig.REGISTER)
+          .then((value) {
+        return contract.onSuccess(value);
       }).catchError((onError) {
-         //Get.snackbar("Notification", "Register Failllllllllll");
-         return contract.onError(onError);
+        //Get.snackbar("Notification", "Register Failllllllllll");
+        return contract.onError(onError);
         // Error response here, depend on error code we will show the detail message
       });
     }
     update();
   }
-  void onLogin(){
+
+  void onLogin() {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-    AuthRequest _request = AuthRequest(email: email, password: passwordController.text);
+    AuthRequest _request =
+        AuthRequest(email: email, password: passwordController.text);
     _authRepository.onAuth(_request, NetworkConfig.LOGIN).then((value) {
       // tokens.save(value.token);
       tokens.write(KEY_TOKEN, value.token.toString());
-      Get.offAll(() => MainPage());
+      Get.offAll(() => MainPageAdmin());
       //Get.offAll(() => ProfilePage());12345
-      Get.snackbar(NOTIFY,AUTH_REGISTER_SUCCESS);
+      Get.snackbar(NOTIFY, AUTH_REGISTER_SUCCESS);
       print("Successss");
       update();
     }).catchError((onError) {
       Get.back();
-      Get.snackbar(NOTIFY,AUTH_REGISTER_ERROR);
+      Get.snackbar(NOTIFY, AUTH_REGISTER_ERROR);
       update();
     });
   }
 
-
   @override
-  void onError(ErrorResponse msg) {
-    // TODO: implement onError
-  }
+  void onError(ErrorResponse msg) {}
 
   @override
   void onSuccess(RegisterResponse response) {
     //onLogin();
-     Get.snackbar(NOTIFY,AUTH_REGISTER_SUCCESS);
-     Get.to(LoginPage());
+    Get.snackbar(NOTIFY, AUTH_REGISTER_SUCCESS);
+    Get.to(LoginPage());
     update();
   }
 
   @override
-  void onSuccessGetAddress(RegisterAddressResponse response) {
-    // TODO: implement onSuccessGetAddress
-  }
+  void onSuccessGetAddress(RegisterAddressResponse response) {}
 
   @override
-  void onSuccessRegisterStep1(RegisterStep1Response response) {
-    // TODO: implement onSuccessRegisterStep1
-  }
+  void onSuccessRegisterStep1(RegisterStep1Response response) {}
 
   @override
-  void onSuccessRegisterStep2(RegisterStep2Response response) {
-    // TODO: implement onSuccessRegisterStep2
-  }
-
-  
-
-
-
+  void onSuccessRegisterStep2(RegisterStep2Response response) {}
 }

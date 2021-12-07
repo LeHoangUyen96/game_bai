@@ -44,7 +44,7 @@ class ValidOrderPage extends GetView<OrderManagementController> {
                     width: Get.width * 0.4,
                     child: TextCustomized(
                       textAlign: TextAlign.center,
-                      text: "Hàng chuyển về",
+                      text: orderShipBack,
                       color: Colors.black,
                       size: 14,
                       weight: FontWeight.w800,
@@ -54,7 +54,7 @@ class ValidOrderPage extends GetView<OrderManagementController> {
                     width: Get.width * 0.4,
                     child: TextCustomized(
                       textAlign: TextAlign.center,
-                      text: "Hàng lưu kho",
+                      text: orderStorage,
                       color: Colors.black,
                       size: 14,
                       weight: FontWeight.w800,

@@ -13,6 +13,7 @@ import 'package:viet_trung_mobile/ui/dashboard_user/view/dashboard_user_page.dar
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/view/order_admin_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -25,7 +26,7 @@ class MainPageAdmin extends GetView<MainController> {
     return GetBuilder<MainController>(
       builder: (value) => WillPopScope(
         // onWillPop: () => _backPressed(controller.screensData[controller.tabIndex.value].navigatorKey),
-        onWillPop: ()  async {
+        onWillPop: () async {
           //Get.key.currentState!.maybePop();
           return false;
         },
@@ -38,16 +39,20 @@ class MainPageAdmin extends GetView<MainController> {
               children: [
                 //ProfilePage(),
                 //FindingCustomerPage(),
-                controller.isAdmin ==1 ?DashboardAdminPage() :DashboardUserPage(),
-                OrderInfoPage(),
-                //ManagerBagPage(),
-                controller.isAdmin ==1 ? GenaeralManagePage():ProfilePage(),
-                controller.isAdmin ==1 ?ProfilePage() : NotificationPage(),
+                controller.isAdmin == 1
+                    ? NotificationAdminPage()
+                    : DashboardUserPage(),
+                controller.isAdmin == 1 ? OrderAdminPage() : OrderInfoPage(),
+                controller.isAdmin == 1 ? GenaeralManagePage() : ProfilePage(),
+                controller.isAdmin == 1 ? ProfilePage() : NotificationPage(),
               ],
             ),
           ),
-           bottomNavigationBar: controller.isAdmin ==1 ? _buildBottomNavigationAdmin() : _buildBottomNavigation() ,
-          floatingActionButton:  controller.isAdmin ==1 ? floatActionButton(): Container(),
+          bottomNavigationBar: controller.isAdmin == 1
+              ? _buildBottomNavigationAdmin()
+              : _buildBottomNavigation(),
+          floatingActionButton:
+              controller.isAdmin == 1 ? floatActionButton() : Container(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
         ),
@@ -66,7 +71,8 @@ class MainPageAdmin extends GetView<MainController> {
     //if nothing remains in the stack, it simply pops
     return Future<bool>.value(true);
   }
-   Widget floatActionButton() {
+
+  Widget floatActionButton() {
     return InkWell(
       onTap: () {
         Get.to(FindingCustomerPage());
@@ -77,7 +83,12 @@ class MainPageAdmin extends GetView<MainController> {
         height: 60,
         alignment: Alignment.center,
         padding: const EdgeInsets.all(10),
-        child:  ImageCustomized(path: IC_SEARCH, width: 25, height: 25, color: WHITE,),
+        child: ImageCustomized(
+          path: IC_SEARCH,
+          width: 25,
+          height: 25,
+          color: WHITE,
+        ),
         decoration: const BoxDecoration(
           color: BT_CONFIRM,
           shape: BoxShape.circle,
@@ -85,33 +96,34 @@ class MainPageAdmin extends GetView<MainController> {
       ),
     );
   }
-  Widget _buildBottomNavigationAdmin() =>  CustomNavigationBar(
-            backgroundColor: BG_NAVIGATION_COLOR,
-            currentIndex: (controller.tabIndex.value >= 2)
-                ? controller.tabIndex.value + 1
-                : controller.tabIndex.value,
-            //currentIndex: controller.tabIndex.value ,
-            onTap: controller.changeTabIndexAdmin,
-            strokeColor: BLACK_1,
-            items: navigateItemAdmin.map((NavigateEmblemAdmin navigateEmblemAdmin) {
-              return CustomNavigationBarItem(
-                badgeCount: navigateEmblemAdmin.badgeCount,
-                showBadge: navigateEmblemAdmin.showBadge,
-                icon: ImageCustomized(
-                  // width: 30,
-                  // height: 30,
-                  path: navigateEmblemAdmin.image,
-                  color: navigateEmblemAdmin.color,
-                  margin: const EdgeInsets.only(bottom: 5),
-                ),
-                title: TextCustomized(
-                  text: navigateEmblemAdmin.title,
-                  color: navigateEmblemAdmin.color,
-                ),
-              );
-            }).toList(),
+
+  Widget _buildBottomNavigationAdmin() => CustomNavigationBar(
+        backgroundColor: BG_NAVIGATION_COLOR,
+        currentIndex: (controller.tabIndex.value >= 2)
+            ? controller.tabIndex.value + 1
+            : controller.tabIndex.value,
+        //currentIndex: controller.tabIndex.value ,
+        onTap: controller.changeTabIndexAdmin,
+        strokeColor: BLACK_1,
+        items: navigateItemAdmin.map((NavigateEmblemAdmin navigateEmblemAdmin) {
+          return CustomNavigationBarItem(
+            badgeCount: navigateEmblemAdmin.badgeCount,
+            showBadge: navigateEmblemAdmin.showBadge,
+            icon: ImageCustomized(
+              // width: 30,
+              // height: 30,
+              path: navigateEmblemAdmin.image,
+              color: navigateEmblemAdmin.color,
+              margin: const EdgeInsets.only(bottom: 5),
+            ),
+            title: TextCustomized(
+              text: navigateEmblemAdmin.title,
+              color: navigateEmblemAdmin.color,
+            ),
+          );
+        }).toList(),
       );
-       Widget _buildBottomNavigation() => CustomNavigationBar(
+  Widget _buildBottomNavigation() => CustomNavigationBar(
         backgroundColor: BG_NAVIGATION_COLOR,
         currentIndex: controller.tabIndex.value,
         onTap: controller.changeTabIndex,

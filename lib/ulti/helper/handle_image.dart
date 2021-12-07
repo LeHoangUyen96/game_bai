@@ -59,16 +59,38 @@ class HandleImage {
       var file = listAssets[i].getByteData(quality: 100).then((byteData) async {
         final buffer = byteData.buffer;
         return File((await getApplicationDocumentsDirectory()).path +
-            '/' +
-            listAssets[i].name.toString())
+                '/' +
+                listAssets[i].name.toString())
             .writeAsBytes(buffer.asUint8List(
-            byteData.offsetInBytes, byteData.lengthInBytes));
+                byteData.offsetInBytes, byteData.lengthInBytes));
         //Trả về File (param request: path + name file) (path+name_file)
         //writeAsBytes để ghi file vào đường dẫn ở trên.
 //        _file.then((value) => _listFiles.add(value));
       });
       await file.then((value) {
         _listFiles.add(value);
+      });
+    }
+    return _listFiles;
+  }
+
+  Future<List<String>> convertAssetToString(List<Asset> listAssets) async {
+    List<String> _listFiles = <String>[];
+
+    for (int i = 0; i < listAssets.length; i++) {
+      var file = listAssets[i].getByteData(quality: 100).then((byteData) async {
+        final buffer = byteData.buffer;
+        return File((await getApplicationDocumentsDirectory()).path +
+                '/' +
+                listAssets[i].name.toString())
+            .writeAsBytes(buffer.asUint8List(
+                byteData.offsetInBytes, byteData.lengthInBytes));
+        //Trả về File (param request: path + name file) (path+name_file)
+        //writeAsBytes để ghi file vào đường dẫn ở trên.
+//        _file.then((value) => _listFiles.add(value));
+      });
+      await file.then((value) {
+        _listFiles.add(value.path);
       });
     }
     return _listFiles;

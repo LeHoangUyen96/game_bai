@@ -1,6 +1,5 @@
 class VerifiOrderOwnerlessRequest {
   int? orderId;
-  int? userId;
   String? email;
   String? name;
   String? phone;
@@ -11,6 +10,7 @@ class VerifiOrderOwnerlessRequest {
   int? type;
   int? transportId;
   int? packingId;
+  String? note;
 
   VerifiOrderOwnerlessRequest({
     this.address,
@@ -23,8 +23,8 @@ class VerifiOrderOwnerlessRequest {
     this.phone,
     this.transportId,
     this.type,
-    this.userId,
     this.wardId,
+    this.note,
   });
 
   Map<String, dynamic> toJson() {
@@ -34,13 +34,45 @@ class VerifiOrderOwnerlessRequest {
     data['city_id'] = this.cityId;
     data['district_id'] = this.districtId;
     data['wards_id'] = this.wardId;
-    data['emaifl'] = this.email;
+    data['email'] = this.email;
     data['phone'] = this.phone;
+    data['transport_form_id'] = this.transportId;
+    data['packing_form_id'] = this.packingId;
+    data['type'] = this.type;
+    data['name'] = this.name;
+    data['note'] = this.note;
+    return data;
+  }
+}
+
+class VerifiOrderConfirmRequest {
+  int? orderId;
+  int? userId;
+  String? name;
+  int? type;
+  int? transportId;
+  int? packingId;
+  String? note;
+
+  VerifiOrderConfirmRequest({
+    this.name,
+    this.orderId,
+    this.packingId,
+    this.transportId,
+    this.type,
+    this.userId,
+    this.note,
+  });
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['order_id'] = this.orderId;
     data['transport_form_id'] = this.transportId;
     data['packing_form_id'] = this.packingId;
     data['type'] = this.type;
     data['user_id'] = this.userId;
     data['name'] = this.name;
+    data['note'] = this.note;
     return data;
   }
 }

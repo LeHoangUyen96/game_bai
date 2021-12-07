@@ -145,10 +145,14 @@ class NetworkConfig {
 
   //Notification
   static const String NOTIFICATION_LIST = URL_SERVER + "/notifications/list";
-  static const String NOTIFICATION_UNREAD_COUNT = URL_SERVER + "/notifications/unread";
-  static const String NOTIFICATION_READ_ALL = URL_SERVER + "/notifications/read-all";
-  static const String NOTIFICATION_READ_ONE = URL_SERVER + "/notifications/read-detail";
-  static const String NOTIFICATION_ADMIN = URL_SERVER + "/admin/notifications/list";
+  static const String NOTIFICATION_UNREAD_COUNT =
+      URL_SERVER + "/notifications/unread";
+  static const String NOTIFICATION_READ_ALL =
+      URL_SERVER + "/notifications/read-all";
+  static const String NOTIFICATION_READ_ONE =
+      URL_SERVER + "/notifications/read-detail";
+  static const String NOTIFICATION_ADMIN =
+      URL_SERVER + "/admin/notifications/list";
   //ExchangeRate
   static const String EXCHANGE_RATE = URL_SERVER + "/exchange-rate";
 
@@ -197,9 +201,11 @@ class NetworkConfig {
 
   //order admin store China
   static const String listOrderValidStorage =
-      URL_SERVER + "/admin/order/list-order?type=1";
-  static const String listOrderValidShipBack =
       URL_SERVER + "/admin/order/list-order?type=2";
+  static const String listOrderValidShipBack =
+      URL_SERVER + "/admin/order/list-order?type=1";
+  static const String updateFeeWarhouseChina =
+      URL_SERVER + "/admin/order/update-warehouse-cn/";
 
   //order admin no transport
   static const String listOrderNoTransport =
@@ -208,4 +214,9 @@ class NetworkConfig {
   //order admin wait confirm
   static const String listOrderWaitConfirm =
       URL_SERVER + "/admin/order/list-order-wait-confirm";
+  static const String orderAdminDetail = URL_SERVER + "/admin/order/detail/";
+  static const String confirmOrderAdmin = URL_SERVER + "/admin/order/confirm";
+  //order admin shipped
+  static const String listOrderShipped =
+      URL_SERVER + "/admin/order/list-order-shipped";
 }

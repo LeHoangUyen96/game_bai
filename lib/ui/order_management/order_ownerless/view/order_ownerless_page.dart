@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -18,8 +19,19 @@ class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
         init: OrderOwnerlessController(),
         builder: (value) => Scaffold(
               appBar: buildAppBar(ownerlessOrder),
-              body:
-                  controller.orderOwnerless != null ? buildBody() : SizedBox(),
+              body: SmartRefresher(
+                  enablePullUp: true,
+                  enablePullDown: true,
+                  controller: controller.refreshOrderController,
+                  onRefresh: () {
+                    controller.onRefreshOrder();
+                  },
+                  onLoading: () {
+                    controller.onLoadingOrder();
+                  },
+                  child: controller.orderOwnerless != null
+                      ? buildBody()
+                      : SizedBox()),
               backgroundColor: GRAY_BG,
             ));
   }
@@ -34,7 +46,7 @@ class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
           Container(
               padding: EdgeInsets.symmetric(horizontal: 11.5),
               child: TextCustomized(
-                text: totalOrder + '${controller.orderOwnerless!.data!.length}',
+                text: totalOrder + '${controller.total!}',
                 size: 14,
                 color: Colors.black,
                 weight: FontWeight.w500,
@@ -58,7 +70,7 @@ class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
     );
   }
 
-  Widget _buildListOrder(DataOrderOwnerless response) {
+  Widget _buildListOrder(DataOrderAdmin response) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       elevation: 20,

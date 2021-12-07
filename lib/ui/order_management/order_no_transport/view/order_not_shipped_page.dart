@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/order_ownerless_response.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_no_transport/controller/order_not_shipped_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_no_transport/view/order_no_transport_detail_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
@@ -15,10 +17,20 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
     return GetBuilder<OrderNoTransportController>(
         init: OrderNoTransportController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar("Đơn hàng không vận chuyển được"),
-              body: controller.orderNotTranport != null
-                  ? buildBody()
-                  : SizedBox(),
+              appBar: buildAppBar(orderNotTransport),
+              body: SmartRefresher(
+                  enablePullUp: true,
+                  enablePullDown: true,
+                  controller: controller.refreshOrderController,
+                  onRefresh: () {
+                    controller.onRefreshOrder();
+                  },
+                  onLoading: () {
+                    controller.onLoadingOrder();
+                  },
+                  child: controller.orderNotTranport != null
+                      ? buildBody()
+                      : SizedBox()),
               backgroundColor: GRAY_BG,
             ));
   }
@@ -34,7 +46,7 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: TextCustomized(
-              text: "Tổng đơn: ${controller.orderNotTranport!.data!.length}",
+              text: "Tổng đơn: ${controller.total!}",
               size: 14,
               font: SanFranciscoText,
               weight: FontWeight.w700,
@@ -53,67 +65,72 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
               },
             ),
           ),
-          SizedBox(
-            height: 15,
-          ),
+          SizedBox(height: 15),
         ],
       ),
     );
   }
 
-  Widget _buildListOrder(DataOrderOwnerless response) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      elevation: 20,
-      shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.white, width: 3),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      borderOnForeground: true,
-      child: Container(
-        padding: EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _buildListOrder(DataOrderAdmin response) {
+    return InkWell(
+        onTap: () {
+          Get.to(
+            OrderDetailNotShippedPage(),
+            arguments: response.id!.toString(),
+          );
+        },
+        child: Card(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          elevation: 20,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.white, width: 3),
+              borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderOnForeground: true,
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextCustomized(
-                  text: response.billCode!,
-                  font: SanFranciscoText,
-                  weight: FontWeight.w700,
-                  color: MAIN_BLACK,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextCustomized(
+                      text: response.billCode!,
+                      font: SanFranciscoText,
+                      weight: FontWeight.w700,
+                      color: MAIN_BLACK,
+                    ),
+                    TextCustomized(
+                      text: response.orderStatusName!,
+                      font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: BG_ID_PD,
+                    ),
+                  ],
                 ),
+                SizedBox(height: 10),
                 TextCustomized(
-                  text: response.orderStatusName!,
-                  font: SanFranciscoText,
+                  text: response.createdAt!,
+                  font: SanFranciscoTextLight,
                   weight: FontWeight.w400,
-                  color: BG_ID_PD,
+                  style: FontStyle.italic,
+                  color: MAIN_GRAY,
                 ),
+                SizedBox(height: 10),
+                _itemInfoOrder(ORDER_LIST_PARCELS,
+                    response.numberPackage!.toString(), BLACK),
+                SizedBox(height: 10),
+                _itemInfoOrder(ORDER_LIST_ITEMS, response.item!, BLACK),
+                SizedBox(height: 10),
+                _itemInfoOrder(ORDER_LIST_COD,
+                    "¥${response.transportFee!.toString()}", RED),
+                SizedBox(height: 10),
+                _itemInfoOrder(MANAGE_PACKAGE_SURCHARGE,
+                    "¥${response.surcharge!.toString()}", BLACK),
               ],
             ),
-            SizedBox(height: 10),
-            TextCustomized(
-              text: response.createdAt!,
-              font: SanFranciscoTextLight,
-              weight: FontWeight.w400,
-              style: FontStyle.italic,
-              color: MAIN_GRAY,
-            ),
-            SizedBox(height: 10),
-            _itemInfoOrder(
-                ORDER_LIST_PARCELS, response.numberPackage!.toString(), BLACK),
-            SizedBox(height: 10),
-            _itemInfoOrder(ORDER_LIST_ITEMS, response.item!, BLACK),
-            SizedBox(height: 10),
-            _itemInfoOrder(
-                ORDER_LIST_COD, "¥${response.transportFee!.toString()}", RED),
-            SizedBox(height: 10),
-            _itemInfoOrder(MANAGE_PACKAGE_SURCHARGE,
-                "¥${response.surcharge!.toString()}", BLACK),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget _itemInfoOrder(String textTitle, String textParam, Color color) {

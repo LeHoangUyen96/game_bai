@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
@@ -6,18 +5,12 @@ import 'package:viet_trung_mobile/data/repository/profile_repository/profile_rep
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile/ui/main/contract/main_contract.dart';
-import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 import 'package:get/get.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-
 import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/ulti/services/local_notification_services.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class MainController extends GetxController implements MainContract {
   var tabIndex = 0.obs;
@@ -25,14 +18,14 @@ class MainController extends GetxController implements MainContract {
   late MainContract contract;
   HomeRepositories? homeRepositories;
   ProfileRepositories? profileRepositories;
-  ProfileResponse ? mDataProfile;
+  ProfileResponse? mDataProfile;
   var sumUnread = 0;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   late AndroidNotificationChannel channel;
   final deviceToken = GetStorage();
   //final  isAdmin = GetStorage();
-  int? isAdmin ;
+  int? isAdmin;
   void changeTabIndex(int index) {
     tabIndex.value = index;
     if (index == 2) {
@@ -47,6 +40,7 @@ class MainController extends GetxController implements MainContract {
     }
     update();
   }
+
   void changeTabIndexAdmin(int index) {
     tabIndex.value = navigateItemAdmin[index].id;
 
@@ -72,7 +66,7 @@ class MainController extends GetxController implements MainContract {
     contract = this;
     // isAdmin = Get.arguments;
     // print("getIsAdmin: $isAdmin");
-    profileRepositories =  Injector().profile;
+    profileRepositories = Injector().profile;
     onGetProfile();
     getAdmin();
     //await Firebase.initializeApp();
@@ -80,17 +74,19 @@ class MainController extends GetxController implements MainContract {
     //initFirebaseMessage();
     //getHomeData();
   }
-  void getAdmin(){
-    if(GetStorage().read(KEY_ADMIN)!=null){
+
+  void getAdmin() {
+    if (GetStorage().read(KEY_ADMIN) != null) {
       isAdmin = GetStorage().read(KEY_ADMIN);
       print("++++++++++++++++++++++++++++++++${isAdmin}");
       update();
     }
   }
-  void onGetProfile(){
+
+  void onGetProfile() {
     profileRepositories!.onGetProfile().then((value) {
-      if (value.data != null) {  
-      mDataProfile = value;
+      if (value.data != null) {
+        mDataProfile = value;
       }
       update();
     }).catchError((onError) {
@@ -98,7 +94,6 @@ class MainController extends GetxController implements MainContract {
     });
     update();
   }
- 
 
   // void getHomeData() {
   //   homeRepositories!.onGetHome().then((value) {
@@ -130,8 +125,7 @@ class MainController extends GetxController implements MainContract {
   //   });
   // }
   String getNavImage(int id, bool isActive) {
-    switch (id)
- {
+    switch (id) {
       case 0:
         if (isActive) {
           return 'aaaa';
