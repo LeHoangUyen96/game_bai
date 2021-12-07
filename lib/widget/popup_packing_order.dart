@@ -87,12 +87,12 @@ class _packingOrder extends State<PackingOrderWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TextCustomized(
-                  text: "Bạn đã chọn đóng 2 đơn hàng gửi về!",
-                  color: Colors.black,
-                  size: 16,
-                  weight: FontWeight.w800,
-                ),
+                // TextCustomized(
+                //   text: "Bạn đã chọn đóng 2 đơn hàng gửi về!",
+                //   color: Colors.black,
+                //   size: 16,
+                //   weight: FontWeight.w800,
+                // ),
                 SizedBox(height: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -356,7 +356,7 @@ class _packingOrder extends State<PackingOrderWidget> {
 
   void onPackingOrder() {
     PackingOrderRequest request;
-    if (selectedDelivery!.code == "receive_storage") {
+    if (selectedDelivery!.code! == "receive_storage") {
       request = PackingOrderRequest(
           order_ids: widget.listOrderId,
           note: noteController.text,

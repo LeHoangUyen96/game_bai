@@ -1,5 +1,3 @@
-import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
-
 class VerifiOrderWaitConfirmRequest {
   int? orderId;
   int? transportId;

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile/data/request/update_fee_warhouse_china.dart';
 import 'package:viet_trung_mobile/data/response/order_admin_detail_response.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -28,6 +29,7 @@ class OrderShipBackDetailController extends GetxController {
   int? id;
   List<File>? images;
   List<Asset>? selectedAssetsPrevious;
+  List<String>? img;
 
   @override
   void onInit() {
@@ -40,6 +42,7 @@ class OrderShipBackDetailController extends GetxController {
     }
     print("$id");
     images = <File>[];
+    img = <String>[];
     selectedAssetsPrevious = <Asset>[];
     onGetOrderDetail(orderId!);
     transportFeeController = TextEditingController(text: textTransportFee);
@@ -69,6 +72,8 @@ class OrderShipBackDetailController extends GetxController {
       mImages!.add(DataImagesEnterWareHouseResponse(
           key: "", path: "", file: value, isNetWork: false));
       Get.back(result: images);
+      img!.add(value.path);
+
       update();
     }).catchError((onError) {
       Get.back();
@@ -106,5 +111,24 @@ class OrderShipBackDetailController extends GetxController {
   void onChangeSurcharge() {
     isEditSurcharge = true;
     update();
+  }
+
+  void onSave(int id) {
+    UpdateFeeWarhouseChina request = UpdateFeeWarhouseChina(
+      surcharge: textSurcharge,
+      transportFee: textTransportFee,
+      isProhibitedItem: isCheck == true ? 1 : 0,
+      image: img,
+    );
+    orderAminRepositories!
+        .onUpdateFeeWarhouseChina(request, orderId!)
+        .then((value) {
+      Get.back();
+      Get.snackbar('Thông báo', value.message!);
+      update();
+    }).catchError((onError) {
+      print(onError);
+      update();
+    });
   }
 }

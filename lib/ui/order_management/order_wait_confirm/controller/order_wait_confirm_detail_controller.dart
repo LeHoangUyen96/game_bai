@@ -158,7 +158,6 @@ class OrderWaitConfirmDetailController extends GetxController {
       if (value.length != 0) {
         selectedAssetsPrevious = value;
         images = await HandleImage().convertAssetToFile(value);
-        // img = await HandleImage().convertAssetToString(value);
         Get.back();
         Get.back(result: images);
       }

@@ -187,7 +187,8 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                                   return SizedBox(height: 10);
                                 },
                                 physics: BouncingScrollPhysics (),
-                                itemCount: 10
+                                itemCount: 10,
+                                padding: EdgeInsets.all(0.0),
                                 ),
                             ),
                       ],

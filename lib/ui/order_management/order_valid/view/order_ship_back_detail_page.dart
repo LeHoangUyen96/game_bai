@@ -328,6 +328,9 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                   SizedBox(height: 10),
                   ButtonCustomized(
                     save,
+                    onTap: () {
+                      controller.onSave(response.id!);
+                    },
                     backgroundColor: COLOR_BT,
                   ),
                 ],
