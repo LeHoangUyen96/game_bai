@@ -7,7 +7,6 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/inventory_management/view/add_image_enter_warehouse_page.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/order_ship_back_detail_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/view/item_images.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
@@ -16,10 +15,8 @@ import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<OrderShipBackDetailController>(
         init: OrderShipBackDetailController(),
         builder: (value) => Scaffold(
@@ -302,18 +299,15 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _itemInfoTransport(
-                      'Hình thức đóng gói', response.packingForm!),
+                  _itemInfoTransport(packFormat, response.packingForm!),
                   SizedBox(height: 7),
-                  _itemInfoTransport(
-                      'Hình thức Vận chuyển', response.transportForm!),
+                  _itemInfoTransport(transformeFormat, response.transportForm!),
                   SizedBox(height: 7),
-                  _itemInfoTransport(
-                      'Hình thức nhận hàng', response.deliveryForm!),
+                  _itemInfoTransport(deliveryFormat, response.deliveryForm!),
                   SizedBox(height: 7),
-                  _itemInfoTransport('Kho hàng', response.orderStatusName!),
+                  _itemInfoTransport(warehouse, response.orderStatusName!),
                   SizedBox(height: 7),
-                  _itemInfoTransport('Ghi chú', response.note!),
+                  _itemInfoTransport(note, response.note!),
                 ],
               ),
             ),

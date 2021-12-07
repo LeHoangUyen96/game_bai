@@ -25,4 +25,5 @@ abstract class OrderAdminRepositories {
       VerifiOrderWaitConfirmRequest request);
   Future<ForgotPassResponse> onUpdateFeeWarhouseChina(
       UpdateFeeWarhouseChina request, String id);
+  Future<OrderAdminResponse> onGetListOrderShipped();
 }

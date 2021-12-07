@@ -65,9 +65,7 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
               },
             ),
           ),
-          SizedBox(
-            height: 15,
-          ),
+          SizedBox(height: 15),
         ],
       ),
     );

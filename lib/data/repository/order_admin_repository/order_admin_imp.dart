@@ -157,4 +157,14 @@ class OrderAdminImpl extends GetConnect implements OrderAdminRepositories {
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }
+
+  Future<OrderAdminResponse> onGetListOrderShipped() async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.listOrderShipped;
+    final responseJson = await get(url, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return OrderAdminResponse.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
 }

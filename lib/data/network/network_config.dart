@@ -216,4 +216,7 @@ class NetworkConfig {
       URL_SERVER + "/admin/order/list-order-wait-confirm";
   static const String orderAdminDetail = URL_SERVER + "/admin/order/detail/";
   static const String confirmOrderAdmin = URL_SERVER + "/admin/order/confirm";
+  //order admin shipped
+  static const String listOrderShipped =
+      URL_SERVER + "/admin/order/list-order-shipped";
 }

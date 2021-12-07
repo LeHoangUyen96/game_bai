@@ -881,3 +881,6 @@ const String infoOrder = "Thông tin đơn hàng";
 const String customer = "Khách hàng";
 const String returnSupplie = 'Trả về nhà cung cấp';
 const String orderJourney = "Hành trình đơn hàng";
+const String orderShipped = "Đơn hàng đã chuyển";
+const String deliveryFormat = "Hình thức nhận hàng";
+const String warehouse = 'Kho hàng';
