@@ -1,3 +1,5 @@
+import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
+
 class VerifiOrderWaitConfirmRequest {
   int? orderId;
   int? transportId;
@@ -24,7 +26,7 @@ class VerifiOrderWaitConfirmRequest {
     data['transport_fee'] = this.transportFee;
     data['packing_form_id'] = this.packingId;
     data['type'] = this.type;
-    data['image'] = this.image;
+    data['images'] = this.image;
     data['note'] = this.note;
     return data;
   }

@@ -200,9 +200,9 @@ class NetworkConfig {
 
   //order admin store China
   static const String listOrderValidStorage =
-      URL_SERVER + "/admin/order/list-order?type=1";
-  static const String listOrderValidShipBack =
       URL_SERVER + "/admin/order/list-order?type=2";
+  static const String listOrderValidShipBack =
+      URL_SERVER + "/admin/order/list-order?type=1";
 
   //order admin no transport
   static const String listOrderNoTransport =
@@ -212,4 +212,5 @@ class NetworkConfig {
   static const String listOrderWaitConfirm =
       URL_SERVER + "/admin/order/list-order-wait-confirm";
   static const String orderAdminDetail = URL_SERVER + "/admin/order/detail/";
+  static const String confirmOrderAdmin = URL_SERVER + "/admin/order/confirm";
 }

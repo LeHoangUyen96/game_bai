@@ -51,10 +51,6 @@ class LoginController extends GetxController implements LoginContract {
       isEmailValid = false;
       emailError = AUTH_LOGIN_ERROR_EMAIL;
     } else {
-      // if (!GetUtils.isEmail(emailController.text)) {
-      //   isEmailValid = false;
-      //   emailError = AUTH_LOGIN_EMAIL_ERROR;
-      // } else
       isEmailValid = true;
     }
 
@@ -100,12 +96,6 @@ class LoginController extends GetxController implements LoginContract {
     profileRepositories!.onGetProfile().then((value) {
       mDataProfile = value;
       GetStorage().write(KEY_ADMIN, mDataProfile!.data!.is_admin);
-      //  Get.snackbar(NOTIFY,AUTH_LOGIN_SUCCESS);
-      //  if(mDataProfile!.data!.is_admin == 1 ){
-      //    Get.offAll(() => MainPageAdmin());
-      //  }else{
-      //     Get.offAll(() => MainPage());
-      //  }
       Get.offAll(() => MainPageAdmin());
       print('is_admin: ${mDataProfile!.data!.is_admin}');
       update();
@@ -115,6 +105,5 @@ class LoginController extends GetxController implements LoginContract {
     update();
 
     print("Successss");
-    // TODO: implement onSuccess
   }
 }

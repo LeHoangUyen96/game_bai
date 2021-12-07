@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/view/add_image_enter_warehouse_page.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/order_ship_back_detail_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/item_images.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
@@ -151,55 +152,128 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                           color: GRAY1,
                         ),
                         SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _text(ORDER_LIST_COD),
-                            Spacer(),
-                            TextCustomized(
-                              text: "¥${response.transportFee}",
-                              font: SanFranciscoText,
-                              weight: FontWeight.w400,
-                              color: BLACK,
-                            ),
-                            SizedBox(width: 3),
-                            GestureDetector(
-                                onTap: () {},
-                                child: ImageCustomized(
-                                  path: ic_edit,
-                                  height: 12,
-                                  width: 12,
-                                )),
-                          ],
-                        ),
+                        controller.orderShipBack != null
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _text(ORDER_LIST_COD),
+                                  Spacer(),
+                                  TextCustomized(
+                                    text: "¥",
+                                    font: SanFranciscoText,
+                                    weight: FontWeight.w400,
+                                    color: BLACK,
+                                  ),
+                                  controller.isEditTransport == true
+                                      ? SizedBox(
+                                          height: 22,
+                                          width: 50,
+                                          child: TextField(
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              disabledBorder: InputBorder.none,
+                                            ),
+                                            style: TextStyle(
+                                              fontFamily: SanFranciscoText,
+                                              fontWeight: FontWeight.w400,
+                                              color: BLACK,
+                                            ),
+                                            onSubmitted: (newValue) {
+                                              controller.textTransportFee =
+                                                  newValue;
+                                              controller.isEditTransport =
+                                                  false;
+                                            },
+                                            autofocus: true,
+                                            controller: controller
+                                                .transportFeeController,
+                                          ))
+                                      : InkWell(
+                                          onTap: () {
+                                            controller.onChangeTransportFee();
+                                          },
+                                          child: Text(
+                                            controller.textTransportFee!,
+                                            style: TextStyle(
+                                              fontFamily: SanFranciscoText,
+                                              fontWeight: FontWeight.w400,
+                                              color: BLACK,
+                                            ),
+                                          )),
+                                  SizedBox(width: 3),
+                                  ImageCustomized(
+                                    path: ic_edit,
+                                    height: 12,
+                                    width: 12,
+                                  ),
+                                ],
+                              )
+                            : SizedBox(),
                         SizedBox(height: 10),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _text(MANAGE_PACKAGE_SURCHARGE),
-                            Spacer(),
-                            TextCustomized(
-                              text: "¥${response.surcharge}",
-                              font: SanFranciscoText,
-                              weight: FontWeight.w400,
-                              color: BLACK,
-                              textAlign: TextAlign.end,
-                            ),
-                            SizedBox(width: 3),
-                            GestureDetector(
-                                onTap: () {},
-                                child: ImageCustomized(
-                                  path: ic_edit,
-                                  height: 12,
-                                  width: 12,
-                                )),
-                          ],
-                        ),
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _text(MANAGE_PACKAGE_SURCHARGE),
+                              Spacer(),
+                              TextCustomized(
+                                text: "¥",
+                                font: SanFranciscoText,
+                                weight: FontWeight.w400,
+                                color: BLACK,
+                              ),
+                              controller.isEditSurcharge == true
+                                  ? SizedBox(
+                                      height: 22,
+                                      width: 50,
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                        ),
+                                        style: TextStyle(
+                                          fontFamily: SanFranciscoText,
+                                          fontWeight: FontWeight.w400,
+                                          color: BLACK,
+                                        ),
+                                        onSubmitted: (newValue) {
+                                          controller.textSurcharge = newValue;
+                                          controller.isEditSurcharge = false;
+                                        },
+                                        autofocus: true,
+                                        controller:
+                                            controller.surchargeController,
+                                      ))
+                                  : InkWell(
+                                      onTap: () {
+                                        controller.onChangeSurcharge();
+                                      },
+                                      child: Text(
+                                        controller.textSurcharge!,
+                                        style: TextStyle(
+                                          fontFamily: SanFranciscoText,
+                                          fontWeight: FontWeight.w400,
+                                          color: BLACK,
+                                        ),
+                                      )),
+                              SizedBox(width: 3),
+                              ImageCustomized(
+                                path: ic_edit,
+                                height: 12,
+                                width: 12,
+                              ),
+                            ]),
                         SizedBox(height: 10),
                       ],
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -217,7 +291,7 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                     weight: FontWeight.w700,
                     color: BLACK,
                   ),
-                  AddImageEnterWarehouse(),
+                  AddImageConfirmOrderValid(),
                 ],
               ),
             ),

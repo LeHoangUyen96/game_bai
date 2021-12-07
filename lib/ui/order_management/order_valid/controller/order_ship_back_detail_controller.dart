@@ -2,12 +2,32 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/response/order_admin_detail_response.dart';
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
+import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/ulti/helper/handle_image.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class OrderShipBackDetailController extends GetxController {
   OrderAdminRepositories? orderAminRepositories;
   OrderAdminDetailResponse? orderShipBack;
+  TextEditingController? surchargeController = TextEditingController();
+  TextEditingController? transportFeeController = TextEditingController();
   String? orderId;
   bool isCheck = false;
+  bool isEditTransport = false;
+  bool isEditSurcharge = false;
+  String? textTransportFee;
+  String? textSurcharge;
+  int? selectedReason;
+  List<DataImagesEnterWareHouseResponse>? mImages = [];
+  String? mDataUploadImage;
+  int? id;
+  List<File>? images;
+  List<Asset>? selectedAssetsPrevious;
 
   @override
   void onInit() {
@@ -18,12 +38,19 @@ class OrderShipBackDetailController extends GetxController {
     } else {
       orderId = Get.arguments;
     }
+    print("$id");
+    images = <File>[];
+    selectedAssetsPrevious = <Asset>[];
     onGetOrderDetail(orderId!);
+    transportFeeController = TextEditingController(text: textTransportFee);
+    surchargeController = TextEditingController(text: textSurcharge);
   }
 
   void onGetOrderDetail(String id) {
     orderAminRepositories!.onGetOrderDetail(id).then((value) {
       orderShipBack = value;
+      textTransportFee = value.data!.transportFee!.toString();
+      textSurcharge = value.data!.surcharge!;
       update();
     }).catchError((onError) {
       print(onError);
@@ -33,6 +60,51 @@ class OrderShipBackDetailController extends GetxController {
 
   void onCheck() {
     isCheck = !isCheck;
+    update();
+  }
+
+  void onPickerImage(ImageSource imageSource) {
+    HandleImage().pickerImage(imageSource).then((value) {
+      images!.add(value!);
+      mImages!.add(DataImagesEnterWareHouseResponse(
+          key: "", path: "", file: value, isNetWork: false));
+      Get.back(result: images);
+      update();
+    }).catchError((onError) {
+      Get.back();
+    });
+  }
+
+  void onPickerMultiImage() {
+    Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    HandleImage().multiPickerImage(selectedAssetsPrevious!).then((value) async {
+      if (value.length != 0) {
+        selectedAssetsPrevious = value;
+        images = await HandleImage().convertAssetToFile(value);
+        Get.back();
+        Get.back(result: images);
+      }
+    }).catchError((onError) {
+      Get.back();
+      Get.defaultDialog(
+          title: (onError as ErrorResponse).message.toString(), middleText: '');
+    });
+  }
+
+  void onClearImage(int index) {
+    if (images!.length > index) {
+      images!.removeAt(index);
+    }
+    update();
+  }
+
+  void onChangeTransportFee() {
+    isEditTransport = true;
+    update();
+  }
+
+  void onChangeSurcharge() {
+    isEditSurcharge = true;
     update();
   }
 }
