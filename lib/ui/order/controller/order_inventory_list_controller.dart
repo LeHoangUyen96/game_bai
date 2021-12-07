@@ -18,6 +18,7 @@ class OrderInventoryListController extends GetxController implements OrderContra
   OrderResponse? orderResponse;
   bool selectedAll = false;
   List<int> listOrderId = [];
+  DataOrder? mDataOrder;
 
   @override
   void onInit() {

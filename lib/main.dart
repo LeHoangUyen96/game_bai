@@ -2,6 +2,7 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/ui/address/controller/add_address_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/ui/address/controller/update_address_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/dashboard_admin/controller/dashboard_admin_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/controller/finding_customer_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/controller/general_management_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/add_image_enter_warehouse_controller.dart';
@@ -19,6 +20,7 @@ import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
+import 'package:viet_trung_mobile/ui/order/controller/order_inventory_list_controller.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
@@ -106,5 +108,8 @@ class _Binding extends Bindings {
         () => OrderOwnerlessConfirmController(),
         fenix: true);
     Get.lazyPut<ConfirmOrderPage>(() => ConfirmOrderPage(), fenix: true);
+    Get.lazyPut<DashboardAdminController>(() => DashboardAdminController(), fenix: true);
+    Get.lazyPut<ManagerBagController>(() => ManagerBagController(), fenix: true);
+    Get.lazyPut<OrderInventoryListController>(() => OrderInventoryListController(), fenix: true);
   }
 }

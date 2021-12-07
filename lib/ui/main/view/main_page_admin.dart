@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/ui/admin/dashboard_admin/view/dashboard_admin_page.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/view/manager_bag_page.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
 import 'package:viet_trung_mobile/ui/dashboard_user/view/dashboard_user_page.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
@@ -36,8 +38,9 @@ class MainPageAdmin extends GetView<MainController> {
               children: [
                 //ProfilePage(),
                 //FindingCustomerPage(),
-                controller.isAdmin ==1 ?NotificationAdminPage() :DashboardUserPage(),
+                controller.isAdmin ==1 ?DashboardAdminPage() :DashboardUserPage(),
                 OrderInfoPage(),
+                //ManagerBagPage(),
                 controller.isAdmin ==1 ? GenaeralManagePage():ProfilePage(),
                 controller.isAdmin ==1 ?ProfilePage() : NotificationPage(),
               ],

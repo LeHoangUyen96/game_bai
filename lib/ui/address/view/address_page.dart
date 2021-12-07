@@ -12,6 +12,7 @@ import 'package:viet_trung_mobile/ui/address/view/add_address_page.dart';
 import 'package:viet_trung_mobile/ui/address/view/update_address_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/popup_del_address.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class AddressPage extends GetView<AddressController> {
@@ -60,6 +61,7 @@ class AddressPage extends GetView<AddressController> {
               height: Get.height,
               width: Get.width,
               child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,15 +163,14 @@ class AddressPage extends GetView<AddressController> {
                 secondaryActions: <Widget>[
                   IconSlideAction(
                     caption: 'Sửa',
-                    color: MAIN_LINE,
-                    iconWidget: SvgPicture.asset(IC_UPDATE_ADDRESS,height: 30, width: 30),
+                    color: BLUE2,
+                     iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
                     onTap: () {
-                      Get.to(()=>UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
+                      Get.to(()=> UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
                         if(value != null){
                           controller.onGetAddressAll();
                         }
-                      }
-                      );
+                      });
                     },
                   ),
                 ],
@@ -228,8 +229,8 @@ class AddressPage extends GetView<AddressController> {
                 secondaryActions: <Widget>[
                   IconSlideAction(
                     caption: 'Sửa',
-                    color: MAIN_LINE,
-                    iconWidget: SvgPicture.asset(IC_UPDATE_ADDRESS,height: 30, width: 30),
+                    color: BLUE2,
+                    iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
                     onTap: () {
                       Get.to(()=> UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
                         if(value != null){
@@ -243,7 +244,11 @@ class AddressPage extends GetView<AddressController> {
                     color: MAIN_DELETE_ADDRESS,
                     iconWidget: SvgPicture.asset(IC_DELETE_ADDRESS, height: 30, width: 30,),
                     onTap:() {
-                      controller.onDeleteAddress(controller.mdatas![index].id);
+                      //controller.onDeleteAddress(controller.mdatas![index].id);
+                      Get.dialog(DialogDelAddressCustomized(
+                        idAddress: controller.mdatas![index].id,
+                      ));
+                      
                     },
                   ) ,
                 ],

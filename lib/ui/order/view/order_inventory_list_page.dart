@@ -25,9 +25,9 @@ class OrderInventoryListPage extends GetView<OrderInventoryListController> {
     return GetBuilder<OrderInventoryListController>(
       init: OrderInventoryListController(),
       builder: (value) => Scaffold(
-        body:   controller.orderResponse!.data != null ? buildBody() : LoadingSpinKit(),
+        body:   controller.orderResponse != null ? buildBody() : LoadingSpinKit(),
         backgroundColor: MAIN_BG,
-        bottomNavigationBar:  controller.orderResponse!.data!.length != 0 ? _buildBottomNav() : null,
+        bottomNavigationBar:  controller.orderResponse != null   ? _buildBottomNav() : Container(),
         )
       );
     
