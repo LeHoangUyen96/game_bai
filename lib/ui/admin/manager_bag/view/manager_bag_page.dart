@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/date_picker_theme.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/response/list_bag_resoonse.dart';
+import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
+import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
@@ -30,6 +33,7 @@ class ManagerBagPage extends GetView<ManagerBagController> {
     return GetBuilder<ManagerBagController>(
       init: ManagerBagController(),
       builder: (value) => Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
         //body:  SingleChildScrollView(child: buildBody()) ,
         body: controller.mListBagResponse != null ? buildBody() : LoadingSpinKit(),
@@ -91,24 +95,30 @@ class ManagerBagPage extends GetView<ManagerBagController> {
                       border: Border.all(color:GRAY ),
                       borderRadius: BorderRadius.circular(10)
                     ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(IC_SEARCH, width: Get.width*0.1-20, ),
-                      SizedBox(width: 10,),
-                      Expanded(
-                        child: TextField(
-                              decoration:InputDecoration(
-                                border: InputBorder.none,
-                                hintText: MANAGE_PACKAGE_SEARCH_BAG,
-                                hintStyle: TextStyle(
-                                  color: GRAY,
-                                  fontFamily: SanFranciscoUIText
+                  child: InkWell(
+                    onTap: (){
+                      controller.onGetListBagFilter();
+                    },
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(IC_SEARCH, width: Get.width*0.1-20, ),
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: TextField(
+                            controller: controller.codeController,
+                                decoration:InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: MANAGE_PACKAGE_SEARCH_BAG,
+                                  hintStyle: TextStyle(
+                                    color: GRAY,
+                                    fontFamily: SanFranciscoUIText
+                                  ),
                                 ),
                               ),
-                            ),
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -154,85 +164,159 @@ class ManagerBagPage extends GetView<ManagerBagController> {
           ),
           controller.checkFilter == true ?
             Container(
-              color: Colors.white,
-              child:Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  children: [
-                    SizedBox(height: 15),
-                    Row(
+              color: WHITE,
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                   Container(
+                    child: DropdownSearch<DataListStatusBagResponse>(
+                      mode: Mode.MENU,
+                      maxHeight: 120,
+                      popupSafeArea: PopupSafeArea(),
+                      onFind: (String? filter) => controller.getDataStatusBag(),
+                      hint: "Trạng thái bao",
+                      onChanged:( data ){
+                        print('----------------$data');
+                        controller.statusBag = data!.status_code;
+                        controller.update();
+                        },
+                      itemAsString: (DataListStatusBagResponse u) => u.status_name!,
+                      dropdownButtonBuilder: (_)=> Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+                      ),
+                      popupShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),                
+                          ),
+                      popupItemBuilder: _customDropdownStatusBag,
+                      ),
+                  ),
+                  SizedBox(height: 15),
+                   Container(
+                    child: DropdownSearch<DataListTransportFormResponse>(
+                      mode: Mode.MENU,
+                      maxHeight: 120,
+                      popupSafeArea: PopupSafeArea(),
+                      onFind: (String? filter) => controller.getDataTransportForm(),
+                      hint: "Chọn hình thức vận chuyển",
+                      onChanged:( data ){
+                        print('$data');
+                        controller.transport_form_id = data!.id;
+                        controller.update();
+                        },
+                      itemAsString: (DataListTransportFormResponse u) => u.name!,
+                      dropdownButtonBuilder: (_)=> Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+                      ),
+                      popupShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),                
+                          ),
+                      popupItemBuilder: _customDropdownTransportForm,
+                      ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          flex: 5,
+                          flex: 2,
                           child: Container(
-                              padding: EdgeInsets.only(right: 5),
-                              child: DatepickerCustomized()
+                            height: 48,
+                            width:  Get.width*0.4,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: BT_GRAY ,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(8))
+                            ),
+                            child: Row (
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                    flex: 8,
+                                    child: InkWell(
+                                        onTap: () {
+                                          controller.pickFromDate(mContext!).toString();
+                                        },
+                                        child: TextCustomized(
+                                            text: controller.fromDateTime != null
+                                                ? controller.fromDateTime.toString()
+                                                : DELIVERY_NOTE_FROM_DATE
+                                        )
+                                    )
+                                ),
+                                SvgPicture.asset(IC_CALENDAR, height: 30, width: 30,)
+                              ],
+                            ),
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(width: 10.0,),
                         Expanded(
-                          flex: 5,
-                          child:  Container(
-                            padding: EdgeInsets.only(left: 5),
-                              child: DatepickerCustomized()
+                          flex: 2,
+                          child: Container(
+                            height: 48,
+                            width: Get.width*0.4,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: BT_GRAY ,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(8))
+                            ),
+                            child: Row (
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                    flex: 8,
+                                    child: InkWell(
+                                        onTap: () {
+                                          controller.pickToDate(mContext!).toString();
+                                        },
+                                        child: TextCustomized(
+                                            text: controller.toDateTime != null
+                                                ? controller.toDateTime.toString()
+                                                : DELIVERY_NOTE_TO_DATE
+                                        )
+                                    )
+                                ),
+                                SvgPicture.asset(IC_CALENDAR, height: 30, width: 30,)
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        TextCustomized(text: "Huỷ",),
-                        Spacer(),
-                        TextCustomized(text: "Xác nhận",),
-                      ],
-                    ),
-                    // Container(
-                    //   height: 200,
-                    //   child: CupertinoDatePicker(
-                    //       mode: CupertinoDatePickerMode.date,
-                    //       onDateTimeChanged: (dateTime) {
-                    //       }
-                    //   ),
-                    // ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: DatePickerWidget(
-                        looping: false, // default is not looping
-                        firstDate: DateTime(1990, 01, 01),
-                        lastDate: DateTime(2030, 1, 1),
-                        initialDate: DateTime(1991, 10, 12),
-                        dateFormat: "dd-MMM-yyyy",
-                        locale: DatePicker.localeFromString('vi'),
-                        //onChange: (DateTime newDate, _) => _selectedDate = newDate,
-                        pickerTheme: DateTimePickerTheme(
-                          itemTextStyle: TextStyle(color: Colors.black, fontSize: 19),
-                          dividerColor: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: ButtonCustomized(
-                        AUTH_CONFIRM,
-                        textColor: Colors.white,
-                        backgroundColor: BT_CONFIRM,
-                        onTap: () {Get.back();},
-                      ),
-
-                    ),
-                    SizedBox(height: 15),
-                    Container(
-                      child: ButtonCustomized(
-                        WALLET_DEPOSIT_BTN_CANCEL,
-                        textColor: Colors.black ,
-                        backgroundColor: Colors.white,
-                        borderColor: MAIN_BT_SAVE_ADDRESS,
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                  ],
-                ),
-              )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ButtonCustomized(
+                    AUTH_CONFIRM,
+                    backgroundColor: BLACK_1,
+                    textColor: WHITE,
+                    onTap: (){
+                      controller.onConfirm();
+                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ButtonCustomized(
+                    BT_CANCEL,
+                    backgroundColor: WHITE,
+                    textColor: BLACK_1,
+                    borderColor: BT_GRAY,
+                    onTap: (){
+                       controller.onCheckFilter();
+                    },
+                  )
+                ],
+              ),
             )
             : Container(),
           SizedBox(height: 15),
@@ -531,4 +615,64 @@ class ManagerBagPage extends GetView<ManagerBagController> {
         ),
     );
   }
+   Widget _customDropdownStatusBag (BuildContext context, DataListStatusBagResponse item, bool isSelected){
+   return Container(
+     padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
+              //borderRadius: BorderRadius.circular(5),
+              //color: bdredColor,
+            ),
+           child: InkWell(
+             onTap: (){},
+            child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+               Flexible(
+                 child: TextCustomized(
+                   text: item.status_name?.toString()??'',
+                   font: SanFranciscoUIText,
+                   weight: FontWeight.w400,
+                   )
+                   ),
+              //  Flexible(
+              //    child: SvgPicture.asset(IC_CHECK1),
+              //    )    
+             ],
+           )
+
+      ), 
+
+   );
+ }
+   Widget _customDropdownTransportForm (BuildContext context, DataListTransportFormResponse item, bool isSelected){
+   return Container(
+     padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
+              //borderRadius: BorderRadius.circular(5),
+              //color: bdredColor,
+            ),
+           child: InkWell(
+             onTap: (){},
+            child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+               Flexible(
+                 child: TextCustomized(
+                   text: item.name?.toString()??'',
+                   font: SanFranciscoUIText,
+                   weight: FontWeight.w400,
+                   )
+                   ),
+              //  Flexible(
+              //    child: SvgPicture.asset(IC_CHECK1),
+              //    )    
+             ],
+           )
+
+      ), 
+
+   );
+ }
 }

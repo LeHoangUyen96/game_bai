@@ -61,3 +61,4 @@ const String IMG_DASHBOARD = "assets/images/image_notify.png";
 const String bg_card = "assets/images/viettrung_bg.png";
 const String IMG_LOGO = "assets/images/img_logo.png";
 const String BG_IMG_DASHBOARD_ADMIN = "assets/images/img_backgourd_admin.png";
+const String IC_CALENDAR = "assets/images/icon_calendar.svg";

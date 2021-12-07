@@ -20,6 +20,7 @@ import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/main/view/main_page.dart';
 import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
 import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
+import 'package:viet_trung_mobile/ui/order/controller/order_inventory_list_controller.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
@@ -113,5 +114,6 @@ class _Binding extends Bindings {
     Get.lazyPut<ConfirmOrderPage>(() => ConfirmOrderPage(), fenix: true);
     Get.lazyPut<DashboardAdminController>(() => DashboardAdminController(), fenix: true);
     Get.lazyPut<ManagerBagController>(() => ManagerBagController(), fenix: true);
+    Get.lazyPut<OrderInventoryListController>(() => OrderInventoryListController(), fenix: true);
   }
 }
