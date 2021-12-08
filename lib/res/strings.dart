@@ -848,7 +848,7 @@ const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
 const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
 const String ORDER_STOCK = 'Hàng lưu kho';
 const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
- 
+const String STATUS_TRANFORM = 'Trạng thái giao hàng'; 
  
  
 

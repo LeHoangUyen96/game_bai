@@ -436,7 +436,7 @@ class ManagerBagPage extends GetView<ManagerBagController> {
                     flex: 1,
                     child: InkWell(
                       onTap: (){
-                        Get.to(BagDeatailsPage());
+                        Get.to(BagDeatailsPage(), arguments: mData.id);
                       },
                       child:TextCustomized(
                           text: mData.code.toString(),

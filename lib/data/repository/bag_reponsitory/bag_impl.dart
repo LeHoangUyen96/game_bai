@@ -2,11 +2,13 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/request/manager_bag_filter_request.dart';
+import 'package:viet_trung_mobile/data/request/update_status_detail_bag_request.dart';
 import 'package:viet_trung_mobile/data/response/bag_details_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/list_bag_resoonse.dart';
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
 import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
+import 'package:viet_trung_mobile/data/response/update_status_bag_response.dart';
 
 class BagImpl extends GetConnect implements BagRepositories {
   @override
@@ -79,6 +81,22 @@ class BagImpl extends GetConnect implements BagRepositories {
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return BagDetailsResponse.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<UploadStatusBagResponse> onUpdateSatusBag(String parent_pack_status_code, int id) async{
+    final url = NetworkConfig.BAG_UPDATE_STATUS + "$id"  ;
+
+    final header = await NetworkConfig.onBuildHeader();
+    Map data = {
+      'parent_pack_status_code': parent_pack_status_code,
+
+    };
+    final responseJson = await put(url, data, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return  UploadStatusBagResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }

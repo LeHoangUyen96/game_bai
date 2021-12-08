@@ -167,6 +167,8 @@ class NetworkConfig {
       URL_SERVER + "/admin/bag/list-warehouse-back";
   static const String BAG_LIST = URL_SERVER + "/admin/bag/list";
   static const String BAG_DETAIL = URL_SERVER + "/admin/bag/detail/";
+  static const String BAG_UPDATE_STATUS = URL_SERVER + "/admin/bag/update-status/";
+  static const String BAG_LIST_ORDER = URL_SERVER + "/admin/bag/list-order";
 
   //Setting
   static const String SETTING_PACKING_FORM =

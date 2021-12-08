@@ -11,6 +11,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/bag_details_controller.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class BagDeatailsPage extends GetView<BagDetailsController> {
@@ -22,10 +23,10 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
       init: BagDetailsController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:  SingleChildScrollView(
+        body: controller.bagDetailsResponse != null ? SingleChildScrollView(
            child: buildBody(),
            physics: BouncingScrollPhysics(),
-           ) ,
+           ):LoadingSpinKit() ,
         backgroundColor: BT_GRAY,
       ),
     );
@@ -94,24 +95,35 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                   children: [
                  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [ TextCustomized(
-                      text: '#DH0123456',
-                      font: SanFranciscoText,
-                      weight: FontWeight.w700,
-                      color: MAIN_BLACK,
-                      size: normalSize,
-                      ),
-                    TextCustomized(
-                    text: 'Kho Cửa Khẩu',
-                    font: SanFranciscoText,
-                    weight: FontWeight.w400,
-                    color: BG_ID_PD,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [ 
+                  Expanded(
+                    flex: 1,
+                    child: TextCustomized(
+                        text: controller.bagDetailsResponse!.data!.code.toString(),
+                        font: SanFranciscoText,
+                        weight: FontWeight.w700,
+                        color: MAIN_BLACK,
+                        size: normalSize,
                         ),
+                  ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: TextCustomized(
+                        text: controller.bagDetailsResponse!.data!.parent_pack_status_name.toString(),
+                        font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: BG_ID_PD,
+                            ),
+                      ),
+                    ),
                     ],
                   ),
                   SizedBox(height: 5,),
                   TextCustomized(
-                        text: '10:10 21/10/2021',
+                        text: controller.bagDetailsResponse!.data!.created_at.toString(),
                         font: SanFranciscoTextLight,
                         weight: FontWeight.w400,
                         color: MAIN_GRAY,
@@ -128,7 +140,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         color: BLACK_1,
                         ),
                         TextCustomized(
-                        text: ORDER_NULL,
+                        text: controller.bagDetailsResponse!.data!.parent_pack_name.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: BLACK,
@@ -147,7 +159,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         color: BLACK_1,
                         ),
                         TextCustomized(
-                        text: ORDER_NULL,
+                        text: controller.bagDetailsResponse!.data!.item_number.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: BLACK,
@@ -166,7 +178,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         color: BLACK_1,
                         ),
                         TextCustomized(
-                        text: ORDER_NULL,
+                        text: controller.bagDetailsResponse!.data!.warehouse_back_name.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: BLACK,
@@ -185,7 +197,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         color: BLACK_1,
                         ),
                         TextCustomized(
-                        text: ORDER_NULL,
+                        text: controller.bagDetailsResponse!.data!.transport_form.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: RED_1,
@@ -204,7 +216,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         color: BLACK_1,
                         ),
                         TextCustomized(
-                        text: ORDER_NULL,
+                        text: controller.bagDetailsResponse!.data!.customer_number.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: BLACK,
@@ -223,7 +235,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         color: BLACK_1,
                         ),
                         TextCustomized(
-                        text: ORDER_NULL,
+                        text: controller.bagDetailsResponse!.data!.updated_at.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
                         color: BLACK,
@@ -238,7 +250,9 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
               Container(
                 alignment: Alignment.center,
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    
+                  },
                   child: Wrap(
                     spacing: 5.0,
                     children: [
@@ -264,7 +278,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextCustomized(
-            text: MANAGE_PACKAGE_PACKING_FORM,
+            text: STATUS_TRANFORM,
             font: SanFranciscoUIText,
             size: normalSize,
             weight: FontWeight.w600,
@@ -277,10 +291,11 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                 maxHeight: 120,
                 popupSafeArea: PopupSafeArea(),
                 onFind: (String? filter) => controller.getDataStatusBag(),
-                hint: "Chọn Trạng thái bao hàng",
+                hint: controller.bagDetailsResponse!.data!.parent_pack_status_name.toString(),               
                 onChanged:( data ){
                   print('$data');
-                  controller.item_code = data!.status_name!;
+                  controller.item_code = data!.status_code!;
+                  controller.onUpdateStatusBag();
                   controller.update();
                   },
                 itemAsString: (DataListStatusBagResponse u) => u.status_name!,
@@ -395,131 +410,158 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                   Container(
                     width: Get.width,
                     height: 0.5,
-                    color: GRAY1,
+                    color: BT_GRAY,
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 10,bottom: 10),
-                    child: Column(
-                      children: [
-                        TimelineTile(
-                          isFirst: true,
-                          alignment: TimelineAlign.manual,
-                          lineXY: 0.4,
-                          indicatorStyle: IndicatorStyle(
-                            color: Colors.green,
-                            height: 10,
-                            width: 10,
-                            drawGap: false,
-                            indicatorXY: 0,
-                          ),
-                          beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-                          endChild: Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextCustomized(
-                                  text: "Kho Trung Quốc, đang đóng hàng về",
-                                  font: SanFranciscoTextLight,
-                                  weight: FontWeight.w400,
-                                  color: Colors.green,
-                                ),
-                                SizedBox(height: 50,),
-                              ],
-                            ),
-                          ),
-                          startChild: Container(
-                            child: Container(
-                              alignment: const Alignment(0.7, -0.800),
-                              child: TextCustomized(
-                                text: "11/11/2021",
-                                font: SanFranciscoTextLight,
-                                weight: FontWeight.w400,
-                                color: MAIN_GRAY,
-                              ),
-                            ),
-                          ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: WHITE 
                         ),
-                        TimelineTile(
-                          alignment: TimelineAlign.manual,
-                          lineXY: 0.4,
-                          indicatorStyle: IndicatorStyle(
-                            color: Colors.green,
-                            height: 10,
-                            width: 10,
-                            drawGap: false,
-                            indicatorXY: 0,
-                          ),
-                          beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-                          endChild: Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextCustomized(
-                                  text: "Kho Trung Quốc ",
-                                  font: SanFranciscoTextLight,
-                                  weight: FontWeight.w400,
-                                  color: Colors.green,
-                                ),
-                                SizedBox(height: 50,),
-                              ],
-                            ),
-                          ),
-                          startChild: Container(
-                            child: Container(
-                              alignment: const Alignment(0.7, -0.800),
-                              child: TextCustomized(
-                                text: "11/11/2021",
-                                font: SanFranciscoTextLight,
-                                weight: FontWeight.w400,
-                                color: MAIN_GRAY,
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: ORDER_LIST_JOURNEY,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
                               ),
-                            ),
-                          ),
-                        ),
-                         TimelineTile(
-                          isLast: true,
-                          alignment: TimelineAlign.manual,
-                          lineXY: 0.4,
-                          indicatorStyle: IndicatorStyle(
-                            color: Colors.green,
-                            height: 10,
-                            width: 10,
-                            drawGap: false,
-                            indicatorXY: 0,
-                          ),
-                          beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-                          endChild: Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextCustomized(
-                                  text: "Kho Trung Quốc, đang đóng hàng về",
-                                  font: SanFranciscoTextLight,
-                                  weight: FontWeight.w400,
-                                  color: Colors.green,
-                                ),
-                                SizedBox(height: 50,),
-                              ],
-                            ),
-                          ),
-                          startChild: Container(
-                            child: Container(
-                              alignment: const Alignment(0.7, -0.800),
-                              child: TextCustomized(
-                                text: "11/11/2021",
-                                font: SanFranciscoTextLight,
-                                weight: FontWeight.w400,
-                                color: MAIN_GRAY,
+                              SizedBox(height: 20,),
+                            ListView.builder(
+                              itemCount: controller.bagDetailsResponse!.data!.packing_journey!.length,
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              itemBuilder: (BuildContext context, index){
+                                return _buildListJourney(index);
+                              }
                               ),
-                            ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                  // Container(
+                  //   padding: EdgeInsets.only(top: 10,bottom: 10),
+                  //   child: Column(
+                  //     children: [
+                  //       TimelineTile(
+                  //         isFirst: true,
+                  //         alignment: TimelineAlign.manual,
+                  //         lineXY: 0.4,
+                  //         indicatorStyle: IndicatorStyle(
+                  //           color: Colors.green,
+                  //           height: 10,
+                  //           width: 10,
+                  //           drawGap: false,
+                  //           indicatorXY: 0,
+                  //         ),
+                  //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
+                  //         endChild: Container(
+                  //           padding: EdgeInsets.only(left: 10),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               TextCustomized(
+                  //                 text: "Kho Trung Quốc, đang đóng hàng về",
+                  //                 font: SanFranciscoTextLight,
+                  //                 weight: FontWeight.w400,
+                  //                 color: Colors.green,
+                  //               ),
+                  //               SizedBox(height: 50,),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         startChild: Container(
+                  //           child: Container(
+                  //             alignment: const Alignment(0.7, -0.800),
+                  //             child: TextCustomized(
+                  //               text: "11/11/2021",
+                  //               font: SanFranciscoTextLight,
+                  //               weight: FontWeight.w400,
+                  //               color: MAIN_GRAY,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       TimelineTile(
+                  //         alignment: TimelineAlign.manual,
+                  //         lineXY: 0.4,
+                  //         indicatorStyle: IndicatorStyle(
+                  //           color: Colors.green,
+                  //           height: 10,
+                  //           width: 10,
+                  //           drawGap: false,
+                  //           indicatorXY: 0,
+                  //         ),
+                  //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
+                  //         endChild: Container(
+                  //           padding: EdgeInsets.only(left: 10),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               TextCustomized(
+                  //                 text: "Kho Trung Quốc ",
+                  //                 font: SanFranciscoTextLight,
+                  //                 weight: FontWeight.w400,
+                  //                 color: Colors.green,
+                  //               ),
+                  //               SizedBox(height: 50,),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         startChild: Container(
+                  //           child: Container(
+                  //             alignment: const Alignment(0.7, -0.800),
+                  //             child: TextCustomized(
+                  //               text: "11/11/2021",
+                  //               font: SanFranciscoTextLight,
+                  //               weight: FontWeight.w400,
+                  //               color: MAIN_GRAY,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //        TimelineTile(
+                  //         isLast: true,
+                  //         alignment: TimelineAlign.manual,
+                  //         lineXY: 0.4,
+                  //         indicatorStyle: IndicatorStyle(
+                  //           color: Colors.green,
+                  //           height: 10,
+                  //           width: 10,
+                  //           drawGap: false,
+                  //           indicatorXY: 0,
+                  //         ),
+                  //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
+                  //         endChild: Container(
+                  //           padding: EdgeInsets.only(left: 10),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               TextCustomized(
+                  //                 text: "Kho Trung Quốc, đang đóng hàng về",
+                  //                 font: SanFranciscoTextLight,
+                  //                 weight: FontWeight.w400,
+                  //                 color: Colors.green,
+                  //               ),
+                  //               SizedBox(height: 50,),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //         startChild: Container(
+                  //           child: Container(
+                  //             alignment: const Alignment(0.7, -0.800),
+                  //             child: TextCustomized(
+                  //               text: "11/11/2021",
+                  //               font: SanFranciscoTextLight,
+                  //               weight: FontWeight.w400,
+                  //               color: MAIN_GRAY,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -682,6 +724,50 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
 
       ), 
 
+   );
+ }
+ Widget _buildListJourney(index){
+   return Center(
+     child: TimelineTile(
+               isFirst: index == 0,
+               isLast: index == controller.bagDetailsResponse!.data!.packing_journey!.length -1,
+              //  isLast: true,
+               hasIndicator: true,
+              axis: TimelineAxis.vertical,
+              alignment: TimelineAlign.center,
+              lineXY: 0.1,
+              indicatorStyle: IndicatorStyle(
+                color: BT_GRAY,
+                height: 10,
+                width: 10,
+                drawGap: true,
+                indicatorXY: 0.3,
+              ),
+              beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 1),
+              endChild: Container(
+                padding: EdgeInsets.only(left: 20),
+                height: 50,
+                child:  TextCustomized(
+                            text: controller.bagDetailsResponse!.data!.packing_journey![index].status_name.toString(),
+                            font: SanFranciscoTextLight,
+                            size: normalSize,
+                            weight: FontWeight.w600,
+                            color: COLOR_ORDER_DELIVERY_SUCCESSFULL,
+                          ),
+              ),
+              startChild: Container(
+                height: 50,
+                padding: EdgeInsets.only(left: 30),
+                child: TextCustomized(
+                  text: controller.bagDetailsResponse!.data!.packing_journey![index].created_at.toString(),
+                  font: SanFranciscoTextLight,
+                  size: smallSize,
+                  weight: FontWeight.w400,
+                  color: BT_GRAY,
+                  ),
+              ),
+              
+            ),
    );
  }
 }
