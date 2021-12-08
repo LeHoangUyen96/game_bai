@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/controller/order_management_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/view/valid_order_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_ship_back.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_storage.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
@@ -43,7 +44,7 @@ class ValidOrderPage extends GetView<OrderManagementController> {
                     width: Get.width * 0.4,
                     child: TextCustomized(
                       textAlign: TextAlign.center,
-                      text: "Hàng chuyển về (5)",
+                      text: orderShipBack,
                       color: Colors.black,
                       size: 14,
                       weight: FontWeight.w800,
@@ -53,7 +54,7 @@ class ValidOrderPage extends GetView<OrderManagementController> {
                     width: Get.width * 0.4,
                     child: TextCustomized(
                       textAlign: TextAlign.center,
-                      text: "Hàng lưu kho (5)",
+                      text: orderStorage,
                       color: Colors.black,
                       size: 14,
                       weight: FontWeight.w800,
@@ -67,8 +68,8 @@ class ValidOrderPage extends GetView<OrderManagementController> {
               child: TabBarView(
                 controller: controller.tabController,
                 children: [
-                  ValidOrderDeliveryPage(),
-                  ValidOrderDeliveryPage(),
+                  OrderValidShipBack(),
+                  OrderValidStorage(),
                 ],
               ),
             ))

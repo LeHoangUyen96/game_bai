@@ -50,7 +50,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: TextCustomized(
-                      text: "Thông tin đơn hàng",
+                      text: infoOrder,
                       size: 16,
                       weight: FontWeight.w700,
                       color: Colors.black,
@@ -101,7 +101,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextCustomized(
-                              text: "Khách hàng",
+                              text: customer,
                               font: SanFranciscoTextLight,
                               weight: FontWeight.w700,
                               color: GRAY1,
@@ -190,7 +190,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextCustomized(
-                              text: "Phụ phí",
+                              text: MANAGE_PACKAGE_SURCHARGE,
                               font: SanFranciscoTextLight,
                               weight: FontWeight.w700,
                               color: GRAY1,
@@ -224,7 +224,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextCustomized(
-                    text: "Hình ảnh",
+                    text: ADMIN_IMG,
                     size: 16,
                     font: SanFranciscoText,
                     weight: FontWeight.w700,
@@ -293,7 +293,7 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     child: TextCustomized(
-                      text: "Hành trình đơn hàng",
+                      text: orderJourney,
                       size: 16,
                       font: SanFranciscoText,
                       weight: FontWeight.w700,
@@ -364,3 +364,196 @@ class OrderDetailsAdminPage extends GetView<OrderManagementController> {
     );
   }
 }
+
+// Container(
+//               color: WHITE,
+//               child: Padding(
+//                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+//                 child: Column(
+//                   children: [
+//                     Row(
+//                       children: [
+//                         Expanded(
+//                             flex: 5,
+//                             child: Column(
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 TextCustomized(
+//                                   text: "Kg",
+//                                   size: 14,
+//                                   font: SanFranciscoText,
+//                                   weight: FontWeight.w700,
+//                                   color: BLACK,
+//                                 ),
+//                                 SizedBox(height: 10),
+//                                 TextFieldCustomized(
+//                                   hint: "3.0 kg",
+//                                 ),
+//                               ],
+//                             )),
+//                         SizedBox(width: 5),
+//                         Expanded(
+//                             flex: 5,
+//                             child: Column(
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 TextCustomized(
+//                                   text: "M3",
+//                                   size: 14,
+//                                   font: SanFranciscoText,
+//                                   weight: FontWeight.w700,
+//                                   color: BLACK,
+//                                 ),
+//                                 SizedBox(height: 10),
+//                                 TextFieldCustomized(
+//                                   hint: "Nhập M3",
+//                                 ),
+//                               ],
+//                             ))
+//                       ],
+//                     ),
+//                     SizedBox(height: 10),
+//                     ButtonCustomized(
+//                       "Lưu",
+//                       backgroundColor: BT_CONFIRM,
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             SizedBox(height: 10),
+//             Container(
+//               color: WHITE,
+//               child: Padding(
+//                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     TextCustomized(
+//                       text: "Trạng thái giao hàng",
+//                       size: 16,
+//                       font: SanFranciscoText,
+//                       weight: FontWeight.w700,
+//                       color: BLACK,
+//                     ),
+//                     SizedBox(height: 10),
+//                     Container(
+//                         width: Get.width,
+//                         decoration: BoxDecoration(
+//                             border: Border.all(width: 1.0, color: MAIN_LINE),
+//                             borderRadius: BorderRadius.circular(9),
+//                             color: Colors.white),
+//                         child: Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                           children: [
+//                             Expanded(
+//                               child: DropdownButtonHideUnderline(
+//                                 child: ButtonTheme(
+//                                     alignedDropdown: true,
+//                                     child: DropdownButton(
+//                                       icon: Icon(
+//                                         Icons.keyboard_arrow_down,
+//                                         color: MAIN_LINE,
+//                                       ),
+//                                       iconSize: 24,
+//                                       elevation: 16,
+//                                       isExpanded: true,
+//                                       items: [
+//                                         DropdownMenuItem<String>(
+//                                           value: "1",
+//                                           child: Center(
+//                                             child: Text(
+//                                                 "Chưa có trạng thái giao hàng"),
+//                                           ),
+//                                         ),
+//                                       ],
+//                                       onChanged: (value) {},
+//                                       hint: Text("Chưa giao"),
+//                                     )),
+//                               ),
+//                             ),
+//                           ],
+//                         )),
+//                     SizedBox(height: 10),
+//                     ButtonCustomized(
+//                       "Lưu",
+//                       backgroundColor: BT_CONFIRM,
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             SizedBox(height: 10),
+//             Container(
+//               color: WHITE,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Container(
+//                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+//                     child: TextCustomized(
+//                       text: orderJourney,
+//                       size: 16,
+//                       font: SanFranciscoText,
+//                       weight: FontWeight.w700,
+//                       color: BLACK,
+//                     ),
+//                   ),
+//                   Container(
+//                     width: Get.width,
+//                     height: 0.5,
+//                     color: GRAY1,
+//                   ),
+//                   Container(
+//                     padding: EdgeInsets.only(top: 10, bottom: 10),
+//                     child: Column(
+//                       children: [
+//                         TimelineTile(
+//                           isFirst: true,
+//                           alignment: TimelineAlign.manual,
+//                           lineXY: 0.4,
+//                           indicatorStyle: IndicatorStyle(
+//                             color: Colors.green,
+//                             height: 10,
+//                             width: 10,
+//                             drawGap: false,
+//                             indicatorXY: 0,
+//                           ),
+//                           beforeLineStyle:
+//                               LineStyle(color: BT_GRAY, thickness: 2),
+//                           endChild: Container(
+//                             padding: EdgeInsets.only(left: 10),
+//                             child: Column(
+//                               crossAxisAlignment: CrossAxisAlignment.start,
+//                               children: [
+//                                 TextCustomized(
+//                                   text: "Kho Trung Quốc, đang đóng hàng về",
+//                                   font: SanFranciscoTextLight,
+//                                   weight: FontWeight.w400,
+//                                   color: Colors.green,
+//                                 ),
+//                                 SizedBox(
+//                                   height: 50,
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                           startChild: Container(
+//                             child: Container(
+//                               alignment: const Alignment(0.7, -0.800),
+//                               child: TextCustomized(
+//                                 text: "11/11/2021",
+//                                 font: SanFranciscoTextLight,
+//                                 weight: FontWeight.w400,
+//                                 color: MAIN_GRAY,
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             SizedBox(height: 10),

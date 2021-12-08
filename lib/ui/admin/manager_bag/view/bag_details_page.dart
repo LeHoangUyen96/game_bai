@@ -58,6 +58,8 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
     );
   }
   Widget buildBody(){
+    final Color color;
+    color = controller.ColorStatusName(controller.bagDetailsResponse!.data!.parent_pack_status_name.toString());
     return Container(
       child: Column(
         children: [
@@ -115,7 +117,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         text: controller.bagDetailsResponse!.data!.parent_pack_status_name.toString(),
                         font: SanFranciscoText,
                         weight: FontWeight.w400,
-                        color: BG_ID_PD,
+                        color: color,
                             ),
                       ),
                     ),
