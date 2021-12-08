@@ -210,6 +210,8 @@ class NetworkConfig {
   //order admin no transport
   static const String listOrderNoTransport =
       URL_SERVER + "/admin/order/list-order-no-transportation";
+  static const String updateOrderNoTransport =
+      URL_SERVER + "/admin/order/update-order-no-transportation/";
 
   //order admin wait confirm
   static const String listOrderWaitConfirm =

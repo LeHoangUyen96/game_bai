@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/models/method_send.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile/data/request/update_order_no_transport.dart';
 import 'package:viet_trung_mobile/data/response/order_admin_detail_response.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -23,8 +24,8 @@ class OrderNoTransportDetailController extends GetxController {
   int? currentMethodSend = 0;
   MethodSend? selectedMethodSend;
   final methodSend = [
-    MethodSend(1, returnSupplie),
     MethodSend(2, storage),
+    MethodSend(3, returnSupplie),
   ];
   bool isEditTransport = false;
   bool isEditSurcharge = false;
@@ -113,5 +114,25 @@ class OrderNoTransportDetailController extends GetxController {
   void onClearImage(int index) {
     mImages!.removeAt(index);
     update();
+  }
+
+  void onSave(int id) {
+    UpdateOrderNoTransport request = UpdateOrderNoTransport(
+      surcharge: textSurcharge,
+      transportFee: textTransportFee,
+      image: img,
+      type: currentMethodSend! + 2,
+      note: noteController.text,
+    );
+    orderAminRepositories!
+        .onUpdateOrderNoTransport(request, orderId!)
+        .then((value) {
+      Get.back();
+      Get.snackbar('Thông báo', value.message!);
+      update();
+    }).catchError((onError) {
+      print(onError);
+      update();
+    });
   }
 }

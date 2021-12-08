@@ -355,6 +355,9 @@ class OrderDetailNotShippedPage
                     ButtonCustomized(
                       save,
                       backgroundColor: COLOR_BT,
+                      onTap: () {
+                        controller.onSave(response.id!);
+                      },
                     ),
                     SizedBox(height: 30),
                   ],
