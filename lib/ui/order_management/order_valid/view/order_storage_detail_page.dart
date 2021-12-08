@@ -6,18 +6,18 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/order_ship_back_detail_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/order_storage_detail_controller.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/view/item_images.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
-class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
+class OrderStorageDetailPage extends GetView<OrderStorageDetailController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OrderShipBackDetailController>(
-        init: OrderShipBackDetailController(),
+    return GetBuilder<OrderStorageDetailController>(
+        init: OrderStorageDetailController(),
         builder: (value) => Scaffold(
             appBar: buildAppBar(
                 ORDER_HEADER_DETAILS,
@@ -31,8 +31,8 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                     ),
                   ),
                 )),
-            body: controller.orderShipBack != null
-                ? buildBody(controller.orderShipBack!.data!)
+            body: controller.orderStorage != null
+                ? buildBody(controller.orderStorage!.data!)
                 : SizedBox()));
   }
 
@@ -152,7 +152,7 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                           color: GRAY1,
                         ),
                         SizedBox(height: 10),
-                        controller.orderShipBack != null
+                        controller.orderStorage != null
                             ? Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -334,7 +334,7 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
               ),
             ),
             SizedBox(height: 10),
-            controller.orderShipBack!.data!.orderJouney != null
+            controller.orderStorage!.data!.orderJouney != null
                 ? Container(
                     color: WHITE,
                     child: Column(
@@ -356,14 +356,9 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                           height: 0.5,
                           color: GRAY,
                         ),
-                        _itemOrderJourney(
-                          response
-                              .orderJouney![response.orderJouney!.length - 1],
-                          Colors.green,
-                        ),
                         SingleChildScrollView(
                           child: ListView.builder(
-                            itemCount: response.orderJouney!.length - 1,
+                            itemCount: response.orderJouney!.length,
                             shrinkWrap: true,
                             reverse: true,
                             physics: NeverScrollableScrollPhysics(),
