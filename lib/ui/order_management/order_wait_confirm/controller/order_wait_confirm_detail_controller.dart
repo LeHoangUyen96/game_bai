@@ -28,7 +28,6 @@ class OrderWaitConfirmDetailController extends GetxController {
   List<DataTransportForm>? transportForm;
   DataPackingForm? selectedPackingForm;
   DataTransportForm? selectedTransportForm;
-  int? selectedMethodSend;
   final methodSend = [
     MethodSend(1, packOrderBack),
     MethodSend(2, storage),
@@ -92,7 +91,6 @@ class OrderWaitConfirmDetailController extends GetxController {
 
   void onChangeMethodSend(MethodSend value, int id) {
     currentMethodSend = value.id! - 1;
-    selectedMethodSend = value.id!;
     update();
   }
 
@@ -169,9 +167,7 @@ class OrderWaitConfirmDetailController extends GetxController {
   }
 
   void onClearImage(int index) {
-    if (images!.length > index) {
-      images!.removeAt(index);
-    }
+    mImages!.removeAt(index);
     update();
   }
 
@@ -194,10 +190,10 @@ class OrderWaitConfirmDetailController extends GetxController {
         orderId: data.id,
         transportId: selectedTransportForm!.id,
         packingId: selectedPackingForm!.id,
-        type: selectedMethodSend,
         note: noteController.text,
         transportFee: textTransportFee,
         image: img,
+        type: currentMethodSend! + 1,
       );
       onConfirm(request);
     }
