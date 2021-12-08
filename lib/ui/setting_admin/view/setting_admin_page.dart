@@ -4,14 +4,10 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_no_transport/view/order_not_shipped_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/order_ownerless_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_shipped/view/order_shipping_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/view/order_waitting_for_confirm_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/decentralization/view/decentralization_page.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 
-class OrderAdminPage extends GetView<OrderInfoController> {
+class SettingAdminPage extends GetView<OrderInfoController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderInfoController>(
@@ -28,9 +24,8 @@ class OrderAdminPage extends GetView<OrderInfoController> {
       preferredSize: Size(double.infinity, 55),
       child: InitialWidget(
         child: Container(),
-        titleAppBar: MANAGE_PACKAGE_ORDER,
+        titleAppBar: setting,
         backgroundAppBar: Colors.black26,
-        isShowBack: false,
       ),
     );
   }
@@ -39,21 +34,15 @@ class OrderAdminPage extends GetView<OrderInfoController> {
     return Container(
       color: MAIN_BG,
       child: Column(children: [
-        _buildItem(goodsInWarehouseChina, () {
-          Get.to(ValidOrderPage());
+        _buildItem(decentralization, () {
+          Get.to(DecentralizationPage());
         }),
-        _buildItem(goodsShipper, () {
-          Get.to(OrderShippingPage());
-        }),
-        _buildItem(orderWaitConfirm, () {
-          Get.to(OrderWaittingForConfirmPage());
-        }),
-        _buildItem(ownerlessOrder, () {
-          Get.to(OwneslessOrderPage());
-        }),
-        _buildItem(goodsNotShipper, () {
-          Get.to(OrderNotShippedPage());
-        })
+        _buildItem(transformeFormat, () {}),
+        _buildItem(packFormat, () {}),
+        _buildItem(dashboardProduct, () {}),
+        _buildItem(inventoryManagement, () {}),
+        _buildItem(rateSettings, () {}),
+        _buildItem(report, () {})
       ]),
     );
   }

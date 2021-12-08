@@ -12,14 +12,23 @@ import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<OrderWaitConfirmController>(
         init: OrderWaitConfirmController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar(orderWaitConfirm),
+              appBar: buildAppBar(
+                  orderWaitConfirm,
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.search,
+                        color: WHITE,
+                      ),
+                    ),
+                  )),
               body: SmartRefresher(
                   enablePullUp: true,
                   enablePullDown: true,

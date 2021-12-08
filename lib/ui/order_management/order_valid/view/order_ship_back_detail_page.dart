@@ -20,7 +20,18 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
     return GetBuilder<OrderShipBackDetailController>(
         init: OrderShipBackDetailController(),
         builder: (value) => Scaffold(
-            appBar: buildAppBar(ORDER_HEADER_DETAILS),
+            appBar: buildAppBar(
+                ORDER_HEADER_DETAILS,
+                Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Icon(
+                      Icons.search,
+                      color: WHITE,
+                    ),
+                  ),
+                )),
             body: controller.orderShipBack != null
                 ? buildBody(controller.orderShipBack!.data!)
                 : SizedBox()));
@@ -92,8 +103,7 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                             _text(customer),
                             TextCustomized(
                               text: response.name!,
-                              font: SanFranciscoText,
-                              weight: FontWeight.w400,
+                              weight: FontWeight.w500,
                               color: BLACK,
                             ),
                           ],
@@ -104,16 +114,10 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                           children: [
                             _text(PHONE),
                             Spacer(),
-                            InkWell(
-                                onTap: () {
-                                  launch(('tel://${response.phone!}'));
-                                },
-                                child: TextCustomized(
-                                  text: response.phone!,
-                                  weight: FontWeight.w500,
-                                )),
-                            SizedBox(width: 2),
-                            Icon(Icons.phone, size: 16, color: Colors.black)
+                            TextCustomized(
+                              text: response.phone!,
+                              weight: FontWeight.w500,
+                            )
                           ],
                         ),
                         SizedBox(height: 10),

@@ -219,4 +219,8 @@ class NetworkConfig {
   //order admin shipped
   static const String listOrderShipped =
       URL_SERVER + "/admin/order/list-order-shipped";
+
+  //decentralization admin
+  static const String listDecentralization = URL_SERVER + "/admin/role";
+  static const String listRightsGroup = URL_SERVER + "/admin/permission";
 }
