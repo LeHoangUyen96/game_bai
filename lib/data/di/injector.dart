@@ -20,6 +20,8 @@ import 'package:viet_trung_mobile/data/repository/profile_repository/profile_imp
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_impl.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_impl.dart';
+import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
 
 class Injector {
   factory Injector() {
@@ -41,4 +43,5 @@ class Injector {
   OrderRepositories get order => OrderImpl();
   OrderAdminRepositories get orderAmin => OrderAdminImpl();
   RoleAdminRepositories get role => RoleAdminImpl();
+  TransportAdminRepositories get transport => TransportAdminImpl();
 }

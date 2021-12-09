@@ -222,11 +222,23 @@ class NetworkConfig {
   static const String listOrderShipped =
       URL_SERVER + "/admin/order/list-order-shipped";
 
-  //role admin
+  //setting role admin
   static const String listRole = URL_SERVER + "/admin/role";
   static const String listRightsGroup = URL_SERVER + "/admin/permission";
   static const String roleDetail = URL_SERVER + "/admin/role/show/";
   static const String updateRole = URL_SERVER + "/admin/role/update/";
   static const String deleteRole = URL_SERVER + "/admin/role/delete/";
   static const String addRole = URL_SERVER + "/admin/role/create";
+
+//setting transport admin
+  static const String listTransport =
+      URL_SERVER + "/admin/setting/transport-form/list";
+  static const String updateTransport =
+      URL_SERVER + "/admin/setting/transport-form/update/";
+  static const String deleteTransport =
+      URL_SERVER + "/admin/setting/transport-form/delete/";
+  static const String addTransport =
+      URL_SERVER + "/admin/setting/transport-form/delete/";
+  static const String transportDetail =
+      URL_SERVER + "/admin/transport-form-fee/list/";
 }
