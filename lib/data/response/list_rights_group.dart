@@ -16,15 +16,18 @@ class RightsGroupResponse {
 class DataRightsGroup {
   int? id;
   String? name;
+  bool? checked = false;
 
   DataRightsGroup({
     this.id,
     this.name,
+    this.checked,
   });
 
   DataRightsGroup.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
+    id = json['id'] ?? 0;
+    name = json['name'] ?? '';
+    checked = json['is_checked'] ?? false;
   }
 
   Map<String, dynamic> toJson() {

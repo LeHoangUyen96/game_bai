@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/list_decentralization_response.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:viet_trung_mobile/data/response/list_role_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/decentralization/controller/decentralization_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/decentralization/view/decentralization_detail_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/role/controller/role_controller.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/role/view/add_role_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/role/view/role_detail_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 
-class DecentralizationPage extends GetView<DecentralizationController> {
+class RolePage extends GetView<RoleController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DecentralizationController>(
-      init: DecentralizationController(),
-      builder: (value) => Scaffold(
-        appBar: buildAppBar(
-            decentralization,
-            Container(
-              padding: EdgeInsets.only(right: 10),
-              child: InkWell(
-                onTap: () {},
-                child: Icon(
-                  Icons.add,
-                  color: WHITE,
-                ),
+    return GetBuilder<RoleController>(
+        init: RoleController(),
+        builder: (value) => SmartRefresher(
+              enablePullUp: true,
+              enablePullDown: true,
+              controller: controller.refreshController,
+              onRefresh: () {
+                controller.onRefresh();
+              },
+              onLoading: () {
+                controller.onLoading();
+              },
+              child: Scaffold(
+                appBar: buildAppBar(
+                    role,
+                    Container(
+                      padding: EdgeInsets.only(right: 10),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(AddRolePage());
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: WHITE,
+                        ),
+                      ),
+                    )),
+                body: controller.response != null ? buildBody() : SizedBox(),
               ),
-            )),
-        body: controller.response != null ? buildBody() : SizedBox(),
-      ),
-    );
+            ));
   }
 
   Widget buildBody() {
@@ -44,7 +58,10 @@ class DecentralizationPage extends GetView<DecentralizationController> {
               return _buildItem(
                 controller.response!.data![index],
                 () {
-                  Get.to(DecentralizationDetailPage());
+                  Get.to(
+                    RoleDetailPage(),
+                    arguments: controller.response!.data![index].id.toString(),
+                  );
                 },
               );
             }),
@@ -53,7 +70,7 @@ class DecentralizationPage extends GetView<DecentralizationController> {
   }
 
   Widget _buildItem(
-    DataDecentralization response,
+    DataRole response,
     VoidCallback onTap,
   ) {
     return Container(

@@ -4,7 +4,8 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/decentralization/view/decentralization_page.dart';
+import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/role/view/role_page.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 
 class SettingAdminPage extends GetView<OrderInfoController> {
@@ -34,15 +35,18 @@ class SettingAdminPage extends GetView<OrderInfoController> {
     return Container(
       color: MAIN_BG,
       child: Column(children: [
-        _buildItem(decentralization, () {
-          Get.to(DecentralizationPage());
+        _buildItem(role, () {
+          Get.to(RolePage());
         }),
         _buildItem(transformeFormat, () {}),
         _buildItem(packFormat, () {}),
         _buildItem(dashboardProduct, () {}),
         _buildItem(inventoryManagement, () {}),
         _buildItem(rateSettings, () {}),
-        _buildItem(report, () {})
+        _buildItem(report, () {}),
+        _buildItem(userInfo, () {
+          Get.to(ProfilePage());
+        })
       ]),
     );
   }

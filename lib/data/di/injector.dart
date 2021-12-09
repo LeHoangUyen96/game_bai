@@ -4,8 +4,8 @@ import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_impl.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
-import 'package:viet_trung_mobile/data/repository/decentralization_admin_reponsitory/decentralization_admin_impl.dart';
-import 'package:viet_trung_mobile/data/repository/decentralization_admin_reponsitory/decentralization_admin_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_impl.dart';
+import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_impl.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dart';
@@ -40,6 +40,5 @@ class Injector {
 
   OrderRepositories get order => OrderImpl();
   OrderAdminRepositories get orderAmin => OrderAdminImpl();
-  DecentralizationAdminRepositories get decentralization =>
-      DecentralizationAdminImpl();
+  RoleAdminRepositories get role => RoleAdminImpl();
 }

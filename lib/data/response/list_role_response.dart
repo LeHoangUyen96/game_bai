@@ -1,30 +1,30 @@
-class DecentralizationResponse {
-  List<DataDecentralization>? data;
+class RoleResponse {
+  List<DataRole>? data;
 
-  DecentralizationResponse({this.data});
+  RoleResponse({this.data});
 
-  DecentralizationResponse.fromJson(Map<String, dynamic> json) {
+  RoleResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <DataDecentralization>[];
+      data = <DataRole>[];
       json['data'].forEach((v) {
-        data!.add(DataDecentralization.fromJson(v));
+        data!.add(DataRole.fromJson(v));
       });
     }
   }
 }
 
-class DataDecentralization {
+class DataRole {
   int? id;
   String? name;
   String? description;
 
-  DataDecentralization({
+  DataRole({
     this.id,
     this.name,
     this.description,
   });
 
-  DataDecentralization.fromJson(Map<String, dynamic> json) {
+  DataRole.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
