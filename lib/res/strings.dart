@@ -845,7 +845,7 @@ const String ORDER_STOCK = 'Hàng lưu kho';
 const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
 const String STATUS_TRANFORM = 'Trạng thái giao hàng'; 
 const String DELIVERY_PACKAGE = 'Hình thức đóng gói'; 
- 
+const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';  
 
  
  

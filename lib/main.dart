@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/add_i
 import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/enter_warehouse_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/manager_bag_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_staff/controller/manager_staff_list_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_1_controller.dart';
@@ -28,6 +29,7 @@ import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller
 import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/controller/profile_edit_controller.dart';
+import 'package:viet_trung_mobile/ui/rating_order/controller/rating_order_controller.dart';
 import 'package:viet_trung_mobile/ui/splash/controller/splash_controller.dart';
 import 'package:viet_trung_mobile/ui/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +72,9 @@ class _Binding extends Bindings {
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
     Get.lazyPut<AddressController>(() => AddressController(), fenix: true);
     Get.lazyPut<OrderDetailReceiveController>(() => OrderDetailReceiveController(), fenix: true);
+    Get.lazyPut<RatingOrderController>(() => RatingOrderController(), fenix: true);
     Get.lazyPut<OrderController>(() => OrderController(), fenix: true);
+    Get.lazyPut<ManagerStaffController>(() => ManagerStaffController(), fenix: true);
     Get.lazyPut<AddAddressController>(() => AddAddressController(),
         fenix: true);
     Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(),

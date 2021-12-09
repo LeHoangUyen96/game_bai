@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/list_rating_order_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
@@ -9,6 +10,7 @@ import 'package:viet_trung_mobile/ui/rating_order/controller/rating_order_contro
 import 'package:viet_trung_mobile/ui/rating_order/view/review_order_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class RatingOrderPage extends GetView<RatingOrderController> {
@@ -20,7 +22,7 @@ class RatingOrderPage extends GetView<RatingOrderController> {
       init: RatingOrderController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:    buildBody(),
+        body: controller.listRatingOrderResponse != null ? buildBody(): LoadingSpinKit() ,
         backgroundColor: BT_GRAY, 
                
       ),
@@ -44,18 +46,18 @@ class RatingOrderPage extends GetView<RatingOrderController> {
     return Container(
       child: ListView.separated(
         itemBuilder: (BuildContext context, int index){
-          return _builListRating();
+          return _builListRating(controller.listRatingOrderResponse!.data![index]);
         }, 
         shrinkWrap: true,
         separatorBuilder: (context, index) {
           return SizedBox(height: 10);
         },
         physics: BouncingScrollPhysics (),
-        itemCount: 10
+        itemCount: controller.listRatingOrderResponse!.data!.length
         ),
     );
   }
-  Widget _builListRating(){
+  Widget _builListRating(DataListRatingOrderResponse data){
     return Container(
        padding: EdgeInsets.all(15),
       color: WHITE,
@@ -87,7 +89,7 @@ class RatingOrderPage extends GetView<RatingOrderController> {
                               Get.to(ReviewOrderPage());
                             },
                             child: TextCustomized(
-                              text: "211003TODWE4MD",
+                              text: data.bill_code.toString(),
                               color: BLACK_1,
                               font: SanFranciscoText,
                               weight: FontWeight.w400,
@@ -116,7 +118,7 @@ class RatingOrderPage extends GetView<RatingOrderController> {
                               //   },
                               // ),
                               child: RatingBarIndicator(
-                              rating: 3,
+                              rating: data.star!.toDouble(),
                               itemBuilder: (context, index) => Icon(
                                  Icons.star,
                                 color: Colors.amber,
@@ -129,8 +131,8 @@ class RatingOrderPage extends GetView<RatingOrderController> {
                             ),
                             ),
                               TextCustomized(
-                              text: "10:10 25/10/2021",
-                              color: BT_GRAY,
+                              text: data.created_at.toString(),
+                              color: TITLE_POPUP,
                               size: smallSize,
                               font: SanFranciscoUIText,
                               weight: FontWeight.w400,
@@ -145,12 +147,12 @@ class RatingOrderPage extends GetView<RatingOrderController> {
                         width: 45,
                         height: 35,
                         backgroundColor: WHITE,
-                        textColor: BT_GRAY,
-                        borderColor: BT_GRAY,
+                        textColor: TITLE_POPUP,
+                        borderColor: TITLE_POPUP,
                         textStyle: TextStyle(
                           fontSize: 11,
                           fontFamily: SanFranciscoText,
-                          color: BT_GRAY
+                          color: TITLE_POPUP
                         ),
                       )
                     ],
@@ -158,8 +160,8 @@ class RatingOrderPage extends GetView<RatingOrderController> {
                 ),
                 SizedBox(height: 10.0),
                 TextCustomized(
-                  text: "Giao hàng nhanh, đóng gói hàng chắc chắn. ",
-                  color: BT_GRAY,
+                  text: data.comment.toString(),
+                  color: TITLE_POPUP,
                   size: smallSize,
                   font: SanFranciscoUIText,
                   weight: FontWeight.w700,
@@ -168,12 +170,24 @@ class RatingOrderPage extends GetView<RatingOrderController> {
             ),
           ),
           SizedBox(height: 10.0),
-          TextCustomized(
-            text: "Đơn hàng đã hoàn thành vào ngày 25/10/2021",
-            color: BT_GRAY,
-            size: smallSize,
-            font: SanFranciscoUIText,
-            weight: FontWeight.w700,
+          Wrap(
+            spacing: 2.0,
+            children:[ 
+            TextCustomized(
+              text: "Đơn hàng đã hoàn thành vào ngày",
+              color: TITLE_POPUP,
+              size: smallSize,
+              font: SanFranciscoUIText,
+              weight: FontWeight.w700,
+            ),
+            TextCustomized(
+              text: data.order_complete_at.toString(),
+              color: TITLE_POPUP,
+              size: smallSize,
+              font: SanFranciscoUIText,
+              weight: FontWeight.w700,
+            ),
+            ]
           ),
         ],
       ),

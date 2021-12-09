@@ -224,4 +224,9 @@ class NetworkConfig {
       URL_SERVER + "/admin/order/list-order-shipped";
   // Dashboard User
    static const String DASHBOARD_USER = URL_SERVER + "/dashboard";
+  // Rating Order 
+  static const String RATING_ORDER = URL_SERVER + "/comment";
+  static const String RATING_ORDER_LIST = URL_SERVER + "/comment/list";
+  // Manager Staff
+  static const String MANAGER_STAFF_LIST = URL_SERVER + "/admin/users/list/1";
 }

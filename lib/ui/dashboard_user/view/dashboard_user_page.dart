@@ -8,6 +8,7 @@ import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/dashboard_user/controller/dashboard_user_controller.dart';
+import 'package:viet_trung_mobile/ui/notification/view/detail_notification_many_bag_page.dart';
 import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_details_receive.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
@@ -88,7 +89,8 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             alignment: Alignment.bottomRight,
                             child: InkWell(
                               onTap: (){
-                                Get.to(NotificationPage());
+                                //Get.to(NotificationPage());
+                                Get.to(DetailNotificationManyBagPage());
                               },
                               child: Stack(
                                 fit: StackFit.loose,
@@ -100,28 +102,28 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                                   width: 30,
                                   height: 30,
                                 ),
-                                Positioned(
-                                  right: 2,
-                                  //top: -2,
-                                  child: Container(
-                                    // height: 15,
-                                    // width: 15,
-                                    decoration: BoxDecoration(
-                                      color: RED_1,
-                                      borderRadius: BorderRadius.circular(100)
-                                    ),
-                                    child: Center(
-                                      child: Container(
-                                        child: TextCustomized(
-                                          text: controller.dashboardUsesResponse!.number_notification.toString(),
-                                          color: WHITE,
-                                          size: 12.0,
-                                          weight: FontWeight.w700,
-                                          ),
-                                      ),
-                                    ),
-                                  ),
-                                  )
+                                // Positioned(
+                                //   right: 2,
+                                //   //top: -2,
+                                //   child: Container(
+                                //     // height: 15,
+                                //     // width: 15,
+                                //     decoration: BoxDecoration(
+                                //       color: RED_1,
+                                //       borderRadius: BorderRadius.circular(100)
+                                //     ),
+                                //     child: Center(
+                                //       child: Container(
+                                //         child: TextCustomized(
+                                //           text: controller.dashboardUsesResponse!.number_notification.toString(),
+                                //           color: WHITE,
+                                //           size: 12.0,
+                                //           weight: FontWeight.w700,
+                                //           ),
+                                //       ),
+                                //     ),
+                                //   ),
+                                //   )
                                 ]
                               ),
                             ),
