@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
@@ -13,20 +12,19 @@ import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class DashboardUserPage extends GetView<DashboardUserController> {
- @override
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardUserController>(
-      init: DashboardUserController(),
+        init: DashboardUserController(),
         builder: (value) => Scaffold(
-          body:  _buildBody(),
-
-        )
-    );
+              body: _buildBody(),
+            ));
   }
-  Widget _buildBody(){
+
+  Widget _buildBody() {
     return Stack(
-          alignment: Alignment.center, 
-          fit: StackFit.expand, 
+        alignment: Alignment.center,
+        fit: StackFit.expand,
         children: <Widget>[
           imgBackGround(),
           SingleChildScrollView(
@@ -38,11 +36,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(
-                      top: 50.0,
-                      left: 20,
-                      right: 20
-                      ),
+                    padding: EdgeInsets.only(top: 50.0, left: 20, right: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,11 +47,11 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             children: [
                               CircleAvatar(
                                 radius: 30.0,
-                                 child: ClipOval(
+                                child: ClipOval(
                                   child: ImageCustomized(
-                                       path: IMG_DASHBOARD,
-                                       height: 60,
-                                       width: 60,
+                                    path: IMG_DASHBOARD,
+                                    height: 60,
+                                    width: 60,
                                   ),
                                 ),
                                 backgroundColor: Colors.transparent,
@@ -74,7 +68,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                         ),
                         Container(
                           child: InkWell(
-                            onTap: (){
+                            onTap: () {
                               Get.to(NotificationPage());
                             },
                             child: ImageCustomized(
@@ -114,7 +108,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             ],
                           ),
                         ),
-                         Container(
+                        Container(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -140,11 +134,11 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                   Container(
                     // padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                     borderRadius: BorderRadius.only(
-                       topLeft: Radius.circular(40),
-                       topRight: Radius.circular(40),
-                     ), 
-                     color: MAIN_BG,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40),
+                      ),
+                      color: MAIN_BG,
                     ),
                     child: Column(
                       //mainAxisSize: MainAxisSize.min,
@@ -152,45 +146,45 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                         Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            border: Border(bottom: BorderSide(color: BT_GRAY))
-                          ),
+                              border:
+                                  Border(bottom: BorderSide(color: BT_GRAY))),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextCustomized(
-                                text: ORDER_SHIPPED, 
+                                text: ORDER_SHIPPED,
                                 color: BLACK_1,
                                 weight: FontWeight.w700,
-                                ),
+                              ),
                               InkWell(
-                                onTap: (){ 
+                                onTap: () {
                                   Get.to(OrderInfoPage());
                                 },
                                 child: TextCustomized(
-                                text: HOME_SHOW_ALL,
-                                color: RED_2,
-                                size: smallSize,
-                                weight: FontWeight.w700,
+                                  text: HOME_SHOW_ALL,
+                                  color: RED_2,
+                                  size: smallSize,
+                                  weight: FontWeight.w700,
                                 ),
-                                )
+                              )
                             ],
                           ),
                         ),
-                          Container(
-                              child: ListView.separated(
-                                itemBuilder: (BuildContext context, int index){
-                                  return  _builListItem();
-                                }, 
-                                shrinkWrap: true,
-                                separatorBuilder: (context, index) {
-                                  return SizedBox(height: 10);
-                                },
-                                physics: BouncingScrollPhysics (),
-                                itemCount: 10,
-                                padding: EdgeInsets.all(0.0),
-                                ),
-                            ),
+                        Container(
+                          child: ListView.separated(
+                            itemBuilder: (BuildContext context, int index) {
+                              return _builListItem();
+                            },
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return SizedBox(height: 10);
+                            },
+                            physics: BouncingScrollPhysics(),
+                            itemCount: 10,
+                            padding: EdgeInsets.all(0.0),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -198,22 +192,22 @@ class DashboardUserPage extends GetView<DashboardUserController> {
               ),
             ),
           ),
-        ]
+        ]);
+  }
+
+  Widget imgBackGround() {
+    return Image.asset(
+      BG_IMG_DASHBOARD,
+      fit: BoxFit.cover,
+      width: double.maxFinite,
+      height: double.maxFinite,
+      alignment: Alignment.center,
     );
   }
-  
-  Widget imgBackGround(){
-    return Image.asset(
-    BG_IMG_DASHBOARD,
-    fit: BoxFit.cover,
-     width: double.maxFinite,
-     height: double.maxFinite,
-     alignment: Alignment.center,
-  );
-  }
-  Widget _builListItem(){
+
+  Widget _builListItem() {
     return Container(
-      padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
+      padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
       color: WHITE,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,26 +221,30 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 font: SanFranciscoText,
                 weight: FontWeight.w700,
                 color: MAIN_BLACK,
-                ),
-                TextCustomized(
+              ),
+              TextCustomized(
                 // text: dataOrder.order_status_name.toString(),
                 text: ORDER_NULL,
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BG_ID_PD,
-                ),
+              ),
             ],
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           TextCustomized(
             text: ORDER_NULL,
-                // text: dataOrder.created_at.toString(),
-                font: SanFranciscoTextLight,
-                weight: FontWeight.w400,
-                color: MAIN_GRAY,
-                ),
-           SizedBox(height: 5,),
-           Row(
+            // text: dataOrder.created_at.toString(),
+            font: SanFranciscoTextLight,
+            weight: FontWeight.w400,
+            color: MAIN_GRAY,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextCustomized(
@@ -254,18 +252,20 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w700,
                 color: GRAY1,
-                ),
-                TextCustomized(
+              ),
+              TextCustomized(
                 // text: dataOrder.number_package.toString(),
                 text: ORDER_NULL,
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
-                ),
+              ),
             ],
-          ),   
-          SizedBox(height: 5,),     
-           Row(
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextCustomized(
@@ -273,18 +273,20 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w700,
                 color: GRAY1,
-                ),
-                TextCustomized(
+              ),
+              TextCustomized(
                 // text: dataOrder.item.toString(),
                 text: ORDER_NULL,
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
-                ),
+              ),
             ],
-          ), 
-          SizedBox(height: 5,),     
-           Row(
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextCustomized(
@@ -292,18 +294,20 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w700,
                 color: GRAY1,
-                ),
-                TextCustomized(
+              ),
+              TextCustomized(
                 // text: dataOrder.packing_form.toString(),
                 text: ORDER_NULL,
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
-                ),
+              ),
             ],
-          ), 
-          SizedBox(height: 5,),     
-           Row(
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextCustomized(
@@ -311,41 +315,45 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w700,
                 color: GRAY1,
-                ),
-                TextCustomized(
+              ),
+              TextCustomized(
                 // text: "¥"+dataOrder.transport_fee.toString(),
                 text: ORDER_NULL,
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
-                ),
+              ),
             ],
-          ), 
-          SizedBox(height: 5,),     
-           Row(
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextCustomized(
                 text: ORDER_LIST_DELIVERY_METHOD,
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w700,
                 color: GRAY1,
-                ),
+              ),
               Expanded(
                 flex: 5,
                 child: TextCustomized(
-                // text: dataOrder.delivery_form.toString(),
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BLACK,
+                  // text: dataOrder.delivery_form.toString(),
+                  text: ORDER_NULL,
+                  font: SanFranciscoText,
+                  weight: FontWeight.w400,
+                  color: BLACK,
                   textAlign: TextAlign.end,
                 ),
               )
             ],
           ),
-          SizedBox(height: 5,),     
+          SizedBox(
+            height: 5,
+          ),
           //  Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //   crossAxisAlignment: CrossAxisAlignment.start,
@@ -367,9 +375,9 @@ class DashboardUserPage extends GetView<DashboardUserController> {
           //       ),),
 
           //   ],
-          // ),    
+          // ),
         ],
       ),
-  );
+    );
   }
 }

@@ -32,6 +32,7 @@ class TextFieldCustomized extends StatefulWidget {
   final double? height;
   final Color? colorBackgrount;
   final Color? colorHintText;
+  final double? width;
 
   TextFieldCustomized({
     this.invalid,
@@ -57,6 +58,7 @@ class TextFieldCustomized extends StatefulWidget {
     this.height,
     this.colorBackgrount,
     this.colorHintText,
+    this.width,
   });
 
   @override
@@ -95,7 +97,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
   Widget build(BuildContext context) {
     return Container(
       height: widget.height ?? 48,
-      width: Get.width,
+      width: widget.width ?? Get.width,
       decoration: BoxDecoration(
           color: widget.colorBackgrount ?? Colors.white,
           border: Border.all(

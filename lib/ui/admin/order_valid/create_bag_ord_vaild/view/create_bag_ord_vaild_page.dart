@@ -12,13 +12,11 @@ import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/order_valid/create_bag_ord_vaild/controller/create_bag_ord_vaild_controller.dart';
 import 'package:viet_trung_mobile/widget/add_product_dialog.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class CreateBagOrdValidPage extends GetView<CreateBagOrdValidController> {
   BuildContext? mContext;

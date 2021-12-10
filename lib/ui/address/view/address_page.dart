@@ -10,7 +10,6 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
 import 'package:viet_trung_mobile/ui/address/view/add_address_page.dart';
 import 'package:viet_trung_mobile/ui/address/view/update_address_page.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/popup_del_address.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -45,7 +44,7 @@ class AddressPage extends GetView<AddressController> {
               color: Colors.white,
               size: 30,
             ),
-            onPressed: () => Get.to(()=> AddAddressPage()),
+            onPressed: () => Get.to(() => AddAddressPage()),
           ),
           iconBack: TextButton(
             child: Icon(
@@ -77,12 +76,11 @@ class AddressPage extends GetView<AddressController> {
                 ),
               ),
             ),
-          )
-      ),
+          )),
     );
   }
 
-  Widget _addressBody(){
+  Widget _addressBody() {
     return ListView.builder(
         itemCount: controller.mdatas!.length,
         shrinkWrap: true,
@@ -91,173 +89,178 @@ class AddressPage extends GetView<AddressController> {
           return Column(
             children: [
               controller.defaultIndexAddress == index
-              ? Slidable(
-                actionPane: SlidableDrawerActionPane(),
-                actionExtentRatio: 0.17,
-                child: Container(
-                    child: Container(
-                      //padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        // borderRadius: BorderRadius.circular(2.0),
-                      ),
-                      //width: 343,
-                      height: Get.width*0.3,
+                  ? Slidable(
+                      actionPane: SlidableDrawerActionPane(),
+                      actionExtentRatio: 0.17,
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            // TextCustomized(
-                            //   text: controller.mdatas![index].name!,
-                            //   weight: FontWeight.w900,
-                            //   size: 16,
-                            //   font: SanFranciscoTextLight,
-                            // ),
+                          child: Container(
+                        //padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          // borderRadius: BorderRadius.circular(2.0),
+                        ),
+                        //width: 343,
+                        height: Get.width * 0.3,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              // TextCustomized(
+                              //   text: controller.mdatas![index].name!,
+                              //   weight: FontWeight.w900,
+                              //   size: 16,
+                              //   font: SanFranciscoTextLight,
+                              // ),
 
-                            Row(
-                              children: [
-                                TextCustomized(
-                                  text: controller.mdatas![index].name!,
-                                  weight: FontWeight.w900,
-                                  size: 16,
-                                  color: Colors.black,
-                                  font: SanFranciscoTextLight,
-                                ),
-                                TextCustomized(
-                                  text: " [ Mặc định ]",
-                                  weight: FontWeight.w900,
-                                  color: Colors.red,
-                                  size: 16,
-                                  font: SanFranciscoTextLight,
-                                ),
-                              ],
-                            ) ,
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextCustomized(
-                              text: controller.mdatas![index].phone!,
-                              color: Colors.black,
-                              size: smallSize,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextCustomized(
-                              text: controller.mdatas![index].full_address!,
-                              color: Colors.black,
-                              size: smallSize,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                          ],
+                              Row(
+                                children: [
+                                  TextCustomized(
+                                    text: controller.mdatas![index].name!,
+                                    weight: FontWeight.w900,
+                                    size: 16,
+                                    color: Colors.black,
+                                    font: SanFranciscoTextLight,
+                                  ),
+                                  TextCustomized(
+                                    text: " [ Mặc định ]",
+                                    weight: FontWeight.w900,
+                                    color: Colors.red,
+                                    size: 16,
+                                    font: SanFranciscoTextLight,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextCustomized(
+                                text: controller.mdatas![index].phone!,
+                                color: Colors.black,
+                                size: smallSize,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextCustomized(
+                                text: controller.mdatas![index].full_address!,
+                                color: Colors.black,
+                                size: smallSize,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      )),
+                      secondaryActions: <Widget>[
+                        IconSlideAction(
+                          caption: 'Sửa',
+                          color: BLUE2,
+                          iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,
+                              height: 30, width: 30),
+                          onTap: () {
+                            Get.to(() => UpdateAddressPage(),
+                                    arguments: controller.mdatas![index])!
+                                .then((value) {
+                              if (value != null) {
+                                controller.onGetAddressAll();
+                              }
+                            });
+                          },
+                        ),
+                      ],
                     )
-                ),
-                secondaryActions: <Widget>[
-                  IconSlideAction(
-                    caption: 'Sửa',
-                    color: BLUE2,
-                     iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
-                    onTap: () {
-                      Get.to(()=> UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
-                        if(value != null){
-                          controller.onGetAddressAll();
-                        }
-                      });
-                    },
-                  ),
-                ],
-              )
-              : Slidable(
-                actionPane: SlidableDrawerActionPane(),
-                actionExtentRatio: 0.17,
-                child:Container(
-                    child: Container(
-                      //padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        // borderRadius: BorderRadius.circular(2.0),
-                      ),
-                      //width: 343,
-                      height: Get.width*0.3,
+                  : Slidable(
+                      actionPane: SlidableDrawerActionPane(),
+                      actionExtentRatio: 0.17,
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextCustomized(
-                              text: controller.mdatas![index].name!,
-                              weight: FontWeight.w900,
-                              size: 16,
-                              color: Colors.black,
-                              font: SanFranciscoTextLight,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextCustomized(
-                              text: controller.mdatas![index].phone!,
-                              color: Colors.black,
-                              size: smallSize,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextCustomized(
-                              text: controller.mdatas![index].full_address!,
-                              color: Colors.black,
-                              size: smallSize,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                          ],
+                          child: Container(
+                        //padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          // borderRadius: BorderRadius.circular(2.0),
                         ),
-                      ),
-                    )
-                ),
-                secondaryActions: <Widget>[
-                  IconSlideAction(
-                    caption: 'Sửa',
-                    color: BLUE2,
-                    iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
-                    onTap: () {
-                      Get.to(()=> UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
-                        if(value != null){
-                          controller.onGetAddressAll();
-                        }
-                      });
-                    },
-                  ),
-                  IconSlideAction(
-                    caption: 'Xoá',
-                    color: MAIN_DELETE_ADDRESS,
-                    iconWidget: SvgPicture.asset(IC_DELETE_ADDRESS, height: 30, width: 30,),
-                    onTap:() {
-                      //controller.onDeleteAddress(controller.mdatas![index].id);
-                      Get.dialog(DialogDelAddressCustomized(
-                        idAddress: controller.mdatas![index].id,
-                      ));
-                      
-                    },
-                  ) ,
-                ],
-              ),
+                        //width: 343,
+                        height: Get.width * 0.3,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextCustomized(
+                                text: controller.mdatas![index].name!,
+                                weight: FontWeight.w900,
+                                size: 16,
+                                color: Colors.black,
+                                font: SanFranciscoTextLight,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextCustomized(
+                                text: controller.mdatas![index].phone!,
+                                color: Colors.black,
+                                size: smallSize,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextCustomized(
+                                text: controller.mdatas![index].full_address!,
+                                color: Colors.black,
+                                size: smallSize,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )),
+                      secondaryActions: <Widget>[
+                        IconSlideAction(
+                          caption: 'Sửa',
+                          color: BLUE2,
+                          iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,
+                              height: 30, width: 30),
+                          onTap: () {
+                            Get.to(() => UpdateAddressPage(),
+                                    arguments: controller.mdatas![index])!
+                                .then((value) {
+                              if (value != null) {
+                                controller.onGetAddressAll();
+                              }
+                            });
+                          },
+                        ),
+                        IconSlideAction(
+                          caption: 'Xoá',
+                          color: MAIN_DELETE_ADDRESS,
+                          iconWidget: SvgPicture.asset(
+                            IC_DELETE_ADDRESS,
+                            height: 30,
+                            width: 30,
+                          ),
+                          onTap: () {
+                            //controller.onDeleteAddress(controller.mdatas![index].id);
+                            Get.dialog(DialogDelAddressCustomized(
+                              idAddress: controller.mdatas![index].id,
+                            ));
+                          },
+                        ),
+                      ],
+                    ),
               SizedBox(height: 10)
             ],
           );
         });
-
-
   }
 }

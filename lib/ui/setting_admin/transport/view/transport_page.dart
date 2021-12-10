@@ -6,7 +6,6 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/transport/controller/transport_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/view/add_transport_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/transport/view/transport_detail_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 
@@ -27,19 +26,9 @@ class TransportPage extends GetView<TransportController> {
               },
               child: Scaffold(
                 appBar: buildAppBar(
-                    transformeFormat,
-                    Container(
-                      padding: EdgeInsets.only(right: 10),
-                      child: InkWell(
-                        onTap: () {
-                          Get.to(AddTransportPage());
-                        },
-                        child: Icon(
-                          Icons.add,
-                          color: WHITE,
-                        ),
-                      ),
-                    )),
+                  transformeFormat,
+                  SizedBox(),
+                ),
                 body: controller.response != null ? buildBody() : SizedBox(),
               ),
             ));
@@ -52,7 +41,6 @@ class TransportPage extends GetView<TransportController> {
         ListView.builder(
             itemCount: controller.response!.data!.length,
             shrinkWrap: true,
-            reverse: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return _buildItem(

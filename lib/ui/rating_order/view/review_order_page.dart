@@ -10,7 +10,6 @@ import 'package:viet_trung_mobile/ui/rating_order/controller/review_order_contro
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
 class ReviewOrderPage extends GetView<ReviewOrderController> {
   @override

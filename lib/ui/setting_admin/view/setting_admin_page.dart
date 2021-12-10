@@ -5,6 +5,7 @@ import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/packing_form/view/packing_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/role/view/role_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/transport/view/transport_page.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
@@ -42,7 +43,9 @@ class SettingAdminPage extends GetView<OrderInfoController> {
         _buildItem(transformeFormat, () {
           Get.to(TransportPage());
         }),
-        _buildItem(packFormat, () {}),
+        _buildItem(packFormat, () {
+          Get.to(PackingPage());
+        }),
         _buildItem(dashboardProduct, () {}),
         _buildItem(inventoryManagement, () {}),
         _buildItem(rateSettings, () {}),

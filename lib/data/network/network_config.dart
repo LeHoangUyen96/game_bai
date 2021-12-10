@@ -241,4 +241,11 @@ class NetworkConfig {
       URL_SERVER + "/admin/setting/transport-form/delete/";
   static const String transportDetail =
       URL_SERVER + "/admin/transport-form-fee/list/";
+  static const String deleteTransportFee =
+      URL_SERVER + "/admin/transport-form-fee/delete-fee/";
+  static const String listProduct = URL_SERVER + "/admin/products/list";
+  static const String addTransportFee =
+      URL_SERVER + "/admin/transport-form-fee/create-fee";
+  static const String transportFeeDetail =
+      URL_SERVER + "/admin/transport-form-fee/detail/";
 }

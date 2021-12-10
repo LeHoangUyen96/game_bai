@@ -44,6 +44,13 @@ class AddRolePage extends GetView<AddRoleController> {
                   maxLine: 5,
                   textInputType: TextInputType.text,
                 ),
+                controller.nameValid == false
+                    ? TextCustomized(
+                        text: controller.nameError.toString(),
+                        color: Colors.red,
+                        size: 10,
+                      )
+                    : SizedBox(),
                 SizedBox(height: 20),
                 ListView.builder(
                     itemCount: controller.response!.data!.length,
@@ -68,7 +75,7 @@ class AddRolePage extends GetView<AddRoleController> {
                 ),
                 SizedBox(height: 10),
                 ButtonCustomized(
-                  delete,
+                  cancel,
                   textColor: Colors.black,
                   borderColor: Colors.grey,
                   backgroundColor: Colors.white,

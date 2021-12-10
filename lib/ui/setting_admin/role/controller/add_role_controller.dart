@@ -5,6 +5,7 @@ import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_ad
 import 'package:viet_trung_mobile/data/request/update_role_request.dart';
 import 'package:viet_trung_mobile/data/response/list_rights_group.dart';
 import 'package:viet_trung_mobile/data/response/role_detail_response.dart';
+import 'package:viet_trung_mobile/res/strings.dart';
 
 class AddRoleController extends GetxController {
   RoleAdminRepositories? repository;
@@ -15,6 +16,8 @@ class AddRoleController extends GetxController {
   List<int> permision = [];
   int? idItem;
   List<Permissions>? data;
+  bool nameValid = true;
+  String? nameError;
 
   @override
   void onInit() {
@@ -45,17 +48,26 @@ class AddRoleController extends GetxController {
   }
 
   void onSave() {
-    UpdateRoleRequest request = UpdateRoleRequest(
-      name: nameController.text,
-      permissions: permision,
-    );
-    repository!.onAddRole(request).then((value) {
-      Get.back();
-      Get.snackbar('Thông báo', value.message!);
-      update();
-    }).catchError((onError) {
-      print(onError);
-      update();
-    });
+    if (nameController.text.isEmpty) {
+      nameValid = false;
+      nameError = ERROR_NAME;
+    } else {
+      nameValid = true;
+    }
+    if (nameValid) {
+      UpdateRoleRequest request = UpdateRoleRequest(
+        name: nameController.text,
+        permissions: permision,
+      );
+      repository!.onAddRole(request).then((value) {
+        Get.back();
+        Get.snackbar('Thông báo', value.message!);
+        update();
+      }).catchError((onError) {
+        print(onError);
+        update();
+      });
+    }
+    update();
   }
 }

@@ -5,12 +5,13 @@ import 'package:viet_trung_mobile/data/response/notification_admin_response.dart
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/contract/notification_admin_contract.dart';
 
-class NotificationAdminController extends GetxController implements NotificationContract{
+class NotificationAdminController extends GetxController
+    implements NotificationContract {
   late NotificationContract contract;
   late NotificationRepository repository;
   NotificationAdminResponse? listNotificationResponse;
   List<DataNotificationAdminResponse> listNotification = [];
-  DataNotificationAdminResponse ? mdataNotificationResponse;
+  DataNotificationAdminResponse? mdataNotificationResponse;
 
   @override
   void onInit() {
@@ -26,7 +27,7 @@ class NotificationAdminController extends GetxController implements Notification
       return contract.onGetListNotificationAdminSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
-       return contract.onGetListNotificationAdminError(onError);
+      return contract.onGetListNotificationAdminError(onError);
     });
   }
 
@@ -65,19 +66,9 @@ class NotificationAdminController extends GetxController implements Notification
   //     update();
   //   });
   //    update();
-   
+
   // }
-  void onGetOrderDetailsError(ErrorResponse msg) {
-    // TODO: implement onGetOrderDetailsError
-  }
-
-  
-
-  @override
-  void onGetListNotificationError(ErrorResponse error) {
-
-    Get.defaultDialog(title: error.message.toString(), middleText: '');
-  }
+  void onGetOrderDetailsError(ErrorResponse msg) {}
 
   // @override
   // void onGetListNotificationSuccess(NotificationListResponse data) {
@@ -108,7 +99,7 @@ class NotificationAdminController extends GetxController implements Notification
   //   if (refreshController.isRefresh) {
   //     refreshController.refreshCompleted();
   //   }
-    
+
   //   update();
   // }
 

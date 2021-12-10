@@ -16,7 +16,6 @@ import 'package:viet_trung_mobile/widget/add_product_dialog.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class CreateBagPage extends GetView<CreateBagController> {
   BuildContext? mContext;

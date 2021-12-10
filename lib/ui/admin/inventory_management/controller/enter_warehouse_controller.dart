@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,14 +10,14 @@ import 'package:viet_trung_mobile/data/response/ramdom_bill_order_response.dart'
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 
-class EnterWarehouseController extends GetxController  {
+class EnterWarehouseController extends GetxController {
   TextEditingController barCodeValueController = TextEditingController();
   TextEditingController billCodeValueController = TextEditingController();
   TextEditingController itemValueController = TextEditingController();
   TextEditingController transportFeeController = TextEditingController();
   TextEditingController numberPackageController = TextEditingController();
   //int? is_prohibited_item;
-  String  phoneErros = '';
+  String phoneErros = '';
   bool isPhoneValid = true;
   bool isCheck = false;
   int is_prohibited_item = 1;
@@ -35,35 +33,34 @@ class EnterWarehouseController extends GetxController  {
   @override
   void onInit() {
     super.onInit();
-    if(Get.arguments != null){
-      if(Get.arguments['user_code'] == null){
+    if (Get.arguments != null) {
+      if (Get.arguments['user_code'] == null) {
         //this.onError(ErrorResponse(message: 'Mã khách hàng trống'));
         user_code = null;
-      }else{
+      } else {
         user_code = Get.arguments['user_code'];
       }
-      if(Get.arguments['phone'] == null){
+      if (Get.arguments['phone'] == null) {
         //this.onError(ErrorResponse(message: 'Số điện thoại trống'));
-      }else{
+      } else {
         phone = Get.arguments['phone'];
       }
-      if(Get.arguments['name'] == null){
+      if (Get.arguments['name'] == null) {
         //this.onError(ErrorResponse(message: 'Tên khách hàng trống'));
-        name ="Không xác định";
-      }else{
+        name = "Không xác định";
+      } else {
         name = Get.arguments['name'];
       }
-      if(Get.arguments['user_id'] == null){
+      if (Get.arguments['user_id'] == null) {
         user_id = 0;
-      }else{
+      } else {
         user_id = Get.arguments['user_id'];
-      }  
+      }
     }
-    orderRepositories =Injector().order; 
+    orderRepositories = Injector().order;
   }
-  
-  
-   Future<void> scanBarcodeNormal() async {
+
+  Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -80,61 +77,63 @@ class EnterWarehouseController extends GetxController  {
     if (barcodeScanRes.isNotEmpty &&
         barcodeScanRes != 'Failed to get platform version.') {
       scanBarcode = barcodeScanRes;
-      barCodeValueController =TextEditingController(text: barcodeScanRes);
+      barCodeValueController = TextEditingController(text: barcodeScanRes);
       print(" isBarCode +$scanBarcode");
     }
     update();
   }
-  void onRamdomBillOrder(){
-      orderRepositories!.onRamdomBillOrder(user_id!).then((value){
+
+  void onRamdomBillOrder() {
+    orderRepositories!.onRamdomBillOrder(user_id!).then((value) {
       ramdomBillOrderResponse = value;
-      barCodeValueController = TextEditingController(text: ramdomBillOrderResponse!.data!.bill_code);
-      print("isRamdomBillCode + ${ramdomBillOrderResponse!.data!.bill_code.toString()}");
-       update();
-    }).catchError((onError){
-      print('isErorrs');
-     
-    });
-    
-     update();
-     print(user_id);
-  }
- 
-
-  void onEnterWareHouse(){
-      EnterWareHouseRequest request = EnterWareHouseRequest(
-        user_id : ParseNumber.parseInt(user_id),
-        phone : phone,
-        bill_code: barCodeValueController.text.toString(),
-        item : itemValueController.text.toString(),
-        transport_fee: ParseNumber.parseDouble(transportFeeController.text),
-        number_package: ParseNumber.parseInt(numberPackageController.text),
-        images: image,
-        is_prohibited_item: is_prohibited_item,
-      );
-      orderRepositories!.onEnterWarehouse(request).then((value){
-        Get.snackbar(NOTIFY, "Nhập kho thành công");
-          }).catchError((onError) {
-            return onError(onError);
-          });
-      Get.back(result: request);
-      
+      barCodeValueController =
+          TextEditingController(text: ramdomBillOrderResponse!.data!.bill_code);
+      print(
+          "isRamdomBillCode + ${ramdomBillOrderResponse!.data!.bill_code.toString()}");
       update();
-   }
+    }).catchError((onError) {
+      print('isErorrs');
+    });
 
-  void onChangeDefault(){
+    update();
+    print(user_id);
+  }
+
+  void onEnterWareHouse() {
+    EnterWareHouseRequest request = EnterWareHouseRequest(
+      user_id: ParseNumber.parseInt(user_id),
+      phone: phone,
+      bill_code: barCodeValueController.text.toString(),
+      item: itemValueController.text.toString(),
+      transport_fee: ParseNumber.parseDouble(transportFeeController.text),
+      number_package: ParseNumber.parseInt(numberPackageController.text),
+      images: image,
+      is_prohibited_item: is_prohibited_item,
+    );
+    orderRepositories!.onEnterWarehouse(request).then((value) {
+      Get.snackbar(NOTIFY, "Nhập kho thành công");
+    }).catchError((onError) {
+      return onError(onError);
+    });
+    Get.back(result: request);
+
+    update();
+  }
+
+  void onChangeDefault() {
     isCheck = !isCheck;
-    if(isCheck==true){
+    if (isCheck == true) {
       is_prohibited_item = 2;
-    } else is_prohibited_item = 1;
+    } else
+      is_prohibited_item = 1;
     print("$is_prohibited_item");
     update();
   }
-    @override
+
+  @override
   void onError(ErrorResponse msg) {
     Get.snackbar(PROFILE_NOTIFY, msg.message.toString());
     // Get.snackbar("Thông báo", msg.message.toString());
     Get.back();
-    // TODO: implement onError
   }
 }
