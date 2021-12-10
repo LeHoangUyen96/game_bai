@@ -4,33 +4,31 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/response/list_admin_response.dart';
+import 'package:viet_trung_mobile/data/response/list_user_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/controller/manager_staff_list_controller.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/view/create_staff_page.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/view/detail_staff_page.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/view/edit_staff_page.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_user/controller/manager_user_list_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_user/view/detail_user_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
-class ManagerStaffPage extends GetView<ManagerStaffController> {
+class ManagerUserPage extends GetView<ManagerUserController> {
   BuildContext? mContext;
   
   @override
   Widget build(BuildContext context) {
     mContext = context;
-    return GetBuilder<ManagerStaffController>(
-      init: ManagerStaffController(),
+    return GetBuilder<ManagerUserController>(
+      init: ManagerUserController(),
       builder: (value) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
-        body: controller.listAdminResponse != null ?   buildBody(): LoadingSpinKit() ,
+        body: controller.listUserResponse != null ? buildBody() : LoadingSpinKit(),
         backgroundColor: BT_GRAY,
       ),
     );
@@ -59,9 +57,7 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
         ),
         actions: [
           InkWell(
-            onTap: () {
-              Get.to(CreateStaffPage());
-            },
+            onTap: () {},
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal:15.0),
               child: SvgPicture.asset(
@@ -91,7 +87,7 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
                     ),
                   child: InkWell(
                     onTap: (){
-                      controller.onSearchListAdmin();
+                      controller.onSearchListUser();
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,14 +157,14 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
               padding: EdgeInsets.all(15),
               child: ListView.separated(
                 itemBuilder: (BuildContext context, int index){
-                  return __buildItemStaff(controller.listAdminResponse!.data![index]);
+                  return __buildItemStaff(controller.listUserResponse!.data![index]);
                 }, 
                 shrinkWrap: true,
                 separatorBuilder: (context, index) {
                   return SizedBox(height: 10);
                 },
                 physics: BouncingScrollPhysics (),
-                itemCount: controller.listAdminResponse!.data!.length,
+                itemCount: controller.listUserResponse!.data!.length,
                 ),
           ),
         ),
@@ -179,12 +175,12 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
       ),
     );
   }
-  Widget __buildItemStaff(DataListAdminResponse data){
+  Widget __buildItemStaff(DataListUserResponse data){
     
     return Container(
       child: InkWell(
         onTap: (){
-          Get.to(DetailStaffPage(), arguments: data.id);
+          Get.to(DetailUserPage(), arguments: data.id);
         },
         child: Slidable(
           key: const ValueKey(0),
@@ -262,7 +258,7 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
                       ),
                       child : InkWell(
                         onTap: (){
-                          Get.to(EditStaffPage(), arguments: data.id!);
+                          //Get.to(EditStaffPage(), arguments: data.id!);
                         },
                         child: Center(
                           child: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
@@ -286,37 +282,11 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
                           ),
                       )
                     ),
-                    // SlidableAction(
-                    //   onPressed: null,
-                    //   backgroundColor: Color(0xFF21B7CA),
-                    //   foregroundColor: Colors.white,
-                    //   icon: Icons.share,
-                    //   label: 'Share',
-                    // ),
                   ],
                 ),
-                  // secondaryActions: <Widget>[
-                  //   Container(
-                  //     decoration: BoxDecoration(
-                  //       color: GREEN1,
-                  //       borderRadius: BorderRadius.circular(16)
-                  //     ),
-                  //     child: IconSlideAction(
-                  //       //caption: 'Sửa',
-                  //       color: BLUE2,
-                  //       iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
-                  //       onTap: () {},
-                  //     ),
-                  //   ),
-                  //   IconSlideAction(
-                  //     caption: 'Xoá',
-                  //     color: MAIN_DELETE_ADDRESS,
-                  //     iconWidget: SvgPicture.asset(IC_DELETE_ADDRESS, height: 30, width: 30,),
-                  //     onTap:() {},
-                  //   ) ,
-                  // ],
+                  
                 ),
       ),
     );
   }
-}  
+}

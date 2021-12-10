@@ -36,7 +36,7 @@ const String ERROR_CITY = "Tỉnh/Thành phố không được để trống";
 const String ERROR_DISTRICT = "Quận/Huyện không được để trống";
 const String ERROR_WARDS = "Phường/Xã không được để trống";
 const String BT_NEXT = "Tiếp tục";
-
+const String ADD_NEW = "Thêm mới";
 const String AB_WALLET = 'Quản lý ví tiền';
 const String WALLET_FROZEN = 'Số dư đóng băng';
 const String WALLET_AVAILABLE_BALANCE = 'Số dư khả dụng';
@@ -846,7 +846,7 @@ const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
 const String STATUS_TRANFORM = 'Trạng thái giao hàng'; 
 const String DELIVERY_PACKAGE = 'Hình thức đóng gói'; 
 const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';  
-
+const String ID_STAFF = 'Mã nhân viên'; 
  
  
  

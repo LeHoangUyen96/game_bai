@@ -10,6 +10,7 @@ import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/enter
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/manager_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_staff/controller/manager_staff_list_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_user/controller/manager_user_list_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/login/controller/login_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_controller.dart';
 import 'package:viet_trung_mobile/ui/auth/register/controller/register_step_1_controller.dart';
@@ -75,6 +76,7 @@ class _Binding extends Bindings {
     Get.lazyPut<RatingOrderController>(() => RatingOrderController(), fenix: true);
     Get.lazyPut<OrderController>(() => OrderController(), fenix: true);
     Get.lazyPut<ManagerStaffController>(() => ManagerStaffController(), fenix: true);
+    Get.lazyPut<ManagerUserController>(() => ManagerUserController(), fenix: true);
     Get.lazyPut<AddAddressController>(() => AddAddressController(),
         fenix: true);
     Get.lazyPut<UpdateAddressController>(() => UpdateAddressController(),

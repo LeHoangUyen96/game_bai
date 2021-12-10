@@ -229,4 +229,10 @@ class NetworkConfig {
   static const String RATING_ORDER_LIST = URL_SERVER + "/comment/list";
   // Manager Staff
   static const String MANAGER_STAFF_LIST = URL_SERVER + "/admin/users/list/1";
+  static const String MANAGER_STAFF_DETAIL = URL_SERVER + "/admin/users/detail-admin/";
+  static const String MANAGER_STAFF_DELETE = URL_SERVER + "/admin/users/delete-user/";
+  static const String MANAGER_STAFF_CHANGE_STATUS = URL_SERVER + "/admin/users/changed-status/";
+  // Manager User
+  static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
+  static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
 }

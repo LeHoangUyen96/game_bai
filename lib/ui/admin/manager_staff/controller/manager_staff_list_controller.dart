@@ -5,10 +5,13 @@ import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/list_admin_response.dart';
+import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_staff/contract/manager_staff_contract.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class ManagerStaffController extends GetxController implements ManagerStaffContract  {
   RefreshController refreshController = RefreshController(initialRefresh: false);
+  TextEditingController searchNamePhone = TextEditingController();
   ManagerStaffRepositories ? managerStaffRepositories;
   ListAdminResponse? listAdminResponse;
   List< DataListAdminResponse> ? mDataListAdminResponse = [];
@@ -74,6 +77,25 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
     }
     
     update();
+  }
+  void onSearchListAdmin(){
+     //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+      mDataListAdminResponse!.clear();
+      managerStaffRepositories!.onSearchListAdmin(searchNamePhone.text.toString(),page,perPage).then((value) {
+        return contract!.onGetListAdminSuccess(value);
+      }).catchError((onError) {
+        Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
+      });
+    update();
+  }
+  void onDeleteStaff (int id){
+    managerStaffRepositories!.onDeleteAdmin(id).then((value) {
+      Get.snackbar(NAV_NOTIFICATION, value.message.toString());
+      onGetListAdmin(true);
+      update();
+    }).catchError((onError){
+      Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
+    });
   }
 
 }

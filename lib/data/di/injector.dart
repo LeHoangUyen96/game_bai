@@ -12,6 +12,8 @@ import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dar
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_impl.dart';
 import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_impl.dart';
+import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_impl.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_imp.dart';
@@ -47,4 +49,5 @@ class Injector {
   DashboardRepositories get dashboard => DashboardImpl();
   RatingOrderRepositories get ratingOrder => RatingOrderImpl();
   ManagerStaffRepositories get managerStaff => ManagerStaffImpl();
+  ManagerUserRepositories get managerUser => ManagerUserImpl();
 }
