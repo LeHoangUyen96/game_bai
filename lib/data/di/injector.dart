@@ -6,10 +6,16 @@ import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_impl.dart'
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_impl.dart';
 import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_impl.dart';
+import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_impl.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_impl.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
+import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_impl.dart';
+import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_impl.dart';
+import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_impl.dart';
 import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_imp.dart';
@@ -18,6 +24,8 @@ import 'package:viet_trung_mobile/data/repository/order_repository/order_impl.da
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_impl.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile/data/repository/rating_order_reponsitory/rating_order_impl.dart';
+import 'package:viet_trung_mobile/data/repository/rating_order_reponsitory/rating_order_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_impl.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_impl.dart';
@@ -44,4 +52,8 @@ class Injector {
   OrderAdminRepositories get orderAmin => OrderAdminImpl();
   RoleAdminRepositories get role => RoleAdminImpl();
   TransportAdminRepositories get transport => TransportAdminImpl();
+  DashboardRepositories get dashboard => DashboardImpl();
+  RatingOrderRepositories get ratingOrder => RatingOrderImpl();
+  ManagerStaffRepositories get managerStaff => ManagerStaffImpl();
+  ManagerUserRepositories get managerUser => ManagerUserImpl();
 }

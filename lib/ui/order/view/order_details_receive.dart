@@ -7,6 +7,8 @@ import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_details_receive_controller.dart';
+import 'package:viet_trung_mobile/ui/rating_order/view/review_order_page.dart';
+import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -37,6 +39,7 @@ class OrderDetailReceivePage extends GetView<OrderDetailReceiveController> {
                       //height: Get.height,
                       width: Get.width,
                       child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,6 +81,17 @@ class OrderDetailReceivePage extends GetView<OrderDetailReceiveController> {
                                       }),
                                 ],
                               ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ButtonCustomized(
+                              REVIEW_ORDER,
+                              onTap: (){
+                                Get.to(ReviewOrderPage(), arguments: controller.orderDetailsResponse!);
+                              },
+                              backgroundColor: BT_CONFIRM,
+                              textColor: WHITE,
                             ),
                             SizedBox(
                               height: 20,

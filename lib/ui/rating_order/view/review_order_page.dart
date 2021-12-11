@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/rating_order/controller/review_order_controller.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class ReviewOrderPage extends GetView<ReviewOrderController> {
@@ -30,7 +31,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                 ),
                 onPressed: () => Get.back(result: true),
               ),
-              child: Container(
+              child: controller.orderDetailsResponse != null ? Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 color: MAIN_BG,
                 //height: Get.height,
@@ -46,8 +47,8 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       _bodyInfo(),
                       SizedBox(height: 20),
                       RatingBar.builder(
-                        initialRating: 3,
-                        minRating: 1,
+                        // initialRating: 3,
+                        // minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: false,
                         itemCount: 5,
@@ -57,6 +58,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {
+                          controller.star = rating;
                           print(rating);
                         },
                       ),
@@ -74,6 +76,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                         height: Get.height * 0.3,
                         child: TextField(
                           maxLines: 8,
+                          controller: controller.commentController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
@@ -96,20 +99,22 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: ButtonCustomized(
                           RATING,
-                          onTap: () {},
+                          onTap: () {
+                            controller.onRatingOrder();
+                          },
                           backgroundColor: MAIN_BLACK,
                         ),
                       )
                     ],
                   ),
                 ),
-              ),
+              ): LoadingSpinKit(),
             ));
   }
 
   Widget _bodyInfo() {
     final Color color;
-    //color = controller.ColorStatusName(controller.orderDetailsResponse!.dataOrderDetails!.order_status_name.toString());
+    color = controller.ColorStatusName(controller.orderDetailsResponse!.dataOrderDetails!.order_status_name.toString());
     return DottedBorder(
       dashPattern: [8, 4],
       strokeWidth: 2,
@@ -121,8 +126,8 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
       // dottedLength: 6.0,
       // space: 8.0,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        height: Get.height * 0.28,
+        padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+        //height: Get.height * 0.28,
         width: Get.width,
         color: Colors.white,
         child: Column(
@@ -139,12 +144,12 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextCustomized(
-                          text: "211003TODWE4MD",
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.bill_code.toString(),
                           size: 14,
                         ),
                         SizedBox(height: 10),
                         TextCustomized(
-                            text: "10:10 21/10/2021",
+                            text: controller.orderDetailsResponse!.dataOrderDetails!.created_at.toString(),
                             size: 10,
                             color: TEXT_DATETIME_NT)
                       ],
@@ -156,9 +161,9 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextCustomized(
-                          text: "Giao hàng thành công",
+                          text: controller.orderDetailsResponse!.dataOrderDetails!.order_status_name.toString(),
                           size: 14,
-                          color: COLOR_ORDER_DELIVERY_SUCCESSFULL,
+                          color: color,
                         )
                       ],
                     )),
@@ -185,7 +190,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextCustomized(
-                            text: "10",
+                            text: controller.orderDetailsResponse!.dataOrderDetails!.number_package.toString(),
                             color: BLACK_1,
                             weight: FontWeight.w600,
                             size: 14)
@@ -212,7 +217,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextCustomized(
-                            text: "Máy phun khử khuẩn",
+                            text: controller.orderDetailsResponse!.dataOrderDetails!.item.toString(),
                             color: BLACK_1,
                             weight: FontWeight.w600,
                             size: 14)
@@ -241,7 +246,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextCustomized(
-                            text: "Xốp + gỗ",
+                            text: controller.orderDetailsResponse!.dataOrderDetails!.packing_form.toString(),
                             color: BLACK_1,
                             weight: FontWeight.w600,
                             size: 14)
@@ -271,7 +276,7 @@ class ReviewOrderPage extends GetView<ReviewOrderController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         TextCustomized(
-                            text: "¥" + "10",
+                            text: "¥" + controller.orderDetailsResponse!.dataOrderDetails!.transport_fee.toString(),
                             color: BLACK_1,
                             weight: FontWeight.w600,
                             size: 14)

@@ -9,6 +9,8 @@ import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/controller/general_management_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/manager_bag_page.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_staff/view/manager_staff_list_page.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_user/view/manager_user_list_page.dart';
 import 'package:viet_trung_mobile/ui/admin/order_valid/create_bag_ord_vaild/view/create_bag_ord_vaild_page.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
@@ -99,7 +101,7 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
             ),
             child: InkWell(
               onTap: (){
-                Get.to(CreateBagOrdValidPage());
+                Get.to(ManagerStaffPage());
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +132,9 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
               ),
             ),
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                Get.to(ManagerUserPage());
+              },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

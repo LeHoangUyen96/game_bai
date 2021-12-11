@@ -134,7 +134,7 @@ class ManagerBagController extends GetxController
         color = COLOR_ORDER_DELIVERY_SUCCESSFULL;
         break;
     }
-    return color!;
+    return color !;
   }
 
   void onCheckFilter() {

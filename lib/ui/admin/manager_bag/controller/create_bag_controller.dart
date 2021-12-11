@@ -1,12 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
 import 'package:viet_trung_mobile/data/response/list_packing_form_response.dart';
 import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
 
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
+import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
 
 
 class CreateBagController extends GetxController  {
@@ -14,19 +17,29 @@ class CreateBagController extends GetxController  {
   List< DataListStatusBagResponse> ? mDataListStatusBagResponse =[];
   List< DataListTransportFormResponse> ? mDataListTransportFormResponse = [];
   List< DataListPackingFormFormResponse> ? mDataListPackingFormFormResponse =[];
+  TextEditingController searchController = TextEditingController();
   BagRepositories ? bagRepositories;
   SettingRepositories ? settingRepositories;
   ListTransportFormResponse ? listTransportFormResponse;
   ListPackingFormResponse ? listPackingFormFormResponse;
   ListStatusBagResponse ? listStatusBagResponse;
   ListWareHouseBackResponse ? listWareHouseBackResponse;
+  OrderAdminRepositories? orderAminRepositories;
+  List<DataSearchCustomer>? searchResponse;
   String? item_code;
+  String? typeBag;
   bool changeBill = false;
+   final FocusNode focusNode = FocusNode();
+  bool enabled = false;
+  bool onSelect = false;
+  bool onInput = false;
+  bool onSearch = false;
   @override
   void onInit() {
     super.onInit();
     bagRepositories = Injector().bag;
     settingRepositories = Injector().setting;
+    orderAminRepositories = Injector().orderAmin;
     //getDataWareHouseBack();
   }
   Future<List<DataListWareHouseBackResponse>> getDataWareHouseBack () async {
@@ -68,7 +81,20 @@ class CreateBagController extends GetxController  {
     }
     update();
   }
-
+   void onGetListSearch(String? phone) {
+    orderAminRepositories!.onGetListSearchCustomer(phone!).then((value) {
+      searchResponse = value.data!;
+      update();
+    }).catchError((onError) {
+      print(onError);
+      update();
+    });
+  }
+  void isShowCard(String phone) {
+    searchController = TextEditingController(text: phone);
+    print('------------$phone');
+    update();
+  }
 
 }
 

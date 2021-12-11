@@ -90,8 +90,9 @@ class AddressPage extends GetView<AddressController> {
             children: [
               controller.defaultIndexAddress == index
                   ? Slidable(
-                      actionPane: SlidableDrawerActionPane(),
-                      actionExtentRatio: 0.17,
+                      key: const ValueKey(0),
+                      // actionPane: SlidableDrawerActionPane(),
+                      // actionExtentRatio: 0.17,
                       child: Container(
                           child: Container(
                         //padding: EdgeInsets.all(16),
@@ -157,27 +158,59 @@ class AddressPage extends GetView<AddressController> {
                           ),
                         ),
                       )),
-                      secondaryActions: <Widget>[
-                        IconSlideAction(
-                          caption: 'Sửa',
-                          color: BLUE2,
-                          iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,
-                              height: 30, width: 30),
-                          onTap: () {
-                            Get.to(() => UpdateAddressPage(),
-                                    arguments: controller.mdatas![index])!
-                                .then((value) {
-                              if (value != null) {
-                                controller.onGetAddressAll();
-                              }
-                            });
-                          },
-                        ),
-                      ],
+                      endActionPane: ActionPane(
+                        extentRatio: 0.5,
+                        motion: ScrollMotion(),
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 25),
+                            width: Get.width * 0.22,
+                            color: BLUE2,
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(() => UpdateAddressPage(),
+                                        arguments: controller.mdatas![index])!
+                                    .then((value) {
+                                  if (value != null) {
+                                    controller.onGetAddressAll();
+                                  }
+                                });
+                              },
+                              child: Column(
+                                children: [
+                                  SvgPicture.asset(IC_EDIT_ADDRESS,
+                                      height: 30, width: 30),
+                                  SizedBox(height: 5.0),
+                                  TextCustomized(
+                                    text: "Sửa",
+                                    color: WHITE,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      //   secondaryActions: <Widget>[
+                      //     IconSlideAction(
+                      //       caption: 'Sửa',
+                      //       color: BLUE2,
+                      //        iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
+                      //       onTap: () {
+                      //         Get.to(()=> UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
+                      //           if(value != null){
+                      //             controller.onGetAddressAll();
+                      //           }
+                      //         });
+                      //       },
+                      //     ),
+                      //   ],
                     )
                   : Slidable(
-                      actionPane: SlidableDrawerActionPane(),
-                      actionExtentRatio: 0.17,
+                      key: const ValueKey(1),
+                      // actionPane: SlidableDrawerActionPane(),
+                      // actionExtentRatio: 0.17,
                       child: Container(
                           child: Container(
                         //padding: EdgeInsets.all(16),
@@ -225,38 +258,93 @@ class AddressPage extends GetView<AddressController> {
                           ),
                         ),
                       )),
-                      secondaryActions: <Widget>[
-                        IconSlideAction(
-                          caption: 'Sửa',
-                          color: BLUE2,
-                          iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,
-                              height: 30, width: 30),
-                          onTap: () {
-                            Get.to(() => UpdateAddressPage(),
-                                    arguments: controller.mdatas![index])!
-                                .then((value) {
-                              if (value != null) {
-                                controller.onGetAddressAll();
-                              }
-                            });
-                          },
-                        ),
-                        IconSlideAction(
-                          caption: 'Xoá',
-                          color: MAIN_DELETE_ADDRESS,
-                          iconWidget: SvgPicture.asset(
-                            IC_DELETE_ADDRESS,
-                            height: 30,
-                            width: 30,
+                      endActionPane: ActionPane(
+                        extentRatio: 0.5,
+                        motion: ScrollMotion(),
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 25),
+                            width: Get.width * 0.22,
+                            color: BLUE2,
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(() => UpdateAddressPage(),
+                                        arguments: controller.mdatas![index])!
+                                    .then((value) {
+                                  if (value != null) {
+                                    controller.onGetAddressAll();
+                                  }
+                                });
+                              },
+                              child: Column(
+                                children: [
+                                  SvgPicture.asset(IC_EDIT_ADDRESS,
+                                      height: 30, width: 30),
+                                  SizedBox(height: 5.0),
+                                  TextCustomized(
+                                    text: "Sửa",
+                                    color: WHITE,
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                          onTap: () {
-                            //controller.onDeleteAddress(controller.mdatas![index].id);
-                            Get.dialog(DialogDelAddressCustomized(
-                              idAddress: controller.mdatas![index].id,
-                            ));
-                          },
-                        ),
-                      ],
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 25),
+                            width: Get.width * 0.22,
+                            color: MAIN_DELETE_ADDRESS,
+                            child: InkWell(
+                              onTap: () {
+                                Get.dialog(DialogDelAddressCustomized(
+                                  idAddress: controller.mdatas![index].id,
+                                ));
+                              },
+                              child: Column(
+                                children: [
+                                  SvgPicture.asset(
+                                    IC_DELETE_ADDRESS,
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  SizedBox(height: 5.0),
+                                  TextCustomized(
+                                    text: 'Xoá',
+                                    color: WHITE,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      // secondaryActions: <Widget>[
+                      //   IconSlideAction(
+                      //     caption: 'Sửa',
+                      //     color: BLUE2,
+                      //     iconWidget: SvgPicture.asset(IC_EDIT_ADDRESS,height: 30, width: 30),
+                      //     onTap: () {
+                      //       Get.to(()=> UpdateAddressPage(), arguments: controller.mdatas![index])!.then((value){
+                      //         if(value != null){
+                      //           controller.onGetAddressAll();
+                      //         }
+                      //       });
+                      //     },
+                      //   ),
+                      //   IconSlideAction(
+                      //     caption: 'Xoá',
+                      //     color: MAIN_DELETE_ADDRESS,
+                      //     iconWidget: SvgPicture.asset(IC_DELETE_ADDRESS, height: 30, width: 30,),
+                      //     onTap:() {
+                      //       //controller.onDeleteAddress(controller.mdatas![index].id);
+                      //       Get.dialog(DialogDelAddressCustomized(
+                      //         idAddress: controller.mdatas![index].id,
+                      //       ));
+
+                      //     },
+                      //   ) ,
+                      // ],
                     ),
               SizedBox(height: 10)
             ],

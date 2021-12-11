@@ -51,7 +51,7 @@ class DataFindUser{
     this.name = json['name'] != null ? json['name'] : '';
     this.email = json['email'] != null ? json['email'] : '';
     this.phone = json['phone'] != null ? json['phone'] : '';
-    this.avatar = json['product_size'] != null ? json['product_size'] : '';
+    this.avatar = json['avatar'] != null ? json['avatar'] : '';
     this.user_code = json['user_code'] != null ? json['user_code'] : '';
     this.is_admin = ParseNumber.parseInt(json['is_admin']);
   }
