@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/models/unit.dart';
 import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/request/add_transport_form_fee_request.dart';
 import 'package:viet_trung_mobile/data/response/list_product_response.dart';
@@ -16,16 +15,17 @@ class EditTransportFormFeeController extends GetxController {
   TextEditingController feeDNController = TextEditingController();
   TextEditingController fromController = TextEditingController();
   TextEditingController toController = TextEditingController();
-  List<Unit> unit = [
-    Unit(1, kg),
-    Unit(2, m3),
+  List<String> unit = [
+    kg,
+    m3,
   ];
-  int? editUnit = 0;
-  Unit? selectedUnit;
+  String? selectedUnit;
   TransportFeeDetailResponse? response;
   List<ItemProduct>? nameProduct;
   ItemProduct? selectedItemProduct;
+  String? nameItem;
   ListProductResponse? productResponse;
+  int? idProduct;
 
   @override
   void onInit() {
@@ -36,24 +36,33 @@ class EditTransportFormFeeController extends GetxController {
     } else {
       transportFeeId = Get.arguments;
     }
-    onGetTransportFeeDetail();
+    onGetTransportFeeDetail(transportFeeId!);
     onGetListProduct();
   }
 
-  void onChangeUnit(Unit value, int id) {
+  void onChangeUnit(String value) {
     selectedUnit = value;
-    editUnit = id;
     update();
   }
 
   void onChangeProduct(ItemProduct value) {
     selectedItemProduct = value;
+    idProduct = value.id!;
     update();
   }
 
-  void onGetTransportFeeDetail() {
+  void onGetTransportFeeDetail(String id) {
     repository!.onGetTransportFeeDetail(transportFeeId!).then((value) {
       response = value;
+      feeHNController =
+          TextEditingController(text: value.data!.transportFeeHN!);
+      feeDNController =
+          TextEditingController(text: value.data!.transportFeeDN!);
+      feeSGController =
+          TextEditingController(text: value.data!.transportFeeSG!);
+      fromController = TextEditingController(text: value.data!.from!);
+      toController = TextEditingController(text: value.data!.to!);
+      selectedUnit = value.data!.unit!;
       update();
     }).catchError((onError) {
       update();
@@ -74,13 +83,14 @@ class EditTransportFormFeeController extends GetxController {
 
   void onCreateTransportFee() {
     AddTransportFormFeeRequest _request = AddTransportFormFeeRequest(
-      transportFormId: transportFeeId!,
+      transportFormId: transportFeeId!.toString(),
       from: fromController.text,
       to: toController.text,
       transportfeeDN: feeDNController.text,
       transportfeeHN: feeHNController.text,
       transportfeeSG: feeSGController.text,
-      unit: selectedUnit!.name,
+      unit: selectedUnit!,
+      productId: selectedItemProduct!.id,
     );
     repository!.onAddTransportFee(_request).then((value) {
       Get.snackbar('Thông báo', value.message!);

@@ -140,8 +140,8 @@ class AddTransportFormFeeController extends GetxController {
         productId: editName!,
       );
       repository!.onAddTransportFee(_request).then((value) {
-        Get.snackbar('Thông báo', value.message!);
         Get.back();
+        Get.snackbar('Thông báo', value.message!);
         update();
       }).catchError((onError) {
         update();

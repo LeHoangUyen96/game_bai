@@ -19,34 +19,34 @@ class TransportDetailPage extends GetView<TransportDetailController> {
     return GetBuilder<TransportDetailController>(
       init: TransportDetailController(),
       builder: (value) => controller.response != null
-          ? Scaffold(
-              backgroundColor: MAIN_BG,
-              appBar: buildAppBar(
-                  name!,
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: InkWell(
-                      onTap: () {
-                        Get.dialog(DialogAddTransportFee(),
-                            arguments: controller.transportId!);
-                      },
-                      child: Icon(
-                        Icons.add,
-                        color: WHITE,
-                      ),
-                    ),
-                  )),
-              body: SmartRefresher(
-                  enablePullUp: true,
-                  enablePullDown: true,
-                  controller: controller.refreshController,
-                  onRefresh: () {
-                    controller.onRefresh();
-                  },
-                  onLoading: () {
-                    controller.onLoading();
-                  },
-                  child: controller.response!.data!.isNotEmpty
+          ? SmartRefresher(
+              enablePullUp: true,
+              enablePullDown: true,
+              controller: controller.refreshController,
+              onRefresh: () {
+                controller.onRefresh();
+              },
+              onLoading: () {
+                controller.onLoading();
+              },
+              child: Scaffold(
+                  backgroundColor: MAIN_BG,
+                  appBar: buildAppBar(
+                      name!,
+                      Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: InkWell(
+                          onTap: () {
+                            Get.dialog(DialogAddTransportFee(),
+                                arguments: controller.transportId!);
+                          },
+                          child: Icon(
+                            Icons.add,
+                            color: WHITE,
+                          ),
+                        ),
+                      )),
+                  body: controller.response!.data!.isNotEmpty
                       ? buildBody()
                       : SizedBox()))
           : SizedBox(),
@@ -98,7 +98,7 @@ class TransportDetailPage extends GetView<TransportDetailController> {
                                   InkWell(
                                       onTap: () {
                                         Get.dialog(DialogEditTransportFee(),
-                                            arguments: e.id!);
+                                            arguments: e.id!.toString());
                                       },
                                       child: ImageCustomized(
                                         path: ic_edit,

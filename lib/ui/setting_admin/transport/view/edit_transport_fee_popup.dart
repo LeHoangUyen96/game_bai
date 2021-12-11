@@ -16,101 +16,120 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
   Widget build(BuildContext context) {
     return GetBuilder<EditTransportFormFeeController>(
         init: EditTransportFormFeeController(),
-        builder: (value) => Dialog(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            insetPadding: EdgeInsets.symmetric(horizontal: 15),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
-            child: Container(
-              height: Get.height * 0.8,
-              width: Get.width,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 56,
-                      color: COLOR_BT,
-                      child: Row(
-                        children: [
-                          Spacer(),
-                          Text(edit,
-                              style: TextStyle(
-                                  fontSize: customSize,
-                                  fontFamily: SanFranciscoText,
-                                  fontWeight: FontWeight.w800,
-                                  color: WHITE)),
-                          Spacer(),
-                          InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(
-                                Icons.clear,
-                                size: 20,
-                                color: WHITE,
-                              )),
-                          SizedBox(width: 5),
-                        ],
-                      ),
-                    ),
-                    Container(
-                        padding: EdgeInsets.all(15),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
+        builder: (value) => controller.response != null
+            ? Dialog(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                insetPadding: EdgeInsets.symmetric(horizontal: 15),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(9)),
+                child: Container(
+                  height: Get.height * 0.85,
+                  width: Get.width,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 56,
+                          color: COLOR_BT,
+                          child: Row(
                             children: [
-                              _rowInfo(),
-                              SizedBox(height: 10),
-                              Row(
+                              Spacer(),
+                              Text(edit,
+                                  style: TextStyle(
+                                      fontSize: customSize,
+                                      fontFamily: SanFranciscoText,
+                                      fontWeight: FontWeight.w800,
+                                      color: WHITE)),
+                              Spacer(),
+                              InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: WHITE,
+                                  )),
+                              SizedBox(width: 5),
+                            ],
+                          ),
+                        ),
+                        Container(
+                            padding: EdgeInsets.all(15),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  _itemFee(
-                                    from,
-                                    controller.fromController,
-                                    Get.width * 0.4,
-                                    '',
+                                  _rowInfo(),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      _itemFee(
+                                        from,
+                                        controller.fromController,
+                                        Get.width * 0.4,
+                                        controller.response!.data!.from!
+                                            .toString(),
+                                      ),
+                                      Spacer(),
+                                      _itemFee(
+                                        to,
+                                        controller.toController,
+                                        Get.width * 0.4,
+                                        controller.response!.data!.to!
+                                            .toString(),
+                                      ),
+                                    ],
                                   ),
-                                  Spacer(),
                                   _itemFee(
-                                    to,
-                                    controller.toController,
-                                    Get.width * 0.4,
-                                    '',
+                                    feeHN,
+                                    controller.feeHNController,
+                                    Get.width,
+                                    controller.response!.data!.transportFeeHN!
+                                        .toString(),
                                   ),
-                                ],
-                              ),
-                              _itemFee(feeHN, controller.feeHNController,
-                                  Get.width, inputFee),
-                              _itemFee(feeDN, controller.feeDNController,
-                                  Get.width, inputFee),
-                              _itemFee(feeSG, controller.feeSGController,
-                                  Get.width, inputFee),
-                              ButtonCustomized(
-                                save,
-                                textColor: Colors.white,
-                                onTap: () {
-                                  controller.onCreateTransportFee();
-                                },
-                                backgroundColor: COLOR_BT,
-                                height: 48,
-                                width: Get.width,
-                              ),
-                            ]))
-                  ],
-                ),
-              ),
-            )));
+                                  _itemFee(
+                                    feeDN,
+                                    controller.feeDNController,
+                                    Get.width,
+                                    controller.response!.data!.transportFeeDN!
+                                        .toString(),
+                                  ),
+                                  _itemFee(
+                                    feeSG,
+                                    controller.feeSGController,
+                                    Get.width,
+                                    controller.response!.data!.transportFeeSG!
+                                        .toString(),
+                                  ),
+                                  ButtonCustomized(
+                                    save,
+                                    textColor: Colors.white,
+                                    onTap: () {
+                                      controller.onCreateTransportFee();
+                                    },
+                                    backgroundColor: COLOR_BT,
+                                    height: 48,
+                                    width: Get.width,
+                                  ),
+                                ]))
+                      ],
+                    ),
+                  ),
+                ))
+            : SizedBox());
   }
 
   Widget _itemFee(
     String title,
     TextEditingController controller,
     double width,
-    String hintText,
+    String? hintText,
   ) {
     return SingleChildScrollView(
         child: Column(
@@ -171,51 +190,36 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
             ),
             SizedBox(height: 5),
             _itemDropdown(Expanded(
-              child: DropdownButtonHideUnderline(
-                child: ButtonTheme(
-                    alignedDropdown: true,
-                    child: controller.productResponse != null
-                        ? DropdownButton(
-                            value: controller.selectedItemProduct != null
-                                ? controller.selectedItemProduct
-                                : null,
-                            icon: _iconDropdown(),
-                            iconSize: 24,
-                            elevation: 16,
-                            isExpanded: true,
-                            items: controller.productResponse!.data!
-                                .map((ItemProduct value) {
-                              return DropdownMenuItem<ItemProduct>(
-                                value: value,
-                                child: Container(
-                                  child: Text(
-                                    value.name.toString(),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (ItemProduct? value) {
-                              controller.onChangeProduct(value!);
-                            },
-                            hint: Text(''),
-                          )
-                        : DropdownButton(
-                            icon: _iconDropdown(),
-                            iconSize: 24,
-                            elevation: 16,
-                            isExpanded: true,
-                            items: [
-                              DropdownMenuItem<String>(
-                                value: "1",
-                                child: Center(
-                                  child: Text(NO_DISTRICT),
+                child: DropdownButtonHideUnderline(
+              child: ButtonTheme(
+                  alignedDropdown: true,
+                  child: controller.productResponse != null
+                      ? DropdownButton(
+                          value: controller.selectedItemProduct != null
+                              ? controller.selectedItemProduct
+                              : null,
+                          icon: _iconDropdown(),
+                          iconSize: 24,
+                          elevation: 16,
+                          isExpanded: true,
+                          items: controller.productResponse!.data!
+                              .map((ItemProduct value) {
+                            return DropdownMenuItem<ItemProduct>(
+                              value: value,
+                              child: Container(
+                                child: Text(
+                                  value.name.toString(),
                                 ),
                               ),
-                            ],
-                            hint: Text(selectProduct),
-                          )),
-              ),
-            ))
+                            );
+                          }).toList(),
+                          onChanged: (ItemProduct? value) {
+                            controller.onChangeProduct(value!);
+                          },
+                          hint: Text(controller.response!.data!.productId!),
+                        )
+                      : SizedBox()),
+            )))
           ]),
       Spacer(),
       Column(
@@ -233,45 +237,29 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
               child: DropdownButtonHideUnderline(
                 child: ButtonTheme(
                     alignedDropdown: true,
-                    child: controller.unit != null
-                        ? DropdownButton(
-                            value: controller.selectedUnit != null
-                                ? controller.selectedUnit
-                                : null,
-                            icon: _iconDropdown(),
-                            iconSize: 24,
-                            elevation: 16,
-                            isExpanded: true,
-                            items: controller.unit.map((Unit value) {
-                              return DropdownMenuItem<Unit>(
-                                value: value,
-                                child: Container(
-                                  child: Text(
-                                    value.name.toString(),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (Unit? value) {
-                              controller.onChangeUnit(value!, value.id!);
-                            },
-                            hint: Text(unit),
-                          )
-                        : DropdownButton(
-                            icon: _iconDropdown(),
-                            iconSize: 24,
-                            elevation: 16,
-                            isExpanded: true,
-                            items: [
-                              DropdownMenuItem<String>(
-                                value: "1",
-                                child: Center(
-                                  child: Text(NO_DISTRICT),
-                                ),
-                              ),
-                            ],
-                            hint: Text(selectUnit),
-                          )),
+                    child: DropdownButton(
+                      value: controller.selectedUnit != null
+                          ? controller.selectedUnit
+                          : null,
+                      icon: _iconDropdown(),
+                      iconSize: 24,
+                      elevation: 16,
+                      isExpanded: true,
+                      items: controller.unit.map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Container(
+                            child: Text(
+                              value,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? value) {
+                        controller.onChangeUnit(value!);
+                      },
+                      hint: Text(controller.response!.data!.unit!),
+                    )),
               ),
             ))
           ]),
