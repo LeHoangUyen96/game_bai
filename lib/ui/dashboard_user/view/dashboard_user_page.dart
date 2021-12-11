@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/dashboard_user_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/dashboard_user/controller/dashboard_user_controller.dart';
+import 'package:viet_trung_mobile/ui/notification/view/detail_notification_many_bag_page.dart';
 import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
+import 'package:viet_trung_mobile/ui/order/view/order_details_receive.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class DashboardUserPage extends GetView<DashboardUserController> {
@@ -18,7 +22,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
     return GetBuilder<DashboardUserController>(
       init: DashboardUserController(),
         builder: (value) => Scaffold(
-          body:  _buildBody(),
+          body: controller.dashboardUsesResponse != null ? _buildBody() : LoadingSpinKit(),
 
         )
     );
@@ -54,8 +58,15 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                               CircleAvatar(
                                 radius: 30.0,
                                  child: ClipOval(
-                                  child: ImageCustomized(
-                                       path: IMG_DASHBOARD,
+                                  child: controller.dashboardUsesResponse!.avatar == null ||
+                                  controller.dashboardUsesResponse!.avatar == ''
+                              ? ImageCustomized(
+                                  path: LOGO_IMG,
+                                  height: 60,
+                                  width: 60,
+                                )
+                              :  ImageCustomized(
+                                       path: controller.dashboardUsesResponse!.avatar,
                                        height: 60,
                                        width: 60,
                                   ),
@@ -64,7 +75,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                               ),
                               SizedBox(width: 10.0),
                               TextCustomized(
-                                text: "abc",
+                                text: controller.dashboardUsesResponse!.name.toString(),
                                 color: WHITE,
                                 size: mediumSize,
                                 weight: FontWeight.w700,
@@ -72,16 +83,49 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             ],
                           ),
                         ),
-                        Container(
-                          child: InkWell(
-                            onTap: (){
-                              Get.to(NotificationPage());
-                            },
-                            child: ImageCustomized(
-                              path: IC_NAV_NOTIFICATION,
-                              color: WHITE,
-                              width: 28,
-                              height: 28,
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.bottomRight,
+                            child: InkWell(
+                              onTap: (){
+                                //Get.to(NotificationPage());
+                                Get.to(DetailNotificationManyBagPage());
+                              },
+                              child: Stack(
+                                fit: StackFit.loose,
+                                
+                                children:[ 
+                                ImageCustomized(
+                                  path: IC_NAV_NOTIFICATION,
+                                  color: WHITE,
+                                  width: 30,
+                                  height: 30,
+                                ),
+                                // Positioned(
+                                //   right: 2,
+                                //   //top: -2,
+                                //   child: Container(
+                                //     // height: 15,
+                                //     // width: 15,
+                                //     decoration: BoxDecoration(
+                                //       color: RED_1,
+                                //       borderRadius: BorderRadius.circular(100)
+                                //     ),
+                                //     child: Center(
+                                //       child: Container(
+                                //         child: TextCustomized(
+                                //           text: controller.dashboardUsesResponse!.number_notification.toString(),
+                                //           color: WHITE,
+                                //           size: 12.0,
+                                //           weight: FontWeight.w700,
+                                //           ),
+                                //       ),
+                                //     ),
+                                //   ),
+                                //   )
+                                ]
+                              ),
                             ),
                           ),
                         ),
@@ -100,7 +144,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextCustomized(
-                                text: "8",
+                                text:  controller.dashboardUsesResponse!.number_goods_arrive.toString(),
                                 size: 30,
                                 color: WHITE,
                                 weight: FontWeight.w700,
@@ -119,7 +163,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextCustomized(
-                                text: "9 ",
+                                text:  controller.dashboardUsesResponse!.number_goods_storage.toString(),
                                 size: 30,
                                 color: WHITE,
                                 weight: FontWeight.w700,
@@ -127,7 +171,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                               TextCustomized(
                                 text: ORDER_STOCK,
                                 size: smallSize,
-                                color: WHITE,
+                                color: WHITE, 
                                 weight: FontWeight.w700,
                               ),
                             ],
@@ -180,14 +224,14 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                           Container(
                               child: ListView.separated(
                                 itemBuilder: (BuildContext context, int index){
-                                  return  _builListItem();
+                                  return  _builListItem(controller.dashboardUsesResponse!.orders_arrive![index]);
                                 }, 
                                 shrinkWrap: true,
                                 separatorBuilder: (context, index) {
                                   return SizedBox(height: 10);
                                 },
                                 physics: BouncingScrollPhysics (),
-                                itemCount: 10,
+                                itemCount: controller.dashboardUsesResponse!.orders_arrive!.length,
                                 padding: EdgeInsets.all(0.0),
                                 ),
                             ),
@@ -211,9 +255,9 @@ class DashboardUserPage extends GetView<DashboardUserController> {
      alignment: Alignment.center,
   );
   }
-  Widget _builListItem(){
+  Widget _builListItem(DataOrdersArrive data){
     return Container(
-      padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
+      padding: EdgeInsets.only(left: 20,right: 20,bottom: 10, top: 10),
       color: WHITE,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,25 +265,34 @@ class DashboardUserPage extends GetView<DashboardUserController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextCustomized(
-                //text: dataOrder.bill_code.toString(),
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w700,
-                color: MAIN_BLACK,
-                ),
-                TextCustomized(
-                // text: dataOrder.order_status_name.toString(),
-                text: ORDER_NULL,
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: BG_ID_PD,
+              InkWell(
+                onTap: (){
+                  Get.to(OrderDetailReceivePage(),arguments: data.id);
+                },
+                child: TextCustomized(
+                  text: data.bill_code.toString(),
+                  font: SanFranciscoText,
+                  weight: FontWeight.w700,
+                  color: MAIN_BLACK,
+                  ),
+              ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    child: TextCustomized(
+                    text: data.order_status_name.toString(),
+                    font: SanFranciscoText,
+                    weight: FontWeight.w400,
+                    color: BG_ID_PD,
+                    ),
+                  ),
                 ),
             ],
           ),
           SizedBox(height: 5,),
           TextCustomized(
-            text: ORDER_NULL,
+            text: data.created_at.toString(),
                 // text: dataOrder.created_at.toString(),
                 font: SanFranciscoTextLight,
                 weight: FontWeight.w400,
@@ -257,7 +310,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 ),
                 TextCustomized(
                 // text: dataOrder.number_package.toString(),
-                text: ORDER_NULL,
+                text: data.number_package.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -276,7 +329,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 ),
                 TextCustomized(
                 // text: dataOrder.item.toString(),
-                text: ORDER_NULL,
+                text: data.item.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -294,8 +347,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 color: GRAY1,
                 ),
                 TextCustomized(
-                // text: dataOrder.packing_form.toString(),
-                text: ORDER_NULL,
+                text: data.packing_form.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -314,7 +366,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 ),
                 TextCustomized(
                 // text: "¥"+dataOrder.transport_fee.toString(),
-                text: ORDER_NULL,
+                text: "¥" + data.transport_fee.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -336,7 +388,7 @@ class DashboardUserPage extends GetView<DashboardUserController> {
                 flex: 5,
                 child: TextCustomized(
                 // text: dataOrder.delivery_form.toString(),
-                text: ORDER_NULL,
+                text: data.delivery_form.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,

@@ -19,6 +19,7 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/manager_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/bag_details_page.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/create_bag_page.dart';
+import 'package:viet_trung_mobile/widget/add_product_dialog.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/datepicker_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -435,7 +436,7 @@ class ManagerBagPage extends GetView<ManagerBagController> {
                     flex: 1,
                     child: InkWell(
                       onTap: (){
-                        Get.to(BagDeatailsPage());
+                        Get.to(BagDeatailsPage(), arguments: mData.id);
                       },
                       child:TextCustomized(
                           text: mData.code.toString(),
@@ -596,7 +597,9 @@ class ManagerBagPage extends GetView<ManagerBagController> {
             ),
             alignment: Alignment.center,
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                Get.dialog(AddProductDialog());
+              },
               child: Wrap(
                 spacing: 5.0,
                 children: [

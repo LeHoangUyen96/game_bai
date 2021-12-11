@@ -129,7 +129,7 @@ class ManagerBagController extends GetxController implements ManagerBagContract 
         color = COLOR_ORDER_DELIVERY_SUCCESSFULL;
         break;        
     }
-    return color!;
+    return color !;
   }
   void onCheckFilter(){
     checkFilter = !checkFilter;

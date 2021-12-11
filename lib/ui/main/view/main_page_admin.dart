@@ -40,7 +40,7 @@ class MainPageAdmin extends GetView<MainController> {
                 //ProfilePage(),
                 //FindingCustomerPage(),
                 controller.isAdmin == 1
-                    ? NotificationAdminPage()
+                    ? DashboardAdminPage()
                     : DashboardUserPage(),
                 controller.isAdmin == 1 ? OrderAdminPage() : OrderInfoPage(),
                 controller.isAdmin == 1 ? GenaeralManagePage() : ProfilePage(),

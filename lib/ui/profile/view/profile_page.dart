@@ -29,7 +29,10 @@ class ProfilePage extends GetView<ProfileController> {
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
         body:  controller.mDataProfile != null ?
-                 SingleChildScrollView(child: buildBody()) 
+                 SingleChildScrollView(
+                   child: buildBody(),
+                   physics: BouncingScrollPhysics(),
+                   ) 
                : Container(child: LoadingSpinKit(),),
         backgroundColor: GRAY6,
       ),

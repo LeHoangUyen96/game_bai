@@ -36,7 +36,7 @@ const String ERROR_CITY = "Tỉnh/Thành phố không được để trống";
 const String ERROR_DISTRICT = "Quận/Huyện không được để trống";
 const String ERROR_WARDS = "Phường/Xã không được để trống";
 const String BT_NEXT = "Tiếp tục";
-
+const String ADD_NEW = "Thêm mới";
 const String AB_WALLET = 'Quản lý ví tiền';
 const String WALLET_FROZEN = 'Số dư đóng băng';
 const String WALLET_AVAILABLE_BALANCE = 'Số dư khả dụng';
@@ -748,7 +748,7 @@ const String ORDER_LIST_APP_BAR = 'Danh sách đơn hàng';
 const String ORDER_LIST_ARRIVED = 'Danh sách hàng về ';
 const String ORDER_LIST_STOCK = 'Danh sách hàng lưu kho';
 const String ORDER_LIST_BILL_CODE = 'Mã Bill:';
-const String ORDER_LIST_PARCELS = 'Số kiện hàng:';
+const String ORDER_LIST_PARCELS = 'Số kiện hàng';
 const String ORDER_LIST_ITEMS = 'Mặt hàng:';
 const String ORDER_LIST_PACKING_FORM = 'Hình thức đóng gói:';
 const String ORDER_LIST_COD = 'Thu hộ(COD)';
@@ -832,8 +832,8 @@ const String MANAGE_PACKAGE_BAG = 'Bao';
 const String MANAGE_PACKAGE_BAG_NAME = 'Tên bao';
 const String MANAGE_PACKAGE_ENTER_WEIGHT = 'Nhập số cân';
 const String MANAGE_PACKAGE_ORDER = 'Đơn hàng';
-const String ORDER_EXPORT_TO_CHINA = 'Xuất Kho Trung Quốc';
-const String ORDER_BORDER_WAREHOUSE = 'Kho Cửa Khẩu';
+const String ORDER_EXPORT_TO_CHINA = 'Xuất kho Trung Quốc';
+const String ORDER_BORDER_WAREHOUSE = 'Kho cửa khẩu';
 const String ORDER_PROCESS = 'Làm thủ tục';
 const String ORDER_HN_WAREHOUSE = 'Tổng kho Hà Nội';
 const String ORDER_SG_WAREHOUSE = 'Kho Sài Gòn';
@@ -843,6 +843,60 @@ const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
 const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
 const String ORDER_STOCK = 'Hàng lưu kho';
 const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
+const String STATUS_TRANFORM = 'Trạng thái giao hàng'; 
+const String DELIVERY_PACKAGE = 'Hình thức đóng gói'; 
+const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';  
+const String ID_STAFF = 'Mã nhân viên'; 
+ 
+ 
+ 
+
+
+ 
+
+ 
+ 
+ 
+ 
+  
+ 
+
+
+  
+  
+
+
+
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
 
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';
