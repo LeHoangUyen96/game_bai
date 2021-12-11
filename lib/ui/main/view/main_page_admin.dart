@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/ui/admin/dashboard_admin/view/dashboard_admin_page.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
