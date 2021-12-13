@@ -47,7 +47,7 @@ class DetailStaffController extends GetxController  {
       onGetDetailAdmin();
       update();
     }).catchError((onError){
-      Get.defaultDialog(title: onError.toString(), middleText: '');
+      //Get.defaultDialog(title: onError.toString(), middleText: '');
     });
   }
 }

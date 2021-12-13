@@ -78,10 +78,19 @@ class CreateStaffPage extends GetView<CreateStaffController> {
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
-              //textController: controller.name,
+              textController: controller.userCodeController,
               //errorText: ,
               hint: 'nguyenvanaDNa',    
             ),
+             controller.isUserCodeValid == false
+                  ? TextCustomized(
+                text: controller.userCodeError,
+                font: SanFranciscoText,
+                size: 12,
+                weight: FontWeight.w400,
+                color: RED,
+              )
+                  : Container(),
             SizedBox(height: 15,),
             TextCustomized(
             text: NAME,

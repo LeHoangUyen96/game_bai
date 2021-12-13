@@ -232,6 +232,7 @@ class NetworkConfig {
   static const String MANAGER_STAFF_DETAIL = URL_SERVER + "/admin/users/detail-admin/";
   static const String MANAGER_STAFF_DELETE = URL_SERVER + "/admin/users/delete-user/";
   static const String MANAGER_STAFF_CHANGE_STATUS = URL_SERVER + "/admin/users/changed-status/";
+  static const String MANAGER_STAFF_CREATE = URL_SERVER + "/admin/users/create-admin";
   // Manager User
   static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
   static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
