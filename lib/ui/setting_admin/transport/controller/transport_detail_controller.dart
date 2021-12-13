@@ -32,7 +32,6 @@ class TransportDetailController extends GetxController {
     }).catchError((onError) {
       update();
     });
-    update();
   }
 
   void onDeleteTransport(String id) {

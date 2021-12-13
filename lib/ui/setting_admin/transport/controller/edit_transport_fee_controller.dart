@@ -63,6 +63,7 @@ class EditTransportFormFeeController extends GetxController {
       fromController = TextEditingController(text: value.data!.from!);
       toController = TextEditingController(text: value.data!.to!);
       selectedUnit = value.data!.unit!;
+      idProduct = value.data!.productId!;
       update();
     }).catchError((onError) {
       update();
@@ -81,7 +82,7 @@ class EditTransportFormFeeController extends GetxController {
     update();
   }
 
-  void onCreateTransportFee() {
+  void onUpdateTransportFee(String id) {
     AddTransportFormFeeRequest _request = AddTransportFormFeeRequest(
       transportFormId: transportFeeId!.toString(),
       from: fromController.text,
@@ -90,9 +91,10 @@ class EditTransportFormFeeController extends GetxController {
       transportfeeHN: feeHNController.text,
       transportfeeSG: feeSGController.text,
       unit: selectedUnit!,
-      productId: selectedItemProduct!.id,
+      productId: idProduct!,
     );
-    repository!.onAddTransportFee(_request).then((value) {
+    repository!.onUpdateTransportFee(transportFeeId!, _request).then((value) {
+      Get.back();
       Get.snackbar('Thông báo', value.message!);
       update();
     }).catchError((onError) {

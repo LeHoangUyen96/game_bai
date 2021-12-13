@@ -8,7 +8,6 @@ import 'package:viet_trung_mobile/data/response/list_product_response.dart';
 import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
 import 'package:viet_trung_mobile/data/response/transport_admin_detail_response.dart';
 import 'dart:convert';
-
 import 'package:viet_trung_mobile/data/response/transport_fee_detail_response.dart';
 
 class TransportAdminImpl extends GetConnect
@@ -88,6 +87,19 @@ class TransportAdminImpl extends GetConnect
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return TransportFeeDetailResponse.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<ForgotPassResponse> onUpdateTransportFee(
+      String id, AddTransportFormFeeRequest request) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.updateTransportFee + id;
+    final body = json.encode(request);
+    final responseJson = await put(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return ForgotPassResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }

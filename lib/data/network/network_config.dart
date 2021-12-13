@@ -252,6 +252,9 @@ class NetworkConfig {
       URL_SERVER + "/admin/transport-form-fee/create-fee";
   static const String transportFeeDetail =
       URL_SERVER + "/admin/transport-form-fee/detail/";
+  static const String updateTransportFee =
+      URL_SERVER + "/admin/transport-form-fee/update-fee/";
+
   // Dashboard User
   static const String DASHBOARD_USER = URL_SERVER + "/dashboard";
   // Rating Order
@@ -267,4 +270,29 @@ class NetworkConfig {
   static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
   static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
   static const String MANAGER_USER_CREATE = URL_SERVER + "/admin/users/create-user";
+
+  //settings packing
+  static const String listPacking =
+      URL_SERVER + "/admin/setting/packing-form/list";
+  static const String addPacking =
+      URL_SERVER + "/admin/setting/packing-form/store";
+  static const String updatePacking =
+      URL_SERVER + "/admin/setting/packing-form/update/";
+  static const String deletePacking =
+      URL_SERVER + "/admin/setting/packing-form/delete/";
+  static const String packingDetail =
+      URL_SERVER + "/admin/setting/packing-form/detail/";
+
+  //settings dashboard product
+  static const String addProduct = URL_SERVER + "/admin/products/create";
+  static const String updateProduct = URL_SERVER + "/admin/products/update/";
+  static const String deleteProduct = URL_SERVER + "/admin/products/delete/";
+  static const String productDetail = URL_SERVER + "/admin/products/detail/";
+
+  //settings exchange rate
+  static const String getExchangeRate =
+      URL_SERVER + "/admin/setting/exchange-rate/list";
+  static const String updateExchangeRate =
+      URL_SERVER + "/admin/setting/exchange-rate/update";
+
 }

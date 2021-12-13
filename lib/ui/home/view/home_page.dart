@@ -46,7 +46,7 @@ class HomePage extends GetView<HomeController> {
                 color: BG_CURRENCY,
                 child: TextCustomized(
                   text: HOME_CURRENCY_RATE +
-                      controller.exchangeRateResponse!.data!.exchange_rate!
+                      controller.exchangeRateResponse!.data!.exchangeRate!
                           .toString() +
                       HOME_VND_CNY,
                   font: SanFranciscoUIText,

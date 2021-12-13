@@ -21,9 +21,6 @@ class TransportPage extends GetView<TransportController> {
               onRefresh: () {
                 controller.onRefresh();
               },
-              onLoading: () {
-                controller.onLoading();
-              },
               child: Scaffold(
                 appBar: buildAppBar(
                   transformeFormat,
@@ -36,26 +33,28 @@ class TransportPage extends GetView<TransportController> {
 
   Widget buildBody() {
     return Container(
-      color: MAIN_BG,
-      child: Column(children: [
-        ListView.builder(
-            itemCount: controller.response!.data!.length,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return _buildItem(
-                controller.response!.data![index],
-                () {
-                  Get.to(
-                    TransportDetailPage(
-                        name: controller.response!.data![index].name!),
-                    arguments: controller.response!.data![index].id.toString(),
+        color: MAIN_BG,
+        child: SingleChildScrollView(
+          child: Column(children: [
+            ListView.builder(
+                itemCount: controller.response!.data!.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return _buildItem(
+                    controller.response!.data![index],
+                    () {
+                      Get.to(
+                        TransportDetailPage(
+                            name: controller.response!.data![index].name!),
+                        arguments:
+                            controller.response!.data![index].id.toString(),
+                      );
+                    },
                   );
-                },
-              );
-            }),
-      ]),
-    );
+                }),
+          ]),
+        ));
   }
 
   Widget _buildItem(

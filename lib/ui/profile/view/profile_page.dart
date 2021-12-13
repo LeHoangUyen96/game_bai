@@ -13,82 +13,35 @@ import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
 import 'package:viet_trung_mobile/ui/rating_order/view/rating_order_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class ProfilePage extends GetView<ProfileController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<ProfileController>(
       init: ProfileController(),
       builder: (value) => controller.mDataProfile != null
           ? Scaffold(
-              appBar: controller.mDataProfile!.data!.is_admin == 1
-                  ? buildAppBar(
-                      PROFILE_PERSONAL_INFOMATION,
-                      InkWell(
-                        onTap: () {
-                          Get.to(ProfileEditPage());
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: SvgPicture.asset(
-                            IC_EDIT,
-                            color: WHITE,
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                      ),
-                    )
-                  : appBar(),
-              body: controller.mDataProfile != null
-                  ? SingleChildScrollView(child: buildBody())
-                  : Container(
-                      child: LoadingSpinKit(),
+              appBar: buildAppBar(
+                PROFILE_PERSONAL_INFOMATION,
+                InkWell(
+                  onTap: () {
+                    Get.to(ProfileEditPage());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: SvgPicture.asset(
+                      IC_EDIT,
+                      color: WHITE,
+                      width: 20,
+                      height: 20,
                     ),
+                  ),
+                ),
+              ),
               backgroundColor: GRAY6,
             )
           : SizedBox(),
-    );
-  }
-
-  PreferredSize appBar() {
-    return PreferredSize(
-      preferredSize: Size(double.infinity, 55),
-      child: InitialWidget(
-        child: Container(),
-        titleAppBar: PROFILE_PERSONAL_INFOMATION,
-        backgroundAppBar: Colors.black26,
-        isShowBack: true,
-        iconBack: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: WHITE,
-          ),
-        ),
-        isAdd: true,
-        iconAdd: InkWell(
-          onTap: () {
-            Get.to(ProfileEditPage());
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: SvgPicture.asset(
-              IC_EDIT,
-              color: WHITE,
-              width: 20,
-              height: 20,
-            ),
-          ),
-        ),
-      ),
     );
   }
 
@@ -102,13 +55,6 @@ class ProfilePage extends GetView<ProfileController> {
           Container(
             padding: EdgeInsets.all(10),
             decoration: const BoxDecoration(
-              //  boxShadow: [
-              //        BoxShadow(
-              //        color: GRAY4,
-              //        blurRadius: 8,
-              //        offset: Offset(4, 6), // Shadow position
-              //        ),
-              //     ],
               borderRadius: BorderRadius.all(
                 Radius.circular(15),
               ),
@@ -414,12 +360,7 @@ class ProfilePage extends GetView<ProfileController> {
 
   Widget buildImageAvt() {
     return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(15.0),
-        topRight: Radius.circular(15.0),
-        bottomRight: Radius.circular(15.0),
-        bottomLeft: Radius.circular(15.0),
-      ),
+      borderRadius: BorderRadius.all(Radius.circular(15.0)),
       child: Material(
         color: Colors.transparent,
         clipBehavior: Clip.antiAlias,
