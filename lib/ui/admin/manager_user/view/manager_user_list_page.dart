@@ -12,6 +12,7 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_user/controller/manager_user_list_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_user/view/create_user_page.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_user/view/detail_user_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -57,7 +58,9 @@ class ManagerUserPage extends GetView<ManagerUserController> {
         ),
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(CreateUserPage());
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal:15.0),
               child: SvgPicture.asset(

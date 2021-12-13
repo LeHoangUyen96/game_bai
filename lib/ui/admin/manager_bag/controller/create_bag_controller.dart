@@ -29,6 +29,9 @@ class CreateBagController extends GetxController  {
   String? item_code;
   String? typeBag;
   bool changeBill = false;
+  int? transport_form_id;
+  String? warehouse_back_code;
+  String? packing_from;
    final FocusNode focusNode = FocusNode();
   bool enabled = false;
   bool onSelect = false;

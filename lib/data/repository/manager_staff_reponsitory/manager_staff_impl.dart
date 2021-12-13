@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
+import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
+import 'package:viet_trung_mobile/data/request/create_admin_request.dart';
 import 'package:viet_trung_mobile/data/response/detail_staff_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
+import 'package:viet_trung_mobile/data/response/errors_enter_warehouse.dart';
 import 'package:viet_trung_mobile/data/response/list_admin_response.dart';
 import 'package:viet_trung_mobile/data/response/update_status_bag_response.dart';
 
@@ -63,5 +69,17 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
       return  UploadStatusBagResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<CreateAdminResponse> onCreateAdmin(CreateAdminRequest request) async{
+     final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.MANAGER_STAFF_CREATE;
+    final body = json.encode(request);
+    final responseJson = await post(url,body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return CreateAdminResponse.fromJson(responseJson.body);
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }
 }

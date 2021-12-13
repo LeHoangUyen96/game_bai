@@ -23,8 +23,8 @@ class SearchTextFieldUser extends GetView<CreateBagController> {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OrderOwnerlessConfirmController>(
-        init: OrderOwnerlessConfirmController(),
+    return GetBuilder<CreateBagController>(
+        init: CreateBagController(),
         builder: (value) => Column(children: [
               Container(
                 //margin: EdgeInsets.symmetric(horizontal: 16),

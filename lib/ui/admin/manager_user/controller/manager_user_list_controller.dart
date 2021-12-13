@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
+import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
 import 'package:viet_trung_mobile/data/response/list_user_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_user/contract/manager_user_contract.dart';
@@ -17,7 +19,7 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
   bool isNextPage = false;
   ManagerUserContract? contract;
   int page = 1;
-  int perPage = 20;
+  int perPage = 5;
   @override
   void onInit() {
     super.onInit();
@@ -35,12 +37,14 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
     }).catchError((onError) {
       print("-----------------$onError");
     });
+    update();
  }
  void onListLoading() async {
     if (isNextPage) {
       page = (page + 1);
       onGetListUser(false);
     }
+    update();
   }
 
   void onListRefresh() async {
@@ -95,6 +99,16 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
     }).catchError((onError){
       Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
     });
+  }
+
+  @override
+  void onCreateUserSuccess(CreateAdminResponse data) {
+    // TODO: implement onCreateUserSuccess
+  }
+
+  @override
+  void onCreatetUserError(ErrorCreateAdminResponse error) {
+    // TODO: implement onCreatetUserError
   }
 
  
