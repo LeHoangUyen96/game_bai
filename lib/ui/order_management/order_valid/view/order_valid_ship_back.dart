@@ -53,13 +53,12 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                     controller.onCheckAction();
                   },
                   child: controller.checkAction == false
-                      ? Container(
-                          child: TextCustomized(
-                          text: "Thao tác",
+                      ? TextCustomized(
+                          text: chooseMore,
                           size: 14,
                           color: Colors.black,
                           weight: FontWeight.w500,
-                        ))
+                        )
                       : Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Column(
@@ -71,20 +70,11 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                                   Container(
                                     height: 16,
                                     width: 16,
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                        left: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                        right: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                        bottom: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                      ),
-                                    ),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: Colors.grey)),
                                     child: Checkbox(
-                                      checkColor: Colors.red,
+                                      checkColor: COLOR_BT,
                                       activeColor: Colors.white38,
                                       value: controller.isCheck,
                                       tristate: true,
@@ -94,7 +84,12 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                                     ),
                                   ),
                                   SizedBox(width: 7),
-                                  TextCustomized(text: "Chọn tất cả"),
+                                  TextCustomized(
+                                    text: chooseAll,
+                                    size: 14,
+                                    color: Colors.black,
+                                    weight: FontWeight.w500,
+                                  )
                                 ],
                               ),
                             ],
@@ -128,9 +123,7 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                                   padding: EdgeInsets.only(right: 5),
                                   child: DatepickerCustomized()),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
+                            SizedBox(height: 10),
                             Expanded(
                               flex: 5,
                               child: Container(
@@ -142,12 +135,16 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                         SizedBox(height: 15),
                         Row(
                           children: [
-                            TextCustomized(
-                              text: "Huỷ",
-                            ),
+                            InkWell(
+                                onTap: () {
+                                  controller.onCheckFilter();
+                                },
+                                child: TextCustomized(text: CANCEL)),
                             Spacer(),
                             TextCustomized(
-                              text: "Xác nhận",
+                              text: CONFIRM,
+                              color: COLOR_BT,
+                              weight: FontWeight.bold,
                             ),
                           ],
                         ),
@@ -185,6 +182,9 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                             textColor: Colors.black,
                             backgroundColor: Colors.white,
                             borderColor: MAIN_BT_SAVE_ADDRESS,
+                            onTap: () {
+                              controller.onCheckFilter();
+                            },
                           ),
                         ),
                         SizedBox(height: 15),
@@ -198,7 +198,9 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                return _buildListOrders(controller.orderShipBack!.data![index]);
+                return _buildListOrders(
+                  controller.orderShipBack!.data![index],
+                );
               },
             ),
           ),
@@ -306,12 +308,12 @@ class OrderValidShipBack extends GetView<ValidOrderController> {
                     padding: EdgeInsets.symmetric(vertical: 10),
                     width: Get.width,
                     decoration: BoxDecoration(
-                      color: GRAY4,
+                      color: MAIN_BG,
                     ),
                     child: Center(
                       child: TextCustomized(
                         text: BT_CANCEL,
-                        color: WHITE,
+                        color: GRAY1,
                       ),
                     )),
               ),

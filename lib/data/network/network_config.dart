@@ -171,7 +171,8 @@ class NetworkConfig {
       URL_SERVER + "/admin/bag/list-warehouse-back";
   static const String BAG_LIST = URL_SERVER + "/admin/bag/list";
   static const String BAG_DETAIL = URL_SERVER + "/admin/bag/detail/";
-  static const String BAG_UPDATE_STATUS = URL_SERVER + "/admin/bag/update-status/";
+  static const String BAG_UPDATE_STATUS =
+      URL_SERVER + "/admin/bag/update-status/";
   static const String BAG_LIST_ORDER = URL_SERVER + "/admin/bag/list-order";
 
   //Setting
@@ -213,6 +214,8 @@ class NetworkConfig {
   //order admin no transport
   static const String listOrderNoTransport =
       URL_SERVER + "/admin/order/list-order-no-transportation";
+  static const String updateOrderNoTransport =
+      URL_SERVER + "/admin/order/update-order-no-transportation/";
 
   //order admin wait confirm
   static const String listOrderWaitConfirm =
@@ -222,17 +225,48 @@ class NetworkConfig {
   //order admin shipped
   static const String listOrderShipped =
       URL_SERVER + "/admin/order/list-order-shipped";
+
+  //setting role admin
+  static const String listRole = URL_SERVER + "/admin/role";
+  static const String listRightsGroup = URL_SERVER + "/admin/permission";
+  static const String roleDetail = URL_SERVER + "/admin/role/show/";
+  static const String updateRole = URL_SERVER + "/admin/role/update/";
+  static const String deleteRole = URL_SERVER + "/admin/role/delete/";
+  static const String addRole = URL_SERVER + "/admin/role/create";
+
+//setting transport admin
+  static const String listTransport =
+      URL_SERVER + "/admin/setting/transport-form/list";
+  static const String updateTransport =
+      URL_SERVER + "/admin/setting/transport-form/update/";
+  static const String deleteTransport =
+      URL_SERVER + "/admin/setting/transport-form/delete/";
+  static const String addTransport =
+      URL_SERVER + "/admin/setting/transport-form/delete/";
+  static const String transportDetail =
+      URL_SERVER + "/admin/transport-form-fee/list/";
+  static const String deleteTransportFee =
+      URL_SERVER + "/admin/transport-form-fee/delete-fee/";
+  static const String listProduct = URL_SERVER + "/admin/products/list";
+  static const String addTransportFee =
+      URL_SERVER + "/admin/transport-form-fee/create-fee";
+  static const String transportFeeDetail =
+      URL_SERVER + "/admin/transport-form-fee/detail/";
   // Dashboard User
-   static const String DASHBOARD_USER = URL_SERVER + "/dashboard";
-  // Rating Order 
+  static const String DASHBOARD_USER = URL_SERVER + "/dashboard";
+  // Rating Order
   static const String RATING_ORDER = URL_SERVER + "/comment";
   static const String RATING_ORDER_LIST = URL_SERVER + "/comment/list";
   // Manager Staff
   static const String MANAGER_STAFF_LIST = URL_SERVER + "/admin/users/list/1";
-  static const String MANAGER_STAFF_DETAIL = URL_SERVER + "/admin/users/detail-admin/";
-  static const String MANAGER_STAFF_DELETE = URL_SERVER + "/admin/users/delete-user/";
-  static const String MANAGER_STAFF_CHANGE_STATUS = URL_SERVER + "/admin/users/changed-status/";
+  static const String MANAGER_STAFF_DETAIL =
+      URL_SERVER + "/admin/users/detail-admin/";
+  static const String MANAGER_STAFF_DELETE =
+      URL_SERVER + "/admin/users/delete-user/";
+  static const String MANAGER_STAFF_CHANGE_STATUS =
+      URL_SERVER + "/admin/users/changed-status/";
   // Manager User
   static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
-  static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
+  static const String MANAGER_USER_DETAIL =
+      URL_SERVER + "/admin/users/detail-user/";
 }

@@ -9,16 +9,16 @@ import 'package:viet_trung_mobile/data/response/order_detail_response.dart';
 import 'package:viet_trung_mobile/data/response/order_response.dart';
 import 'package:viet_trung_mobile/ui/notification/contract/notification_contract.dart';
 import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_details_receive.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-class NotificationListController extends GetxController implements NotificationContract{
-  RefreshController refreshController = RefreshController(initialRefresh: false);
+class NotificationListController extends GetxController
+    implements NotificationContract {
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
   late NotificationContract contract;
   late NotificationRepository repository;
   NotificationListResponse? listNotificationResponse;
   List<NotificationResponse> listNotification = [];
-  NotificationResponse ? mdataNotificationResponse;
+  NotificationResponse? mdataNotificationResponse;
   OrderRepositories? orderRepositories;
   OrderResponse? orderResponse;
   OrderDetailsResponse? orderDetailsResponse;
@@ -40,26 +40,29 @@ class NotificationListController extends GetxController implements NotificationC
       listNotification.clear();
     }
     repository.onGetListNotification(page, perPage).then((value) {
-      
       return contract.onGetListNotificationSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
-       //return contract.onGetListNotificationError(onError);
+      //return contract.onGetListNotificationError(onError);
     });
   }
 
-  void readOneNotification(int notificationId){
-    repository.onReadOneNotification(listNotification[notificationId].id!).then((value) {
-     // onListRefresh();
-       onItemNotificationClick(notificationId);
+  void readOneNotification(int notificationId) {
+    repository
+        .onReadOneNotification(listNotification[notificationId].id!)
+        .then((value) {
+      // onListRefresh();
+      onItemNotificationClick(notificationId);
     }).catchError((onError) {
       print('$onError');
     });
   }
 
   void onItemNotificationClick(int index) {
-    orderRepositories!.onGetDetailsOrder(listNotification[index].relation_id!).then((value) {
-    // Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    orderRepositories!
+        .onGetDetailsOrder(listNotification[index].relation_id!)
+        .then((value) {
+      // Get.dialog(LoadingSpinKit(), barrierDismissible: false);
       orderDetailsResponse = value;
       // if(orderDetailsResponse!.dataOrderDetails!.type != null){
       //   // Get.to(ConfirmOrderPage(),arguments: listNotification[index].relation_id)!.then((value){
@@ -68,7 +71,7 @@ class NotificationListController extends GetxController implements NotificationC
       //   //     onListRefresh();
       //   //     }
       //   //   });
-      //   Get.to(ConfirmOrderPage(),arguments:{ 
+      //   Get.to(ConfirmOrderPage(),arguments:{
       //     'id' : listNotification[index].relation_id,
       //     'orderDetailsResponse' : orderDetailsResponse
       //   });
@@ -82,24 +85,25 @@ class NotificationListController extends GetxController implements NotificationC
       //   Get.to(OrderDetailReceivePage(),arguments: listNotification[index].relation_id);
       // }
       // update();
-      Get.to(()=>ConfirmOrderPage(),arguments:{ 
-          'id' : listNotification[index].relation_id,
-          'orderDetailsResponse' : orderDetailsResponse,
-          'type' : orderDetailsResponse!.dataOrderDetails!.type
-        })!.then((value){
-          if(value != null ){
-            onListRefresh();
-            }
-        });
-    }).catchError((onError){
+      Get.to(() => ConfirmOrderPage(), arguments: {
+        'id': listNotification[index].relation_id,
+        'orderDetailsResponse': orderDetailsResponse,
+        'type': orderDetailsResponse!.dataOrderDetails!.type
+      })!
+          .then((value) {
+        if (value != null) {
+          onListRefresh();
+        }
+      });
+    }).catchError((onError) {
       print(onError);
       //return onGetOrderDetailsError(onError);
       update();
     });
-     //update();
-      //  readOneNotification(listNotification[index].id!);
-   
+    //update();
+    //  readOneNotification(listNotification[index].id!);
   }
+
   void onGetOrderDetailsError(ErrorResponse msg) {
     // TODO: implement onGetOrderDetailsError
   }
@@ -119,7 +123,6 @@ class NotificationListController extends GetxController implements NotificationC
 
   @override
   void onGetListNotificationError(ErrorResponse error) {
-
     Get.defaultDialog(title: error.message.toString(), middleText: '');
   }
 
@@ -137,7 +140,8 @@ class NotificationListController extends GetxController implements NotificationC
     // }
     // print('-----------$hashTags');
     // }
-    if (listNotificationResponse!.paginate!.current_page! <= listNotificationResponse!.paginate!.last_page!) {
+    if (listNotificationResponse!.paginate!.current_page! <=
+        listNotificationResponse!.paginate!.last_page!) {
       if (listNotificationResponse!.paginate!.next! > 0) {
         isNextPage = true;
       } else {
@@ -152,7 +156,7 @@ class NotificationListController extends GetxController implements NotificationC
     if (refreshController.isRefresh) {
       refreshController.refreshCompleted();
     }
-    
+
     update();
   }
 

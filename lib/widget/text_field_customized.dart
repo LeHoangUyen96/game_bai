@@ -32,6 +32,7 @@ class TextFieldCustomized extends StatefulWidget {
   final double? height;
   final Color? colorBackgrount;
   final Color? colorHintText;
+  final double? width;
 
   TextFieldCustomized({
     this.invalid,
@@ -57,6 +58,7 @@ class TextFieldCustomized extends StatefulWidget {
     this.height,
     this.colorBackgrount,
     this.colorHintText,
+    this.width,
   });
 
   @override
@@ -95,7 +97,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
   Widget build(BuildContext context) {
     return Container(
       height: widget.height ?? 48,
-      width: Get.width,
+      width: widget.width ?? Get.width,
       decoration: BoxDecoration(
           color: widget.colorBackgrount ?? Colors.white,
           border: Border.all(
@@ -110,9 +112,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
           borderRadius: BorderRadius.all(Radius.circular(9))),
       child: Row(
         children: [
-          SizedBox(
-            width: widget.path != null ? 10 : 10,
-          ),
+          SizedBox(width: widget.path != null ? 10 : 10),
           Expanded(
             flex: 10,
             child: TextField(
@@ -137,12 +137,9 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
               onChanged: widget.onChanged,
               onSubmitted: widget.onSubmitted,
               decoration: InputDecoration(
-                // errorText: widget.errorText ?? null,
                 filled: widget.filled,
-                //fillColor: greyColor,
                 fillColor: GRAY4,
                 hintText: widget.hint,
-                //hintStyle: hintTextStyle,
                 hintStyle: TextStyle(
                     fontWeight: FontWeight.w100,
                     color: widget.colorHintText ?? GRAY,
@@ -161,7 +158,6 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
                           _obscureText
                               ? Icons.visibility_off_rounded
                               : Icons.visibility_rounded,
-                          // : Icons.visibility_off_rounded,
                           color: GRAY,
                           size: 24,
                         ))

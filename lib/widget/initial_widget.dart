@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 
 class InitialWidget extends StatefulWidget {
@@ -23,25 +21,23 @@ class InitialWidget extends StatefulWidget {
   final Widget? iconAdd;
   final Color? titleAppBarColor;
 
-
-  InitialWidget({
-    required this.child,
-    this.floatingActionButton,
-    this.titleAppBar,
-    this.isShowBack,
-    this.isCenterTitle,
-    this.backgroundColor,
-    this.backgroundAppBar,
-    this.statusBarColor,
-    this.endWidget,
-    this.iconBack,
-    this.bottomNavigationBar,
-    this.isEnableSafeArea,
-    this.statusBarIconBrightness,
-    this.isAdd, 
-    this.iconAdd,
-    this.titleAppBarColor
-  });
+  InitialWidget(
+      {required this.child,
+      this.floatingActionButton,
+      this.titleAppBar,
+      this.isShowBack,
+      this.isCenterTitle,
+      this.backgroundColor,
+      this.backgroundAppBar,
+      this.statusBarColor,
+      this.endWidget,
+      this.iconBack,
+      this.bottomNavigationBar,
+      this.isEnableSafeArea,
+      this.statusBarIconBrightness,
+      this.isAdd,
+      this.iconAdd,
+      this.titleAppBarColor});
 
   @override
   _InitialWidgetState createState() => _InitialWidgetState();
@@ -102,9 +98,9 @@ class _InitialWidgetState extends State<InitialWidget> {
           appBar: widget.titleAppBar != null ||
                   (widget.isShowBack != null && widget.isShowBack!)
               ? AppBar(
-                  actions:  [
-                    widget.iconAdd ?? Container(),
-                  ],
+                  actions: [
+                      widget.iconAdd ?? Container(),
+                    ],
                   brightness: _isDark ? Brightness.dark : Brightness.light,
                   centerTitle: widget.isCenterTitle ?? true,
                   backgroundColor:
@@ -113,7 +109,7 @@ class _InitialWidgetState extends State<InitialWidget> {
                       widget.backgroundAppBar == Colors.transparent ? 0 : null,
                   leading: widget.isShowBack != null && widget.isShowBack!
                       ? InkWell(
-                          onTap: () => Navigator.pop(context,0),
+                          onTap: () => Navigator.pop(context, 0),
                           child: widget.iconBack ??
                               TextButton(
                                 child: Icon(
@@ -125,43 +121,42 @@ class _InitialWidgetState extends State<InitialWidget> {
                               ),
                         )
                       : Container(),
-                    flexibleSpace: Container(
-                      decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                            image: new AssetImage(
-                              'assets/images/bg_appbar.png',
-                            ),
-                            fit: BoxFit.cover,
-                          )),
-                      child:  ImageCustomized(
-                        path: "assets/images/retangle.png",
-                        width: Get.width,
-                        height: Get.height,
-                        fit: BoxFit.cover,
+                  flexibleSpace: Container(
+                    decoration: new BoxDecoration(
+                        image: new DecorationImage(
+                      image: new AssetImage(
+                        'assets/images/bg_appbar.png',
                       ),
-                ),
+                      fit: BoxFit.cover,
+                    )),
+                    child: ImageCustomized(
+                      path: "assets/images/retangle.png",
+                      width: Get.width,
+                      height: Get.height,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   title: Container(
-                            width: Get.width,
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                Text(
-                                  widget.titleAppBar != null
-                                      ? widget.titleAppBar!
-                                      : "",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: _isDark ? widget.titleAppBarColor : Colors.white,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: false,
-                                ),
-                                ]
-                            )
-                    )
-              )
+                      width: Get.width,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.titleAppBar != null
+                                  ? widget.titleAppBar!
+                                  : "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: _isDark
+                                    ? widget.titleAppBarColor
+                                    : Colors.white,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              softWrap: false,
+                            ),
+                          ])))
               : null,
           bottomNavigationBar: widget.bottomNavigationBar,
           body: SafeArea(

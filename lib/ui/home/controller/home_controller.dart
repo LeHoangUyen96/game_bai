@@ -46,7 +46,7 @@ class HomeController extends GetxController
     onGetProfile();
     onGetHome();
     checkHaveCopy();
-    Future.delayed(Duration(milliseconds: 250), (){
+    Future.delayed(Duration(milliseconds: 250), () {
       onUpdateDeviceToken();
     });
   }
@@ -91,13 +91,10 @@ class HomeController extends GetxController
   void onUpdateDeviceToken() {
     String? token = GetStorage().read(DEVICE_TOKEN);
     print('onDeviceToken $token');
-    if(token != null) {
+    if (token != null) {
       homeRepositories!.onUpdateToken(token).then((value) {
-
         // return contract.onSuccess(value);
-      }).catchError((onError) {
-
-      });
+      }).catchError((onError) {});
     }
   }
 
@@ -207,26 +204,22 @@ class HomeController extends GetxController
   }
 
   @override
-  void onGetHomeSuccess(HomeResponse data) {
-    // TODO: implement onGetHomeSuccess
-  }
+  void onGetHomeSuccess(HomeResponse data) {}
 
   void onSearchClick() {
     Clipboard.getData(Clipboard.kTextPlain).then((value) {
       if (value != null) {
         String? data = value.text;
         if (data != null) {
-
           String productLink = '';
-          RegExp exp = RegExp(r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?");
+          RegExp exp = RegExp(
+              r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?");
           final match = exp.firstMatch(data);
 
-          if(match == null) return;
+          if (match == null) return;
 
           productLink = data.substring(match.start, match.end);
           print('Detect link' + productLink);
-
-
 
           // if (productLink.contains('tmall.com') ) {
           //   Get.to(

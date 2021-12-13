@@ -9,8 +9,8 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/contract/forgotpasss_contract.dart';
 import 'package:viet_trung_mobile/ui/auth/login/view/login_page.dart';
 
-class ConfirmPasswordController extends GetxController implements ForgotPassContract {
-
+class ConfirmPasswordController extends GetxController
+    implements ForgotPassContract {
   TextEditingController passController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
   ScreenshotController screenshotController = ScreenshotController();
@@ -20,53 +20,51 @@ class ConfirmPasswordController extends GetxController implements ForgotPassCont
   bool confirmPassValid = true;
   String? confirmPassError = '';
 
-  late AuthRepository _authRepository;
+  late AuthRepository authRepository;
   late ForgotPassContract contract;
   String? mesenger;
 
   @override
   void onInit() {
     super.onInit();
-    _authRepository = Injector().auth;
+    authRepository = Injector().auth;
     contract = this;
   }
-
 
   void onConfirmPass() {
     if (passController.text.isEmpty) {
       passValid = false;
       passError = AUTH_LOGIN_ERROR_PASS_EMPTY;
     } else {
-      if(passController.text.length < 8){
+      if (passController.text.length < 8) {
         passValid = false;
         passError = AUTH_LOGIN_ERROR_PASS;
-      } else passValid = true;
+      } else
+        passValid = true;
     }
 
     if (confirmPassController.text.isEmpty) {
       confirmPassValid = false;
       confirmPassError = AUTH_LOGIN_ERROR_PASS_EMPTY;
     } else {
-      if(confirmPassController.text != passController.text){
+      if (confirmPassController.text != passController.text) {
         confirmPassValid = false;
         confirmPassError = AUTH_FORGOT_PASS_ERROR_CONFIRM_PASS;
-      } else confirmPassValid = true;
+      } else
+        confirmPassValid = true;
     }
 
-    if (confirmPassValid && passValid ) {
-      Get.offAll(()=>LoginPage());
-      Get.snackbar(NOTIFY,AUTH_FORGOT_PASS_ERROR_CONFIRM_SUCCESS );
+    if (confirmPassValid && passValid) {
+      Get.offAll(() => LoginPage());
+      Get.snackbar(NOTIFY, AUTH_FORGOT_PASS_ERROR_CONFIRM_SUCCESS);
     }
 
     update();
   }
 
   @override
-  void onError(ForgotErrorResponse msg) {
-  }
+  void onError(ForgotErrorResponse msg) {}
 
   @override
-  void onSuccess(ForgotPassResponse response) {
-  }
-
+  void onSuccess(ForgotPassResponse response) {}
 }

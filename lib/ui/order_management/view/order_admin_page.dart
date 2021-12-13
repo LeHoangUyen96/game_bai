@@ -12,7 +12,6 @@ import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/view/or
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 
 class OrderAdminPage extends GetView<OrderInfoController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderInfoController>(
@@ -38,8 +37,7 @@ class OrderAdminPage extends GetView<OrderInfoController> {
 
   Widget buildBody() {
     return Container(
-      color: WHITE,
-      margin: EdgeInsets.only(top: Get.height * 0.01),
+      color: MAIN_BG,
       child: Column(children: [
         _buildItem(goodsInWarehouseChina, () {
           Get.to(ValidOrderPage());
@@ -65,33 +63,34 @@ class OrderAdminPage extends GetView<OrderInfoController> {
     VoidCallback onTap,
   ) {
     return Container(
+        color: WHITE,
         child: Column(
-      children: [
-        const SizedBox(height: 16.5),
-        InkWell(
-            onTap: onTap,
-            child: Row(children: [
-              const SizedBox(width: 12),
-              Text(text,
-                  style: const TextStyle(
-                    fontFamily: roboto,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  )),
-              const Spacer(),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: TEXT_DATETIME_NT,
-              ),
-              const SizedBox(width: 16.5),
-            ])),
-        const SizedBox(height: 16),
-        Container(
-          height: 1,
-          color: TEXT_DATETIME_NT,
-        ),
-      ],
-    ));
+          children: [
+            const SizedBox(height: 16.5),
+            InkWell(
+                onTap: onTap,
+                child: Row(children: [
+                  const SizedBox(width: 12),
+                  Text(text,
+                      style: const TextStyle(
+                        fontFamily: roboto,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  const Spacer(),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: TEXT_DATETIME_NT,
+                  ),
+                  const SizedBox(width: 16.5),
+                ])),
+            const SizedBox(height: 16),
+            Container(
+              height: 1,
+              color: TEXT_DATETIME_NT,
+            ),
+          ],
+        ));
   }
 }

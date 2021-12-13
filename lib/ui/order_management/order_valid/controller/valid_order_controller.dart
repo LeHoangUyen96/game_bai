@@ -15,15 +15,14 @@ class ValidOrderController extends GetxController implements OrderContract {
   OrderAdminResponse? orderStorage;
   RefreshController refreshOrderShipBackController =
       RefreshController(initialRefresh: false);
-
   RefreshController refreshOrderStorageController =
       RefreshController(initialRefresh: false);
-
   bool checkFilter = false;
   bool checkFromDay = false;
   bool checkToDay = false;
   bool checkAction = false;
   bool isCheck = false;
+  bool isCheckItem = false;
 
   @override
   void onInit() {
@@ -32,18 +31,6 @@ class ValidOrderController extends GetxController implements OrderContract {
     orderAminRepositories = Injector().orderAmin;
     onGetListOrderShipBack();
     onGetListOrderStorage();
-    onGetListOrder();
-  }
-
-  void onGetListOrder() {
-    orderRepositories!.onGetListOrder(1).then((value) {
-      orderResponse = value;
-      update();
-    }).catchError((onError) {
-      print("Lỗiiiiiiii");
-      update();
-    });
-    update();
   }
 
   void onGetListOrderShipBack() {
@@ -103,6 +90,11 @@ class ValidOrderController extends GetxController implements OrderContract {
 
   void onChangeDefault() {
     isCheck = !isCheck;
+    update();
+  }
+
+  void onCheckItem() {
+    isCheckItem = !isCheckItem;
     update();
   }
 }

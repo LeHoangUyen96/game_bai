@@ -4,6 +4,8 @@ import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_impl.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_impl.dart';
+import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_impl.dart';
 import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_impl.dart';
@@ -26,6 +28,8 @@ import 'package:viet_trung_mobile/data/repository/rating_order_reponsitory/ratin
 import 'package:viet_trung_mobile/data/repository/rating_order_reponsitory/rating_order_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_impl.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_impl.dart';
+import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
 
 class Injector {
   factory Injector() {
@@ -46,6 +50,8 @@ class Injector {
 
   OrderRepositories get order => OrderImpl();
   OrderAdminRepositories get orderAmin => OrderAdminImpl();
+  RoleAdminRepositories get role => RoleAdminImpl();
+  TransportAdminRepositories get transport => TransportAdminImpl();
   DashboardRepositories get dashboard => DashboardImpl();
   RatingOrderRepositories get ratingOrder => RatingOrderImpl();
   ManagerStaffRepositories get managerStaff => ManagerStaffImpl();

@@ -35,6 +35,7 @@ class OrderNoTransportController extends GetxController {
   }
 
   void onLoadingOrder() async {
+    onGetListOrderNoTransport();
     refreshOrderController.refreshCompleted();
   }
 }

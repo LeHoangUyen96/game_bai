@@ -3,14 +3,13 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/response/find_user_reponse.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/inventory_management/view/enter_warehouse_page.dart';
 
-class FindingCustomerController extends GetxController  {
+class FindingCustomerController extends GetxController {
   TextEditingController phoneValueController = TextEditingController();
-  String  phoneErros = '';
+  String phoneErros = '';
   bool isPhoneValid = true;
-  FindUserResponse ? findUserResponse;
+  FindUserResponse? findUserResponse;
   FindUserRepositories? findUserRepositories;
   @override
   void onInit() {
@@ -18,58 +17,58 @@ class FindingCustomerController extends GetxController  {
     findUserRepositories = Injector().findUser;
   }
 
-   void onFindUser(){
-     if(phoneValueController.text.isEmpty){
-       isPhoneValid = false;
-       phoneErros = "Số điện thoại hoặc mã khách hàng không được để trống";
-     }else{
-       isPhoneValid =true;
-     }
-     if(isPhoneValid){
-    findUserRepositories!.onGetFindUser(phoneValueController.text).then((value) {
-      findUserResponse = value;
-      if(findUserResponse!.data == null){
-        isPhoneValid = false;
-        phoneErros = findUserResponse!.message.toString();
-      }
-      print("onFindUser findUserResponse ${findUserResponse!.data!.name}");
-      phoneValueController.clear();
-      Get.to(EnterWarehousePage(),
-         arguments: {
-           'user_code' : findUserResponse!.data!.user_code,
-           'user_id' : findUserResponse!.data!.id,
-           'phone': findUserResponse!.data!.phone,
-           'name' : findUserResponse!.data!.name,
+  void onFindUser() {
+    if (phoneValueController.text.isEmpty) {
+      isPhoneValid = false;
+      phoneErros = "Số điện thoại hoặc mã khách hàng không được để trống";
+    } else {
+      isPhoneValid = true;
+    }
+    if (isPhoneValid) {
+      findUserRepositories!
+          .onGetFindUser(phoneValueController.text)
+          .then((value) {
+        findUserResponse = value;
+        if (findUserResponse!.data == null) {
+          isPhoneValid = false;
+          phoneErros = findUserResponse!.message.toString();
+        }
+        print("onFindUser findUserResponse ${findUserResponse!.data!.name}");
+        phoneValueController.clear();
+        Get.to(EnterWarehousePage(), arguments: {
+          'user_code': findUserResponse!.data!.user_code,
+          'user_id': findUserResponse!.data!.id,
+          'phone': findUserResponse!.data!.phone,
+          'name': findUserResponse!.data!.name,
+        });
+        update();
+      }).catchError((onError) {
+        //Get.snackbar(PROFILE_NOTIFY, onError.toString());
 
+        print('isErorrs');
+        update();
       });
-      update();
-    }).catchError((onError){
-      //Get.snackbar(PROFILE_NOTIFY, onError.toString());
-
-      print('isErorrs');
-      update();
-    });
-     }
+    }
     // print('${phoneValueController.text}');
     update();
   }
-  
-  void onImportStorageNoInfo(){
+
+  void onImportStorageNoInfo() {
     if (phoneValueController.text.isEmpty) {
       isPhoneValid = false;
       phoneErros = "Số điện thoại không được để trống";
-    } else if (phoneValueController.text.length < 9 || phoneValueController.text.length > 11) {
+    } else if (phoneValueController.text.length < 9 ||
+        phoneValueController.text.length > 11) {
       isPhoneValid = false;
       phoneErros = "Số điện thoại không đúng định dạng";
-    }
-     else {
+    } else {
       isPhoneValid = true;
-    } 
-    if(isPhoneValid){
+    }
+    if (isPhoneValid) {
       phoneValueController.clear();
-      Get.to(EnterWarehousePage(),arguments: {'phone': phoneValueController.text} );
+      Get.to(EnterWarehousePage(),
+          arguments: {'phone': phoneValueController.text});
     }
     update();
   }
-
 }

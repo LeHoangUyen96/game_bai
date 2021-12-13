@@ -1,14 +1,10 @@
 import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
-import 'package:viet_trung_mobile/ui/auth/forgot_password/contract/forgotpasss_contract.dart';
 
-class ForgotStepOneController extends GetxController  {
-
-
-  late AuthRepository _authRepository;
+class ForgotStepOneController extends GetxController {
+  late AuthRepository authRepository;
 
   String? mesenger;
   final interval = const Duration(seconds: 1);
@@ -23,20 +19,18 @@ class ForgotStepOneController extends GetxController  {
   void startTimeout() {
     var duration = interval;
     Timer.periodic(duration, (timer) {
-        print(timer.tick);
-        currentSeconds = timer.tick;
-        if (timer.tick >= timerMaxSeconds) timer.cancel();
-      
+      print(timer.tick);
+      currentSeconds = timer.tick;
+      if (timer.tick >= timerMaxSeconds) timer.cancel();
     });
     timerText;
     update();
   }
 
-
   @override
   void onInit() {
     super.onInit();
-    _authRepository = Injector().auth;
+    authRepository = Injector().auth;
     startTimeout();
   }
 }
