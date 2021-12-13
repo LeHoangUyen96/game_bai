@@ -843,60 +843,10 @@ const String ORDER_DELIVERY_SUCCESSFULL = 'Đã nhận hàng';
 const String ORDER_SHIPPED = 'Đơn hàng chuyển về';
 const String ORDER_STOCK = 'Hàng lưu kho';
 const String RATING_ORDER = 'Danh sách đánh giá đơn hàng';
-const String STATUS_TRANFORM = 'Trạng thái giao hàng'; 
-const String DELIVERY_PACKAGE = 'Hình thức đóng gói'; 
-const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';  
-const String ID_STAFF = 'Mã nhân viên'; 
- 
- 
- 
-
-
- 
-
- 
- 
- 
- 
-  
- 
-
-
-  
-  
-
-
-
- 
- 
- 
- 
-
-
-
-
- 
- 
- 
-
- 
-
- 
-
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
+const String STATUS_TRANFORM = 'Trạng thái giao hàng';
+const String DELIVERY_PACKAGE = 'Hình thức đóng gói';
+const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';
+const String ID_STAFF = 'Mã nhân viên';
 
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';
@@ -981,3 +931,17 @@ const String errorQuantity = "Số lượng không được để trống";
 const String errorFee = "Phí không được để trống";
 const String errorProduct = "Mặt hàng không được để trống";
 const String errorUnit = "Đơn vị không được để trống";
+const String titlePacking = "Tên hình thức đóng gói";
+const String fee = "Mức phí";
+const String inputNamePacking = "Nhập tên hình thức đóng gói";
+const String inputMoney = "Nhập số tiền";
+const String numerical = "STT";
+const String nameProducts = "Tên mặt hàng";
+const String errorName = "Tên không được để trống";
+const String exchangRate = "Tỷ giá";
+const String rate = "Tỷ giá (VNĐ)";
+const String admin = "Admin";
+const String user = "User";
+const String editProfile = "Sửa thông tin cá nhân";
+const String youSureLogout = "Bạn chắc chắn muốn đăng xuất?";
+const String confirm = "Xác nhận";

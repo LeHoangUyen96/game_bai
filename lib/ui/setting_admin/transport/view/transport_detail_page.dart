@@ -26,9 +26,6 @@ class TransportDetailPage extends GetView<TransportDetailController> {
               onRefresh: () {
                 controller.onRefresh();
               },
-              onLoading: () {
-                controller.onLoading();
-              },
               child: Scaffold(
                   backgroundColor: MAIN_BG,
                   appBar: buildAppBar(
@@ -61,11 +58,7 @@ class TransportDetailPage extends GetView<TransportDetailController> {
           child: Column(
             children: [
               Scrollbar(
-                child: ListView.builder(
-                  itemCount: 1,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return SingleChildScrollView(
+                  child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: DataTable(
                         sortAscending: true,
@@ -85,7 +78,7 @@ class TransportDetailPage extends GetView<TransportDetailController> {
                         rows: controller.transportDetail!.map<DataRow>((e) {
                           return DataRow(
                             cells: <DataCell>[
-                              DataCell(TextCustomized(text: e.productId!)),
+                              DataCell(TextCustomized(text: e.productName!)),
                               DataCell(TextCustomized(text: e.unit!)),
                               DataCell(TextCustomized(text: e.from!)),
                               DataCell(TextCustomized(text: e.to!)),
@@ -102,8 +95,9 @@ class TransportDetailPage extends GetView<TransportDetailController> {
                                       },
                                       child: ImageCustomized(
                                         path: ic_edit,
-                                        height: 18,
-                                        width: 18,
+                                        height: 16,
+                                        width: 16,
+                                        color: Colors.black,
                                       )),
                                   SizedBox(width: 5),
                                   InkWell(
@@ -120,11 +114,7 @@ class TransportDetailPage extends GetView<TransportDetailController> {
                             ],
                           );
                         }).toList(),
-                      ),
-                    );
-                  },
-                ),
-              ),
+                      ))),
             ],
           ),
         ));

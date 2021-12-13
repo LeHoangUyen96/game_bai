@@ -111,7 +111,9 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
                                     save,
                                     textColor: Colors.white,
                                     onTap: () {
-                                      controller.onCreateTransportFee();
+                                      controller.onUpdateTransportFee(controller
+                                          .transportFeeId!
+                                          .toString());
                                     },
                                     backgroundColor: COLOR_BT,
                                     height: 48,
@@ -216,7 +218,7 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
                           onChanged: (ItemProduct? value) {
                             controller.onChangeProduct(value!);
                           },
-                          hint: Text(controller.response!.data!.productId!),
+                          hint: Text(controller.response!.data!.productName!),
                         )
                       : SizedBox()),
             )))

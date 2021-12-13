@@ -5,7 +5,11 @@ import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/dashboard_product/view/dashboard_product_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/exchange_rate/view/exchange_rate_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/inventory_management/view/inventory_management_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/packing_form/view/packing_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/profile/view/proflie_admin_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/role/view/role_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/transport/view/transport_page.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
@@ -46,12 +50,18 @@ class SettingAdminPage extends GetView<OrderInfoController> {
         _buildItem(packFormat, () {
           Get.to(PackingPage());
         }),
-        _buildItem(dashboardProduct, () {}),
-        _buildItem(inventoryManagement, () {}),
-        _buildItem(rateSettings, () {}),
+        _buildItem(dashboardProduct, () {
+          Get.to(DashboardProductPage());
+        }),
+        _buildItem(inventoryManagement, () {
+          Get.to(InventoryManagementPage());
+        }),
+        _buildItem(rateSettings, () {
+          Get.to(ExchangeRatePage());
+        }),
         _buildItem(report, () {}),
         _buildItem(userInfo, () {
-          Get.to(ProfilePage());
+          Get.to(ProfileAdminPage());
         })
       ]),
     );
@@ -65,26 +75,26 @@ class SettingAdminPage extends GetView<OrderInfoController> {
         color: WHITE,
         child: Column(
           children: [
-            const SizedBox(height: 16.5),
+            SizedBox(height: 16.5),
             InkWell(
                 onTap: onTap,
                 child: Row(children: [
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12),
                   Text(text,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: roboto,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       )),
-                  const Spacer(),
+                  Spacer(),
                   Icon(
                     Icons.arrow_forward_ios,
                     size: 16,
                     color: TEXT_DATETIME_NT,
                   ),
-                  const SizedBox(width: 16.5),
+                  SizedBox(width: 16.5),
                 ])),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Container(
               height: 1,
               color: TEXT_DATETIME_NT,

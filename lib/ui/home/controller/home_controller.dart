@@ -2,7 +2,7 @@ import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/excharge_rate_response.dart';
+import 'package:viet_trung_mobile/data/response/exchange_rate_response.dart';
 import 'package:viet_trung_mobile/data/response/home_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/strings.dart';

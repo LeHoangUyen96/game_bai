@@ -209,6 +209,7 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                                     path: ic_edit,
                                     height: 12,
                                     width: 12,
+                                    color: BLACK,
                                   ),
                                 ],
                               )
@@ -268,6 +269,7 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                                 path: ic_edit,
                                 height: 12,
                                 width: 12,
+                                color: BLACK,
                               ),
                             ]),
                         SizedBox(height: 10),
