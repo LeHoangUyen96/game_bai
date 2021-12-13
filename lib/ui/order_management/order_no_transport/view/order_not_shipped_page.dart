@@ -17,7 +17,18 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
     return GetBuilder<OrderNoTransportController>(
         init: OrderNoTransportController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar(orderNotTransport),
+              appBar: buildAppBar(
+                  orderNotTransport,
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.search,
+                        color: WHITE,
+                      ),
+                    ),
+                  )),
               body: SmartRefresher(
                   enablePullUp: true,
                   enablePullDown: true,
@@ -40,9 +51,7 @@ class OrderNotShippedPage extends GetView<OrderNoTransportController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: TextCustomized(

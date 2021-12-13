@@ -1,7 +1,7 @@
 class CreateAdminRequest {
   String? user_code;
   String? name;
-  int? phone;
+  String? phone;
   String? email;
   int? role_id;
 

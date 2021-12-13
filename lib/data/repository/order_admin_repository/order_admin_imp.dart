@@ -5,6 +5,7 @@ import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/request/confirm_order_wait_confirm_request.dart';
 import 'package:viet_trung_mobile/data/request/update_fee_warhouse_china.dart';
+import 'package:viet_trung_mobile/data/request/update_order_no_transport.dart';
 import 'package:viet_trung_mobile/data/request/verifi_order_ownerless.dart';
 import 'package:viet_trung_mobile/data/response/auth_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
@@ -164,6 +165,18 @@ class OrderAdminImpl extends GetConnect implements OrderAdminRepositories {
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return OrderAdminResponse.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  Future<ForgotPassResponse> onUpdateOrderNoTransport(
+      UpdateOrderNoTransport request, String id) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.updateOrderNoTransport + id;
+    final body = json.encode(request);
+    final responseJson = await put(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return ForgotPassResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }

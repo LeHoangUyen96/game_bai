@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
+import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
+import 'package:viet_trung_mobile/data/request/create_user_request.dart';
 import 'package:viet_trung_mobile/data/response/detail_user_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
 import 'package:viet_trung_mobile/data/response/list_user_response.dart';
 import 'package:viet_trung_mobile/data/response/update_status_bag_response.dart';
 
@@ -49,5 +54,17 @@ class ManagerUserImpl extends GetConnect implements ManagerUserRepositories {
       return DetailUserResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<CreateAdminResponse> onCreateUser(CreateUserRequest request) async{
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.MANAGER_USER_CREATE;
+    final body = json.encode(request);
+    final responseJson = await post(url,body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return CreateAdminResponse.fromJson(responseJson.body);
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }
 }

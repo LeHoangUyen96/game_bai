@@ -6,7 +6,6 @@ import 'package:viet_trung_mobile/data/request/address_request.dart';
 import 'package:viet_trung_mobile/data/response/address_error_response.dart';
 import 'package:viet_trung_mobile/data/response/city_response.dart';
 import 'package:viet_trung_mobile/data/response/district_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
 import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/wards_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -15,8 +14,7 @@ import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.
 import 'package:viet_trung_mobile/widget/loading_dialog_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-class AddAddressController extends GetxController implements AddressContract{
-
+class AddAddressController extends GetxController implements AddressContract {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
@@ -51,7 +49,6 @@ class AddAddressController extends GetxController implements AddressContract{
   int wards = 0;
   int defaults = 0;
 
-
   @override
   void onInit() {
     super.onInit();
@@ -60,20 +57,20 @@ class AddAddressController extends GetxController implements AddressContract{
     onGetListCity();
   }
 
-  void onGetListCity(){
+  void onGetListCity() {
     addressRepository.onGetCity().then((value) {
       mcity = value;
       print(mcity!.length.toString());
       update();
       // return contract.onSuccess(value);
-    }).catchError((onError){
+    }).catchError((onError) {
       //Get.defaultDialog(title: (onError).message.toString(), middleText: '');
       print("Error");
     });
     update();
   }
 
-  void onChangeCity(DataCity value, int id){
+  void onChangeCity(DataCity value, int id) {
     selectedCity = value;
     city = id;
     selectedDistrict = null;
@@ -98,7 +95,7 @@ class AddAddressController extends GetxController implements AddressContract{
   //   return mdistric!;
   // }
 
-  void onGetListDistrict(int id){
+  void onGetListDistrict(int id) {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     addressRepository.onGetDistric(id).then((value) {
       Get.back();
@@ -106,14 +103,15 @@ class AddAddressController extends GetxController implements AddressContract{
       print(mdistric!.length.toString());
       update();
       // return contract.onSuccess(value);
-    }).catchError((onError){
+    }).catchError((onError) {
       // Get.back();
       // Get.defaultDialog(title: (onError).message.toString(), middleText: '');
       print("Error");
     });
     update();
   }
-  void onChangeDistrict(DataDistrict value, int id){
+
+  void onChangeDistrict(DataDistrict value, int id) {
     selectedDistrict = value;
     district = id;
     selectedWards = null;
@@ -121,7 +119,7 @@ class AddAddressController extends GetxController implements AddressContract{
     update();
   }
 
-  void onGetListWards(int id){
+  void onGetListWards(int id) {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     addressRepository.onGetWards(id).then((value) {
       Get.back();
@@ -129,7 +127,7 @@ class AddAddressController extends GetxController implements AddressContract{
       print(mwards!.length.toString());
       update();
       // return contract.onSuccess(value);
-    }).catchError((onError){
+    }).catchError((onError) {
       // Get.back();
       // Get.defaultDialog(title: (onError).message.toString(), middleText: '');
       print("Error");
@@ -137,17 +135,18 @@ class AddAddressController extends GetxController implements AddressContract{
     update();
   }
 
-  void onChangeWards(DataWards value, int id){
+  void onChangeWards(DataWards value, int id) {
     selectedWards = value;
     wards = id;
     update();
   }
 
-  void onChangeDefault(){
+  void onChangeDefault() {
     isCheck = !isCheck;
-    if(isCheck==true){
+    if (isCheck == true) {
       defaults = 1;
-    } else defaults = 0;
+    } else
+      defaults = 0;
     print("$defaults");
     update();
   }
@@ -163,7 +162,7 @@ class AddAddressController extends GetxController implements AddressContract{
     if (phoneController.text.length < 9 || phoneController.text.length > 11) {
       phoneValid = false;
       phoneError = ERROR_PHONE;
-    }else {
+    } else {
       phoneValid = true;
     }
     if (addressController.text.isEmpty) {
@@ -193,8 +192,12 @@ class AddAddressController extends GetxController implements AddressContract{
       wardsValid = true;
     }
 
-
-    if (nameValid && phoneValid && addressValid && cityValid && districtValid && wardsValid) {
+    if (nameValid &&
+        phoneValid &&
+        addressValid &&
+        cityValid &&
+        districtValid &&
+        wardsValid) {
       AddressRequest _request = AddressRequest(
           name: nameController.text,
           phone: phoneController.text,
@@ -202,8 +205,7 @@ class AddAddressController extends GetxController implements AddressContract{
           city_id: city,
           district_id: district,
           wards_id: wards,
-          defaults: defaults
-      );
+          defaults: defaults);
       addressRepository.onRegisterAddress(_request).then((value) {
         return contract.onSuccess(value);
       }).catchError((onError) {
@@ -213,25 +215,24 @@ class AddAddressController extends GetxController implements AddressContract{
     update();
   }
 
-
   @override
   void onError(AddressErrorResponse msg) {
-    Get.snackbar(PROFILE_NOTIFY,msg.message.toString());
+    Get.snackbar(PROFILE_NOTIFY, msg.message.toString());
     Get.back();
-    // TODO: implement onError
   }
 
   @override
   void onSuccess(RegisterAddressResponse response) {
     Get.back(result: 1);
-    Get.dialog(LoadingDialogWidget(title: PROFILE_NOTIFY_SUCCESS,text: PROFILE_ADD_ADDRESS_SUCCESS,));
+    Get.dialog(LoadingDialogWidget(
+      title: PROFILE_NOTIFY_SUCCESS,
+      text: PROFILE_ADD_ADDRESS_SUCCESS,
+    ));
     Get.find<AddressController>().onGetAddressAll();
     Future.delayed(Duration(seconds: 1), () {
       Get.back();
     });
-    
+
     update();
   }
-
-
 }

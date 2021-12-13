@@ -13,12 +13,12 @@ import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/find_user_bag.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/search_widget.dart';
 import 'package:viet_trung_mobile/widget/add_product_dialog.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_widget.dart';
 
 class CreateBagPage extends GetView<CreateBagController> {
   BuildContext? mContext;
@@ -146,7 +146,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                   hint: "Chọn kho",
                   onChanged:( data ){
                     print('$data');
-                    controller.item_code = data!.status_code!;
+                    controller.warehouse_back_code = data!.status_code!;
                     controller.update();
                     },
                   itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
@@ -178,7 +178,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                   hint: "Chọn hình thức vận chuyển",
                   onChanged:( data ){
                     print('$data');
-                    controller.item_code = data!.name!;
+                    controller.transport_form_id = data!.id!;
                     controller.update();
                     },
                   itemAsString: (DataListTransportFormResponse u) => u.name!,
@@ -210,7 +210,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                   hint: "Chọn hình thức đóng gói",
                   onChanged:( data ){
                     print('$data');
-                    controller.item_code = data!.name!;
+                    controller.packing_from = data!.name!;
                     controller.update();
                     },
                   itemAsString: (DataListPackingFormFormResponse u) => u.name!,
@@ -366,7 +366,11 @@ class CreateBagPage extends GetView<CreateBagController> {
               alignment: Alignment.center,
               child: InkWell(
                 onTap: (){
-                   Get.dialog(AddProductDialog());
+                   Get.dialog(AddProductToBagDialog(), 
+                   arguments: {
+                     "warehouse_back_code" : controller.warehouse_back_code,
+                     "transport_form_id" : controller.transport_form_id,
+                   });
                 },
                 child: Wrap(
                   spacing: 5.0,

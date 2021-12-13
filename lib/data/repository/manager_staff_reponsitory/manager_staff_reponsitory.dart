@@ -10,5 +10,5 @@ abstract class ManagerStaffRepositories {
   Future<DetailStaffResponse> onGetDetailAdmin(int id);
   Future<UploadStatusBagResponse> onDeleteAdmin(int id);
   Future<UploadStatusBagResponse> onChangeStatusAdmin(int id , int status);
-  Future<CreateAdminResponse> onCreateAdmin(CreateAdminRequest rquest);
+  Future<CreateAdminResponse> onCreateAdmin(CreateAdminRequest request);
 }

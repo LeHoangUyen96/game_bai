@@ -68,12 +68,8 @@ class AddressController extends GetxController implements AddressContract {
   }
 
   @override
-  void onError(AddressErrorResponse msg) {
-    // TODO: implement onError
-  }
+  void onError(AddressErrorResponse msg) {}
 
   @override
-  void onSuccess(RegisterAddressResponse response) {
-    // TODO: implement onSuccess
-  }
+  void onSuccess(RegisterAddressResponse response) {}
 }

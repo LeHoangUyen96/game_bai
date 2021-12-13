@@ -7,7 +7,6 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/home/controller/home_controller.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,18 +20,19 @@ class HomePage extends GetView<HomeController> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (value) => InitialWidget(
-        titleAppBar: HOME_APP_BAR,
-        backgroundAppBar: MAIN_COLOR,
-        child: _buildBody()
-        // child: controller.homeResponse != null && controller.exchangeRateResponse != null ? _buildBody() : LoadingSpinKit(),
-      ),
+          titleAppBar: HOME_APP_BAR,
+          backgroundAppBar: MAIN_COLOR,
+          child: _buildBody()
+          // child: controller.homeResponse != null && controller.exchangeRateResponse != null ? _buildBody() : LoadingSpinKit(),
+          ),
     );
   }
 
   Widget _buildBody() {
     final vnd = Currency.create('VND', 2, symbol: 'đ', pattern: 'S0.000,00');
 
-    Money cny2VNDExchangeRate = Money.from(controller.homeResponse!.data!.current_balance!, vnd);
+    Money cny2VNDExchangeRate =
+        Money.from(controller.homeResponse!.data!.current_balance!, vnd);
     return Container(
       width: Get.width,
       child: SingleChildScrollView(
@@ -45,7 +45,10 @@ class HomePage extends GetView<HomeController> {
                 padding: EdgeInsets.all(8),
                 color: BG_CURRENCY,
                 child: TextCustomized(
-                  text: HOME_CURRENCY_RATE + controller.exchangeRateResponse!.data!.exchange_rate!.toString() + HOME_VND_CNY,
+                  text: HOME_CURRENCY_RATE +
+                      controller.exchangeRateResponse!.data!.exchange_rate!
+                          .toString() +
+                      HOME_VND_CNY,
                   font: SanFranciscoUIText,
                   size: 12,
                   isCenter: true,
@@ -91,10 +94,12 @@ class HomePage extends GetView<HomeController> {
                                           child: Container(
                                             height: 30,
                                             alignment: Alignment.center,
-                                            margin: EdgeInsets.fromLTRB(0, 5, 5, 5),
+                                            margin:
+                                                EdgeInsets.fromLTRB(0, 5, 5, 5),
                                             decoration: BoxDecoration(
                                               color: RED,
-                                              borderRadius: BorderRadius.circular(5),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
                                             ),
                                             child: Text(
                                               HOME_SEE,
@@ -127,7 +132,9 @@ class HomePage extends GetView<HomeController> {
                               Expanded(
                                 child: Container(
                                   padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(color: BG_BALANCE, borderRadius: BorderRadius.circular(8)),
+                                  decoration: BoxDecoration(
+                                      color: BG_BALANCE,
+                                      borderRadius: BorderRadius.circular(8)),
                                   child: Column(
                                     children: [
                                       Row(
@@ -141,26 +148,30 @@ class HomePage extends GetView<HomeController> {
                                               weight: FontWeight.w700,
                                             ),
                                           ),
-                                          Expanded(child: SvgPicture.asset(IC_DOLLAR))
+                                          Expanded(
+                                              child:
+                                                  SvgPicture.asset(IC_DOLLAR))
                                         ],
                                       ),
                                       SizedBox(
                                         height: 15,
                                       ),
                                       TextCustomized(
-                                        text: cny2VNDExchangeRate.format('###,###,###,###S'),
+                                        text: cny2VNDExchangeRate
+                                            .format('###,###,###,###S'),
                                         font: SanFranciscoText,
                                         color: WHITE,
                                         weight: FontWeight.w700,
                                         size: 20,
                                       ),
                                       TextButton(
-                                          onPressed:() => {},
+                                          onPressed: () => {},
                                           child: Container(
                                             child: Text(
                                               HOME_VIEW_DEATAIL,
                                               style: TextStyle(
-                                                decoration: TextDecoration.underline,
+                                                decoration:
+                                                    TextDecoration.underline,
                                                 color: WHITE,
                                                 fontFamily: SanFranciscoUIText,
                                                 fontSize: 12,
@@ -178,7 +189,9 @@ class HomePage extends GetView<HomeController> {
                               Expanded(
                                 child: Container(
                                   padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(color: BG_INCOMING_ORDER, borderRadius: BorderRadius.circular(8)),
+                                  decoration: BoxDecoration(
+                                      color: BG_INCOMING_ORDER,
+                                      borderRadius: BorderRadius.circular(8)),
                                   child: Column(
                                     children: [
                                       Row(
@@ -192,14 +205,17 @@ class HomePage extends GetView<HomeController> {
                                               weight: FontWeight.w700,
                                             ),
                                           ),
-                                          Expanded(child: SvgPicture.asset(IC_NOTES))
+                                          Expanded(
+                                              child: SvgPicture.asset(IC_NOTES))
                                         ],
                                       ),
                                       SizedBox(
                                         height: 15,
                                       ),
                                       TextCustomized(
-                                        text: controller.homeResponse!.data!.number_order!.toString(),
+                                        text: controller
+                                            .homeResponse!.data!.number_order!
+                                            .toString(),
                                         font: SanFranciscoText,
                                         color: WHITE,
                                         weight: FontWeight.w700,
@@ -211,7 +227,8 @@ class HomePage extends GetView<HomeController> {
                                             child: Text(
                                               HOME_VIEW_DEATAIL,
                                               style: TextStyle(
-                                                decoration: TextDecoration.underline,
+                                                decoration:
+                                                    TextDecoration.underline,
                                                 color: WHITE,
                                                 fontFamily: SanFranciscoUIText,
                                                 fontSize: 12,
@@ -233,7 +250,9 @@ class HomePage extends GetView<HomeController> {
                               Expanded(
                                 child: Container(
                                   padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(color: BG_SHOPPING_CART, borderRadius: BorderRadius.circular(8)),
+                                  decoration: BoxDecoration(
+                                      color: BG_SHOPPING_CART,
+                                      borderRadius: BorderRadius.circular(8)),
                                   child: Column(
                                     children: [
                                       Row(
@@ -247,14 +266,18 @@ class HomePage extends GetView<HomeController> {
                                               weight: FontWeight.w700,
                                             ),
                                           ),
-                                          Expanded(child: SvgPicture.asset(IC_SHOPPING_CART))
+                                          Expanded(
+                                              child: SvgPicture.asset(
+                                                  IC_SHOPPING_CART))
                                         ],
                                       ),
                                       SizedBox(
                                         height: 15,
                                       ),
                                       TextCustomized(
-                                        text: controller.homeResponse!.data!.number_product!.toString(),
+                                        text: controller
+                                            .homeResponse!.data!.number_product!
+                                            .toString(),
                                         font: SanFranciscoText,
                                         color: WHITE,
                                         weight: FontWeight.w700,
@@ -266,7 +289,8 @@ class HomePage extends GetView<HomeController> {
                                             child: Text(
                                               HOME_VIEW_DEATAIL,
                                               style: TextStyle(
-                                                decoration: TextDecoration.underline,
+                                                decoration:
+                                                    TextDecoration.underline,
                                                 color: WHITE,
                                                 fontFamily: SanFranciscoUIText,
                                                 fontSize: 12,
@@ -284,7 +308,9 @@ class HomePage extends GetView<HomeController> {
                               Expanded(
                                 child: Container(
                                   padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(color: BG_COMPLAINT, borderRadius: BorderRadius.circular(8)),
+                                  decoration: BoxDecoration(
+                                      color: BG_COMPLAINT,
+                                      borderRadius: BorderRadius.circular(8)),
                                   child: Column(
                                     children: [
                                       Row(
@@ -298,14 +324,17 @@ class HomePage extends GetView<HomeController> {
                                               weight: FontWeight.w700,
                                             ),
                                           ),
-                                          Expanded(child: SvgPicture.asset(IC_SAD))
+                                          Expanded(
+                                              child: SvgPicture.asset(IC_SAD))
                                         ],
                                       ),
                                       SizedBox(
                                         height: 15,
                                       ),
                                       TextCustomized(
-                                        text: controller.homeResponse!.data!.complain!.toString(),
+                                        text: controller
+                                            .homeResponse!.data!.complain!
+                                            .toString(),
                                         font: SanFranciscoText,
                                         color: WHITE,
                                         weight: FontWeight.w700,
@@ -317,7 +346,8 @@ class HomePage extends GetView<HomeController> {
                                             child: Text(
                                               HOME_VIEW_DEATAIL,
                                               style: TextStyle(
-                                                decoration: TextDecoration.underline,
+                                                decoration:
+                                                    TextDecoration.underline,
                                                 color: WHITE,
                                                 fontFamily: SanFranciscoUIText,
                                                 fontSize: 12,
@@ -370,7 +400,9 @@ class HomePage extends GetView<HomeController> {
                                 1000,
                                 (index) => Expanded(
                                       child: Container(
-                                        color: index % 2 == 0 ? Colors.transparent : Colors.grey,
+                                        color: index % 2 == 0
+                                            ? Colors.transparent
+                                            : Colors.grey,
                                         height: 1,
                                       ),
                                     )),
@@ -379,10 +411,13 @@ class HomePage extends GetView<HomeController> {
                             height: 20,
                           ),
                           ListView.builder(
-                            itemBuilder: (BuildContext buildContext, int index) {
-                              return _buildListInfoOrder(controller.homeResponse!.data!.orders![index]);
+                            itemBuilder:
+                                (BuildContext buildContext, int index) {
+                              return _buildListInfoOrder(controller
+                                  .homeResponse!.data!.orders![index]);
                             },
-                            itemCount: controller.homeResponse!.data!.orders!.length,
+                            itemCount:
+                                controller.homeResponse!.data!.orders!.length,
                             shrinkWrap: true,
                             physics: ClampingScrollPhysics(),
                           )
@@ -409,7 +444,9 @@ class HomePage extends GetView<HomeController> {
                                 1000,
                                 (index) => Expanded(
                                       child: Container(
-                                        color: index % 2 == 0 ? Colors.transparent : Colors.grey,
+                                        color: index % 2 == 0
+                                            ? Colors.transparent
+                                            : Colors.grey,
                                         height: 1,
                                       ),
                                     )),
@@ -419,11 +456,14 @@ class HomePage extends GetView<HomeController> {
                           ),
                           //ListNewsCustomized(),
                           ListView.builder(
-                            itemCount: controller.mNotifications!.length > 5 ? 5 :controller.mNotifications!.length,
+                            itemCount: controller.mNotifications!.length > 5
+                                ? 5
+                                : controller.mNotifications!.length,
                             shrinkWrap: true,
                             physics: ClampingScrollPhysics(),
                             itemBuilder: (BuildContext context, int index) {
-                              return _buildListNews(controller.mNotifications![index]);
+                              return _buildListNews(
+                                  controller.mNotifications![index]);
                             },
                           ),
                         ],
@@ -452,8 +492,8 @@ class HomePage extends GetView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            //flex: 2,
-            child: Wrap(
+              //flex: 2,
+              child: Wrap(
             children: [
               TextCustomized(
                 text: HOME_ORDER_CODE,
@@ -473,12 +513,11 @@ class HomePage extends GetView<HomeController> {
           Expanded(
             //flex: 3,
             child: Column(
-
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
                   alignment: Alignment.center,
-                  width: (MediaQuery.of(Get.context!).size.width -50)*0.4,
+                  width: (MediaQuery.of(Get.context!).size.width - 50) * 0.4,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -489,7 +528,6 @@ class HomePage extends GetView<HomeController> {
                     font: SanFranciscoUIText,
                     weight: FontWeight.w700,
                     color: WHITE,
-
                   ),
                 ),
                 SizedBox(
@@ -558,7 +596,11 @@ class HomePage extends GetView<HomeController> {
                         Container(
                           child: Text(
                             data.created_at.toString(),
-                            style: TextStyle(fontFamily: SanFranciscoUIText, color: GRAY, fontSize: 12, fontWeight: FontWeight.w400),
+                            style: TextStyle(
+                                fontFamily: SanFranciscoUIText,
+                                color: GRAY,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
                       ],

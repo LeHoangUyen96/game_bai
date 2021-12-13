@@ -23,7 +23,6 @@ class OrderShipBackDetailController extends GetxController {
   bool isEditSurcharge = false;
   String? textTransportFee;
   String? textSurcharge;
-  int? selectedReason;
   List<DataImagesEnterWareHouseResponse>? mImages = [];
   String? mDataUploadImage;
   int? id;
@@ -40,7 +39,6 @@ class OrderShipBackDetailController extends GetxController {
     } else {
       orderId = Get.arguments;
     }
-    print("$id");
     images = <File>[];
     img = <String>[];
     selectedAssetsPrevious = <Asset>[];
@@ -73,7 +71,6 @@ class OrderShipBackDetailController extends GetxController {
           key: "", path: "", file: value, isNetWork: false));
       Get.back(result: images);
       img!.add(value.path);
-
       update();
     }).catchError((onError) {
       Get.back();
@@ -97,9 +94,7 @@ class OrderShipBackDetailController extends GetxController {
   }
 
   void onClearImage(int index) {
-    if (images!.length > index) {
-      images!.removeAt(index);
-    }
+    mImages!.removeAt(index);
     update();
   }
 
@@ -117,7 +112,7 @@ class OrderShipBackDetailController extends GetxController {
     UpdateFeeWarhouseChina request = UpdateFeeWarhouseChina(
       surcharge: textSurcharge,
       transportFee: textTransportFee,
-      isProhibitedItem: isCheck == true ? 1 : 0,
+      isProhibitedItem: isCheck == true ? 2 : 1,
       image: img,
     );
     orderAminRepositories!

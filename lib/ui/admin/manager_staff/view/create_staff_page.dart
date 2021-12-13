@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/list_role_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
@@ -79,8 +80,10 @@ class CreateStaffPage extends GetView<CreateStaffController> {
             SizedBox(height: 5),
             TextFieldCustomized(
               textController: controller.userCodeController,
-              //errorText: ,
-              hint: 'nguyenvanaDNa',    
+              errorText: !controller.isUserCodeValid
+                                      ? controller.userCodeError
+                                      : null,
+              hint: 'Nhập mã nhân viên',    
             ),
              controller.isUserCodeValid == false
                   ? TextCustomized(
@@ -100,10 +103,21 @@ class CreateStaffPage extends GetView<CreateStaffController> {
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
-              //textController: controller.name,
-              //errorText: ,
-              hint: 'Nguyễn Văn A',    
+              textController: controller.nameController,
+              errorText: !controller.isNameValid
+                                      ? controller.nameError
+                                      : null,
+              hint: NAME,    
             ),
+            controller.isNameValid == false
+                  ? TextCustomized(
+                text: controller.nameError,
+                font: SanFranciscoText,
+                size: 12,
+                weight: FontWeight.w400,
+                color: RED,
+              )
+                  : Container(),
             SizedBox(height: 15,),
             TextCustomized(
             text: PHONE,
@@ -113,10 +127,21 @@ class CreateStaffPage extends GetView<CreateStaffController> {
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
-              //textController: controller.name,
-              //errorText: ,
-              hint: '0979419599',    
+              textController: controller.phoneController,
+              errorText: !controller.isPhoneValid
+                                      ? controller.phoneError
+                                      : null,
+              hint: PHONE,    
             ),
+            controller.isPhoneValid == false
+                  ? TextCustomized(
+                text: controller.phoneError,
+                font: SanFranciscoText,
+                size: 12,
+                weight: FontWeight.w400,
+                color: RED,
+              )
+                  : Container(),
             SizedBox(height: 15,),
             TextCustomized(
             text: email,
@@ -126,10 +151,21 @@ class CreateStaffPage extends GetView<CreateStaffController> {
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
-              //textController: controller.name,
-              //errorText: ,
-              hint: 'email@gmail.com',    
+              textController: controller.emailController,
+              errorText: !controller.isEmailValid
+                                      ? controller.emailError
+                                      : null,
+              hint: 'Nhập Email',    
             ),
+            controller.isEmailValid == false
+                  ? TextCustomized(
+                text: controller.emailError,
+                font: SanFranciscoText,
+                size: 12,
+                weight: FontWeight.w400,
+                color: RED,
+              )
+                  : Container(),
             SizedBox(height: 15,),
             TextCustomized(
             text: "Phân quyền",
@@ -139,22 +175,19 @@ class CreateStaffPage extends GetView<CreateStaffController> {
             ),
             SizedBox(height: 5),
             Container(
-                child: DropdownSearch<DataBagType>(
+                child: DropdownSearch<DataRole>(
                   mode: Mode.MENU,
-                  maxHeight: 80,
+                  maxHeight: 120,
                   popupSafeArea: PopupSafeArea(),
-                  items: [
-                    DataBagType(codeBagType: "graft_bag", nameBagType: "Bao ghép"),
-                    DataBagType(codeBagType: "intact_bag", nameBagType: "Bao nguyên"),
-                  ],
-                  //onFind: (String? filter) => getData(filter),
+                  
+                  onFind: (String? filter) => controller.onGetListRole(),
                   hint: "Phân quyền",
                   onChanged:( data ){
-                    // print('${controller.typeBag}');
-                    // controller.typeBag = data!.codeBagType!;
+                    print('${controller.role_id}');
+                    controller.role_id = data!.id!;
                     controller.update();
                     },
-                  itemAsString: (DataBagType u) => u.nameBagType!,
+                  itemAsString: (DataRole u) => u.name!,
                   dropdownButtonBuilder: (_)=> Container(
                     padding: EdgeInsets.all(10.0),
                     child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
@@ -166,52 +199,58 @@ class CreateStaffPage extends GetView<CreateStaffController> {
                   ),
               ),
               SizedBox(height: 15,),
-            TextCustomized(
-            text: "Avatar",
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
-            ),
-            SizedBox(height: 5),
-            AddImageEnterWarehouse(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextCustomized(
-                text: "Trạng thái",
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: MAIN_BLACK,
-                ),
-                Wrap(
-                  spacing: 5.0,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    TextCustomized(
-                    text: "Đang hoạt động",
-                    font: SanFranciscoText,
-                    weight: FontWeight.w400,
-                    color: MAIN_BLACK,
-                    ),
-                    CupertinoSwitch(
-                      dragStartBehavior: DragStartBehavior.start,
-                      //value: controller.detailStaffResponse!.data!.status == 1 ? true: false,
-                      value: true,
-                      onChanged: (bool value) {},
-                      ),
-                  ],
-                ),
-              ],
-            ),
+            // TextCustomized(
+            // text: "Avatar",
+            // font: SanFranciscoText,
+            // weight: FontWeight.w400,
+            // color: MAIN_BLACK,
+            // ),
+            // SizedBox(height: 5),
+            // AddImageEnterWarehouse(),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     TextCustomized(
+            //     text: "Trạng thái",
+            //     font: SanFranciscoText,
+            //     weight: FontWeight.w400,
+            //     color: MAIN_BLACK,
+            //     ),
+            //     Wrap(
+            //       spacing: 5.0,
+            //       crossAxisAlignment: WrapCrossAlignment.center,
+            //       children: [
+            //         TextCustomized(
+            //         text: "Đang hoạt động",
+            //         font: SanFranciscoText,
+            //         weight: FontWeight.w400,
+            //         color: MAIN_BLACK,
+            //         ),
+            //         CupertinoSwitch(
+            //           dragStartBehavior: DragStartBehavior.start,
+            //           //value: controller.detailStaffResponse!.data!.status == 1 ? true: false,
+            //           value: true,
+            //           onChanged: (bool value) {},
+            //           ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
             SizedBox(height: 25),
             ButtonCustomized(
               save,
+              onTap: (){
+                controller.onCreateAdmin();
+              },
               backgroundColor: BT_CONFIRM,
               textColor: WHITE,
             ),
             SizedBox(height: 15),
             ButtonCustomized(
-              "Xóa Nhân viên",
+              cancel,
+              onTap: (){
+                Get.back();
+              },
               backgroundColor: WHITE,
               textColor: RED_1,
               borderColor: BT_GRAY,
@@ -221,7 +260,7 @@ class CreateStaffPage extends GetView<CreateStaffController> {
       ),
     );
   }
-   Widget _customDropdown (BuildContext context, DataBagType item, bool isSelected){
+   Widget _customDropdown (BuildContext context, DataRole item, bool isSelected){
    return Container(
      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -236,7 +275,7 @@ class CreateStaffPage extends GetView<CreateStaffController> {
              children: [
                Flexible(
                  child: TextCustomized(
-                   text: item.nameBagType?.toString()??'',
+                   text: item.name?.toString()??'',
                    font: SanFranciscoUIText,
                    weight: FontWeight.w400,
                    )

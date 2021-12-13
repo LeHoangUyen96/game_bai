@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
+import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
 import 'package:viet_trung_mobile/data/response/list_admin_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_staff/contract/manager_staff_contract.dart';
@@ -96,6 +98,18 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
     }).catchError((onError){
       Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
     });
+  }
+
+ 
+
+  @override
+  void onCreateAdminSuccess(CreateAdminResponse data) {
+    // TODO: implement onCreateAdminSuccess
+  }
+
+  @override
+  void onCreateAdminAdminError(ErrorCreateAdminResponse error) {
+    // TODO: implement onCreateAdminAdminError
   }
 
 }

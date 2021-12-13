@@ -14,7 +14,18 @@ class ValidOrderPage extends GetView<OrderManagementController> {
     return GetBuilder<OrderManagementController>(
       init: OrderManagementController(),
       builder: (value) => Scaffold(
-        appBar: buildAppBar(orderValid),
+        appBar: buildAppBar(
+            orderValid,
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: () {},
+                child: Icon(
+                  Icons.search,
+                  color: WHITE,
+                ),
+              ),
+            )),
         body: buildBody(),
       ),
     );

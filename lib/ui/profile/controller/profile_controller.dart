@@ -5,34 +5,30 @@ import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repositor
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile/data/response/errors_response.dart';
 import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
-import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/login/view/login_page.dart';
-import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
 import 'package:viet_trung_mobile/ui/profile/contract/profile_contract.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class ProfileController extends GetxController implements ProfileContract {
-ProfileRepositories? profileRepositories;
-AuthRepository? authRepository;
-final tokens = GetStorage();
-final isAdmin = GetStorage();
-ProfileContract? contract;
-ProfileResponse ? mDataProfile;
+  ProfileRepositories? profileRepositories;
+  AuthRepository? authRepository;
+  final tokens = GetStorage();
+  final isAdmin = GetStorage();
+  ProfileContract? contract;
+  ProfileResponse? mDataProfile;
 
-
-@override
+  @override
   void onInit() {
     super.onInit();
     authRepository = Injector().auth;
-    profileRepositories =  Injector().profile;
+    profileRepositories = Injector().profile;
     contract = this;
     onGetProfile();
   }
 
-
-  void onGetProfile(){
+  void onGetProfile() {
     profileRepositories!.onGetProfile().then((value) {
       return contract!.onGetProfileSuccess(value);
     }).catchError((onError) {
@@ -63,14 +59,13 @@ ProfileResponse ? mDataProfile;
 
   @override
   void onGetProfileError(ErrorsResponse error) {
-    Get.snackbar(NOTIFY,error.message.toString());
+    Get.snackbar(NOTIFY, error.message.toString());
     update();
   }
 
   @override
   void onGetProfileSuccess(ProfileResponse data) {
-     mDataProfile = data;
+    mDataProfile = data;
     update();
   }
-
 }

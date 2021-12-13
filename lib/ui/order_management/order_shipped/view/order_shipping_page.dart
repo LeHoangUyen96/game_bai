@@ -18,7 +18,18 @@ class OrderShippingPage extends GetView<OrderShippedController> {
     return GetBuilder<OrderShippedController>(
         init: OrderShippedController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar(orderNotTransport),
+              appBar: buildAppBar(
+                  orderNotTransport,
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.search,
+                        color: WHITE,
+                      ),
+                    ),
+                  )),
               body: SmartRefresher(
                   enablePullUp: true,
                   enablePullDown: true,

@@ -7,7 +7,6 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/ui/admin/dashboard_admin/view/dashboard_admin_page.dart';
 import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
 import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/view/manager_bag_page.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
 import 'package:viet_trung_mobile/ui/dashboard_user/view/dashboard_user_page.dart';
 import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
@@ -15,6 +14,7 @@ import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
 import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
 import 'package:viet_trung_mobile/ui/order_management/view/order_admin_page.dart';
 import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/view/setting_admin_page.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
 
@@ -44,7 +44,9 @@ class MainPageAdmin extends GetView<MainController> {
                     : DashboardUserPage(),
                 controller.isAdmin == 1 ? OrderAdminPage() : OrderInfoPage(),
                 controller.isAdmin == 1 ? GenaeralManagePage() : ProfilePage(),
-                controller.isAdmin == 1 ? ProfilePage() : NotificationPage(),
+                controller.isAdmin == 1
+                    ? SettingAdminPage()
+                    : NotificationPage(),
               ],
             ),
           ),

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/widget/initial_widget.dart';
 
-PreferredSize buildAppBar(String text) {
+PreferredSize buildAppBar(String text, Widget icon) {
   return PreferredSize(
     preferredSize: Size(double.infinity, 55),
     child: InitialWidget(
@@ -21,18 +21,7 @@ PreferredSize buildAppBar(String text) {
         ),
       ),
       isAdd: true,
-      iconAdd: Container(
-        padding: EdgeInsets.only(right: 10),
-        child: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(
-            Icons.search,
-            color: WHITE,
-          ),
-        ),
-      ),
+      iconAdd: icon,
     ),
   );
 }

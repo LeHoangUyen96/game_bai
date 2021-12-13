@@ -175,17 +175,11 @@ class RegisterController extends GetxController implements RegisterContract {
   }
 
   @override
-  void onSuccessGetAddress(RegisterAddressResponse response) {
-    // TODO: implement onSuccessGetAddress
-  }
+  void onSuccessGetAddress(RegisterAddressResponse response) {}
 
   @override
-  void onSuccessRegisterStep1(RegisterStep1Response response) {
-    // TODO: implement onSuccessRegisterStep1
-  }
+  void onSuccessRegisterStep1(RegisterStep1Response response) {}
 
   @override
-  void onSuccessRegisterStep2(RegisterStep2Response response) {
-    // TODO: implement onSuccessRegisterStep2
-  }
+  void onSuccessRegisterStep2(RegisterStep2Response response) {}
 }

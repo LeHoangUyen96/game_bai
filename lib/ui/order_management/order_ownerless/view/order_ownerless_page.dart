@@ -18,7 +18,18 @@ class OwneslessOrderPage extends GetView<OrderOwnerlessController> {
     return GetBuilder<OrderOwnerlessController>(
         init: OrderOwnerlessController(),
         builder: (value) => Scaffold(
-              appBar: buildAppBar(ownerlessOrder),
+              appBar: buildAppBar(
+                  ownerlessOrder,
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.search,
+                        color: WHITE,
+                      ),
+                    ),
+                  )),
               body: SmartRefresher(
                   enablePullUp: true,
                   enablePullDown: true,

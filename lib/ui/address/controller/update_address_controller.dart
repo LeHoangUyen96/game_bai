@@ -11,12 +11,11 @@ import 'package:viet_trung_mobile/data/response/register_address_response.dart';
 import 'package:viet_trung_mobile/data/response/wards_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/address/contract/address_contract.dart';
-import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
 import 'package:viet_trung_mobile/widget/loading_dialog_widget.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-class UpdateAddressController extends GetxController implements AddressContract{
-
+class UpdateAddressController extends GetxController
+    implements AddressContract {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
@@ -51,7 +50,6 @@ class UpdateAddressController extends GetxController implements AddressContract{
   int defaults = 0;
   DataAddress? mdatas;
 
-
   @override
   void onInit() {
     super.onInit();
@@ -71,7 +69,7 @@ class UpdateAddressController extends GetxController implements AddressContract{
     onGetListCity();
   }
 
-  void onGetData(DataAddress data){
+  void onGetData(DataAddress data) {
     mdatas = data;
     nameController.text = mdatas!.name.toString();
     phoneController.text = mdatas!.phone.toString();
@@ -84,20 +82,20 @@ class UpdateAddressController extends GetxController implements AddressContract{
     update();
   }
 
-  void onGetListCity(){
+  void onGetListCity() {
     addressRepository.onGetCity().then((value) {
       mcity = value;
       print(mcity!.length.toString());
       update();
       // return contract.onSuccess(value);
-    }).catchError((onError){
+    }).catchError((onError) {
       // Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
       print("Error");
     });
     update();
   }
 
-  void onChangeCity(DataCity value, int id){
+  void onChangeCity(DataCity value, int id) {
     selectedCity = value;
     city = id;
     selectedDistrict = null;
@@ -106,7 +104,7 @@ class UpdateAddressController extends GetxController implements AddressContract{
     update();
   }
 
-  void onGetListDistrict(int id){
+  void onGetListDistrict(int id) {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     addressRepository.onGetDistric(id).then((value) {
       Get.back();
@@ -114,12 +112,13 @@ class UpdateAddressController extends GetxController implements AddressContract{
       print(mdistric!.length.toString());
       update();
       // return contract.onSuccess(value);
-    }).catchError((onError){
+    }).catchError((onError) {
       print("Error");
     });
     update();
   }
-  void onChangeDistrict(DataDistrict value, int id){
+
+  void onChangeDistrict(DataDistrict value, int id) {
     selectedDistrict = value;
     district = id;
     selectedWards = null;
@@ -127,7 +126,7 @@ class UpdateAddressController extends GetxController implements AddressContract{
     update();
   }
 
-  void onGetListWards(int id){
+  void onGetListWards(int id) {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     addressRepository.onGetWards(id).then((value) {
       Get.back();
@@ -135,23 +134,24 @@ class UpdateAddressController extends GetxController implements AddressContract{
       print(mwards!.length.toString());
       update();
       // return contract.onSuccess(value);
-    }).catchError((onError){
+    }).catchError((onError) {
       print("Error");
     });
     update();
   }
 
-  void onChangeWards(DataWards value, int id){
+  void onChangeWards(DataWards value, int id) {
     selectedWards = value;
     wards = id;
     update();
   }
 
-  void onChangeDefault(){
+  void onChangeDefault() {
     isCheck = !isCheck;
-    if(isCheck==true){
+    if (isCheck == true) {
       defaults = 1;
-    } else defaults = 0;
+    } else
+      defaults = 0;
     print("$defaults");
     update();
   }
@@ -167,7 +167,7 @@ class UpdateAddressController extends GetxController implements AddressContract{
     if (phoneController.text.length < 9 || phoneController.text.length > 11) {
       phoneValid = false;
       phoneError = ERROR_PHONE;
-    }else {
+    } else {
       phoneValid = true;
     }
     if (addressController.text.isEmpty) {
@@ -197,8 +197,12 @@ class UpdateAddressController extends GetxController implements AddressContract{
       wardsValid = true;
     }
 
-
-    if (nameValid && phoneValid && addressValid && cityValid && districtValid && wardsValid) {
+    if (nameValid &&
+        phoneValid &&
+        addressValid &&
+        cityValid &&
+        districtValid &&
+        wardsValid) {
       AddressRequest _request = AddressRequest(
           name: nameController.text,
           phone: phoneController.text,
@@ -206,10 +210,9 @@ class UpdateAddressController extends GetxController implements AddressContract{
           city_id: city,
           district_id: district,
           wards_id: wards,
-          defaults: defaults
-      );
+          defaults: defaults);
       Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-      addressRepository.onUpdateAddress(_request,mdatas!.id!).then((value) {
+      addressRepository.onUpdateAddress(_request, mdatas!.id!).then((value) {
         return contract.onSuccess(value);
       }).catchError((onError) {
         return contract.onError(onError);
@@ -218,19 +221,20 @@ class UpdateAddressController extends GetxController implements AddressContract{
     update();
   }
 
-
   @override
   void onError(AddressErrorResponse msg) {
     Get.back();
     Get.snackbar(PROFILE_NOTIFY, msg.message.toString());
-    // TODO: implement onError
   }
 
   @override
   void onSuccess(RegisterAddressResponse response) {
     Get.back(result: 1);
     Get.back(result: 1);
-    Get.dialog(LoadingDialogWidget(title: PROFILE_NOTIFY_SUCCESS,text: PROFILE_UPDATE_ADDRESS_SUCCESS,));
+    Get.dialog(LoadingDialogWidget(
+      title: PROFILE_NOTIFY_SUCCESS,
+      text: PROFILE_UPDATE_ADDRESS_SUCCESS,
+    ));
     Future.delayed(Duration(seconds: 3), () {
       Get.back();
     });

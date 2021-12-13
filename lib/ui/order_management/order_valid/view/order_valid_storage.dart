@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/valid_order_controller.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_storage_detail_page.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/datepicker_customized.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -42,9 +43,7 @@ class OrderValidStorage extends GetView<ValidOrderController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
@@ -72,17 +71,9 @@ class OrderValidStorage extends GetView<ValidOrderController> {
                                   Container(
                                     height: 16,
                                     width: 16,
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                        left: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                        right: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                        bottom: BorderSide(
-                                            width: 1.0, color: Colors.grey),
-                                      ),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.grey),
                                     ),
                                     child: Checkbox(
                                       checkColor: Colors.red,
@@ -95,7 +86,7 @@ class OrderValidStorage extends GetView<ValidOrderController> {
                                     ),
                                   ),
                                   SizedBox(width: 7),
-                                  TextCustomized(text: "Chọn tất cả"),
+                                  TextCustomized(text: chooseAll),
                                 ],
                               ),
                             ],
@@ -213,58 +204,65 @@ class OrderValidStorage extends GetView<ValidOrderController> {
   }
 
   Widget _buildListOrders(DataOrderAdmin response) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      elevation: 20,
-      shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.white, width: 3),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      borderOnForeground: true,
-      child: Container(
-        padding: EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return InkWell(
+        onTap: () {
+          Get.to(
+            OrderStorageDetailPage(),
+            arguments: response.id!.toString(),
+          );
+        },
+        child: Card(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          elevation: 20,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.white, width: 3),
+              borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderOnForeground: true,
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextCustomized(
-                  text: response.billCode!,
-                  font: SanFranciscoText,
-                  weight: FontWeight.w700,
-                  color: MAIN_BLACK,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextCustomized(
+                      text: response.billCode!,
+                      font: SanFranciscoText,
+                      weight: FontWeight.w700,
+                      color: MAIN_BLACK,
+                    ),
+                    TextCustomized(
+                      text: response.orderStatusName!,
+                      font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: BG_ID_PD,
+                    ),
+                  ],
                 ),
+                SizedBox(height: 10),
                 TextCustomized(
-                  text: response.orderStatusName!,
-                  font: SanFranciscoText,
+                  text: response.createdAt!,
+                  font: SanFranciscoTextLight,
                   weight: FontWeight.w400,
-                  color: BG_ID_PD,
+                  style: FontStyle.italic,
+                  color: MAIN_GRAY,
                 ),
+                SizedBox(height: 10),
+                _itemInfoOrder(ORDER_LIST_PARCELS,
+                    response.numberPackage!.toString(), BLACK),
+                SizedBox(height: 10),
+                _itemInfoOrder(ORDER_LIST_ITEMS, response.item!, BLACK),
+                SizedBox(height: 10),
+                _itemInfoOrder(ORDER_LIST_COD,
+                    "¥${response.transportFee!.toString()}", RED),
+                SizedBox(height: 10),
+                _itemInfoOrder(MANAGE_PACKAGE_SURCHARGE,
+                    "¥${response.surcharge!.toString()}", BLACK),
               ],
             ),
-            SizedBox(height: 10),
-            TextCustomized(
-              text: response.createdAt!,
-              font: SanFranciscoTextLight,
-              weight: FontWeight.w400,
-              style: FontStyle.italic,
-              color: MAIN_GRAY,
-            ),
-            SizedBox(height: 10),
-            _itemInfoOrder(
-                ORDER_LIST_PARCELS, response.numberPackage!.toString(), BLACK),
-            SizedBox(height: 10),
-            _itemInfoOrder(ORDER_LIST_ITEMS, response.item!, BLACK),
-            SizedBox(height: 10),
-            _itemInfoOrder(
-                ORDER_LIST_COD, "¥${response.transportFee!.toString()}", RED),
-            SizedBox(height: 10),
-            _itemInfoOrder(MANAGE_PACKAGE_SURCHARGE,
-                "¥${response.surcharge!.toString()}", BLACK),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget _itemInfoOrder(String textTitle, String textParam, Color color) {

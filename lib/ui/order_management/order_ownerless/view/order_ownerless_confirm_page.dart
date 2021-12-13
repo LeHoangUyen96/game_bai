@@ -320,7 +320,6 @@ class OwneslessOrderConfirmPage
                 maxLine: 5,
                 height: 100,
                 textInputType: TextInputType.text,
-                textInputAction: TextInputAction.next,
               ),
             ])),
       ],
