@@ -22,9 +22,6 @@ class RolePage extends GetView<RoleController> {
               onRefresh: () {
                 controller.onRefresh();
               },
-              onLoading: () {
-                controller.onLoading();
-              },
               child: Scaffold(
                 appBar: buildAppBar(
                     role,

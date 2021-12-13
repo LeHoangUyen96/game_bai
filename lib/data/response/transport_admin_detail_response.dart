@@ -17,7 +17,8 @@ class TransportAdminDetailResponse {
 
 class DataTransportFormAdminDetail {
   int? id;
-  String? productId;
+  int? productId;
+  String? productName;
   String? unit;
   String? from;
   String? to;
@@ -34,9 +35,11 @@ class DataTransportFormAdminDetail {
     this.transportFeeHN,
     this.transportFeeDN,
     this.transportFeeSG,
+    this.productName,
   });
   DataTransportFormAdminDetail.fromJson(Map<String, dynamic> json) {
-    productId = json['product_id'] ?? '';
+    productId = json['product_id'] ?? 0;
+    productName = json['product_name'] ?? '';
     id = json['id'] ?? 0;
     unit = json['unit'] ?? '';
     from = json['from'] ?? '';

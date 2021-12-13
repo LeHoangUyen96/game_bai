@@ -4,6 +4,12 @@ import 'package:viet_trung_mobile/data/repository/auth_repository/auth_impl.dart
 import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_impl.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/dashboard_product_reponsitory/dashboard_product_impl.dart';
+import 'package:viet_trung_mobile/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
+import 'package:viet_trung_mobile/data/repository/exchange_rate_reponsitory/exchange_rate_impl.dart';
+import 'package:viet_trung_mobile/data/repository/exchange_rate_reponsitory/exchange_rate_reponsitory.dart';
+import 'package:viet_trung_mobile/data/repository/packing_admin_reponsitory/packing_admin_impl.dart';
+import 'package:viet_trung_mobile/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_impl.dart';
 import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_impl.dart';
@@ -56,4 +62,7 @@ class Injector {
   RatingOrderRepositories get ratingOrder => RatingOrderImpl();
   ManagerStaffRepositories get managerStaff => ManagerStaffImpl();
   ManagerUserRepositories get managerUser => ManagerUserImpl();
+  PackingAdminRepositories get packing => PackingAdminImpl();
+  DashboardProductRepositories get dashboardProduct => DashboardProductImpl();
+  ExchangeRateRepositories get exchangeRate => ExchangeRateImpl();
 }

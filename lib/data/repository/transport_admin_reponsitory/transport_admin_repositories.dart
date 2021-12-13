@@ -14,4 +14,6 @@ abstract class TransportAdminRepositories {
   Future<ForgotPassResponse> onAddTransportFee(
       AddTransportFormFeeRequest request);
   Future<TransportFeeDetailResponse> onGetTransportFeeDetail(String id);
+  Future<ForgotPassResponse> onUpdateTransportFee(
+      String id, AddTransportFormFeeRequest request);
 }

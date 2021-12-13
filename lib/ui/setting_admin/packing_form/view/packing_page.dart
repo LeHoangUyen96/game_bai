@@ -5,15 +5,16 @@ import 'package:viet_trung_mobile/data/response/list_transport_admin_response.da
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/controller/transport_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/view/transport_detail_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/packing_form/controller/packing_controller.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/packing_form/view/add_packing_page.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/packing_form/view/packing_detail_page.dart';
 import 'package:viet_trung_mobile/widget/header_order._page.dart';
 
-class PackingPage extends GetView<TransportController> {
+class PackingPage extends GetView<PackingController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TransportController>(
-        init: TransportController(),
+    return GetBuilder<PackingController>(
+        init: PackingController(),
         builder: (value) => SmartRefresher(
               enablePullUp: true,
               enablePullDown: true,
@@ -21,13 +22,21 @@ class PackingPage extends GetView<TransportController> {
               onRefresh: () {
                 controller.onRefresh();
               },
-              onLoading: () {
-                controller.onLoading();
-              },
               child: Scaffold(
                 appBar: buildAppBar(
                   packFormat,
-                  SizedBox(),
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(AddPackingPage());
+                      },
+                      child: Icon(
+                        Icons.add,
+                        color: WHITE,
+                      ),
+                    ),
+                  ),
                 ),
                 body: controller.response != null ? buildBody() : SizedBox(),
               ),
@@ -43,32 +52,23 @@ class PackingPage extends GetView<TransportController> {
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return _buildItem(
-                controller.response!.data![index],
-                () {
-                  Get.to(
-                    TransportDetailPage(
-                        name: controller.response!.data![index].name!),
-                    arguments: controller.response!.data![index].id.toString(),
-                  );
-                },
-              );
+              return _buildItem(controller.response!.data![index]);
             }),
       ]),
     );
   }
 
-  Widget _buildItem(
-    DataTransportFormAdmin response,
-    VoidCallback onTap,
-  ) {
+  Widget _buildItem(DataTransportFormAdmin response) {
     return Container(
         color: WHITE,
         child: Column(
           children: [
             const SizedBox(height: 16.5),
             InkWell(
-                onTap: onTap,
+                onTap: () {
+                  Get.to(PackingDetailPage(),
+                      arguments: response.id!.toString());
+                },
                 child: Row(children: [
                   const SizedBox(width: 12),
                   Text(response.name!,

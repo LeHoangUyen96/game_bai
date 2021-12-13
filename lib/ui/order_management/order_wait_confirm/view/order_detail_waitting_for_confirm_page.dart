@@ -232,6 +232,7 @@ class OrderDetailsWaitingForConfirmPage
                                       path: ic_edit,
                                       height: 12,
                                       width: 12,
+                                      color: BLACK,
                                     ),
                                   ],
                                 )
@@ -291,6 +292,7 @@ class OrderDetailsWaitingForConfirmPage
                                 path: ic_edit,
                                 height: 12,
                                 width: 12,
+                                color: BLACK,
                               ),
                             ],
                           ),

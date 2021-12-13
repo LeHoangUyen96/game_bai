@@ -222,6 +222,7 @@ class OrderDetailNotShippedPage
                                       path: ic_edit,
                                       height: 12,
                                       width: 12,
+                                      color: BLACK,
                                     ),
                                   ],
                                 )
@@ -281,6 +282,7 @@ class OrderDetailNotShippedPage
                                   path: ic_edit,
                                   height: 12,
                                   width: 12,
+                                  color: BLACK,
                                 ),
                               ]),
                           SizedBox(height: 10),

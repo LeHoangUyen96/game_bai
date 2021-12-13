@@ -19,7 +19,7 @@ class ProfileImpl extends GetConnect implements ProfileRepositories {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.PROFILE_INFO;
     //final body = null;
-    final responseJson = await get(url,  headers: header);
+    final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ProfileResponse.fromJson(responseJson.body);
     }
@@ -32,7 +32,7 @@ class ProfileImpl extends GetConnect implements ProfileRepositories {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.PROFILE_EDIT;
     final body = json.encode(request);
-    final responseJson = await post(url, body, headers: header);
+    final responseJson = await put(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return UpdateProfileResponse.fromJson(responseJson.body);
     }
@@ -80,11 +80,8 @@ class ProfileImpl extends GetConnect implements ProfileRepositories {
     };
     final responseJson = await post(url, data, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
-      return  UploadImagesResponse.fromJson(responseJson.body);
+      return UploadImagesResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
-
   }
-
-
 }
