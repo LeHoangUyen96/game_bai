@@ -1,7 +1,6 @@
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/auth/forgot_password/view/forgot_password_page.dart';
-import 'package:viet_trung_mobile/ui/auth/register/view/register_step_1.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/text_field_customized.dart';
@@ -36,25 +35,22 @@ class LoginPage extends GetView<LoginController> {
           Container(
               width: Get.width,
               alignment: Alignment.center,
-              //padding: EdgeInsets.all(20),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 50),
                         child: ImageCustomized(
-                          //path: LOGO_IMG,
                           path: IMG_LOGO,
                           height: 150,
                           width: 150,
                         )),
-                    SizedBox(height: 8),
+                    SizedBox(height: 50),
                     Expanded(
-                      //flex: 4,
                       child: Container(
+                        height: Get.height * 0.7,
                         padding: EdgeInsets.all(20),
-                        height: double.maxFinite,
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
@@ -86,12 +82,6 @@ class LoginPage extends GetView<LoginController> {
                                   weight: FontWeight.w400,
                                   color: BLACK,
                                 ),
-                                //  TextFieldCustom(
-                                //      textController: controller.emailController,
-                                //      errorText: !controller.isEmailValid ? controller.emailError : null,
-                                //      hint: LOGIN_EMAIL_PHONE,
-
-                                //  ),
                                 const SizedBox(height: 5),
                                 TextFieldCustomized(
                                   textController: controller.emailController,
@@ -122,13 +112,6 @@ class LoginPage extends GetView<LoginController> {
                                   weight: FontWeight.w400,
                                   color: BLACK,
                                 ),
-                                //  TextFieldCustom(
-                                //      textController: controller.passwordController,
-                                //      errorText: !controller.isPasswordValid ? controller.passwordError : null,
-                                //      hint: LOGIN_PASSWORD,
-                                //      isObscured: true,
-
-                                //  ),
                                 const SizedBox(height: 5),
                                 TextFieldCustomized(
                                   textController: controller.passwordController,
@@ -139,7 +122,6 @@ class LoginPage extends GetView<LoginController> {
                                   isSuffixIcon: true,
                                   isObscured: true,
                                 ),
-
                                 SizedBox(height: 5),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,60 +146,29 @@ class LoginPage extends GetView<LoginController> {
                                     onTap: () {
                                       controller.onLogin();
                                     },
-                                    backgroundColor: MAIN_BLACK,
+                                    backgroundColor: COLOR_BT,
                                   ),
                                 ),
-                                const SizedBox(height: 30),
+                                const SizedBox(height: 20),
                                 Center(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
-                                    child: 
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(ForgotPage());
-                                          },
-                                          child: TextCustomized(
-                                            text: LOGIN_FORGOTPASSWORD,
-                                            font: SanFranciscoText,
-                                            size: customSize,
-                                            weight: FontWeight.w800,
-                                            color: MAIN_BLACK,
-                                          ),
-                                        ),
-                                        
-                                        // Row(
-                                        //   mainAxisAlignment:
-                                        //       MainAxisAlignment.center,
-                                        //   crossAxisAlignment:
-                                        //       CrossAxisAlignment.center,
-                                        //   children: [
-                                        //     TextCustomized(
-                                        //       text: LOGIN_NO_ACCOUNT,
-                                        //       font: SanFranciscoText,
-                                        //       size: customSize,
-                                        //       color: GRAY,
-                                        //     ),
-                                        //     InkWell(
-                                        //       onTap: () {
-                                        //         Get.to(RegisterStepOnePage());
-                                        //       },
-                                        //       child: TextCustomized(
-                                        //         text: LOGIN_REGISTER_NOW,
-                                        //         font: SanFranciscoText,
-                                        //         size: customSize,
-                                        //         weight: FontWeight.w800,
-                                        //         color: MAIN_BLACK,
-                                        //       ),
-                                        //     ),
-                                        //   ],
-                                        // ),
-                                  //     ],
-                                  //   ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.to(ForgotPage());
+                                      },
+                                      child: TextCustomized(
+                                        text: LOGIN_FORGOTPASSWORD,
+                                        font: SanFranciscoText,
+                                        size: customSize,
+                                        weight: FontWeight.w800,
+                                        color: BLACK_1,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ]
-                              ),
+                              ]),
                         ),
                       ),
                     ),

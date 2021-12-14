@@ -729,7 +729,7 @@ const String LOGIN_PHONE = "Số điện thoại";
 const String LOGIN_NAME = "Họ và tên";
 const String LOGIN_CONFIRM_PASSWORD = "Xác nhận lại mật khẩu";
 const String LOGIN_PASSWORD_RECOVERY = "Khôi phục mật khẩu";
-const String LOGIN_EMAIL_OR_PHONE = "Email hoặc số điện thoại";
+const String LOGIN_EMAIL_OR_PHONE = "Email";
 const String LOGIN_RESET_PASSWORD = "Đặt lại mật khẩu";
 const String LOGIN_FORGOTPASSWORD = "Quên mật khẩu?";
 const String LOGIN_REGISTER_NOW = "Đăng ký ngay";
@@ -737,9 +737,7 @@ const String LOGIN_NO_ACCOUNT = "Bạn chưa có tài khoản?";
 const String LOGIN_RESET = "Khôi phục ";
 const String LOGIN_SIGN_TO_CONTINUE = "Đăng nhập để tiếp tục";
 const String LOGIN_CREATE_ACCOUNT = "Tạo một mới tài khoản";
-const String LOGIN_ENTER_EMAIL =
-    "Nhập Email hoặc Số điện thoại của tài khoản để lấy lại mật khẩu ";
-
+const String LOGIN_ENTER_EMAIL = "Nhập Email để lấy lại mật khẩu";
 const String PROFILE_PERSONAL_INFOMATION = "Thông tin cá nhân";
 const String PROFILE_CUSTOMERE_CODE = "Mã khách hàng";
 const String PROFILE_ADDRESS = "Sổ địa chỉ";
