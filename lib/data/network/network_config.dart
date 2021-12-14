@@ -34,6 +34,7 @@ class NetworkConfig {
   static const String LOGOUT = URL_SERVER + "/auth/logout";
   static const String REGISTER_STEP_1 = URL_SERVER + "/auth/signup-step1";
   static const String REGISTER_STEP_2 = URL_SERVER + "/auth/signup-step2";
+  static const String changePass = URL_SERVER + "/users/reset-password-profile";
 
   //cart
   static const String CARTS = URL_SERVER + "/carts";
@@ -262,14 +263,20 @@ class NetworkConfig {
   static const String RATING_ORDER_LIST = URL_SERVER + "/comment/list";
   // Manager Staff
   static const String MANAGER_STAFF_LIST = URL_SERVER + "/admin/users/list/1";
-  static const String MANAGER_STAFF_DETAIL = URL_SERVER + "/admin/users/detail-admin/";
-  static const String MANAGER_STAFF_DELETE = URL_SERVER + "/admin/users/delete-user/";
-  static const String MANAGER_STAFF_CHANGE_STATUS = URL_SERVER + "/admin/users/changed-status/";
-  static const String MANAGER_STAFF_CREATE = URL_SERVER + "/admin/users/create-admin";
+  static const String MANAGER_STAFF_DETAIL =
+      URL_SERVER + "/admin/users/detail-admin/";
+  static const String MANAGER_STAFF_DELETE =
+      URL_SERVER + "/admin/users/delete-user/";
+  static const String MANAGER_STAFF_CHANGE_STATUS =
+      URL_SERVER + "/admin/users/changed-status/";
+  static const String MANAGER_STAFF_CREATE =
+      URL_SERVER + "/admin/users/create-admin";
   // Manager User
   static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
-  static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
-  static const String MANAGER_USER_CREATE = URL_SERVER + "/admin/users/create-user";
+  static const String MANAGER_USER_DETAIL =
+      URL_SERVER + "/admin/users/detail-user/";
+  static const String MANAGER_USER_CREATE =
+      URL_SERVER + "/admin/users/create-user";
 
   //settings packing
   static const String listPacking =
@@ -294,5 +301,4 @@ class NetworkConfig {
       URL_SERVER + "/admin/setting/exchange-rate/list";
   static const String updateExchangeRate =
       URL_SERVER + "/admin/setting/exchange-rate/update";
-
 }

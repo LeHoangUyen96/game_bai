@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
-import 'package:viet_trung_mobile/data/request/edit_profile_request.dart';
+import 'package:viet_trung_mobile/data/request/change_pass_request.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/profile/view/popup_change_pass_faild.dart';
+import 'package:viet_trung_mobile/ui/setting_admin/profile/view/popup_change_pass_success.dart';
 
 class ChangePasswordAdminController extends GetxController {
   TextEditingController oldPassController = TextEditingController();
@@ -54,15 +56,16 @@ class ChangePasswordAdminController extends GetxController {
     }
 
     if (confirmPassValid && oldPassValid && newPassValid) {
-      EditProfileRequest request = EditProfileRequest(
-        email: confirmPassController.text,
-        name: oldPassController.text,
-        phone: newPassController.text,
+      ChangePassRequest request = ChangePassRequest(
+        confirmPass: confirmPassController.text,
+        oldPass: oldPassController.text,
+        newPass: newPassController.text,
       );
-      profileRepositories!.onEditProfile(request).then((value) {
-        Get.snackbar('Thông báo', value.message!);
+      profileRepositories!.onChangePass(request).then((value) {
+        Get.dialog(DialogSuccess());
         update();
       }).catchError((onError) {
+        Get.dialog(DialogFaild());
         update();
       });
     }

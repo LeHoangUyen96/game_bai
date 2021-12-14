@@ -945,3 +945,8 @@ const String user = "User";
 const String editProfile = "Sửa thông tin cá nhân";
 const String youSureLogout = "Bạn chắc chắn muốn đăng xuất?";
 const String confirm = "Xác nhận";
+const String success = "Thành công";
+const String contentSuccess =
+    "Đổi mật khẩu thành công, hãy đăng nhập bằng mật khẩu mới";
+const String faild = "Thất bại";
+const String contentFaild = "Mật khẩu cũ không đúng, hãy nhập lại mật khẩu";

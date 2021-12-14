@@ -49,10 +49,11 @@ class ButtonCustomized extends StatelessWidget {
           text!,
           style: textStyle ??
               TextStyle(
-                  fontSize: customSize,
-                  fontFamily: SanFranciscoText,
-                  fontWeight: FontWeight.w800,
-                  color: textColor ?? Colors.white),
+                fontSize: customSize,
+                fontFamily: inter,
+                fontWeight: FontWeight.w600,
+                color: textColor ?? Colors.white,
+              ),
           textAlign: TextAlign.center,
         ),
       ),
