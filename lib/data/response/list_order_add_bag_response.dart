@@ -20,8 +20,10 @@ class  DataListOrderAddBagResponse {
     int? number_package_remain;
     int? number_package_moved;
     String? name_customer;
+    String? packing_form;
     String? item;
     double? surcharge;
+    bool? isCheck;
    DataListOrderAddBagResponse({
     this.id,
     this.bill_code,
@@ -31,7 +33,9 @@ class  DataListOrderAddBagResponse {
     this.item,
     this.number_package_moved,
     this.number_package_remain,
+    this.packing_form,
     this.surcharge,
+    this.isCheck,
   });
     DataListOrderAddBagResponse.empty(){
      this.id = -1;
@@ -43,6 +47,8 @@ class  DataListOrderAddBagResponse {
      this.name_customer= '';
      this.item= '';
      this.surcharge= 0.0;
+     this.packing_form ='';
+     this.isCheck = false;
    }
     DataListOrderAddBagResponse.fromJson( Map<String,dynamic> json) {
      this.id = ParseNumber.parseInt(json['id']);
@@ -53,7 +59,8 @@ class  DataListOrderAddBagResponse {
      this.item = json["item"] != null ? json["item"].toString() : '';
      this.number_package_remain = ParseNumber.parseInt(json['number_package_remain']);
      this.number_package_moved = ParseNumber.parseInt(json['number_package_moved']);
-     
+     this.packing_form =json["packing_form"] != null ? json["packing_form"].toString() : '';
+     this.surcharge = ParseNumber.parseDouble(json['surcharge']);
     }
 
 }

@@ -40,7 +40,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
       child: AppBar(
         //centerTitle: true,
         title: TextCustomized(
-          text: MANAGE_PACKAGE_EMPLOYEE,
+          text: MANAGE_PACKAGE_CUSTOMER,
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,

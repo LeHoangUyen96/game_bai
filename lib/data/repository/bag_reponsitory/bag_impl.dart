@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/list_order_add_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/manager_bag_filter_request.dart';
 import 'package:viet_trung_mobile/data/request/update_status_detail_bag_request.dart';
 import 'package:viet_trung_mobile/data/response/bag_details_response.dart';
+import 'package:viet_trung_mobile/data/response/create_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
 import 'package:viet_trung_mobile/data/response/list_bag_resoonse.dart';
 import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
@@ -116,6 +121,30 @@ class BagImpl extends GetConnect implements BagRepositories {
       return ListOrderAddBagResponse.fromJson(responseJson.body as Map<String, dynamic>);
     }
     throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<ListOrderAddBagResponse> onSearchBillCode(String bill_code, String warehouse_back_code, int transport_form_id)async {
+    final header = await NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_LIST_ORDER+
+    "?bill_code=$bill_code&warehouse_back_code=$warehouse_back_code&transport_form_id=$transport_form_id";
+    final responseJson = await get(url, headers: header);
+    if(responseJson.statusCode! >= 200 && responseJson.statusCode! < 300){
+      return ListOrderAddBagResponse.fromJson(responseJson.body as Map<String, dynamic>);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<CreateBagResponse> onCreateBag(CreateBagRequest request)async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_CREATE;
+    final body = json.encode(request);
+    final responseJson = await post(url,body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return CreateBagResponse.fromJson(responseJson.body);
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }
 
 }

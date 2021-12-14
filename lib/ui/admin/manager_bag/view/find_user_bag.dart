@@ -128,7 +128,7 @@ class SearchTextFieldUser extends GetView<CreateBagController> {
   Widget _itemSearch(DataSearchCustomer response) {
     return InkWell(
         onTap: () {
-           controller.isShowCard(response.phone!);
+           controller.isShowCard(response.phone!,response.id!);
            controller.searchResponse!.clear();
         },
         child: Column(

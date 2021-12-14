@@ -1,14 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/request/enter_warehouse_request.dart';
+import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/list_product_response.dart';
 import 'package:viet_trung_mobile/data/response/ramdom_bill_order_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ulti/helper/handle_image.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class EnterWarehouseController extends GetxController {
   TextEditingController barCodeValueController = TextEditingController();
@@ -28,8 +37,17 @@ class EnterWarehouseController extends GetxController {
   String? name;
   String? phone;
   String? image;
+  int? product_id;
   RamdomBillOrderResponse? ramdomBillOrderResponse;
   OrderRepositories? orderRepositories;
+  ListProductResponse ? listProductResponse;
+  List<ItemProduct>? mDataItemProduct = [];
+  TransportAdminRepositories ? transportAdminRepositories;
+  List<File>? images;
+  List<Asset>? selectedAssetsPrevious;
+  List<DataImagesEnterWareHouseResponse>? mImages = [];
+  String? mDataUploadImage;
+  List<String>? img;
   @override
   void onInit() {
     super.onInit();
@@ -58,6 +76,10 @@ class EnterWarehouseController extends GetxController {
       }
     }
     orderRepositories = Injector().order;
+    transportAdminRepositories = Injector().transport;
+    images = <File>[];
+    img = <String>[];
+    selectedAssetsPrevious = <Asset>[];
   }
 
   Future<void> scanBarcodeNormal() async {
@@ -98,16 +120,23 @@ class EnterWarehouseController extends GetxController {
     update();
     print(user_id);
   }
-
+Future<List<ItemProduct>> getDataProduct () async {
+    transportAdminRepositories!.onGetListProduct().then((value){
+      listProductResponse = value;
+      mDataItemProduct!.addAll(listProductResponse!.data!);
+    }).catchError((onError){
+    });
+    return mDataItemProduct!;
+  }
   void onEnterWareHouse() {
     EnterWareHouseRequest request = EnterWareHouseRequest(
-      user_id: ParseNumber.parseInt(user_id),
+      user_id: user_id != 0 ? user_id : null,
       phone: phone,
       bill_code: barCodeValueController.text.toString(),
-      item: itemValueController.text.toString(),
+      product_id: product_id,
       transport_fee: ParseNumber.parseDouble(transportFeeController.text),
       number_package: ParseNumber.parseInt(numberPackageController.text),
-      images: image,
+      images: img,
       is_prohibited_item: is_prohibited_item,
     );
     orderRepositories!.onEnterWarehouse(request).then((value) {
@@ -136,4 +165,41 @@ class EnterWarehouseController extends GetxController {
     // Get.snackbar("Thông báo", msg.message.toString());
     Get.back();
   }
+  void onClearImage(int index) {
+    mImages!.removeAt(index);
+    update();
+  }
+  void onPickerImage(ImageSource imageSource) {
+    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    HandleImage().pickerImage(imageSource).then((value) {
+      images!.add(value!);
+      mImages!.add(DataImagesEnterWareHouseResponse(
+          key: "", path: "", file: value, isNetWork: false));
+      // uploadImageComplain();
+      img!.add(value.path);
+      Get.back(result: images);
+      update();
+    }).catchError((onError) {
+      Get.back();
+    });
+  }
+
+  void onPickerMultiImage() {
+    Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    HandleImage().multiPickerImage(selectedAssetsPrevious!).then((value) async {
+      if (value.length != 0) {
+        selectedAssetsPrevious = value;
+        images = await HandleImage().convertAssetToFile(value);
+        //uploadImageComplain();
+        Get.back();
+        Get.back(result: images);
+      }
+    }).catchError((onError) {
+      //
+      Get.back();
+      Get.defaultDialog(
+          title: (onError as ErrorResponse).message.toString(), middleText: '');
+    });
+  }
+  
 }

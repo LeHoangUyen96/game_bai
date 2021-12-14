@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/list_packing_form_response.dart';
 import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
@@ -246,6 +247,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                         Container(
                           //width: Get.width*0.4,
                           child: TextFieldCustomized(
+                            textController: controller.weightController,
                             hint: "Nhập số cân",
                           ),
                         )
@@ -270,7 +272,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                         Container(
                           //width: Get.width*0.5,
                           child: TextFieldCustomized(
-                            hint: ORDER_LIST_NULL,
+                            hint: controller.total_numberPackage.toString(),
                           ),
                         )
                     ]
@@ -289,6 +291,7 @@ class CreateBagPage extends GetView<CreateBagController> {
               SizedBox(height: 5),
               TextFieldCustomized(
                 hint: ORDER_LIST_NULL,
+                textController: controller.totalCodController,
               ),
               SizedBox(height: 15),
               Container(
@@ -349,14 +352,14 @@ class CreateBagPage extends GetView<CreateBagController> {
             controller.changeBill == true 
               ? Container(
                 child: ListView.separated(
-                  itemCount: listBill.length,
+                  itemCount: controller.mDataListOrder!.length,
                   shrinkWrap: true,
                   separatorBuilder: (context, index) {
                     return SizedBox(height: 10);
                   },
                   physics: ClampingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index){
-                    return _buildListBill();
+                    return _buildListBill(controller.mDataListOrder![index]);
                   }
                   )
               )
@@ -370,6 +373,10 @@ class CreateBagPage extends GetView<CreateBagController> {
                    arguments: {
                      "warehouse_back_code" : controller.warehouse_back_code,
                      "transport_form_id" : controller.transport_form_id,
+                   }).then((value){
+                     if(value != null){
+                       controller.onGetListOrder(value);
+                     }
                    });
                 },
                 child: Wrap(
@@ -389,11 +396,17 @@ class CreateBagPage extends GetView<CreateBagController> {
             SizedBox(height: 15),
             ButtonCustomized(
               BT_REGISTER,
+              onTap: (){
+                controller.onCreateBag();
+              },
               backgroundColor: BT_CONFIRM,
             ),
             SizedBox(height: 10),
             ButtonCustomized(
               CANCEL_DELETE_IN_CART,
+              onTap: (){
+                Get.back();
+              },
               backgroundColor: WHITE,
               textColor: BT_CONFIRM,
               borderColor: BT_GRAY,
@@ -405,7 +418,7 @@ class CreateBagPage extends GetView<CreateBagController> {
       ),
     );
   }
-   Widget _buildListBill(){
+   Widget _buildListBill(DataListOrderAddBagResponse data){
     return  Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -425,7 +438,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
-                    text: '0123456AMHDI2',
+                    text: data.bill_code.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w700,
                     color: MAIN_BLACK,
@@ -454,7 +467,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: data.packing_form.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
@@ -466,7 +479,27 @@ class CreateBagPage extends GetView<CreateBagController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
-                    text: DELIVERY_PACKAGE,
+                    text: ORDER_LIST_PARCELS,
+                    font: SanFranciscoUIText,
+                    size: normalSize,
+                    weight: FontWeight.w500,
+                    color: BLACK_1,
+                    ),
+                    TextCustomized(
+                    text: data.number_package_remain.toString(),
+                    font: SanFranciscoText,
+                    weight: FontWeight.w400,
+                    color: BLACK,
+                    ),
+                ],
+              ),   
+              SizedBox(height: 5,),
+               SizedBox(height: 5,),     
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextCustomized(
+                    text: BAG_WEIGHT,
                     font: SanFranciscoUIText,
                     size: normalSize,
                     weight: FontWeight.w500,
@@ -492,7 +525,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: "¥" + data.transport_fee.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
@@ -511,7 +544,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: data.surcharge.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: RED_1,
@@ -519,24 +552,24 @@ class CreateBagPage extends GetView<CreateBagController> {
                 ],
               ), 
               SizedBox(height: 5,),     
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextCustomized(
-                    text: DELIVERY_FEE_TRANSACTION,
-                    font: SanFranciscoUIText,
-                    size: normalSize,
-                    weight: FontWeight.w500,
-                    color: BLACK_1,
-                    ),
-                    TextCustomized(
-                    text: ORDER_NULL,
-                    font: SanFranciscoText,
-                    weight: FontWeight.w400,
-                    color: BLACK,
-                    ),
-                ],
-              ), 
+              //  Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: DELIVERY_FEE_TRANSACTION,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: ORDER_NULL,
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ), 
                 ]
               ),
              )
