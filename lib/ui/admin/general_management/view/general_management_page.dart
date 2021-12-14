@@ -23,8 +23,8 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
       init: GenaralManageController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        //body: SingleChildScrollView(child: buildBody()),
-        body: buildBody(),
+        body: SingleChildScrollView(child: buildBody()),
+        //body: buildBody(),
         backgroundColor: BT_GRAY,
       ),
     );

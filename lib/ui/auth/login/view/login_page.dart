@@ -168,54 +168,56 @@ class LoginPage extends GetView<LoginController> {
                                   ),
                                 ),
                                 const SizedBox(height: 30),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
-                                  child: Column(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Get.to(ForgotPage());
-                                        },
-                                        child: TextCustomized(
-                                          text: LOGIN_FORGOTPASSWORD,
-                                          font: SanFranciscoText,
-                                          size: customSize,
-                                          weight: FontWeight.w800,
-                                          color: MAIN_BLACK,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          TextCustomized(
-                                            text: LOGIN_NO_ACCOUNT,
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16),
+                                    child: 
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(ForgotPage());
+                                          },
+                                          child: TextCustomized(
+                                            text: LOGIN_FORGOTPASSWORD,
                                             font: SanFranciscoText,
                                             size: customSize,
-                                            color: GRAY,
+                                            weight: FontWeight.w800,
+                                            color: MAIN_BLACK,
                                           ),
-                                          InkWell(
-                                            onTap: () {
-                                              Get.to(RegisterStepOnePage());
-                                            },
-                                            child: TextCustomized(
-                                              text: LOGIN_REGISTER_NOW,
-                                              font: SanFranciscoText,
-                                              size: customSize,
-                                              weight: FontWeight.w800,
-                                              color: MAIN_BLACK,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                        ),
+                                        
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.center,
+                                        //   crossAxisAlignment:
+                                        //       CrossAxisAlignment.center,
+                                        //   children: [
+                                        //     TextCustomized(
+                                        //       text: LOGIN_NO_ACCOUNT,
+                                        //       font: SanFranciscoText,
+                                        //       size: customSize,
+                                        //       color: GRAY,
+                                        //     ),
+                                        //     InkWell(
+                                        //       onTap: () {
+                                        //         Get.to(RegisterStepOnePage());
+                                        //       },
+                                        //       child: TextCustomized(
+                                        //         text: LOGIN_REGISTER_NOW,
+                                        //         font: SanFranciscoText,
+                                        //         size: customSize,
+                                        //         weight: FontWeight.w800,
+                                        //         color: MAIN_BLACK,
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // ),
+                                  //     ],
+                                  //   ),
                                   ),
                                 ),
-                              ]),
+                              ]
+                              ),
                         ),
                       ),
                     ),
@@ -225,7 +227,7 @@ class LoginPage extends GetView<LoginController> {
 
   Widget imgBackGround() {
     return Image.asset(
-      BG_IMG,
+      BG_IMG_LOGIN,
       fit: BoxFit.cover,
       width: double.maxFinite,
       height: double.maxFinite,

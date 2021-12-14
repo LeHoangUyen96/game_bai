@@ -15,7 +15,7 @@ class SplashPage extends GetView<SplashController> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(BG_IMG),
+                image: AssetImage(BG_IMG_ADMIN),
                 fit: BoxFit.cover,
                 )
             ),

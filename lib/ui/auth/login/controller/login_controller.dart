@@ -1,3 +1,4 @@
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile/data/models/user.dart';
 import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
@@ -67,7 +68,7 @@ class LoginController extends GetxController implements LoginContract {
     }
 
     if (isEmailValid && isPasswordValid) {
-      Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+      //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
       AuthRequest _request = AuthRequest(
           email: emailController.text, password: passwordController.text);
       _authRepository.onAuth(_request, NetworkConfig.LOGIN).then((value) {
@@ -95,8 +96,15 @@ class LoginController extends GetxController implements LoginContract {
   void onSuccess(User response) {
     profileRepositories!.onGetProfile().then((value) {
       mDataProfile = value;
-      GetStorage().write(KEY_ADMIN, mDataProfile!.data!.is_admin);
-      Get.offAll(() => MainPageAdmin());
+      //GetStorage().write(KEY_ADMIN, mDataProfile!.data!.is_admin);
+      if(mDataProfile!.data!.is_admin == 0){
+        isPasswordValid = false;
+        passwordError = "Mật khẩu không chính xác";
+        
+      } else{
+        Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+        Get.offAll(() => MainPageAdmin());
+      }
       print('is_admin: ${mDataProfile!.data!.is_admin}');
       update();
     }).catchError((onError) {

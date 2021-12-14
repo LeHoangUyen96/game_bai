@@ -1,4 +1,5 @@
-  import 'package:get/get.dart';
+  import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/request/list_order_add_bag_request.dart';
@@ -6,6 +7,7 @@ import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart
 import 'package:viet_trung_mobile/res/strings.dart';
 
 class ListOrderAddToBagController extends GetxController  {
+  TextEditingController numberPackageController = TextEditingController();
   ListOrderAddBagResponse ? listOrderAddBagResponse;
   List< DataListOrderAddBagResponse> ? mDataListOrderAddBagResponse =[];
   BagRepositories ? bagRepositories;

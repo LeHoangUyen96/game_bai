@@ -154,7 +154,7 @@ class ConfirmPage extends GetView<ConfirmPasswordController> {
 
   Widget imgBackGround() {
     return Image.asset(
-      BG_IMG,
+      BG_IMG_LOGIN,
       fit: BoxFit.cover,
       width: double.maxFinite,
       height: double.maxFinite,
