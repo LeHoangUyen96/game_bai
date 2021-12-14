@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/find_user_reponse.dart';
-import 'package:viet_trung_mobile/ui/admin/inventory_management/view/enter_warehouse_page.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/find_user_reponsitory/find_user_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/find_user_reponse.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/inventory_management/view/enter_warehouse_page.dart';
 
 class FindingCustomerController extends GetxController {
   TextEditingController phoneValueController = TextEditingController();

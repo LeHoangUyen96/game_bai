@@ -1,38 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
-import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/create_admin_request.dart';
-import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
-import 'package:viet_trung_mobile/data/response/list_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/list_role_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/contract/manager_staff_contract.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/create_admin_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/errors_create_admin.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/create_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_role_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/contract/manager_staff_contract.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
-class CreateStaffController extends GetxController implements ManagerStaffContract {
-TextEditingController userCodeController = TextEditingController();
-TextEditingController nameController = TextEditingController();
-TextEditingController phoneController = TextEditingController();
-TextEditingController emailController = TextEditingController();
-bool isUserCodeValid = true;
-bool isPhoneValid = true;
-bool isNameValid = true;
-bool isEmailValid = true;
-String userCodeError = "";
-String phoneError = "";
-String nameError = "";
-String emailError = "";
-RoleResponse ? roleResponse;
-List<DataRole>? mDataRole =[];
-RoleAdminRepositories ? roleAdminRepositories;
-ManagerStaffRepositories ? managerStaffRepositories;
-ManagerStaffContract ? contract;
-int? role_id;
+class CreateStaffController extends GetxController
+    implements ManagerStaffContract {
+  TextEditingController userCodeController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  bool isUserCodeValid = true;
+  bool isPhoneValid = true;
+  bool isNameValid = true;
+  bool isEmailValid = true;
+  String userCodeError = "";
+  String phoneError = "";
+  String nameError = "";
+  String emailError = "";
+  RoleResponse? roleResponse;
+  List<DataRole>? mDataRole = [];
+  RoleAdminRepositories? roleAdminRepositories;
+  ManagerStaffRepositories? managerStaffRepositories;
+  ManagerStaffContract? contract;
+  int? role_id;
   @override
   void onInit() {
     super.onInit();
@@ -42,17 +43,16 @@ int? role_id;
     contract = this;
   }
 
-  Future<List<DataRole>>  onGetListRole() async{
+  Future<List<DataRole>> onGetListRole() async {
     roleAdminRepositories!.onGetListRole().then((value) {
       roleResponse = value;
       mDataRole!.addAll(roleResponse!.data!);
       update();
-    }).catchError((onError) {
-    });
+    }).catchError((onError) {});
     return mDataRole!;
-    
   }
-  void onCreateAdmin(){
+
+  void onCreateAdmin() {
     if (emailController.text.isEmpty) {
       isEmailValid = false;
       emailError = "Email không được để trống";
@@ -62,8 +62,7 @@ int? role_id;
     } else {
       isEmailValid = true;
     }
-    if (phoneController.text.length < 9 ||
-        phoneController.text.length > 11) {
+    if (phoneController.text.length < 9 || phoneController.text.length > 11) {
       isPhoneValid = false;
       phoneError = "Số điện thoại không được để trống";
     } else {
@@ -81,20 +80,18 @@ int? role_id;
     } else {
       isUserCodeValid = true;
     }
-    if (isEmailValid && isPhoneValid && isNameValid && isUserCodeValid ) {
+    if (isEmailValid && isPhoneValid && isNameValid && isUserCodeValid) {
       CreateAdminRequest _request = CreateAdminRequest(
         email: emailController.text,
         phone: phoneController.text,
         name: nameController.text,
         role_id: role_id,
-        user_code : userCodeController.text,
+        user_code: userCodeController.text,
       );
-      managerStaffRepositories!
-          .onCreateAdmin(_request)
-          .then((value) {
-            // Get.back(result: true);
-            Get.snackbar(NOTIFY, value.message.toString());
-            update();
+      managerStaffRepositories!.onCreateAdmin(_request).then((value) {
+        // Get.back(result: true);
+        Get.snackbar(NOTIFY, value.message.toString());
+        update();
       }).catchError((onError) {
         //Get.snackbar("Notification", "Failllllllllll");
         return contract!.onCreateAdminAdminError(onError);
@@ -105,7 +102,7 @@ int? role_id;
 
   @override
   void onCreateAdminAdminError(ErrorCreateAdminResponse msg) {
-     if (msg.error!.phone!.toList().isNotEmpty) {
+    if (msg.error!.phone!.toList().isNotEmpty) {
       isPhoneValid = false;
       phoneError = msg.error!.phone![0].toString();
       update();
@@ -142,8 +139,7 @@ int? role_id;
   }
 
   @override
-  void onCreateAdminSuccess(CreateAdminResponse data) {
-  }
+  void onCreateAdminSuccess(CreateAdminResponse data) {}
 
   @override
   void onGetListAdminError(ErrorResponse error) {

@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
+import 'package:viet_trung_mobile_admin/ulti/key_storage/key_storage.dart';
 import 'package:get_storage/get_storage.dart';
 
 class NetworkConfig {
-  //static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
+  //static const String URL_SERVER = "https://viet_trung_mobile_admin.tekup.vn/api/v2";
   static const String URL_SERVER = "http://backend-viettrung.tekup.vn/api/v1";
-  //static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
+  //static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile_admin.tekup.vn";
   static const String URL_SERVER_BASE_CDN = "http://backend-viettrung.tekup.vn";
 
   static Map<String, String> onBuildHeader({bool? isMultipart}) {

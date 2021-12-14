@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/notification_response.dart';
-import 'package:viet_trung_mobile/data/response/order_detail_response.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/ui/notification/contract/notification_contract.dart';
-import 'package:viet_trung_mobile/ui/notification/view/conffirm_order_page.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/notification_repository/notification_repository.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/notification_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/ui/notification/contract/notification_contract.dart';
+import 'package:viet_trung_mobile_admin/ui/notification/view/conffirm_order_page.dart';
 
 class NotificationListController extends GetxController
     implements NotificationContract {

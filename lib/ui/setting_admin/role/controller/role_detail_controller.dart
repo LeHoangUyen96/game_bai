@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/update_role_request.dart';
-import 'package:viet_trung_mobile/data/response/role_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/update_role_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/role_detail_response.dart';
 
 class RoleDetailController extends GetxController {
   RoleAdminRepositories? repository;

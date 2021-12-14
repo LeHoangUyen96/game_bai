@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/exchange_rate_reponsitory/exchange_rate_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/exchange_rate_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/exchange_rate_reponsitory/exchange_rate_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/exchange_rate_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class ExchangeRateController extends GetxController {
   ExchangeRateRepositories? repository;

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:viet_trung_mobile/data/response/order_admin_detail_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_valid/controller/order_storage_detail_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_valid/view/item_images.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_admin_detail_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_valid/controller/order_storage_detail_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_valid/view/item_images.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class OrderStorageDetailPage extends GetView<OrderStorageDetailController> {
   @override

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/detail_user_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/size.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_user/controller/detail_user_controller.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/detail_user_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/size.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/detail_user_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class DetailUserPage extends GetView<DetailUserController> {
   BuildContext? mContext;
-  
+
   @override
   Widget build(BuildContext context) {
     mContext = context;
@@ -24,11 +24,14 @@ class DetailUserPage extends GetView<DetailUserController> {
       builder: (value) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
-        body: controller.detailUserResponse != null ? SingleChildScrollView(child: buildBody()):LoadingSpinKit(),
+        body: controller.detailUserResponse != null
+            ? SingleChildScrollView(child: buildBody())
+            : LoadingSpinKit(),
         backgroundColor: BT_GRAY,
       ),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
@@ -39,26 +42,29 @@ class DetailUserPage extends GetView<DetailUserController> {
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
-          ),
+        ),
         flexibleSpace: Image(
           image: AssetImage(BG_IMG),
           fit: BoxFit.cover,
         ),
         backgroundColor: Colors.transparent,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back_ios, color: WHITE,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: WHITE,
+          ),
         ),
         actions: [
           InkWell(
             onTap: () {},
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal:15.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: SvgPicture.asset(
-              IC_EDIT,
-              color: WHITE,
+                IC_EDIT,
+                color: WHITE,
               ),
             ),
           ),
@@ -66,7 +72,8 @@ class DetailUserPage extends GetView<DetailUserController> {
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Container(
       child: Column(
         children: [
@@ -77,56 +84,65 @@ class DetailUserPage extends GetView<DetailUserController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                 CircleAvatar(
-                    radius: 30.0,
-                      child: ClipOval(
-                      child: controller.detailUserResponse!.data!.avatar == null ||
-                          controller.detailUserResponse!.data!.avatar == ''
-                      ? ImageCustomized(
-                          path: LOGO_IMG,
-                          height: 60,
-                          width: 60,
-                        )
-                      :  ImageCustomized(
-                              path: controller.detailUserResponse!.data!.avatar,
-                              height: 60,
-                              width: 60,
+                CircleAvatar(
+                  radius: 30.0,
+                  child: ClipOval(
+                    child: controller.detailUserResponse!.data!.avatar ==
+                                null ||
+                            controller.detailUserResponse!.data!.avatar == ''
+                        ? ImageCustomized(
+                            path: LOGO_IMG,
+                            height: 60,
+                            width: 60,
+                          )
+                        : ImageCustomized(
+                            path: controller.detailUserResponse!.data!.avatar,
+                            height: 60,
+                            width: 60,
                           ),
-                        ),
-                      // child:  ImageCustomized(
-                      //         path: LOGO_IMG,
-                      //     height: 60,
-                      //     width: 60,
-                      //     ),
-                      //),
-                    backgroundColor: Colors.transparent,
                   ),
-                  SizedBox(height: 5.0),
-                  Wrap(
-                    spacing: 5.0,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      SvgPicture.asset(IC_ACCOUNT, color: BT_GRAY,),
-                      TextCustomized(
-                        text: controller.detailUserResponse!.data!.name.toString(),
-                        size: normalSize,
-                        color: BT_GRAY,
-                        )
-                    ],
-                  ),
-                  SizedBox(height: 5.0),
-                  Wrap(
-                    spacing: 5.0,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      SvgPicture.asset(IC_PHONE, color: BT_GRAY,),
-                      TextCustomized(
-                        text: controller.detailUserResponse!.data!.phone.toString(),
-                        size: normalSize,
-                        color: BT_GRAY,
-                        )
-                    ],
-                  ),
+                  // child:  ImageCustomized(
+                  //         path: LOGO_IMG,
+                  //     height: 60,
+                  //     width: 60,
+                  //     ),
+                  //),
+                  backgroundColor: Colors.transparent,
+                ),
+                SizedBox(height: 5.0),
+                Wrap(
+                  spacing: 5.0,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      IC_ACCOUNT,
+                      color: BT_GRAY,
+                    ),
+                    TextCustomized(
+                      text:
+                          controller.detailUserResponse!.data!.name.toString(),
+                      size: normalSize,
+                      color: BT_GRAY,
+                    )
+                  ],
+                ),
+                SizedBox(height: 5.0),
+                Wrap(
+                  spacing: 5.0,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      IC_PHONE,
+                      color: BT_GRAY,
+                    ),
+                    TextCustomized(
+                      text:
+                          controller.detailUserResponse!.data!.phone.toString(),
+                      size: normalSize,
+                      color: BT_GRAY,
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -147,12 +163,7 @@ class DetailUserPage extends GetView<DetailUserController> {
                   width: Get.width,
                   padding: EdgeInsets.only(bottom: 5.0),
                   decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: BT_GRAY
-                      )
-                    )
-                  ),
+                      border: Border(bottom: BorderSide(color: BT_GRAY))),
                   child: TextCustomized(
                     text: controller.detailUserResponse!.data!.email.toString(),
                     color: BT_CONFIRM,
@@ -166,16 +177,17 @@ class DetailUserPage extends GetView<DetailUserController> {
                 SizedBox(height: 10.0),
                 Container(
                   child: ListView.separated(
-                    itemBuilder: (BuildContext context, int index){
-                      return _buildListAdress(controller.detailUserResponse!.data!.addresses![index]);
-                    }, 
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 10);
-                    },
-                    physics: BouncingScrollPhysics (),
-                    itemCount: controller.detailUserResponse!.data!.addresses!.length
-                    ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return _buildListAdress(controller
+                            .detailUserResponse!.data!.addresses![index]);
+                      },
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 10);
+                      },
+                      physics: BouncingScrollPhysics(),
+                      itemCount: controller
+                          .detailUserResponse!.data!.addresses!.length),
                 ),
               ],
             ),
@@ -184,21 +196,17 @@ class DetailUserPage extends GetView<DetailUserController> {
       ),
     );
   }
-  Widget _buildListAdress(DataAddresses data){
+
+  Widget _buildListAdress(DataAddresses data) {
     return Container(
-        width: Get.width,
-        padding: EdgeInsets.only(bottom: 5.0),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: BT_GRAY
-            )
-          )
-        ),
-        child: TextCustomized(
-          text: data.full_address.toString(),
-          color: BT_CONFIRM,
-        ),
-      );
+      width: Get.width,
+      padding: EdgeInsets.only(bottom: 5.0),
+      decoration:
+          BoxDecoration(border: Border(bottom: BorderSide(color: BT_GRAY))),
+      child: TextCustomized(
+        text: data.full_address.toString(),
+        color: BT_CONFIRM,
+      ),
+    );
   }
-}  
+}

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/address/view/address_page.dart';
-import 'package:viet_trung_mobile/ui/profile/controller/profile_controller.dart';
-import 'package:viet_trung_mobile/ui/profile/view/profile_change_password_page.dart';
-import 'package:viet_trung_mobile/ui/profile/view/profile_edit_page.dart';
-import 'package:viet_trung_mobile/ui/rating_order/view/rating_order_page.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/address/view/address_page.dart';
+import 'package:viet_trung_mobile_admin/ui/profile/controller/profile_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/profile/view/profile_change_password_page.dart';
+import 'package:viet_trung_mobile_admin/ui/profile/view/profile_edit_page.dart';
+import 'package:viet_trung_mobile_admin/ui/rating_order/view/rating_order_page.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   @override

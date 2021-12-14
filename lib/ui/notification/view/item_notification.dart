@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/notification_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/ui/notification/controller/notification_controller.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/notification_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/ui/notification/controller/notification_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 
 class ItemNotification extends GetView<NotificationListController> {
   final NotificationResponse notificationItem;
@@ -26,7 +26,8 @@ class ItemNotification extends GetView<NotificationListController> {
                   flex: 2,
                   child: Container(
                     height: 50,
-                    child: ImageCustomized(path: notificationItem.image ?? '', fit: BoxFit.fill),
+                    child: ImageCustomized(
+                        path: notificationItem.image ?? '', fit: BoxFit.fill),
                   ),
                 ),
                 Expanded(
@@ -39,9 +40,13 @@ class ItemNotification extends GetView<NotificationListController> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: notificationItem.status == 0 ?
-                  ImageCustomized(path: IC_NOTIFICATION_UNREAD, height: 10, width: 10,)
-                  : Container(),
+                  child: notificationItem.status == 0
+                      ? ImageCustomized(
+                          path: IC_NOTIFICATION_UNREAD,
+                          height: 10,
+                          width: 10,
+                        )
+                      : Container(),
                 ),
               ],
             ),

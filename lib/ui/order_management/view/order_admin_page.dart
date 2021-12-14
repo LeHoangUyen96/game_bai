@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_no_transport/view/order_not_shipped_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/order_ownerless_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_shipped/view/order_shipping_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/view/order_waitting_for_confirm_page.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order/controller/order_info_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_no_transport/view/order_not_shipped_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_ownerless/view/order_ownerless_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_shipped/view/order_shipping_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_valid/view/order_valid_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_wait_confirm/view/order_waitting_for_confirm_page.dart';
+import 'package:viet_trung_mobile_admin/widget/initial_widget.dart';
 
 class OrderAdminPage extends GetView<OrderInfoController> {
   @override

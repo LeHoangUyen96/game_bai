@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,7 +45,8 @@ class ImageCustomized extends StatelessWidget {
         // print('OK ${this.path}');
         final imageUrl = makeURLTrue(this.path);
         // print('OK imageUrl ${imageUrl}');
-        final resourceTypeLocation = getResourceTypeLocationOfImageURL(imageUrl);
+        final resourceTypeLocation =
+            getResourceTypeLocationOfImageURL(imageUrl);
         // print('OK resourceTypeLocation ${resourceTypeLocation}');
         switch (resourceTypeLocation) {
           /*
@@ -108,7 +109,9 @@ class ImageCustomized extends StatelessWidget {
     }
   }
 
-  Widget onBuildLocalImage(_ResourceLocationType resourceTypeLocation, String imageUrl, {double? width, double? height, BoxFit? fit}) {
+  Widget onBuildLocalImage(
+      _ResourceLocationType resourceTypeLocation, String imageUrl,
+      {double? width, double? height, BoxFit? fit}) {
     final resourceType = getResourceTypeOfImage(imageUrl);
     // print('onBuildLocalImage $resourceTypeLocation $resourceType $imageUrl');
     switch (imageUrl) {
@@ -150,7 +153,9 @@ class ImageCustomized extends StatelessWidget {
     }
   }
 
-  Widget onBuildNetworkImage(BuildContext context, _ResourceLocationType resourceTypeLocation, String imageUrl, {double? width, double? height, BoxFit? fit}) {
+  Widget onBuildNetworkImage(BuildContext context,
+      _ResourceLocationType resourceTypeLocation, String imageUrl,
+      {double? width, double? height, BoxFit? fit}) {
     final resourceType = getResourceTypeOfImage(imageUrl);
     // print('onBuildNetworkImage $resourceTypeLocation $resourceType $url');
     return Container(
@@ -208,8 +213,8 @@ class ImageCustomized extends StatelessWidget {
   // }
 
   String makeURLTrue(String? imageUrl) {
-    if(imageUrl == null ) return "";
-    if(imageUrl == "null" ) imageUrl = "assets/images/no-images.png";
+    if (imageUrl == null) return "";
+    if (imageUrl == "null") imageUrl = "assets/images/no-images.png";
     // print('imageUrl $imageUrl ${imageUrl.runtimeType} ${imageUrl.length}');
 
     if (imageUrl.indexOf('assets') == 0) {

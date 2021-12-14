@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/models/delivery.dart';
-import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/request/packing_order_requets.dart';
-import 'package:viet_trung_mobile/data/response/address_response.dart';
-import 'package:viet_trung_mobile/data/response/warehouse_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/models/delivery.dart';
+import 'package:viet_trung_mobile_admin/data/repository/address_reponsitory/address_respositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/packing_order_requets.dart';
+import 'package:viet_trung_mobile_admin/data/response/address_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class PackingOrderWidget extends StatefulWidget {
   List<int>? listOrderId;

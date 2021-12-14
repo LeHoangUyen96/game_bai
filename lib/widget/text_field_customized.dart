@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/styles.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,7 +102,6 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
     return Container(
       height: widget.height ?? 48,
       width: widget.width ?? Get.width,
-      padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
           color: widget.colorBackgrount ?? Colors.white,
           border: Border.all(
@@ -115,47 +114,53 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
                     : GRAY,
           ),
           borderRadius: BorderRadius.all(Radius.circular(9))),
-      child: Expanded(
-        flex: 20,
-        child: TextField(
-          style: widget.style ??
-              TextStyle(
-                fontWeight: FontWeight.w400,
-                color: BLACK,
-                fontSize: customSize,
-                fontFamily: SanFranciscoUIText,
+      child: Row(
+        children: [
+          SizedBox(width: 10),
+          Expanded(
+            flex: 10,
+            child: TextField(
+              style: widget.style ??
+                  TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: BLACK,
+                    fontSize: customSize,
+                    fontFamily: SanFranciscoUIText,
+                  ),
+              controller: widget.textController,
+              keyboardType: widget.textInputType,
+              textInputAction: widget.textInputAction,
+              obscureText: widget.isObscured == null ? false : _obscureText,
+              maxLines: widget.maxLine ?? 1,
+              focusNode: _focusNode,
+              onTap: () {
+                setState(() {
+                  _enabled = true;
+                });
+              },
+              textAlign: TextAlign.left,
+              onChanged: widget.onChanged,
+              onSubmitted: widget.onSubmitted,
+              decoration: InputDecoration(
+                filled: widget.filled,
+                fillColor: GRAY4,
+                hintText: widget.hint,
+                hintStyle: TextStyle(
+                    fontWeight: FontWeight.w100,
+                    color: widget.colorHintText ?? GRAY,
+                    fontSize: smallSize,
+                    fontFamily: SanFranciscoTextLight),
+                errorStyle: errorTextStyle,
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
               ),
-          controller: widget.textController,
-          keyboardType: widget.textInputType,
-          textInputAction: widget.textInputAction,
-          obscureText: widget.isObscured == null ? false : _obscureText,
-          maxLines: widget.maxLine ?? 1,
-          focusNode: _focusNode,
-          onTap: () {
-            setState(() {
-              _enabled = true;
-            });
-          },
-          textAlign: widget.align ?? TextAlign.left,
-          onChanged: widget.onChanged,
-          onSubmitted: widget.onSubmitted,
-          decoration: InputDecoration(
-            filled: widget.filled,
-            fillColor: GRAY4,
-            hintText: widget.hint,
-            hintStyle: TextStyle(
-                fontWeight: FontWeight.w100,
-                color: widget.colorHintText ?? GRAY,
-                fontSize: smallSize,
-                fontFamily: SanFranciscoTextLight),
-            errorStyle: errorTextStyle,
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
+            ),
           ),
-        ),
+          SizedBox(width: 10),
+        ],
       ),
     );
   }

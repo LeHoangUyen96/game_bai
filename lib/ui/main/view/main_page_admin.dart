@@ -1,22 +1,22 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/ui/admin/dashboard_admin/view/dashboard_admin_page.dart';
-import 'package:viet_trung_mobile/ui/admin/finding_customers/view/finding_customer_page.dart';
-import 'package:viet_trung_mobile/ui/admin/general_management/view/general_management_page.dart';
-import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
-import 'package:viet_trung_mobile/ui/dashboard_user/view/dashboard_user_page.dart';
-import 'package:viet_trung_mobile/ui/main/controller/main_controller.dart';
-import 'package:viet_trung_mobile/ui/notification/view/notification_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/view/order_admin_page.dart';
-import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/view/setting_admin_page.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/models/navigate_emblem.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/dashboard_admin/view/dashboard_admin_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/finding_customers/view/finding_customer_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/general_management/view/general_management_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/notification_admin/view/notification_admin_page.dart';
+import 'package:viet_trung_mobile_admin/ui/dashboard_user/view/dashboard_user_page.dart';
+import 'package:viet_trung_mobile_admin/ui/main/controller/main_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/notification/view/notification_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/view/order_admin_page.dart';
+import 'package:viet_trung_mobile_admin/ui/profile/view/profile_page.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/view/setting_admin_page.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class MainPageAdmin extends GetView<MainController> {
   BuildContext? mContext;
@@ -50,7 +50,7 @@ class MainPageAdmin extends GetView<MainController> {
                 DashboardAdminPage(),
                 OrderAdminPage(),
                 GenaeralManagePage(),
-                SettingAdminPage(), 
+                SettingAdminPage(),
               ],
             ),
           ),

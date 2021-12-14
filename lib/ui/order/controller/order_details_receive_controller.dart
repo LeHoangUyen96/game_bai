@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/response/order_detail_response.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class OrderDetailReceiveController extends GetxController {
   OrderRepositories? orderRepositories;
@@ -13,8 +13,8 @@ class OrderDetailReceiveController extends GetxController {
   OrderDetailsResponse? orderDetailsResponse;
   int? id;
   Color? color;
-  List<DataOrderJourney>?  orderJourney = [];
-@override
+  List<DataOrderJourney>? orderJourney = [];
+  @override
   void onInit() {
     super.onInit();
     orderRepositories = Injector().order;
@@ -22,7 +22,8 @@ class OrderDetailReceiveController extends GetxController {
     print("$id");
     onGetDetailsOrder();
   }
-   Color ColorStatusName( String order_status_name) {
+
+  Color ColorStatusName(String order_status_name) {
     switch (order_status_name) {
       case ORDER_LIST_CHINA_WAREHOUSE:
         color = COLOR_ORDER_CHINESE_WAREHOUSE;
@@ -50,18 +51,19 @@ class OrderDetailReceiveController extends GetxController {
         break;
       case ORDER_DELIVERY_SUCCESSFULL:
         color = COLOR_ORDER_DELIVERY_SUCCESSFULL;
-        break;        
+        break;
     }
     return color!;
   }
-   void onGetDetailsOrder(){
+
+  void onGetDetailsOrder() {
     orderRepositories!.onGetDetailsOrder(id!).then((value) {
       orderDetailsResponse = value;
       update();
-    }).catchError((onError){
+    }).catchError((onError) {
       Get.defaultDialog(title: (onError).message.toString(), middleText: '');
       update();
     });
     update();
   }
-} 
+}

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/request/add_packing_request.dart';
-import 'package:viet_trung_mobile/data/response/packing_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_packing_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/packing_detail_response.dart';
 
 class PackingDetailController extends GetxController {
   PackingAdminRepositories? repository;

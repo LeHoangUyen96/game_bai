@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/controller/transport_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/view/transport_detail_page.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/transport/controller/transport_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/transport/view/transport_detail_page.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
 
 class TransportPage extends GetView<TransportController> {
   @override

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_inventory_list_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_list.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order/controller/order_info_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order/view/order_inventory_list_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order/view/order_list.dart';
+import 'package:viet_trung_mobile_admin/widget/initial_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class OrderInfoPage extends GetView<OrderInfoController> {
   BuildContext? mContext;
@@ -15,13 +15,10 @@ class OrderInfoPage extends GetView<OrderInfoController> {
     mContext = context;
     return GetBuilder<OrderInfoController>(
       init: OrderInfoController(),
-      builder: (value) => Scaffold(
-        appBar: buildAppBar(),
-        body:   buildBody() 
-               
-      ),
+      builder: (value) => Scaffold(appBar: buildAppBar(), body: buildBody()),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: Size(double.infinity, 55),
@@ -29,25 +26,27 @@ class OrderInfoPage extends GetView<OrderInfoController> {
         child: Container(),
         titleAppBar: ORDER_LIST_APP_BAR,
         backgroundAppBar: Colors.black26,
-         isShowBack: false,
-        
+        isShowBack: false,
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Container(
       color: WHITE,
-       margin: EdgeInsets.only(top: Get.height * 0.01),
-     // padding: EdgeInsets.symmetric(horizontal: Get.width*0.2),
+      margin: EdgeInsets.only(top: Get.height * 0.01),
+      // padding: EdgeInsets.symmetric(horizontal: Get.width*0.2),
       child: DefaultTabController(
         length: 3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              constraints: BoxConstraints.expand(height: Get.height*0.05),
+              constraints: BoxConstraints.expand(height: Get.height * 0.05),
               child: TabBar(
-                onTap: (index){ controller.onChangePage(index);},
+                onTap: (index) {
+                  controller.onChangePage(index);
+                },
                 isScrollable: true,
                 controller: controller.tabController,
                 indicatorColor: MAIN_BLACK,
@@ -78,15 +77,14 @@ class OrderInfoPage extends GetView<OrderInfoController> {
             ),
             Expanded(
                 child: Container(
-                  child: TabBarView(
-                    controller: controller.tabController,
-                    children: [
-                      OrderListPage(),
-                      OrderInventoryListPage(),
-                    ],
-                  ),
-                )
-            )
+              child: TabBarView(
+                controller: controller.tabController,
+                children: [
+                  OrderListPage(),
+                  OrderInventoryListPage(),
+                ],
+              ),
+            ))
           ],
         ),
       ),

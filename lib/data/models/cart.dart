@@ -1,5 +1,5 @@
-import 'package:viet_trung_mobile/data/response/service_fee_response.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/response/service_fee_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class ShoppingCart {
   // ignore: non_constant_identifier_names
@@ -23,22 +23,22 @@ class ShoppingCart {
   String? discount;
   double? purchase_discount;
 
-  ShoppingCart({
-    // ignore: non_constant_identifier_names
-    this.shop_id,
-    // ignore: non_constant_identifier_names
-    this.shop_name,
-    // ignore: non_constant_identifier_names
-    this.shop_url,
-    this.items,
-    this.note,
-    this.total_money_product,
-    this.total_money_fee,
-    this.total_money,
-    this.current_service_fee,
-    this.discount,
-    this.purchase_discount
-  });
+  ShoppingCart(
+      {
+      // ignore: non_constant_identifier_names
+      this.shop_id,
+      // ignore: non_constant_identifier_names
+      this.shop_name,
+      // ignore: non_constant_identifier_names
+      this.shop_url,
+      this.items,
+      this.note,
+      this.total_money_product,
+      this.total_money_fee,
+      this.total_money,
+      this.current_service_fee,
+      this.discount,
+      this.purchase_discount});
 
   ShoppingCart.empty() {
     this.shop_id = '';
@@ -96,7 +96,8 @@ class ShoppingCartPrice {
 
   ShoppingCartPrice.fromJson(dynamic json) {
     value = ParseNumber.parseDouble(json["value"]);
-    currencyUnit = json["currencyUnit"] != null ? json["currencyUnit"].toString() : '';
+    currencyUnit =
+        json["currencyUnit"] != null ? json["currencyUnit"].toString() : '';
   }
 
   Map<String, dynamic> toJson() {
@@ -161,14 +162,23 @@ class ShoppingCartProduct {
 
   ShoppingCartProduct.fromJson(dynamic json) {
     id = ParseNumber.parseInt(json["id"], fault: -1);
-    product_id = json["product_id"] != null ? json["product_id"].toString() : '';
-    product_name = json["product_name"] != null ? json["product_name"].toString() : '';
-    product_color = json["product_color"] != null ? json["product_color"].toString() : '';
-    product_size = json["product_size"] != null ? json["product_size"].toString() : '';
-    product_image = json["product_image"] != null ? json["product_image"].toString() : '';
+    product_id =
+        json["product_id"] != null ? json["product_id"].toString() : '';
+    product_name =
+        json["product_name"] != null ? json["product_name"].toString() : '';
+    product_color =
+        json["product_color"] != null ? json["product_color"].toString() : '';
+    product_size =
+        json["product_size"] != null ? json["product_size"].toString() : '';
+    product_image =
+        json["product_image"] != null ? json["product_image"].toString() : '';
     quantity = ParseNumber.parseInt(json["quantity"]);
-    unitprice = json["unitprice"] != null ? ShoppingCartPrice.fromJson(json["unitprice"]) : ShoppingCartPrice.empty();
-    amount = json["amount"] != null ? ShoppingCartPrice.fromJson(json["amount"]) : ShoppingCartPrice.empty();
+    unitprice = json["unitprice"] != null
+        ? ShoppingCartPrice.fromJson(json["unitprice"])
+        : ShoppingCartPrice.empty();
+    amount = json["amount"] != null
+        ? ShoppingCartPrice.fromJson(json["amount"])
+        : ShoppingCartPrice.empty();
     shop_id = json["shop_id"] != null ? json["shop_id"].toString() : '';
     page_url = json["page_url"] != null ? json["page_url"].toString() : '';
     page_name = json["page_name"] != null ? json["page_name"].toString() : '';
@@ -195,5 +205,4 @@ class ShoppingCartProduct {
     map["favorite"] = favorite;
     return map;
   }
-
 }

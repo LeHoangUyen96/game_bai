@@ -1,13 +1,13 @@
 import 'package:get/get_connect.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/request/add_packing_request.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_packing_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
 import 'dart:convert';
 
-import 'package:viet_trung_mobile/data/response/packing_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/packing_detail_response.dart';
 
 class PackingAdminImpl extends GetConnect implements PackingAdminRepositories {
   @override

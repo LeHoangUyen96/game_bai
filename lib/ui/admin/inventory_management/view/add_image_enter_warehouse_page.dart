@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/inventory_management/controller/add_image_enter_warehouse_controller.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/response/admin_add_image_enter_warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/inventory_management/controller/add_image_enter_warehouse_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
-class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController> {
- //List<String> listImg = [];
- List<DataImagesEnterWareHouseResponse>? mImages = [];
+class AddImageEnterWarehouse
+    extends GetView<EnterWarehouseUploadImageController> {
+  //List<String> listImg = [];
+  List<DataImagesEnterWareHouseResponse>? mImages = [];
   @override
   Widget build(BuildContext context) {
-   
     return GetBuilder<EnterWarehouseUploadImageController>(
       builder: (value) => Container(
           height: 120,
@@ -33,7 +33,7 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                   ? GestureDetector(
                       onTap: () {
                         if (controller.mImages!.length < 5) {
-                          Get.dialog( _selectedImageDialog());
+                          Get.dialog(_selectedImageDialog());
                         } else if (controller.mImages!.length == 5) {
                           Get.snackbar(NOTIFY, ERROR_IMAGES);
                         }
@@ -49,26 +49,26 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                             radius: Radius.circular(25),
                             dashPattern: [8, 4],
                             child: ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(25)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25)),
                               child: Container(
-                                padding: EdgeInsets.all(13),
-                                color: GRAY7,
-                                //width: Get.width*0.2,
-                                //height: Get.height*0.16,
-                                child: Center(
-                                  child: SvgPicture.asset(
-                                    IC_CAMERA,
-                                    width: Get.width*0.1-20,
-                                    height: Get.height*0.1-25.0,
+                                  padding: EdgeInsets.all(13),
+                                  color: GRAY7,
+                                  //width: Get.width*0.2,
+                                  //height: Get.height*0.16,
+                                  child: Center(
+                                    child: SvgPicture.asset(
+                                      IC_CAMERA,
+                                      width: Get.width * 0.1 - 20,
+                                      height: Get.height * 0.1 - 25.0,
                                     ),
-                                )
-                              ),
+                                  )),
                             )),
                       ),
                     )
                   : Container(
-                      height: Get.height*0.3,
-                      width: Get.width*0.2,
+                      height: Get.height * 0.3,
+                      width: Get.width * 0.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: GRAY),
@@ -85,76 +85,82 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                           //     height: 100,
                           //     fit: BoxFit.cover,
                           //   ),
-                         ? Container(
-                        height: Get.height*0.3,
-                      width: Get.width*0.25,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: Get.width * 0.01),
-                        child:  Stack(
-                          children: [
-                              Center(
-                                child: Hero(
-                                  tag: '${controller.mImages![index].path.toString()}',
-                                  child: ClipRRect(
-                                    child: ImageCustomized(
-                                    path: NetworkConfig.URL_SERVER_BASE_CDN + controller.mImages![index].path.toString(),
-                                    width: Get.width,
-                                    height: Get.width,
-                                    fit: BoxFit.cover,
+                          ? Container(
+                              height: Get.height * 0.3,
+                              width: Get.width * 0.25,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: Get.width * 0.01),
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: Hero(
+                                      tag:
+                                          '${controller.mImages![index].path.toString()}',
+                                      child: ClipRRect(
+                                        child: ImageCustomized(
+                                          path: NetworkConfig
+                                                  .URL_SERVER_BASE_CDN +
+                                              controller.mImages![index].path
+                                                  .toString(),
+                                          width: Get.width,
+                                          height: Get.width,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Align(
+                                      alignment: Alignment.topRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          controller.onClearImage(index);
+                                        },
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: Colors.white,
+                                        ),
+                                      ))
+                                ],
                               ),
-                            ),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: InkWell(
-                                  onTap: () {
-                                    controller.onClearImage(index);
-                                  },
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: Colors.white,
+                            )
+                          : Container(
+                              height: Get.height * 0.3,
+                              width: Get.width * 0.3,
+                              // margin: EdgeInsets.symmetric(
+                              //     horizontal: Get.width * 0.01),
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: Hero(
+                                      tag:
+                                          '${controller.mImages![index].file!.absolute}',
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        child: ImageCustomized(
+                                          file: controller
+                                              .mImages![index].file!.absolute,
+                                          height: Get.height * 0.3,
+                                          width: Get.width * 0.3,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ))
-                          ],
-                        ),
-                  ) : Container(
-                       height: Get.height*0.3,
-                       width: Get.width*0.3,
-                        // margin: EdgeInsets.symmetric(
-                        //     horizontal: Get.width * 0.01),
-                        child:  Stack(
-                          children: [
-                              Center(
-                                child: Hero(
-                                  tag: '${controller.mImages![index].file!.absolute}',
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    child: ImageCustomized(
-                                    file: controller.mImages![index].file!.absolute,
-                                    height: Get.height*0.3,
-                                    width: Get.width*0.3,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                  Align(
+                                      alignment: Alignment.topRight,
+                                      child: InkWell(
+                                        onTap: () {
+                                          controller.onClearImage(index);
+                                        },
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: Colors.white,
+                                        ),
+                                      ))
+                                ],
                               ),
-                            ),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: InkWell(
-                                  onTap: () {
-                                    controller.onClearImage(index);
-                                  },
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: Colors.white,
-                                  ),
-                                )
-                                )
-                          ],
-                        ),
-                  )
-                  );  
+                            ));
             },
             separatorBuilder: (context, position) {
               return SizedBox(
@@ -183,14 +189,15 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                 width: Get.width,
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: BorderSide( //                   <--- left side
+                    bottom: BorderSide(
+                      //                   <--- left side
                       color: TEXT_GREY_IN_CART,
                       width: 0.5,
                     ),
                   ),
                 ),
                 child: Container(
-                  padding: EdgeInsets.only(top:5, left: 16),
+                  padding: EdgeInsets.only(top: 5, left: 16),
                   child: Row(
                     children: [
                       TextCustomized(
@@ -210,21 +217,21 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                       SizedBox(width: 16)
                     ],
                   ),
-                )
-            ),
+                )),
             Container(
               height: 40,
               width: Get.width,
               decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide( //                   <--- left side
+                  bottom: BorderSide(
+                    //                   <--- left side
                     color: TEXT_GREY_IN_CART,
                     width: 0.5,
                   ),
                 ),
               ),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   controller.onPickerImage(ImageSource.camera);
                 },
                 child: Container(
@@ -235,7 +242,7 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
                         size: smallMediumSize,
                         weight: FontWeight.w500,
                         color: Colors.black,
-                        text: PROFILE_NEW_IMAGE ,
+                        text: PROFILE_NEW_IMAGE,
                       ),
                     ],
                   ),
@@ -246,7 +253,7 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
               height: 40,
               width: Get.width,
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   controller.onPickerImage(ImageSource.gallery);
                 },
                 child: Container(
@@ -270,5 +277,4 @@ class AddImageEnterWarehouse extends GetView<EnterWarehouseUploadImageController
       ),
     );
   }
-
 }

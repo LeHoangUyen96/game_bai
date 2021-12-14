@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
-import 'package:viet_trung_mobile/data/request/change_pass_request.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/profile/view/popup_change_pass_faild.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/profile/view/popup_change_pass_success.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile_admin/data/request/change_pass_request.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/profile/view/popup_change_pass_faild.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/profile/view/popup_change_pass_success.dart';
 
 class ChangePasswordAdminController extends GetxController {
   TextEditingController oldPassController = TextEditingController();

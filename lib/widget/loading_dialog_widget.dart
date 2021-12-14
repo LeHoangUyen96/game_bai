@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class LoadingDialogWidget extends StatelessWidget {
   final String? title;
@@ -29,21 +29,24 @@ class LoadingDialogWidget extends StatelessWidget {
                 Container(
                     height: 44,
                     width: 44,
-                    child: SvgPicture.asset(IC_CHECK_CRICLE)
+                    child: SvgPicture.asset(IC_CHECK_CRICLE)),
+                SizedBox(
+                  height: 20,
                 ),
-                SizedBox(height: 20,),
                 TextCustomized(
                   size: normalXSize,
                   weight: FontWeight.w700,
                   color: Colors.black,
-                  text: title  ?? "Thông báo" ,
+                  text: title ?? "Thông báo",
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextCustomized(
                   size: verySmallSize,
                   weight: FontWeight.w300,
                   color: Colors.black,
-                  text: text  ?? "Thành công",
+                  text: text ?? "Thành công",
                   textAlign: TextAlign.center,
                 ),
               ],

@@ -1,14 +1,14 @@
 import 'package:get/get_connect.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/request/add_transport_form_fee_request.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/list_product_response.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/transport_admin_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_transport_form_fee_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_product_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_admin_detail_response.dart';
 import 'dart:convert';
-import 'package:viet_trung_mobile/data/response/transport_fee_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_fee_detail_response.dart';
 
 class TransportAdminImpl extends GetConnect
     implements TransportAdminRepositories {
