@@ -39,22 +39,28 @@ class MainPageAdmin extends GetView<MainController> {
               children: [
                 //ProfilePage(),
                 //FindingCustomerPage(),
-                controller.isAdmin == 1
-                    ? DashboardAdminPage()
-                    : DashboardUserPage(),
-                controller.isAdmin == 1 ? OrderAdminPage() : OrderInfoPage(),
-                controller.isAdmin == 1 ? GenaeralManagePage() : ProfilePage(),
-                controller.isAdmin == 1
-                    ? SettingAdminPage()
-                    : NotificationPage(),
+                // controller.isAdmin == 1
+                //     ? DashboardAdminPage()
+                //     : DashboardUserPage(),
+                // controller.isAdmin == 1 ? OrderAdminPage() : OrderInfoPage(),
+                // controller.isAdmin == 1 ? GenaeralManagePage() : ProfilePage(),
+                // controller.isAdmin == 1
+                //     ? SettingAdminPage()
+                //     : NotificationPage(),
+                DashboardAdminPage(),
+                OrderAdminPage(),
+                GenaeralManagePage(),
+                SettingAdminPage(), 
               ],
             ),
           ),
-          bottomNavigationBar: controller.isAdmin == 1
-              ? _buildBottomNavigationAdmin()
-              : _buildBottomNavigation(),
-          floatingActionButton:
-              controller.isAdmin == 1 ? floatActionButton() : Container(),
+          // bottomNavigationBar: controller.isAdmin == 1
+          //     ? _buildBottomNavigationAdmin()
+          //     : _buildBottomNavigation(),
+          // floatingActionButton:
+          //     controller.isAdmin == 1 ? floatActionButton() : Container(),
+          bottomNavigationBar: _buildBottomNavigationAdmin(),
+          floatingActionButton: floatActionButton(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
         ),
