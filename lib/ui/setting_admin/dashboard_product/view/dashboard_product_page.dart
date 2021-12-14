@@ -67,20 +67,29 @@ class DashboardProductPage extends GetView<DashboardProductController> {
                                 label: TextCustomized(text: nameProducts)),
                             DataColumn(label: TextCustomized(text: operation)),
                           ],
-                          rows: controller.listProducts!.map<DataRow>((e) {
+                          rows: controller.listProducts!
+                              .asMap()
+                              .keys
+                              .toList()
+                              .map((index) {
+                            int nummerical = index + 1;
                             return DataRow(
                               cells: <DataCell>[
                                 DataCell(
-                                  TextCustomized(text: e.id!.toString()),
+                                  TextCustomized(text: nummerical.toString()),
                                 ),
-                                DataCell(TextCustomized(text: e.name!)),
+                                DataCell(TextCustomized(
+                                    text:
+                                        controller.listProducts![index].name!)),
                                 DataCell(Row(
                                   children: [
                                     SizedBox(width: 10),
                                     InkWell(
                                         onTap: () {
                                           Get.dialog(DialogEditProduct(),
-                                              arguments: e.id!.toString());
+                                              arguments: controller
+                                                  .listProducts![index].id!
+                                                  .toString());
                                         },
                                         child: ImageCustomized(
                                           path: ic_edit,
@@ -91,8 +100,9 @@ class DashboardProductPage extends GetView<DashboardProductController> {
                                     SizedBox(width: 5),
                                     InkWell(
                                         onTap: () {
-                                          controller.onDeleteProduct(
-                                              e.id!.toString());
+                                          controller.onDeleteProduct(controller
+                                              .listProducts![index].id!
+                                              .toString());
                                         },
                                         child: Icon(
                                           Icons.clear,
