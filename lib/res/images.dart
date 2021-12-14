@@ -24,6 +24,8 @@ const String IC_EDIT_ADDRESS = "assets/images/icon_edit_address.svg";
 
 const String LOGO_IMG = "assets/images/logo_app_viettrung.png";
 const String BG_IMG = "assets/images/img_background.png";
+const String BG_IMG_ADMIN = "assets/images/img_backgroup_admin.png";
+const String BG_IMG_LOGIN = "assets/images/bg.png";
 const String IC_EDIT = "assets/images/icon_edit.svg";
 const String IC_EDIT_PROFILE = "assets/images/icon_edit_profile.svg";
 const String IC_ARROWS_RIGHT = "assets/images/icon_arrows_right.svg";
@@ -60,6 +62,7 @@ const String BG_IMG_DASHBOARD = "assets/images/img_background_dashboard.png";
 const String IMG_DASHBOARD = "assets/images/image_notify.png";
 const String bg_card = "assets/images/viettrung_bg.png";
 const String IMG_LOGO = "assets/images/img_logo.png";
+
 const String ic_edit = "assets/images/ic_edit.svg";
 const String BG_IMG_DASHBOARD_ADMIN = "assets/images/img_backgourd_admin.png";
 const String IC_CALENDAR = "assets/images/icon_calendar.svg";
