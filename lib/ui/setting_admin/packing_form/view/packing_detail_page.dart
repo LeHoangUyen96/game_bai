@@ -35,37 +35,24 @@ class PackingDetailPage extends GetView<PackingDetailController> {
               children: [
                 Row(
                   children: [
-                    TextCustomized(text: fee),
+                    TextCustomized(
+                      text: fee,
+                      weight: FontWeight.w500,
+                      color: BLACK_1,
+                    ),
                     Spacer(),
-                    controller.isEdit == false
-                        ? InkWell(
-                            onTap: () {
-                              controller.editFee();
-                            },
-                            child: Container(
-                              height: 48,
-                              width: 77,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: GRAY),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(9))),
-                              child: Center(
-                                child: TextCustomized(
-                                  text: "¥" +
-                                      controller.response!.data!.packingFee!
-                                          .toString(),
-                                  color: RED,
-                                  font: inter,
-                                  weight: FontWeight.w700,
-                                ),
-                              ),
-                            ))
-                        : TextFieldCustomized(
-                            textController: controller.feeController,
-                            textInputType: TextInputType.number,
-                            width: 77,
-                          ),
+                    TextFieldCustomized(
+                      width: 77,
+                      textController: controller.feeController,
+                      textInputType: TextInputType.number,
+                      align: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: RED,
+                        fontFamily: inter,
+                      ),
+                      maxLine: 1,
+                    ),
                   ],
                 ),
                 SizedBox(height: 16),
@@ -83,7 +70,7 @@ class PackingDetailPage extends GetView<PackingDetailController> {
                 SizedBox(height: 10),
                 ButtonCustomized(
                   delete,
-                  textColor: RED,
+                  textColor: COLOR_ORDER_BORDER_WAREHOUSE,
                   borderColor: Colors.grey,
                   onTap: () {
                     controller.onDeletePacking(

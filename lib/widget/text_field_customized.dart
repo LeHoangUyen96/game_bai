@@ -33,6 +33,8 @@ class TextFieldCustomized extends StatefulWidget {
   final Color? colorBackgrount;
   final Color? colorHintText;
   final double? width;
+  final TextStyle? style;
+  final TextAlign? align;
 
   TextFieldCustomized({
     this.invalid,
@@ -59,6 +61,8 @@ class TextFieldCustomized extends StatefulWidget {
     this.colorBackgrount,
     this.colorHintText,
     this.width,
+    this.style,
+    this.align,
   });
 
   @override
@@ -98,6 +102,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
     return Container(
       height: widget.height ?? 48,
       width: widget.width ?? Get.width,
+      padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
           color: widget.colorBackgrount ?? Colors.white,
           border: Border.all(
@@ -110,62 +115,47 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
                     : GRAY,
           ),
           borderRadius: BorderRadius.all(Radius.circular(9))),
-      child: Row(
-        children: [
-          SizedBox(width: widget.path != null ? 10 : 10),
-          Expanded(
-            flex: 10,
-            child: TextField(
-              style: TextStyle(
+      child: Expanded(
+        flex: 20,
+        child: TextField(
+          style: widget.style ??
+              TextStyle(
                 fontWeight: FontWeight.w400,
                 color: BLACK,
                 fontSize: customSize,
                 fontFamily: SanFranciscoUIText,
               ),
-              controller: widget.textController,
-              keyboardType: widget.textInputType,
-              textInputAction: widget.textInputAction,
-              obscureText: widget.isObscured == null ? false : _obscureText,
-              maxLines: widget.maxLine ?? 1,
-              focusNode: _focusNode,
-              onTap: () {
-                setState(() {
-                  _enabled = true;
-                });
-              },
-              textAlign: TextAlign.left,
-              onChanged: widget.onChanged,
-              onSubmitted: widget.onSubmitted,
-              decoration: InputDecoration(
-                filled: widget.filled,
-                fillColor: GRAY4,
-                hintText: widget.hint,
-                hintStyle: TextStyle(
-                    fontWeight: FontWeight.w100,
-                    color: widget.colorHintText ?? GRAY,
-                    fontSize: smallSize,
-                    fontFamily: SanFranciscoTextLight),
-                errorStyle: errorTextStyle,
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                disabledBorder: InputBorder.none,
-                suffixIcon: widget.isSuffixIcon != null
-                    ? GestureDetector(
-                        onTap: _toggleObscured,
-                        child: Icon(
-                          _obscureText
-                              ? Icons.visibility_off_rounded
-                              : Icons.visibility_rounded,
-                          color: GRAY,
-                          size: 24,
-                        ))
-                    : SizedBox(),
-              ),
-            ),
+          controller: widget.textController,
+          keyboardType: widget.textInputType,
+          textInputAction: widget.textInputAction,
+          obscureText: widget.isObscured == null ? false : _obscureText,
+          maxLines: widget.maxLine ?? 1,
+          focusNode: _focusNode,
+          onTap: () {
+            setState(() {
+              _enabled = true;
+            });
+          },
+          textAlign: widget.align ?? TextAlign.left,
+          onChanged: widget.onChanged,
+          onSubmitted: widget.onSubmitted,
+          decoration: InputDecoration(
+            filled: widget.filled,
+            fillColor: GRAY4,
+            hintText: widget.hint,
+            hintStyle: TextStyle(
+                fontWeight: FontWeight.w100,
+                color: widget.colorHintText ?? GRAY,
+                fontSize: smallSize,
+                fontFamily: SanFranciscoTextLight),
+            errorStyle: errorTextStyle,
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
           ),
-        ],
+        ),
       ),
     );
   }

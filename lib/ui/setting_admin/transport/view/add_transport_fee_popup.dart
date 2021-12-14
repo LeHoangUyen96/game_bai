@@ -37,7 +37,7 @@ class DialogAddTransportFee extends GetView<AddTransportFormFeeController> {
                           topRight: Radius.circular(9),
                         ),
                       ),
-                      height: 56,
+                      height: 50,
                       child: Row(
                         children: [
                           Spacer(),

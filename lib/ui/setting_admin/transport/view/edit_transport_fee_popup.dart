@@ -23,7 +23,7 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(9)),
                 child: Container(
-                  height: Get.height * 0.8,
+                  height: Get.height * 0.85,
                   width: Get.width,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(10)),

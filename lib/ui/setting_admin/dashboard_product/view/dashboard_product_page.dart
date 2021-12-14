@@ -48,77 +48,71 @@ class DashboardProductPage extends GetView<DashboardProductController> {
 
   Widget buildBody() {
     return Container(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         color: MAIN_BG,
-        child: Column(children: [
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-              color: MAIN_BG,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Scrollbar(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: DataTable(
-                          sortAscending: true,
-                          columns: [
-                            DataColumn(label: TextCustomized(text: numerical)),
-                            DataColumn(
-                                label: TextCustomized(text: nameProducts)),
-                            DataColumn(label: TextCustomized(text: operation)),
-                          ],
-                          rows: controller.listProducts!
-                              .asMap()
-                              .keys
-                              .toList()
-                              .map((index) {
-                            int nummerical = index + 1;
-                            return DataRow(
-                              cells: <DataCell>[
-                                DataCell(
-                                  TextCustomized(text: nummerical.toString()),
-                                ),
-                                DataCell(TextCustomized(
-                                    text:
-                                        controller.listProducts![index].name!)),
-                                DataCell(Row(
-                                  children: [
-                                    SizedBox(width: 10),
-                                    InkWell(
-                                        onTap: () {
-                                          Get.dialog(DialogEditProduct(),
-                                              arguments: controller
-                                                  .listProducts![index].id!
-                                                  .toString());
-                                        },
-                                        child: ImageCustomized(
-                                          path: ic_edit,
-                                          height: 16,
-                                          width: 16,
-                                          color: Colors.black,
-                                        )),
-                                    SizedBox(width: 5),
-                                    InkWell(
-                                        onTap: () {
-                                          controller.onDeleteProduct(controller
-                                              .listProducts![index].id!
-                                              .toString());
-                                        },
-                                        child: Icon(
-                                          Icons.clear,
-                                          size: 20,
-                                        )),
-                                  ],
-                                )),
-                              ],
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Scrollbar(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    sortAscending: true,
+                    columns: [
+                      DataColumn(label: TextCustomized(text: numerical)),
+                      DataColumn(label: TextCustomized(text: nameProducts)),
+                      DataColumn(label: TextCustomized(text: operation)),
+                    ],
+                    rows: controller.listProducts!
+                        .asMap()
+                        .keys
+                        .toList()
+                        .map((index) {
+                      int nummerical = index + 1;
+                      return DataRow(
+                        cells: <DataCell>[
+                          DataCell(
+                            TextCustomized(text: nummerical.toString()),
+                          ),
+                          DataCell(TextCustomized(
+                              text: controller.listProducts![index].name!)),
+                          DataCell(Row(
+                            children: [
+                              SizedBox(width: 10),
+                              InkWell(
+                                  onTap: () {
+                                    Get.dialog(DialogEditProduct(),
+                                        arguments: controller
+                                            .listProducts![index].id!
+                                            .toString());
+                                  },
+                                  child: ImageCustomized(
+                                    path: ic_edit,
+                                    height: 16,
+                                    width: 16,
+                                    color: Colors.black,
+                                  )),
+                              SizedBox(width: 5),
+                              InkWell(
+                                  onTap: () {
+                                    controller.onDeleteProduct(controller
+                                        .listProducts![index].id!
+                                        .toString());
+                                  },
+                                  child: Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                  )),
+                            ],
+                          )),
+                        ],
+                      );
+                    }).toList(),
+                  ),
                 ),
-              ))
-        ]));
+              ),
+            ],
+          ),
+        ));
   }
 }

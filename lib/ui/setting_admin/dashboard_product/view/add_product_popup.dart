@@ -31,7 +31,14 @@ class DialogAddProduct extends GetView<DashboardProductController> {
                   children: [
                     Container(
                       height: 56,
-                      color: COLOR_BT,
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: COLOR_BT,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(9),
+                          topRight: Radius.circular(9),
+                        ),
+                      ),
                       child: Row(
                         children: [
                           Spacer(),

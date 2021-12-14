@@ -15,7 +15,6 @@ class PackingDetailController extends GetxController {
   String? feeError;
   String? packingId;
   PackingDetailResponse? response;
-  bool isEdit = false;
 
   @override
   void onInit() {
@@ -48,11 +47,6 @@ class PackingDetailController extends GetxController {
     }).catchError((onError) {
       update();
     });
-  }
-
-  void editFee() {
-    isEdit = !isEdit;
-    update();
   }
 
   void onUpdatePacking(

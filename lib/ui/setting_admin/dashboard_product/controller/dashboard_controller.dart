@@ -70,6 +70,7 @@ class DashboardProductController extends GetxController {
       dashboardProductRepository!
           .onAddProduct(nameProductController.text)
           .then((value) {
+        nameProductController.clear();
         Get.back();
         Get.snackbar('Thông báo', value.message!);
         update();
