@@ -114,10 +114,10 @@ class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
                       color: MAIN_BLACK,
                     ),
                     TextCustomized(
-                      text: response.orderStatusName!,
+                      text: waitConfirm,
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
-                      color: BG_ID_PD,
+                      color: TEXT_ORDER_W_CONFIRM,
                     ),
                   ],
                 ),

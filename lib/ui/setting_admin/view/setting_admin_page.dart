@@ -4,7 +4,6 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/order/controller/order_info_controller.dart';
-import 'package:viet_trung_mobile/ui/profile/view/profile_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/dashboard_product/view/dashboard_product_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/exchange_rate/view/exchange_rate_page.dart';
 import 'package:viet_trung_mobile/ui/setting_admin/inventory_management/view/inventory_management_page.dart';
