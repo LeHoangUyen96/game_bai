@@ -17,7 +17,6 @@ import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
 class AddProductToBagDialog extends GetView<ListOrderAddToBagController> {
 
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ListOrderAddToBagController>(
@@ -169,43 +168,59 @@ class AddProductToBagDialog extends GetView<ListOrderAddToBagController> {
                         color: MAIN_BLACK,
                         size: normalSize,
                       ),
-                    // Spacer(),
-                    Container(
-                        width: 50,
+                      TextFieldCustomized(
+                        width: 40,
                         height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: BT_GRAY
-                          )
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Center(
-                          child: TextField(
-                            
-                            onChanged: (val){
-                             controller.number_package = ParseNumber.parseInt(val);
+                        hint: data.number_package_remain.toString(),
+                        onChanged: (val){
+                             controller.numberPackageController = TextEditingController(text: val);
                              controller.order_id = data.id;
-                             print('onchange ${controller.number_package}');
+                             print('onchange ${controller.numberPackageController}');
                             },
                             onSubmitted: (val){
                              controller.number_package = ParseNumber.parseInt(val);
                              controller.order_id = data.id;
                              print('onchange ${controller.number_package}');
                             },
-                            controller: controller.numberPackageController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: data.number_package_remain.toString(),
-                              hintStyle: TextStyle(
-                                  color: GRAY,
-                                  fontSize: smallSize, 
-                                  fontFamily: SanFranciscoUIText
-                                  ),
-                            ),
-                          ),
-                        ),
-                    )
+                            textController: controller.numberPackageController,
+                      ),
+                    // Spacer(),
+                    // Container(
+                    //     width: 50,
+                    //     height: 30,
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(8),
+                    //       border: Border.all(
+                    //         color: BT_GRAY
+                    //       )
+                    //     ),
+                    //     padding: EdgeInsets.symmetric(horizontal: 15),
+                    //     child: Center(
+                    //       child: TextField(
+                            
+                    //         onChanged: (val){
+                    //          controller.number_package = ParseNumber.parseInt(val);
+                    //          controller.order_id = data.id;
+                    //          print('onchange ${controller.number_package}');
+                    //         },
+                    //         onSubmitted: (val){
+                    //          controller.number_package = ParseNumber.parseInt(val);
+                    //          controller.order_id = data.id;
+                    //          print('onchange ${controller.number_package}');
+                    //         },
+                    //         controller: controller.numberPackageController,
+                    //         decoration: InputDecoration(
+                    //           border: InputBorder.none,
+                    //           hintText: data.number_package_remain.toString(),
+                    //           hintStyle: TextStyle(
+                    //               color: GRAY,
+                    //               fontSize: smallSize, 
+                    //               fontFamily: SanFranciscoUIText
+                    //               ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    // )
                     ]
                   ), 
                 SizedBox(height: 5),

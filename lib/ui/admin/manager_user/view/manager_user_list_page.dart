@@ -29,7 +29,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
       builder: (value) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
-        body: controller.listUserResponse != null ? buildBody() : LoadingSpinKit(),
+        body: controller.mDataListUserResponse != null ? buildBody() : LoadingSpinKit(),
         backgroundColor: BT_GRAY,
       ),
     );
@@ -160,14 +160,14 @@ class ManagerUserPage extends GetView<ManagerUserController> {
               padding: EdgeInsets.all(15),
               child: ListView.separated(
                 itemBuilder: (BuildContext context, int index){
-                  return __buildItemStaff(controller.listUserResponse!.data![index]);
+                  return __buildItemStaff(controller.mDataListUserResponse![index]);
                 }, 
                 shrinkWrap: true,
                 separatorBuilder: (context, index) {
                   return SizedBox(height: 10);
                 },
                 physics: BouncingScrollPhysics (),
-                itemCount: controller.listUserResponse!.data!.length,
+                itemCount: controller.mDataListUserResponse!.length,
                 ),
           ),
         ),

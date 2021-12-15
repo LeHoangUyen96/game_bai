@@ -16,7 +16,7 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
   @override
   Future<ListAdminResponse> onGetListAdmin(int page, int perPage) async{
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.MANAGER_STAFF_LIST;
+    final url = NetworkConfig.MANAGER_STAFF_LIST+"?&page=$page&per_page=$perPage";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ListAdminResponse.fromJson(responseJson.body);

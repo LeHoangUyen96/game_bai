@@ -15,7 +15,7 @@ class ManagerUserImpl extends GetConnect implements ManagerUserRepositories {
   @override
   Future<ListUserResponse> onGetListUser(int page, int perPage) async {
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.MANAGER_USER_LIST;
+    final url = NetworkConfig.MANAGER_USER_LIST+"?&page=$page&per_page=$perPage";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ListUserResponse.fromJson(responseJson.body);

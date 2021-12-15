@@ -13,6 +13,7 @@ import 'package:viet_trung_mobile/data/response/list_transport_form_response.dar
 import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
 import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 
 
@@ -36,10 +37,10 @@ class CreateBagController extends GetxController  {
   String? item_code;
   String? typeBag;
   bool changeBill = false;
-  int? transport_form_id;
+  int transport_form_id = 0;
   String? warehouse_back_code;
   String? packing_from;
-  int? order_id;
+  int order_id = 0;
   int? number_package;
   int total_numberPackage = 0;
    final FocusNode focusNode = FocusNode();
@@ -50,6 +51,22 @@ class CreateBagController extends GetxController  {
   bool onInput = false;
   bool onSearch = false;
   int? userCode;
+  String searchUserErros = '';
+  bool isSearchUserValid = true;
+  String totalCodErros = '';
+  bool isTotalCodValid = true;
+  String typeBagErros = '';
+  bool isTypeBagValid = true;
+  String transportFormIdErros = '';
+  bool isTransportFormIdValid = true;
+  String warehouseBackCodeErros = '';
+  bool isWarehouseBackCodeValid = true;
+  String packingFromErros = '';
+  bool isPackingFromValid = true;
+  String weightFromErros = '';
+  bool isWeightFromValid = true;
+  String orderErros = '';
+  bool isOrderValid = true;
   @override
   void onInit() {
     super.onInit();
@@ -58,7 +75,7 @@ class CreateBagController extends GetxController  {
     orderAminRepositories = Injector().orderAmin;
     if (Get.arguments != null) {
       if (Get.arguments['order_id'] == null) {
-        order_id = null;
+        order_id = 0;
       } else {
         order_id = Get.arguments['order_id'];
       }
@@ -137,13 +154,57 @@ class CreateBagController extends GetxController  {
     update();
   }
   void onCreateBag(){
+
     for(var i = 0; i < mDataListOrder!.length; i++){
       mListOrders!.add(DataOrderCreateBag(
         number_package: mDataListOrder![i].number_package_remain,
         order_id: mDataListOrder![i].id,
       ));
     }
-    CreateBagRequest request = CreateBagRequest(
+    if (warehouse_back_code == null) {
+      isWarehouseBackCodeValid = false;
+      warehouseBackCodeErros = "Kho chuyển về không được để trống";
+    } else {
+      isWarehouseBackCodeValid = true;
+    }
+    if (transport_form_id == 0) {
+      isTransportFormIdValid = false;
+      transportFormIdErros = "Hình thức vận chuyển không được để trống";
+    } else {
+      isTransportFormIdValid = true;
+    }
+    if (typeBag == null) {
+      isTypeBagValid = false;
+      typeBagErros = "Kiểu bao không được để trống";
+    } else {
+      isTypeBagValid = true;
+    }
+    if (typeBag == "intact_bag" && searchController.text.isEmpty ) {
+      isSearchUserValid = false;
+      searchUserErros = "Khách hàng không được để trống";
+    } else {
+      isSearchUserValid = true;
+    }
+    if (weightController.text.isEmpty) {
+      isWeightFromValid = false;
+      weightFromErros = "Trọng lượng không được để trống";
+    } else {
+      isWeightFromValid = true;
+    }
+    if (totalCodController.text.isEmpty) {
+      isTotalCodValid = false;
+      totalCodErros = "Tổng tiền thu hộ không được để trống";
+    } else {
+      isTotalCodValid = true;
+    }
+    if (mListOrders!.length < 0) {
+      isOrderValid = false;
+      orderErros = "Danh sách đơn hàng không được để trống";
+    } else {
+      isOrderValid = true;
+    }
+    if(isWarehouseBackCodeValid && isTransportFormIdValid && isTypeBagValid &&  isSearchUserValid&& isWeightFromValid && isTotalCodValid&& isOrderValid){
+      CreateBagRequest request = CreateBagRequest(
       parent_pack_type : typeBag,
       warehouse_back_code : warehouse_back_code,
       user_id : userCode != null ? userCode : null,
@@ -158,6 +219,35 @@ class CreateBagController extends GetxController  {
       return onError(onError);
     });
     Get.back(result: request);
+    }
+    
+    update();
+  }
+
+  void onAddProduct(){
+    if (warehouse_back_code == null) {
+      isWarehouseBackCodeValid = false;
+      warehouseBackCodeErros = "Kho chuyển về không được để trống";
+    } else {
+      isWarehouseBackCodeValid = true;
+    }
+    if (transport_form_id == 0) {
+      isTransportFormIdValid = false;
+      transportFormIdErros = "Hình thức vận chuyển không được để trống";
+    } else {
+      isTransportFormIdValid = true;
+    }
+    if(isWarehouseBackCodeValid && isTransportFormIdValid){
+      Get.dialog(AddProductToBagDialog(), 
+      arguments: {
+        "warehouse_back_code" : warehouse_back_code,
+        "transport_form_id" : transport_form_id,
+      }).then((value){
+        if(value != null){
+          onGetListOrder(value);
+        }
+      });
+    }
     update();
   }
 

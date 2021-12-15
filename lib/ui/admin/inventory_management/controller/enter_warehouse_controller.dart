@@ -12,6 +12,7 @@ import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/tr
 import 'package:viet_trung_mobile/data/request/enter_warehouse_request.dart';
 import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
 import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/errors_enter_warehouse.dart';
 import 'package:viet_trung_mobile/data/response/list_product_response.dart';
 import 'package:viet_trung_mobile/data/response/ramdom_bill_order_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
@@ -37,7 +38,7 @@ class EnterWarehouseController extends GetxController {
   String? name;
   String? phone;
   String? image;
-  int? product_id;
+  int product_id = 0;
   RamdomBillOrderResponse? ramdomBillOrderResponse;
   OrderRepositories? orderRepositories;
   ListProductResponse ? listProductResponse;
@@ -48,6 +49,12 @@ class EnterWarehouseController extends GetxController {
   List<DataImagesEnterWareHouseResponse>? mImages = [];
   String? mDataUploadImage;
   List<String>? img;
+  String billCodeErros = '';
+  bool isBillCodeValid = true;
+  String productIdErros = '';
+  bool isProductIdValid = true;
+  String numberPackageErros = '';
+  bool isNumberPackageValid = true;
   @override
   void onInit() {
     super.onInit();
@@ -116,7 +123,6 @@ class EnterWarehouseController extends GetxController {
     }).catchError((onError) {
       print('isErorrs');
     });
-
     update();
     print(user_id);
   }
@@ -129,7 +135,26 @@ Future<List<ItemProduct>> getDataProduct () async {
     return mDataItemProduct!;
   }
   void onEnterWareHouse() {
-    EnterWareHouseRequest request = EnterWareHouseRequest(
+    if (product_id == 0) {
+      isProductIdValid = false;
+      productIdErros = "Mặt hàng không được để trống";
+    } else {
+      isProductIdValid = true;
+    }
+    if (barCodeValueController.text.isEmpty) {
+      isBillCodeValid = false;
+      billCodeErros = "Mã bill không được để trống";
+    } else {
+      isBillCodeValid = true;
+    }
+    if (numberPackageController.text.isEmpty) {
+      isNumberPackageValid = false;
+      numberPackageErros = "Số kiện hàng không được để trống";
+    } else {
+      isNumberPackageValid = true;
+    }
+    if(isProductIdValid && isBillCodeValid && isNumberPackageValid){
+      EnterWareHouseRequest request = EnterWareHouseRequest(
       user_id: user_id != 0 ? user_id : null,
       phone: phone,
       bill_code: barCodeValueController.text.toString(),
@@ -142,10 +167,10 @@ Future<List<ItemProduct>> getDataProduct () async {
     orderRepositories!.onEnterWarehouse(request).then((value) {
       Get.snackbar(NOTIFY, "Nhập kho thành công");
     }).catchError((onError) {
-      return onError(onError);
+      return onEnterWareHouseError(onError);
     });
     Get.back(result: request);
-
+    }
     update();
   }
 
@@ -157,6 +182,17 @@ Future<List<ItemProduct>> getDataProduct () async {
       is_prohibited_item = 1;
     print("$is_prohibited_item");
     update();
+  }
+  
+  void onEnterWareHouseError (ErrorsEnterWarehouseResponse msg){
+    if (msg.errors!.bill_code!.toList().isNotEmpty) {
+      isBillCodeValid = false;
+      billCodeErros = msg.errors!.bill_code![0].toString();
+      update();
+    } else {
+      isBillCodeValid = true;
+      update();
+    }
   }
 
   @override

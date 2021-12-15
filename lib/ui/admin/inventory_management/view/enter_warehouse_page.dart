@@ -220,7 +220,18 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 5),
+              controller.isBillCodeValid == false
+                ?  TextCustomized(
+                      text: controller.billCodeErros,
+                      font: SanFranciscoText,
+                      size: 12,
+                      maxLine: 2,
+                      weight: FontWeight.w400,
+                      color: RED,
+                  )
+                : Container(),
+              SizedBox(height: 10),
               TextCustomized(
                 text: ADMIN_ITEMS,
                 font: SanFranciscoUIText,
@@ -256,7 +267,18 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                   popupItemBuilder: _customDropdownProduct,
                   ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 5),
+              controller.isProductIdValid == false
+                ?  TextCustomized(
+                      text: controller.productIdErros,
+                      font: SanFranciscoText,
+                      size: 12,
+                      maxLine: 2,
+                      weight: FontWeight.w400,
+                      color: RED,
+                  )
+                : Container(),
+              SizedBox(height: 10),
               TextCustomized(
                 text: ADMIN_COD,
                 font: SanFranciscoUIText,
@@ -282,7 +304,18 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                 hint: ADMIN_ENTER_PARCEL_NUMBER,
                 textController: controller.numberPackageController,
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 5),
+              controller.isNumberPackageValid == false
+                ?  TextCustomized(
+                      text: controller.numberPackageErros,
+                      font: SanFranciscoText,
+                      size: 12,
+                      maxLine: 2,
+                      weight: FontWeight.w400,
+                      color: RED,
+                  )
+                : Container(),
+              SizedBox(height: 10),
               TextCustomized(
                 text: ADMIN_IMG,
                 font: SanFranciscoUIText,

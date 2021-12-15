@@ -11,8 +11,8 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(
         init: SplashController(),
-        builder: (value) => InitialWidget(
-          child: Container(
+        builder: (value) => Scaffold(
+          body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(BG_IMG_ADMIN),

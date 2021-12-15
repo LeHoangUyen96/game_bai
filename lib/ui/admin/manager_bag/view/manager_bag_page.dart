@@ -386,7 +386,7 @@ class ManagerBagPage extends GetView<ManagerBagController> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ListView.separated(
-                    itemCount: controller.mDataBagResponse!.length,
+                    itemCount: controller.mListBagResponse!.data!.length,
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {

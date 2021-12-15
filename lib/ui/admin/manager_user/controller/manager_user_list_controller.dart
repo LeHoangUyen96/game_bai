@@ -17,9 +17,9 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
   ListUserResponse? listUserResponse;
   List< DataListUserResponse> ? mDataListUserResponse = [];
   bool isNextPage = false;
-  ManagerUserContract? contract;
+  late ManagerUserContract contract;
   int page = 1;
-  int perPage = 5;
+  int perPage = 10;
   @override
   void onInit() {
     super.onInit();
@@ -32,8 +32,7 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
       mDataListUserResponse!.clear();
     }
     managerUserRepositories!.onGetListUser(page, perPage).then((value) {
-      
-      return contract!.onGetListUserSuccess(value);
+      return contract.onGetListUserSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
     });
@@ -62,7 +61,6 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
   void onGetListUserSuccess(ListUserResponse data) {
     listUserResponse = data;
     mDataListUserResponse!.addAll(listUserResponse!.data!);
-    
     if (listUserResponse!.paginate!.current_page! <= listUserResponse!.paginate!.last_page!) {
       if (listUserResponse!.paginate!.next! > 0) {
         isNextPage = true;
@@ -78,14 +76,13 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
     if (refreshController.isRefresh) {
       refreshController.refreshCompleted();
     }
-    
     update();
   }
   void onSearchListUser(){
      //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
       mDataListUserResponse!.clear();
       managerUserRepositories!.onSearchListUser(searchNamePhone.text.toString(),page,perPage).then((value) {
-        return contract!.onGetListUserSuccess(value);
+        return contract.onGetListUserSuccess(value);
       }).catchError((onError) {
         Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
       });

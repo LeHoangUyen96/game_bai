@@ -1,3 +1,4 @@
+import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 
 class BagDetailsResponse {
@@ -28,6 +29,7 @@ class  DataBagDetailsResponse {
   String? created_at;
   String? updated_at;
   List<DataPackingJourney> ? packing_journey;
+  List<DataListOrderAddBagResponse> ? orders;
 
 
 
@@ -48,6 +50,7 @@ class  DataBagDetailsResponse {
     this.created_at,
     this.updated_at,
     this.packing_journey,
+    this.orders,
   });
     DataBagDetailsResponse.empty(){
      this.id = -1;
@@ -84,6 +87,7 @@ class  DataBagDetailsResponse {
      this.created_at = json["created_at"] != null ? json["created_at"].toString() : '';
      this.updated_at = json["updated_at"] != null ? json["updated_at"].toString() : '';
      this.packing_journey = json["packing_journey"] == null ? <DataPackingJourney>[] : json['packing_journey'].map<DataPackingJourney>((e)=> DataPackingJourney.fromJson(e)).toList();
+     this.orders = json["orders"] == null ? <DataListOrderAddBagResponse>[] : json['orders'].map<DataListOrderAddBagResponse>((e)=> DataListOrderAddBagResponse.fromJson(e)).toList();
     }
 
 }

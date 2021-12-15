@@ -38,6 +38,8 @@ class ListOrderAddToBagController extends GetxController  {
       }
       
     }
+    print("transport_form_id:$transport_form_id");
+    print("warehouse_back_code:$warehouse_back_code");
     onGetListOrderAddToBag();
   }
   void onGetListOrderAddToBag(){
@@ -50,6 +52,7 @@ class ListOrderAddToBagController extends GetxController  {
         //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
         listOrderAddBagResponse = value;
         mDataListOrderAddBagResponse!.addAll(listOrderAddBagResponse!.data!);
+        update();
       }).catchError((onError){
         Get.snackbar(PROFILE_NOTIFY, onError.toString());
       });

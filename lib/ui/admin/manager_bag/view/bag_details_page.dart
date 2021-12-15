@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
@@ -377,14 +378,14 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     ? Container(
                       color: WHITE,
                       child: ListView.separated(
-                        itemCount: 6,
+                        itemCount: controller.bagDetailsResponse!.data!.orders!.length,
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
                           return SizedBox(height: 10);
                         },
                         physics: ClampingScrollPhysics(),
                         itemBuilder: (BuildContext context, int index){
-                          return _buildListBill();
+                          return _buildListBill(controller.bagDetailsResponse!.data!.orders![index]);
                         }
                         )
                     )
@@ -433,6 +434,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                             ListView.builder(
                               itemCount: controller.bagDetailsResponse!.data!.packing_journey!.length,
                               shrinkWrap: true,
+                              reverse: true,
                               physics: ClampingScrollPhysics(),
                               itemBuilder: (BuildContext context, index){
                                 return _buildListJourney(index);
@@ -571,7 +573,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
       ),
     );
   }
-  Widget _buildListBill(){
+  Widget _buildListBill(DataListOrderAddBagResponse data){
     return  Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -589,7 +591,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
             TextCustomized(
-              text: '0123456AMHDI2',
+              text: data.bill_code.toString(),
               font: SanFranciscoText,
               weight: FontWeight.w700,
               color: MAIN_BLACK,
@@ -608,7 +610,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: data.packing_form.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
@@ -620,21 +622,40 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
-                    text: DELIVERY_PACKAGE,
+                    text: ORDER_LIST_PARCELS,
                     font: SanFranciscoUIText,
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: data.number_package_remain.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
                     ),
                 ],
               ),   
-              SizedBox(height: 5,),     
+              SizedBox(height: 5,),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: BAG_WEIGHT,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: data.surcharge.toString(),
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ),   
+              // SizedBox(height: 5,),      
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -646,7 +667,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: "¥" + data.transport_fee.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
@@ -665,32 +686,32 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: ORDER_NULL,
+                    text: data.surcharge.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
-                    color: RED_1,
+                    color: BLACK_1,
                     ),
                 ],
               ), 
               SizedBox(height: 5,),     
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextCustomized(
-                    text: DELIVERY_FEE_TRANSACTION,
-                    font: SanFranciscoUIText,
-                    size: normalSize,
-                    weight: FontWeight.w500,
-                    color: BLACK_1,
-                    ),
-                    TextCustomized(
-                    text: ORDER_NULL,
-                    font: SanFranciscoText,
-                    weight: FontWeight.w400,
-                    color: BLACK,
-                    ),
-                ],
-              ), 
+              //  Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: DELIVERY_FEE_TRANSACTION,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: ORDER_NULL,
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ), 
                 ]
               ),
              )
@@ -731,15 +752,14 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
  Widget _buildListJourney(index){
    return Center(
      child: TimelineTile(
-               isFirst: index == 0,
-               isLast: index == controller.bagDetailsResponse!.data!.packing_journey!.length -1,
-              //  isLast: true,
+               isLast: index == 0,
+               isFirst: index == controller.bagDetailsResponse!.data!.packing_journey!.length -1,
                hasIndicator: true,
               axis: TimelineAxis.vertical,
               alignment: TimelineAlign.center,
               lineXY: 0.1,
               indicatorStyle: IndicatorStyle(
-                color: BT_GRAY,
+                color: TEXT_DATETIME_NT,
                 height: 10,
                 width: 10,
                 drawGap: true,
@@ -753,7 +773,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                             text: controller.bagDetailsResponse!.data!.packing_journey![index].status_name.toString(),
                             font: SanFranciscoTextLight,
                             size: normalSize,
-                            weight: FontWeight.w600,
+                            weight: FontWeight.w400,
                             color: COLOR_ORDER_DELIVERY_SUCCESSFULL,
                           ),
               ),
@@ -765,7 +785,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                   font: SanFranciscoTextLight,
                   size: smallSize,
                   weight: FontWeight.w400,
-                  color: BT_GRAY,
+                  color: TITLE_POPUP,
                   ),
               ),
               
