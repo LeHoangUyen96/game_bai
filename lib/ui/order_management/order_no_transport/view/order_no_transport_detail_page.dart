@@ -21,18 +21,7 @@ class OrderDetailNotShippedPage
     return GetBuilder<OrderNoTransportDetailController>(
       init: OrderNoTransportDetailController(),
       builder: (value) => Scaffold(
-        appBar: buildAppBar(
-            ORDER_HEADER_DETAILS,
-            Container(
-              padding: EdgeInsets.only(right: 10),
-              child: InkWell(
-                onTap: () {},
-                child: Icon(
-                  Icons.search,
-                  color: WHITE,
-                ),
-              ),
-            )),
+        appBar: buildAppBar(ORDER_HEADER_DETAILS, SizedBox()),
         body: controller.orderNoTransport != null
             ? buildBody(controller.orderNoTransport!.data!)
             : SizedBox(),

@@ -59,9 +59,32 @@ class SettingAdminPage extends GetView<OrderInfoController> {
           Get.to(ExchangeRatePage());
         }),
         _buildItem(report, () {}),
-        _buildItem(userInfo, () {
-          Get.to(ProfileAdminPage());
-        })
+        Container(
+            color: WHITE,
+            child: Column(children: [
+              SizedBox(height: 16),
+              InkWell(
+                  onTap: () {
+                    Get.to(ProfileAdminPage());
+                  },
+                  child: Row(children: [
+                    SizedBox(width: 12),
+                    Text(userInfo,
+                        style: TextStyle(
+                          fontFamily: roboto,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        )),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: TEXT_DATETIME_NT,
+                    ),
+                    SizedBox(width: 16.5),
+                  ])),
+              SizedBox(height: 16),
+            ])),
       ]),
     );
   }

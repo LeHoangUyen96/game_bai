@@ -948,3 +948,4 @@ const String contentSuccess =
     "Đổi mật khẩu thành công, hãy đăng nhập bằng mật khẩu mới";
 const String faild = "Thất bại";
 const String contentFaild = "Mật khẩu cũ không đúng, hãy nhập lại mật khẩu";
+const String feedbackAndReview = "Phản hồi - Đánh giá";

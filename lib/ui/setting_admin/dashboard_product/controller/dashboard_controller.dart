@@ -50,6 +50,7 @@ class DashboardProductController extends GetxController {
 
   void onDeleteProduct(String id) {
     dashboardProductRepository!.onDeleteProduct(id).then((value) {
+      onGetListProduct();
       Get.snackbar('Thông báo', value.message!);
       update();
     }).catchError((onError) {
@@ -65,7 +66,6 @@ class DashboardProductController extends GetxController {
     } else {
       nameValid = true;
     }
-
     if (nameValid) {
       dashboardProductRepository!
           .onAddProduct(nameProductController.text)
@@ -73,6 +73,7 @@ class DashboardProductController extends GetxController {
         nameProductController.clear();
         Get.back();
         Get.snackbar('Thông báo', value.message!);
+        onGetListProduct();
         update();
       }).catchError((onError) {
         update();

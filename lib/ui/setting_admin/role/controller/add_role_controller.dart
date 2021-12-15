@@ -23,10 +23,10 @@ class AddRoleController extends GetxController {
   void onInit() {
     super.onInit();
     repository = Injector().role;
-    onGetListRole();
+    onGetListRightsGroup();
   }
 
-  void onGetListRole() {
+  void onGetListRightsGroup() {
     repository!.onGetListRightsGroup().then((value) {
       response = value;
       update();
@@ -50,7 +50,7 @@ class AddRoleController extends GetxController {
   void onSave() {
     if (nameController.text.isEmpty) {
       nameValid = false;
-      nameError = ERROR_NAME;
+      nameError = errorName;
     } else {
       nameValid = true;
     }
@@ -60,7 +60,6 @@ class AddRoleController extends GetxController {
         permissions: permision,
       );
       repository!.onAddRole(request).then((value) {
-        Get.back();
         Get.snackbar('Thông báo', value.message!);
         update();
       }).catchError((onError) {

@@ -19,18 +19,7 @@ class OrderStorageDetailPage extends GetView<OrderStorageDetailController> {
     return GetBuilder<OrderStorageDetailController>(
         init: OrderStorageDetailController(),
         builder: (value) => Scaffold(
-            appBar: buildAppBar(
-                ORDER_HEADER_DETAILS,
-                Container(
-                  padding: EdgeInsets.only(right: 10),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.search,
-                      color: WHITE,
-                    ),
-                  ),
-                )),
+            appBar: buildAppBar(ORDER_HEADER_DETAILS, SizedBox()),
             body: controller.orderStorage != null
                 ? buildBody(controller.orderStorage!.data!)
                 : SizedBox()));

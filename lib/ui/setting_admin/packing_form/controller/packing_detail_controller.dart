@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
 import 'package:viet_trung_mobile_admin/data/request/add_packing_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/packing_detail_response.dart';
 
 class PackingDetailController extends GetxController {
@@ -15,6 +16,7 @@ class PackingDetailController extends GetxController {
   String? feeError;
   String? packingId;
   PackingDetailResponse? response;
+  TransportFormAdminResponse? responseList;
 
   @override
   void onInit() {
@@ -39,6 +41,15 @@ class PackingDetailController extends GetxController {
     });
   }
 
+  void onGetListPacking() {
+    repository!.onGetListPacking().then((value) {
+      responseList = value;
+      update();
+    }).catchError((onError) {
+      update();
+    });
+  }
+
   void onDeletePacking(String id) {
     repository!.onDeletePacking(packingId!).then((value) {
       Get.back();
@@ -49,9 +60,7 @@ class PackingDetailController extends GetxController {
     });
   }
 
-  void onUpdatePacking(
-    String id,
-  ) {
+  void onUpdatePacking(String id) {
     AddPackingRequest request = AddPackingRequest(
       name: response!.data!.name!,
       status: 1,
@@ -59,6 +68,7 @@ class PackingDetailController extends GetxController {
     );
     repository!.onUpdatePacking(packingId!, request).then((value) {
       Get.back();
+      onGetListPacking();
       Get.snackbar('Thông báo', value.message!);
       update();
     }).catchError((onError) {

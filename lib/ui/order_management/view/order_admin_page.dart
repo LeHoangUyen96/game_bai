@@ -51,9 +51,34 @@ class OrderAdminPage extends GetView<OrderInfoController> {
         _buildItem(ownerlessOrder, () {
           Get.to(OwneslessOrderPage());
         }),
-        _buildItem(goodsNotShipper, () {
-          Get.to(OrderNotShippedPage());
-        })
+        Container(
+            color: WHITE,
+            child: Column(
+              children: [
+                const SizedBox(height: 16.5),
+                InkWell(
+                    onTap: () {
+                      Get.to(OrderNotShippedPage());
+                    },
+                    child: Row(children: [
+                      const SizedBox(width: 12),
+                      Text(goodsNotShipper,
+                          style: const TextStyle(
+                            fontFamily: roboto,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          )),
+                      const Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: TEXT_DATETIME_NT,
+                      ),
+                      const SizedBox(width: 16.5),
+                    ])),
+                const SizedBox(height: 16),
+              ],
+            ))
       ]),
     );
   }

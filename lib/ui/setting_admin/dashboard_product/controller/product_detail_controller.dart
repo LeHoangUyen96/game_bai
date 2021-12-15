@@ -46,7 +46,6 @@ class ProductDetailController extends GetxController {
     } else {
       nameValid = true;
     }
-
     if (nameValid) {
       dashboardProductRepository!
           .onUpdateProduct(productId!, nameProductController.text)

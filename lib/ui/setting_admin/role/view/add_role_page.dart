@@ -45,11 +45,14 @@ class AddRolePage extends GetView<AddRoleController> {
                   textInputType: TextInputType.text,
                 ),
                 controller.nameValid == false
-                    ? TextCustomized(
-                        text: controller.nameError.toString(),
-                        color: Colors.red,
-                        size: 10,
-                      )
+                    ? Column(children: [
+                        SizedBox(height: 5),
+                        TextCustomized(
+                          text: controller.nameError.toString(),
+                          color: Colors.red,
+                          size: 12,
+                        )
+                      ])
                     : SizedBox(),
                 SizedBox(height: 20),
                 ListView.builder(

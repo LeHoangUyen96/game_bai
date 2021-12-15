@@ -9,22 +9,19 @@ import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/general_management/controller/general_management_controller.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/manager_bag_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_feedback_review/view/manager_feedback_review_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/view/manager_staff_list_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/manager_user_list_page.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/order_valid/create_bag_ord_vaild/view/create_bag_ord_vaild_page.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class GenaeralManagePage extends GetView<GenaralManageController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<GenaralManageController>(
       init: GenaralManageController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
         body: SingleChildScrollView(child: buildBody()),
-        //body: buildBody(),
         backgroundColor: BT_GRAY,
       ),
     );
@@ -46,12 +43,6 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
         ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        // leading: InkWell(
-        //   onTap: (){
-        //     Get.back();
-        //   },
-        //   child: Icon(Icons.arrow_back_ios, color: WHITE,),
-        // ),
       ),
     );
   }
@@ -149,10 +140,11 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: WHITE,
-              border: Border(bottom: BorderSide(color: GRAY)),
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(FeedbackAndReviewPage());
+              },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

@@ -37,6 +37,7 @@ class TransportDetailController extends GetxController {
   void onDeleteTransport(String id) {
     repository!.onDeleteTransportFee(id).then((value) {
       Get.snackbar('Thông báo', value.message!);
+      onGetTransportDetail(transportId!);
       update();
     }).catchError((onError) {
       update();

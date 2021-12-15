@@ -51,7 +51,7 @@ class LoginPage extends GetView<LoginController> {
                       child: Container(
                         height: Get.height * 0.7,
                         padding: EdgeInsets.all(20),
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20)),
@@ -67,7 +67,7 @@ class LoginPage extends GetView<LoginController> {
                                   color: BLACK,
                                   weight: FontWeight.w400,
                                 ),
-                                const SizedBox(height: 5),
+                                SizedBox(height: 5),
                                 TextCustomized(
                                   text: LOGIN_SIGN_TO_CONTINUE,
                                   font: SanFranciscoUIText,
@@ -75,14 +75,14 @@ class LoginPage extends GetView<LoginController> {
                                   color: GRAY,
                                   weight: FontWeight.w400,
                                 ),
-                                const SizedBox(height: 25),
+                                SizedBox(height: 25),
                                 TextCustomized(
                                   text: LOGIN_EMAIL_PHONE,
                                   font: SanFranciscoText,
                                   weight: FontWeight.w400,
                                   color: BLACK,
                                 ),
-                                const SizedBox(height: 5),
+                                SizedBox(height: 5),
                                 TextFieldCustomized(
                                   textController: controller.emailController,
                                   errorText: !controller.isEmailValid
@@ -112,7 +112,7 @@ class LoginPage extends GetView<LoginController> {
                                   weight: FontWeight.w400,
                                   color: BLACK,
                                 ),
-                                const SizedBox(height: 5),
+                                SizedBox(height: 5),
                                 TextFieldCustomized(
                                   textController: controller.passwordController,
                                   errorText: !controller.isPasswordValid
@@ -137,23 +137,19 @@ class LoginPage extends GetView<LoginController> {
                                         : Container(),
                                   ],
                                 ),
-                                const SizedBox(height: 16),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
-                                  child: ButtonCustomized(
-                                    LOGIN,
-                                    onTap: () {
-                                      controller.onLogin();
-                                    },
-                                    backgroundColor: COLOR_BT,
-                                  ),
+                                SizedBox(height: 16),
+                                ButtonCustomized(
+                                  LOGIN,
+                                  onTap: () {
+                                    controller.onLogin();
+                                  },
+                                  backgroundColor: COLOR_BT,
                                 ),
-                                const SizedBox(height: 20),
+                                SizedBox(height: 20),
                                 Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 16),
                                     child: InkWell(
                                       onTap: () {
                                         Get.to(ForgotPage());

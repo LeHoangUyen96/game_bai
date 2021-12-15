@@ -78,7 +78,7 @@ class OrderNoTransportDetailController extends GetxController {
   }
 
   void onChangeMethodSend(MethodSend value, int id) {
-    currentMethodSend = value.id! - 1;
+    currentMethodSend = value.id!;
     update();
   }
 

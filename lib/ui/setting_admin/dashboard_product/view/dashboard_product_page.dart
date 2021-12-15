@@ -48,16 +48,15 @@ class DashboardProductPage extends GetView<DashboardProductController> {
 
   Widget buildBody() {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         color: MAIN_BG,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Scrollbar(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: DataTable(
-                    sortAscending: true,
                     columns: [
                       DataColumn(label: TextCustomized(text: numerical)),
                       DataColumn(label: TextCustomized(text: nameProducts)),
@@ -71,9 +70,7 @@ class DashboardProductPage extends GetView<DashboardProductController> {
                       int nummerical = index + 1;
                       return DataRow(
                         cells: <DataCell>[
-                          DataCell(
-                            TextCustomized(text: nummerical.toString()),
-                          ),
+                          DataCell(TextCustomized(text: nummerical.toString())),
                           DataCell(TextCustomized(
                               text: controller.listProducts![index].name!)),
                           DataCell(Row(

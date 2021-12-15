@@ -259,7 +259,7 @@ class DialogAddTransportFee extends GetView<AddTransportFormFeeController> {
                                 ),
                               ),
                             ],
-                            hint: Text(selectProduct),
+                            hint: Text(product),
                           )),
               ),
             )),
