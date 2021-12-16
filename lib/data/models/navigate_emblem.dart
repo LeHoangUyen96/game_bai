@@ -31,7 +31,7 @@ class NavigateEmblemAdmin {
    bool showBadge;
 }
 List<NavigateEmblemAdmin> navigateItemAdmin = <NavigateEmblemAdmin>[
-  NavigateEmblemAdmin(NAV_HOME, IC_HOME, BLACK_1, 0, 0, false),
+  NavigateEmblemAdmin(NAV_HOME, IC_NAV_HOME, BLACK_1, 0, 0, false),
   NavigateEmblemAdmin(MANAGE_PACKAGE_ORDER, IC_ORDER, DISABLED_COLOR, 1, 0, true),
   NavigateEmblemAdmin("", "", WHITE,  4, 0, false),
   NavigateEmblemAdmin(MANAGE, IC_ACCOUNT, DISABLED_COLOR, 2, 0, false),

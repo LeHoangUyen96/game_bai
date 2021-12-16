@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
 import 'package:viet_trung_mobile/data/response/detail_user_response.dart';
+import 'package:viet_trung_mobile/res/strings.dart';
 
 class DetailUserController extends GetxController  {
   ManagerUserRepositories ? managerUserRepositories;
@@ -22,6 +23,13 @@ class DetailUserController extends GetxController  {
     managerUserRepositories!.onGetDetailUser(id!).then((value) {
       detailUserResponse = value;
       update();
+    }).catchError((onError){
+      print("-----------------$onError");
+    });
+  }
+  void onResetPassword(){
+    managerUserRepositories!.onResetPasswordUser(id!).then((value) {
+      Get.snackbar(NOTIFY, "Thay đổi mật khẩu thành công");
     }).catchError((onError){
       print("-----------------$onError");
     });

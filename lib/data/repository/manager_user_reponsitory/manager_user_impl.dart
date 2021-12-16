@@ -67,4 +67,16 @@ class ManagerUserImpl extends GetConnect implements ManagerUserRepositories {
     }
     throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }
+ 
+  @override
+  Future<bool> onResetPasswordUser(int id) async{
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.MANAGER_USER_RESET_PASSWORD+ "$id";
+    //final body = json.encode(request);
+    final responseJson = await post(url,{}, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return true;
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
+  }
 }

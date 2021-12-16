@@ -48,6 +48,8 @@ class ManagerBagController extends GetxController
     getListBag(false);
     fromDay = DateTime.now();
     toDay = DateTime.now();
+    getDataStatusBag();
+    getDataTransportForm();
   }
 
   void getListBag(bool isRefresh) {

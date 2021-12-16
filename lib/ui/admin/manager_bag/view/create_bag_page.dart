@@ -358,7 +358,9 @@ class CreateBagPage extends GetView<CreateBagController> {
                   ),
               SizedBox(height: 5),
               TextFieldCustomized(
-                hint: ORDER_LIST_NULL,
+                hint: controller.totalCodPackage.toString(),
+                readOnly: true,
+                colorBackgrount: MAIN_BG,
                 textController: controller.totalCodController,
               ),
               SizedBox(height: 5),
@@ -448,7 +450,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                   },
                   physics: ClampingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index){
-                    return _buildListBill(controller.mDataListOrder![index]);
+                    return _buildListBill(controller.mDataListOrder![index],index);
                   }
                   )
               )
@@ -499,7 +501,7 @@ class CreateBagPage extends GetView<CreateBagController> {
       ),
     );
   }
-   Widget _buildListBill(DataListOrderAddBagResponse data){
+   Widget _buildListBill(DataListOrderAddBagResponse data, index){
     return  Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -526,9 +528,11 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     ),
                     InkWell(
-                      onTap: (){},
+                      onTap: (){
+                        controller.onClearOrder(data,index);
+                      },
                       child: TextCustomized(
-                      text: 'Xoá',
+                      text: delete,
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: RED_1,

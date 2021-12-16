@@ -10,6 +10,8 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/size.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_staff/controller/detail_staff_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_staff/view/edit_staff_page.dart';
+import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile/widget/text_customized.dart';
@@ -54,7 +56,9 @@ class DetailStaffPage extends GetView<DetailStaffController> {
         ),
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(EditStaffPage(),arguments: controller.id);
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal:15.0),
               child: SvgPicture.asset(
@@ -176,7 +180,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                     )
                   ),
                   child: TextCustomized(
-                    text: 'Nhân viên kho Trung Quốc',
+                    text: controller.detailStaffResponse!.data!.role_name.toString(),
                     color: BT_CONFIRM,
                   ),
                 ),
@@ -214,10 +218,23 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                       ),
                     ],
                   ),
-                )
+                ),
+                
               ],
             ),
           ),
+          SizedBox(height: 10.0),
+          Container(
+            padding: EdgeInsets.all(15),
+            child: ButtonCustomized(
+              RESET_PASSWORD,
+              textColor: WHITE,
+              onTap: (){
+                controller.onResetPasswordAdmin();
+              },
+              backgroundColor: BT_CONFIRM,
+            ),
+          )
         ],
       ),
     );

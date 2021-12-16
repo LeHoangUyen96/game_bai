@@ -61,6 +61,7 @@ class  DataListOrderAddBagResponse {
      this.number_package_moved = ParseNumber.parseInt(json['number_package_moved']);
      this.packing_form =json["packing_form"] != null ? json["packing_form"].toString() : '';
      this.surcharge = ParseNumber.parseDouble(json['surcharge']);
+      this.isCheck = false;
     }
 
 }

@@ -849,6 +849,7 @@ const String DELIVERY_PACKAGE = 'Hình thức đóng gói';
 const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';
 const String ID_STAFF = 'Mã nhân viên';
 const String BAG_WEIGHT = 'Trọng lượng';
+const String RESET_PASSWORD = 'Reset Password';
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';
 const String goodsShipper = 'Hàng đã chuyển';

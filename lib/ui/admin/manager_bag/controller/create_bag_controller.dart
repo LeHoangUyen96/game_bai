@@ -15,6 +15,7 @@ import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 
 class CreateBagController extends GetxController  {
@@ -67,6 +68,7 @@ class CreateBagController extends GetxController  {
   bool isWeightFromValid = true;
   String orderErros = '';
   bool isOrderValid = true;
+  double? totalCodPackage = 0.0;
   @override
   void onInit() {
     super.onInit();
@@ -86,19 +88,32 @@ class CreateBagController extends GetxController  {
     }
     print("$order_id");
     print("$number_package");
-    //getDataWareHouseBack();
+    getDataWareHouseBack();
+    getDataStatusBag();
+    getDataTransportForm();
+    getDataListTransport();
   }
   void onGetListOrder(List<DataListOrderAddBagResponse> data){
     mDataListOrder = data;
-    
     for(var i = 0; i < mDataListOrder!.length; i++){
       total_numberPackage = total_numberPackage + mDataListOrder![i].number_package_remain!;
+      totalCodPackage = totalCodPackage! + mDataListOrder![i].transport_fee!;
     }
-
     print("${mDataListOrder!.length}");
     update();
   }
+  void onClearOrder( data,int index) {
+    mDataListOrder!.removeAt(index);
+    //mDataListOrder = data;
+    // for(var i = 0; i < mDataListOrder!.length; i++){
+    //   total_numberPackage = total_numberPackage - mDataListOrder![index].number_package_remain!;
+    //   totalCodPackage = totalCodPackage! - mDataListOrder![index].transport_fee!;
+    // }
+    onGetListOrder(mDataListOrder!);
+    update();
+  }
   Future<List<DataListWareHouseBackResponse>> getDataWareHouseBack () async {
+    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     bagRepositories!.onGetListWarehouseback().then((value){
       listWareHouseBackResponse = value;
       mDataListWareHouseBackResponse!.addAll(listWareHouseBackResponse!.data!);
@@ -191,12 +206,12 @@ class CreateBagController extends GetxController  {
     } else {
       isWeightFromValid = true;
     }
-    if (totalCodController.text.isEmpty) {
-      isTotalCodValid = false;
-      totalCodErros = "Tổng tiền thu hộ không được để trống";
-    } else {
-      isTotalCodValid = true;
-    }
+    // if (totalCodController.text.isEmpty) {
+    //   isTotalCodValid = false;
+    //   totalCodErros = "Tổng tiền thu hộ không được để trống";
+    // } else {
+    //   isTotalCodValid = true;
+    // }
     if (mListOrders!.length < 0) {
       isOrderValid = false;
       orderErros = "Danh sách đơn hàng không được để trống";
@@ -210,7 +225,7 @@ class CreateBagController extends GetxController  {
       user_id : userCode != null ? userCode : null,
       transport_form_id : transport_form_id,
       weight : ParseNumber.parseInt(weightController.text),
-      total_cod : ParseNumber.parseDouble(totalCodController.text),
+      total_cod : totalCodPackage,
       orders : mListOrders
     );
     bagRepositories!.onCreateBag(request).then((value) {

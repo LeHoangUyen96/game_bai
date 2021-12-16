@@ -38,6 +38,7 @@ class ListOrderAddToBagController extends GetxController  {
       }
       
     }
+     numberPackageController = TextEditingController();
     print("transport_form_id:$transport_form_id");
     print("warehouse_back_code:$warehouse_back_code");
     onGetListOrderAddToBag();
@@ -54,7 +55,7 @@ class ListOrderAddToBagController extends GetxController  {
         mDataListOrderAddBagResponse!.addAll(listOrderAddBagResponse!.data!);
         update();
       }).catchError((onError){
-        Get.snackbar(PROFILE_NOTIFY, onError.toString());
+       return onError(onError);
       });
     
     update();
@@ -70,13 +71,37 @@ class ListOrderAddToBagController extends GetxController  {
        });
        update();
   }
+  void onChangeNumberPackage(String val,int idOrder){
+    for(var i = 0; i < mDataListOrderAddBagResponse!.length; i++){
+      if(mDataListOrderAddBagResponse![i].id == idOrder 
+           && number_package! <= mDataListOrderAddBagResponse![i].number_package_remain! && number_package! > 0){
+             mDataListOrderAddBagResponse![i].isCheck = true;
+             if(mDataListOrderAddBagResponse![i].isCheck = true){
+              mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
+              mDataListOrderAddBagResponse![i].number_package_remain = number_package;
+
+              //update();
+             }
+           }
+    }
+    // number_package = int.parse(val,onError: (val) => -1) ;
+    // print('onchange ${numberPackageController}');
+    //update();
+  }
   void onAddBag(){
     for (var i = 0; i < mDataListOrderAddBagResponse!.length; i++) {
-      if(number_package! <= mDataListOrderAddBagResponse![i].number_package_remain! && number_package! > 0){
-        mDataListOrderAddBagResponse![i].isCheck = true;
-        if(mDataListOrderAddBagResponse![i].isCheck = true){
-          mDataListOrderAddBagResponse![i].number_package_remain = number_package;
-          mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
+      if(mDataListOrderAddBagResponse![i].isCheck = true){
+        //mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
+          print("order_id: $order_id");
+          print("number_package: $number_package");
+          Get.back(result: mDataListOrder);
+          update();
+      }
+      // if(number_package! <= mDataListOrderAddBagResponse![i].number_package_remain! && number_package! > 0){
+      //   mDataListOrderAddBagResponse![i].isCheck = true;
+      //   if(mDataListOrderAddBagResponse![i].isCheck = true){
+      //     mDataListOrderAddBagResponse![i].number_package_remain = number_package;
+      //     mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
           // mDataListOrderAddBagResponse![i].id = order_id;
           // mListOrders!.add(DataOrderCreateBag(
           //   order_id : mDataListOrderAddBagResponse![i].id,
@@ -86,12 +111,12 @@ class ListOrderAddToBagController extends GetxController  {
           //   "order_id" : order_id,
           //   "number_package" : number_package,
           // });
-          print("order_id: $order_id");
-          print("number_package: $number_package");
-          Get.back(result: mDataListOrder);
-          update();
-        }
-      }
+      //     print("order_id: $order_id");
+      //     print("number_package: $number_package");
+      //     Get.back(result: mDataListOrder);
+      //     update();
+      //   }
+      // }
       
 
     }
