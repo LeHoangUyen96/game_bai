@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
-import 'package:viet_trung_mobile/data/request/address_request.dart';
-import 'package:viet_trung_mobile/data/response/address_error_response.dart';
-import 'package:viet_trung_mobile/data/response/city_response.dart';
-import 'package:viet_trung_mobile/data/response/district_response.dart';
-import 'package:viet_trung_mobile/data/response/register_address_response.dart';
-import 'package:viet_trung_mobile/data/response/wards_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/address/contract/address_contract.dart';
-import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
-import 'package:viet_trung_mobile/widget/loading_dialog_widget.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/address_reponsitory/address_respositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/address_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/address_error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/city_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/district_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_address_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/wards_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/address/contract/address_contract.dart';
+import 'package:viet_trung_mobile_admin/ui/address/controller/address_page_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_dialog_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
 class AddAddressController extends GetxController implements AddressContract {
   TextEditingController nameController = TextEditingController();

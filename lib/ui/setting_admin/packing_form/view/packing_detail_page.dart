@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/packing_form/controller/packing_detail_controller.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/packing_form/controller/packing_detail_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class PackingDetailPage extends GetView<PackingDetailController> {
   @override
@@ -35,37 +35,24 @@ class PackingDetailPage extends GetView<PackingDetailController> {
               children: [
                 Row(
                   children: [
-                    TextCustomized(text: fee),
+                    TextCustomized(
+                      text: fee,
+                      weight: FontWeight.w500,
+                      color: BLACK_1,
+                    ),
                     Spacer(),
-                    controller.isEdit == false
-                        ? InkWell(
-                            onTap: () {
-                              controller.editFee();
-                            },
-                            child: Container(
-                              height: 48,
-                              width: 77,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: GRAY),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(9))),
-                              child: Center(
-                                child: TextCustomized(
-                                  text: "¥" +
-                                      controller.response!.data!.packingFee!
-                                          .toString(),
-                                  color: RED,
-                                  font: inter,
-                                  weight: FontWeight.w700,
-                                ),
-                              ),
-                            ))
-                        : TextFieldCustomized(
-                            textController: controller.feeController,
-                            textInputType: TextInputType.number,
-                            width: 77,
-                          ),
+                    TextFieldCustomized(
+                      width: 77,
+                      textController: controller.feeController,
+                      textInputType: TextInputType.number,
+                      align: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: RED,
+                        fontFamily: inter,
+                      ),
+                      maxLine: 1,
+                    ),
                   ],
                 ),
                 SizedBox(height: 16),
@@ -83,7 +70,7 @@ class PackingDetailPage extends GetView<PackingDetailController> {
                 SizedBox(height: 10),
                 ButtonCustomized(
                   delete,
-                  textColor: RED,
+                  textColor: COLOR_ORDER_BORDER_WAREHOUSE,
                   borderColor: Colors.grey,
                   onTap: () {
                     controller.onDeletePacking(

@@ -1,11 +1,9 @@
 import 'dart:io';
-import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
+import 'package:viet_trung_mobile_admin/ulti/key_storage/key_storage.dart';
 import 'package:get_storage/get_storage.dart';
 
 class NetworkConfig {
-  //static const String URL_SERVER = "https://viet_trung_mobile.tekup.vn/api/v2";
   static const String URL_SERVER = "http://backend-viettrung.tekup.vn/api/v1";
-  //static const String URL_SERVER_BASE_CDN = "https://viet_trung_mobile.tekup.vn";
   static const String URL_SERVER_BASE_CDN = "http://backend-viettrung.tekup.vn";
 
   static Map<String, String> onBuildHeader({bool? isMultipart}) {
@@ -34,6 +32,7 @@ class NetworkConfig {
   static const String LOGOUT = URL_SERVER + "/auth/logout";
   static const String REGISTER_STEP_1 = URL_SERVER + "/auth/signup-step1";
   static const String REGISTER_STEP_2 = URL_SERVER + "/auth/signup-step2";
+  static const String changePass = URL_SERVER + "/users/reset-password-profile";
 
   //cart
   static const String CARTS = URL_SERVER + "/carts";
@@ -298,4 +297,7 @@ class NetworkConfig {
   static const String updateExchangeRate =
       URL_SERVER + "/admin/setting/exchange-rate/update";
 
+  //manager feedback & review
+  static const String listFeedback = URL_SERVER + "/admin/comment/list";
+  static const String feedDetail = URL_SERVER + "/admin/comment/detail/";
 }

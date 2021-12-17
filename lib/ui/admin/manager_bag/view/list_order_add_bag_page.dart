@@ -153,7 +153,8 @@ class AddProductToBagDialog extends GetView<ListOrderAddToBagController> {
     )
     );
   }
-   Widget buildListProduct(DataListOrderAddBagResponse data) {
+
+  Widget buildListProduct(DataListOrderAddBagResponse data) {
     return Container(
       width: Get.width,
       decoration:

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/request/add_transport_form_fee_request.dart';
-import 'package:viet_trung_mobile/data/response/list_product_response.dart';
-import 'package:viet_trung_mobile/data/response/transport_fee_detail_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_transport_form_fee_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_product_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_fee_detail_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class EditTransportFormFeeController extends GetxController {
   TransportAdminRepositories? repository;

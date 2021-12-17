@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
-import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/response/list_product_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_product_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class DashboardProductController extends GetxController {
   RefreshController refreshController =
@@ -50,6 +50,7 @@ class DashboardProductController extends GetxController {
 
   void onDeleteProduct(String id) {
     dashboardProductRepository!.onDeleteProduct(id).then((value) {
+      onGetListProduct();
       Get.snackbar('Thông báo', value.message!);
       update();
     }).catchError((onError) {
@@ -65,13 +66,14 @@ class DashboardProductController extends GetxController {
     } else {
       nameValid = true;
     }
-
     if (nameValid) {
       dashboardProductRepository!
           .onAddProduct(nameProductController.text)
           .then((value) {
+        nameProductController.clear();
         Get.back();
         Get.snackbar('Thông báo', value.message!);
+        onGetListProduct();
         update();
       }).catchError((onError) {
         update();

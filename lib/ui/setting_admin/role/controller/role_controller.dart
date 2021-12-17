@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/list_role_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_role_response.dart';
 
 class RoleController extends GetxController {
   RefreshController refreshController =

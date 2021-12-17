@@ -1,6 +1,6 @@
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -49,10 +49,11 @@ class ButtonCustomized extends StatelessWidget {
           text!,
           style: textStyle ??
               TextStyle(
-                  fontSize: customSize,
-                  fontFamily: SanFranciscoText,
-                  fontWeight: FontWeight.w800,
-                  color: textColor ?? Colors.white),
+                fontSize: customSize,
+                fontFamily: inter,
+                fontWeight: FontWeight.w600,
+                color: textColor ?? Colors.white,
+              ),
           textAlign: TextAlign.center,
         ),
       ),

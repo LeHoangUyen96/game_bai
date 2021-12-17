@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 
 class InitialWidget extends StatefulWidget {
   final Widget child;

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/controller/transport_detail_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/view/add_transport_fee_popup.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/transport/view/edit_transport_fee_popup.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/transport/controller/transport_detail_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/transport/view/add_transport_fee_popup.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/transport/view/edit_transport_fee_popup.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class TransportDetailPage extends GetView<TransportDetailController> {
   String? name;

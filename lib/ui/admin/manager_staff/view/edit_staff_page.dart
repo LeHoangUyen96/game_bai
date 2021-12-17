@@ -20,7 +20,7 @@ import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
 class EditStaffPage extends GetView<EditStaffController> {
   BuildContext? mContext;
-  
+
   @override
   Widget build(BuildContext context) {
     mContext = context;
@@ -34,48 +34,52 @@ class EditStaffPage extends GetView<EditStaffController> {
       ),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
       child: AppBar(
         //centerTitle: true,
         title: TextCustomized(
-          text: PROFILE_CHANGE_INFORMATION ,
+          text: PROFILE_CHANGE_INFORMATION,
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
-          ),
+        ),
         flexibleSpace: Image(
           image: AssetImage(BG_IMG),
           fit: BoxFit.cover,
         ),
         backgroundColor: Colors.transparent,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back_ios, color: WHITE,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: WHITE,
+          ),
         ),
-        
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return GestureDetector(
       onTap: () {
         FocusScope.of(mContext!).requestFocus(FocusNode());
       },
-      child:  Container(
+      child: Container(
         color: WHITE,
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextCustomized(
-            text: ID_STAFF,
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
+        padding: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextCustomized(
+              text: ID_STAFF,
+              font: SanFranciscoText,
+              weight: FontWeight.w400,
+              color: MAIN_BLACK,
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
@@ -83,12 +87,11 @@ class EditStaffPage extends GetView<EditStaffController> {
               //errorText: ,
               hint: controller.detailStaffResponse!.data!.user_code.toString(),    
             ),
-            SizedBox(height: 15,),
             TextCustomized(
-            text: NAME,
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
+              text: NAME,
+              font: SanFranciscoText,
+              weight: FontWeight.w400,
+              color: MAIN_BLACK,
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
@@ -96,12 +99,11 @@ class EditStaffPage extends GetView<EditStaffController> {
               //errorText: ,
               hint:  controller.detailStaffResponse!.data!.name.toString(),    
             ),
-            SizedBox(height: 15,),
             TextCustomized(
-            text: PHONE,
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
+              text: PHONE,
+              font: SanFranciscoText,
+              weight: FontWeight.w400,
+              color: MAIN_BLACK,
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
@@ -109,12 +111,11 @@ class EditStaffPage extends GetView<EditStaffController> {
               //errorText: ,
               hint:  controller.detailStaffResponse!.data!.phone.toString(),    
             ),
-            SizedBox(height: 15,),
             TextCustomized(
-            text: email,
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
+              text: email,
+              font: SanFranciscoText,
+              weight: FontWeight.w400,
+              color: MAIN_BLACK,
             ),
             SizedBox(height: 5),
             TextFieldCustomized(
@@ -122,12 +123,11 @@ class EditStaffPage extends GetView<EditStaffController> {
               //errorText: ,
               hint:  controller.detailStaffResponse!.data!.email.toString(),   
             ),
-            SizedBox(height: 15,),
             TextCustomized(
-            text: "Phân quyền",
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
+              text: "Phân quyền",
+              font: SanFranciscoText,
+              weight: FontWeight.w400,
+              color: MAIN_BLACK,
             ),
             SizedBox(height: 5),
             Container(
@@ -153,13 +153,21 @@ class EditStaffPage extends GetView<EditStaffController> {
                       ),
                   popupItemBuilder: _customDropdown,
                   ),
+                ),
+                popupShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                popupItemBuilder: _customDropdown,
               ),
-              SizedBox(height: 15,),
+            ),
+            SizedBox(
+              height: 15,
+            ),
             TextCustomized(
-            text: "Avatar",
-            font: SanFranciscoText,
-            weight: FontWeight.w400,
-            color: MAIN_BLACK,
+              text: "Avatar",
+              font: SanFranciscoText,
+              weight: FontWeight.w400,
+              color: MAIN_BLACK,
             ),
             SizedBox(height: 5),
             //AddImageEnterWarehouse(),
@@ -167,10 +175,10 @@ class EditStaffPage extends GetView<EditStaffController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextCustomized(
-                text: "Trạng thái",
-                font: SanFranciscoText,
-                weight: FontWeight.w400,
-                color: MAIN_BLACK,
+                  text: "Trạng thái",
+                  font: SanFranciscoText,
+                  weight: FontWeight.w400,
+                  color: MAIN_BLACK,
                 ),
                 Wrap(
                   spacing: 5.0,
@@ -210,7 +218,7 @@ class EditStaffPage extends GetView<EditStaffController> {
               textColor: RED_1,
               borderColor: BT_GRAY,
             ),
-        ],
+          ],
         ),
       ),
     );
@@ -237,12 +245,9 @@ class EditStaffPage extends GetView<EditStaffController> {
                    ),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
-
-      ), 
-
-   );
- }
-}  
+              //    )
+            ],
+          )),
+    );
+  }
+}

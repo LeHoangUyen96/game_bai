@@ -1,16 +1,17 @@
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/response/notification_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/notification_response.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/response/notification_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/notification_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 import 'package:get/get_connect/connect.dart';
 import 'notification_repository.dart';
 
 class NotificationImpl extends GetConnect implements NotificationRepository {
-
   @override
-  Future<NotificationListResponse> onGetOrderNotification(int page, int perPage) async {
+  Future<NotificationListResponse> onGetOrderNotification(
+      int page, int perPage) async {
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.NOTIFICATION_LIST+"?type=3&page=$page&per_page=$perPage";
+    final url = NetworkConfig.NOTIFICATION_LIST +
+        "?type=3&page=$page&per_page=$perPage";
     final responseJson = await post(url, {}, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return NotificationListResponse.fromJson(responseJson.body);
@@ -19,9 +20,11 @@ class NotificationImpl extends GetConnect implements NotificationRepository {
   }
 
   @override
-  Future<NotificationListResponse> onGetSystemNotification(int page, int perPage) async {
+  Future<NotificationListResponse> onGetSystemNotification(
+      int page, int perPage) async {
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.NOTIFICATION_LIST+"?type=4&page=$page&per_page=$perPage";
+    final url = NetworkConfig.NOTIFICATION_LIST +
+        "?type=4&page=$page&per_page=$perPage";
     final responseJson = await post(url, {}, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return NotificationListResponse.fromJson(responseJson.body);
@@ -54,7 +57,7 @@ class NotificationImpl extends GetConnect implements NotificationRepository {
   @override
   Future onReadOneNotification(int notificationId) async {
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.NOTIFICATION_READ_ONE+"/$notificationId";
+    final url = NetworkConfig.NOTIFICATION_READ_ONE + "/$notificationId";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return 'Success';
@@ -63,9 +66,11 @@ class NotificationImpl extends GetConnect implements NotificationRepository {
   }
 
   @override
-  Future<NotificationListResponse> onGetListNotification(int page, int perPage) async {
-   final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.NOTIFICATION_LIST+"?page=$page&per_page=$perPage";
+  Future<NotificationListResponse> onGetListNotification(
+      int page, int perPage) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url =
+        NetworkConfig.NOTIFICATION_LIST + "?page=$page&per_page=$perPage";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return NotificationListResponse.fromJson(responseJson.body);
@@ -83,5 +88,4 @@ class NotificationImpl extends GetConnect implements NotificationRepository {
     }
     throw Exception(responseJson.body);
   }
-
 }

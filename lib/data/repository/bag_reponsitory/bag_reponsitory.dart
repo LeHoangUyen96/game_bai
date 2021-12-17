@@ -15,8 +15,9 @@ abstract class BagRepositories {
   Future<ListWareHouseBackResponse> onGetListWarehouseback();
   Future<ListStatusBagResponse> onGetListBagStatus();
   Future<ListBagResponse> onGetListBag(int page, int perPage);
-  Future<ListBagResponse> onSearchListBag(ManagerBagRequest request,int page, int perPage);
-  Future<ListBagResponse> onFilterListBag(String code,int page, int perPage);
+  Future<ListBagResponse> onSearchListBag(
+      ManagerBagRequest request, int page, int perPage);
+  Future<ListBagResponse> onFilterListBag(String code, int page, int perPage);
   Future<BagDetailsResponse> onGetDetailsBag(int id);
   Future<UploadStatusBagResponse> onUpdateSatusBag(String parent_pack_status_code,int id);
   Future<ListOrderAddBagResponse> onGetListOrderAddBag(ListOrderAddBagRequest request);

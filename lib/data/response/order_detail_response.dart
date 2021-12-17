@@ -1,7 +1,6 @@
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class OrderDetailsResponse {
-
   DataOrderDetailsResponses? dataOrderDetails;
 
   OrderDetailsResponse({
@@ -10,9 +9,10 @@ class OrderDetailsResponse {
 
   OrderDetailsResponse.fromJson(Map<String, dynamic> json) {
     print('OrderDetailsResponse.fromJson ${json}');
-    this.dataOrderDetails = json['data'] != null ? DataOrderDetailsResponses.fromJson(json['data']) : null;
+    this.dataOrderDetails = json['data'] != null
+        ? DataOrderDetailsResponses.fromJson(json['data'])
+        : null;
   }
-
 }
 
 class DataOrderDetailsResponses {
@@ -34,8 +34,7 @@ class DataOrderDetailsResponses {
   String? delivery_form;
   String? storage_receive;
   String? note;
-  List<DataOrderJourney> ? order_journey;
-
+  List<DataOrderJourney>? order_journey;
 
   DataOrderDetailsResponses({
     this.id,
@@ -84,8 +83,10 @@ class DataOrderDetailsResponses {
     this.id = ParseNumber.parseInt(json['id']);
     this.bill_code = json["bill_code"] != null ? json["bill_code"] : '';
     this.type = ParseNumber.parseInt(json['type']);
-    this.order_status = json["order_status"] != null ? json["order_status"] : '';
-    this.order_status_name = json["order_status_name"] != null ? json["order_status_name"] : '';
+    this.order_status =
+        json["order_status"] != null ? json["order_status"] : '';
+    this.order_status_name =
+        json["order_status_name"] != null ? json["order_status_name"] : '';
     this.name = json["name"] != null ? json["name"] : '';
     this.phone = json["phone"] != null ? json["phone"] : '';
     this.number_package = ParseNumber.parseInt(json['number_package']);
@@ -94,30 +95,31 @@ class DataOrderDetailsResponses {
     this.transport_fee = ParseNumber.parseDouble(json['transport_fee']);
     this.created_at = json["created_at"] != null ? json["created_at"] : '';
     this.updated_at = json["updated_at"] != null ? json["updated_at"] : '';
-    this.packing_form = json["packing_form"] != null ? json["packing_form"] : '';
-    this.transport_form = json["transport_form"] != null ? json["transport_form"] : '';
-    this.delivery_form = json["delivery_form"] != null ? json["delivery_form"] : '';
-    this.storage_receive = json["storage_receive"] != null ? json["storage_receive"] : '';
+    this.packing_form =
+        json["packing_form"] != null ? json["packing_form"] : '';
+    this.transport_form =
+        json["transport_form"] != null ? json["transport_form"] : '';
+    this.delivery_form =
+        json["delivery_form"] != null ? json["delivery_form"] : '';
+    this.storage_receive =
+        json["storage_receive"] != null ? json["storage_receive"] : '';
     this.note = json["note"] != null ? json["note"] : '';
-    this.order_journey = json["order_journey"] == null ? <DataOrderJourney>[] : json['order_journey'].map<DataOrderJourney>((e)=> DataOrderJourney.fromJson(e)).toList();
-
+    this.order_journey = json["order_journey"] == null
+        ? <DataOrderJourney>[]
+        : json['order_journey']
+            .map<DataOrderJourney>((e) => DataOrderJourney.fromJson(e))
+            .toList();
   }
-
-
 }
-class DataOrderJourney{
+
+class DataOrderJourney {
   String? status_name;
   String? created_at;
 
-  DataOrderJourney({
-    this.status_name,
-    this.created_at
-  });
+  DataOrderJourney({this.status_name, this.created_at});
 
-  DataOrderJourney.fromJson(Map<String, dynamic> json){
+  DataOrderJourney.fromJson(Map<String, dynamic> json) {
     this.status_name = json['status_name'] != null ? json['status_name'] : '';
     this.created_at = json['created_at'] != null ? json['created_at'] : '';
   }
-
 }
-

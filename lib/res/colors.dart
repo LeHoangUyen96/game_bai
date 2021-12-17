@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:viet_trung_mobile/ulti/helper/color_helper.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/color_helper.dart';
 
 final Color boderTextFieldColor = ColorHelper.parseColor("#C1C1C1");
 final Color boderTextFieldEnabledColor = ColorHelper.parseColor("#333333");

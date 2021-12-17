@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class ListOrderAddBagResponse {
- List< DataListOrderAddBagResponse> ? data;
-  ListOrderAddBagResponse ({
+  List<DataListOrderAddBagResponse>? data;
+  ListOrderAddBagResponse({
     this.data,
   });
-  ListOrderAddBagResponse.fromJson(Map <String,dynamic> json  ){
-     print('data.fromJson ${json} ');
-      this.data = json["data"] == null ? <DataListOrderAddBagResponse>[] : json['data'].map<DataListOrderAddBagResponse>((e)=> DataListOrderAddBagResponse.fromJson(e)).toList();
-   }
+  ListOrderAddBagResponse.fromJson(Map<String, dynamic> json) {
+    print('data.fromJson ${json} ');
+    this.data = json["data"] == null
+        ? <DataListOrderAddBagResponse>[]
+        : json['data']
+            .map<DataListOrderAddBagResponse>(
+                (e) => DataListOrderAddBagResponse.fromJson(e))
+            .toList();
+  }
 }
 
 class  DataListOrderAddBagResponse {
