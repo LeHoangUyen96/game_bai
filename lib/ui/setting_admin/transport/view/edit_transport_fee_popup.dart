@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/models/unit.dart';
 import 'package:viet_trung_mobile/data/response/list_product_response.dart';
 import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/dimens.dart';
@@ -24,7 +23,7 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(9)),
                 child: Container(
-                  height: Get.height * 0.85,
+                  height: Get.height * 0.8,
                   width: Get.width,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(10)),
@@ -35,7 +34,14 @@ class DialogEditTransportFee extends GetView<EditTransportFormFeeController> {
                       children: [
                         Container(
                           height: 56,
-                          color: COLOR_BT,
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: COLOR_BT,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(9),
+                              topRight: Radius.circular(9),
+                            ),
+                          ),
                           child: Row(
                             children: [
                               Spacer(),

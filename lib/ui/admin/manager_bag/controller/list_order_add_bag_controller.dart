@@ -1,4 +1,5 @@
-  import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
@@ -9,7 +10,7 @@ import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/create_bag_page.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-class ListOrderAddToBagController extends GetxController  {
+class ListOrderAddToBagController extends GetxController {
   TextEditingController numberPackageController = TextEditingController();
   TextEditingController searchBillCodeController = TextEditingController();
   ListOrderAddBagResponse ? listOrderAddBagResponse;
@@ -26,7 +27,7 @@ class ListOrderAddToBagController extends GetxController  {
   void onInit() {
     super.onInit();
     bagRepositories = Injector().bag;
-     if (Get.arguments != null) {
+    if (Get.arguments != null) {
       if (Get.arguments['transport_form_id'] == null) {
         transport_form_id = null;
       } else {
@@ -36,7 +37,6 @@ class ListOrderAddToBagController extends GetxController  {
       } else {
         warehouse_back_code = Get.arguments['warehouse_back_code'];
       }
-      
     }
      numberPackageController = TextEditingController();
     print("transport_form_id:$transport_form_id");
@@ -46,8 +46,8 @@ class ListOrderAddToBagController extends GetxController  {
   void onGetListOrderAddToBag(){
     //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     ListOrderAddBagRequest request = ListOrderAddBagRequest(
-      warehouse_back_code : warehouse_back_code,
-      transport_form_id : transport_form_id,
+      warehouse_back_code: warehouse_back_code,
+      transport_form_id: transport_form_id,
     );
       bagRepositories!.onGetListOrderAddBag(request).then((value) {
         //Get.dialog(LoadingSpinKit(), barrierDismissible: false);

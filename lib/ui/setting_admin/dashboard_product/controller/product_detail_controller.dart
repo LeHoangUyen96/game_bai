@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
 import 'package:viet_trung_mobile/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
-import 'package:viet_trung_mobile/data/response/list_product_response.dart';
 import 'package:viet_trung_mobile/data/response/product_detail_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 

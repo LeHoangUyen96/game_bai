@@ -18,23 +18,26 @@ class DialogAddTransportFee extends GetView<AddTransportFormFeeController> {
         init: AddTransportFormFeeController(),
         builder: (value) => Dialog(
             backgroundColor: Colors.white,
-            elevation: 0,
             insetPadding: EdgeInsets.symmetric(horizontal: 15),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
             child: Container(
-              height: Get.height * 0.85,
-              width: Get.width,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              height: Get.height * 0.8,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: COLOR_BT,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(9),
+                          topRight: Radius.circular(9),
+                        ),
+                      ),
                       height: 56,
-                      color: COLOR_BT,
                       child: Row(
                         children: [
                           Spacer(),
