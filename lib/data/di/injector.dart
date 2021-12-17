@@ -10,6 +10,8 @@ import 'package:viet_trung_mobile_admin/data/repository/exchange_rate_reponsitor
 import 'package:viet_trung_mobile_admin/data/repository/exchange_rate_reponsitory/exchange_rate_reponsitory.dart';
 import 'package:viet_trung_mobile_admin/data/repository/feedback_reponsitory/feedback_impl.dart';
 import 'package:viet_trung_mobile_admin/data/repository/feedback_reponsitory/feedback_reponsitories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/manager_warehouse_repository/manager_warehouse_impl.dart';
+import 'package:viet_trung_mobile_admin/data/repository/manager_warehouse_repository/manager_warehouse_repositories.dart';
 import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_impl.dart';
 import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
 import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_impl.dart';
@@ -68,4 +70,5 @@ class Injector {
   DashboardProductRepositories get dashboardProduct => DashboardProductImpl();
   ExchangeRateRepositories get exchangeRate => ExchangeRateImpl();
   FeedbackRespositories get feedback => FeedbackImpl();
+  ManagerWarehouseRepositories get warehouse => ManagerWarehouseImpl();
 }

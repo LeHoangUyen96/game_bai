@@ -306,4 +306,12 @@ class NetworkConfig {
   //manager feedback & review
   static const String listFeedback = URL_SERVER + "/admin/comment/list";
   static const String feedDetail = URL_SERVER + "/admin/comment/detail/";
+
+  //manager inventor
+  static const String listWarehouse = URL_SERVER + "/admin/warehouses/list";
+  static const String warehouseDetail =
+      URL_SERVER + "/admin/warehouses/detail/";
+  static const String updateWarehouse = URL_SERVER + "/admin/warehouses/update";
+  static const String deleteWarehouse =
+      URL_SERVER + "/admin/warehouses/delete/";
 }
