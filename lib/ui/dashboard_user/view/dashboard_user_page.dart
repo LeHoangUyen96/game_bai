@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/dashboard_user_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/dashboard_user/controller/dashboard_user_controller.dart';
-import 'package:viet_trung_mobile/ui/notification/view/detail_notification_many_bag_page.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_details_receive.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_info_page.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/dashboard_user_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/dashboard_user/controller/dashboard_user_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/notification/view/detail_notification_many_bag_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order/view/order_details_receive.dart';
+import 'package:viet_trung_mobile_admin/ui/order/view/order_info_page.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class DashboardUserPage extends GetView<DashboardUserController> {
   @override

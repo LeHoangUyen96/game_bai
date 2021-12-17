@@ -1,8 +1,8 @@
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,9 @@ class LoadingSpinKit extends StatelessWidget {
                   font: fOpenSan,
                   color: BLACK,
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 const SpinKitCircle(
                   color: BLACK,
                 ),

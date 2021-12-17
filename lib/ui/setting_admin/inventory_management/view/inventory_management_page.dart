@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/inventory_management/controller/inventory_management_controller.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/inventory_management/controller/inventory_management_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
 
 class InventoryManagementPage extends GetView<InventoryManagementcontroller> {
   @override

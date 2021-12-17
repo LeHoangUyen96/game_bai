@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/list_rights_group.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/role/controller/add_role_controller.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_rights_group.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/role/controller/add_role_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class AddRolePage extends GetView<AddRoleController> {
   @override
@@ -45,11 +45,14 @@ class AddRolePage extends GetView<AddRoleController> {
                   textInputType: TextInputType.text,
                 ),
                 controller.nameValid == false
-                    ? TextCustomized(
-                        text: controller.nameError.toString(),
-                        color: Colors.red,
-                        size: 10,
-                      )
+                    ? Column(children: [
+                        SizedBox(height: 5),
+                        TextCustomized(
+                          text: controller.nameError.toString(),
+                          color: Colors.red,
+                          size: 12,
+                        )
+                      ])
                     : SizedBox(),
                 SizedBox(height: 20),
                 ListView.builder(

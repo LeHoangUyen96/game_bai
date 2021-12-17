@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/request/enter_warehouse_request.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/ramdom_bill_order_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/enter_warehouse_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/ramdom_bill_order_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class EnterWarehouseController extends GetxController {
   TextEditingController barCodeValueController = TextEditingController();

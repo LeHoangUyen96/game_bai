@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
-import 'package:viet_trung_mobile/data/response/product_detail_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
+import 'package:viet_trung_mobile_admin/data/response/product_detail_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class ProductDetailController extends GetxController {
   RefreshController refreshController =
@@ -46,7 +46,6 @@ class ProductDetailController extends GetxController {
     } else {
       nameValid = true;
     }
-
     if (nameValid) {
       dashboardProductRepository!
           .onUpdateProduct(productId!, nameProductController.text)

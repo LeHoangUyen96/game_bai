@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
-import 'package:viet_trung_mobile/data/response/address_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/repository/address_reponsitory/address_respositories.dart';
+import 'package:viet_trung_mobile_admin/data/response/address_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/address/controller/address_page_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class DialogDelAddressCustomized extends StatefulWidget {
   int? idAddress;

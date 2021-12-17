@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/repository/rating_order_reponsitory/rating_order_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/list_rating_order_response.dart';
-import 'package:viet_trung_mobile/data/response/order_detail_response.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/rating_order_reponsitory/rating_order_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_rating_order_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
-class RatingOrderController extends GetxController  {
-   ListRatingOrderResponse ? listRatingOrderResponse;
-   RatingOrderRepositories? ratingOrderRepositories;
+class RatingOrderController extends GetxController {
+  ListRatingOrderResponse? listRatingOrderResponse;
+  RatingOrderRepositories? ratingOrderRepositories;
   Color? color;
   @override
   void onInit() {
@@ -19,15 +19,17 @@ class RatingOrderController extends GetxController  {
     ratingOrderRepositories = Injector().ratingOrder;
     onGetListRatingOrder();
   }
-  void onGetListRatingOrder(){
-    ratingOrderRepositories!.onGetListRatingOrder().then((value){
+
+  void onGetListRatingOrder() {
+    ratingOrderRepositories!.onGetListRatingOrder().then((value) {
       listRatingOrderResponse = value;
-      update();      
-    }).catchError((onError){
+      update();
+    }).catchError((onError) {
       return onError(onError);
     });
   }
-  Color ColorStatusName( String order_status_name) {
+
+  Color ColorStatusName(String order_status_name) {
     switch (order_status_name) {
       case ORDER_LIST_CHINA_WAREHOUSE:
         color = COLOR_ORDER_CHINESE_WAREHOUSE;
@@ -55,9 +57,8 @@ class RatingOrderController extends GetxController  {
         break;
       case ORDER_DELIVERY_SUCCESSFULL:
         color = COLOR_ORDER_DELIVERY_SUCCESSFULL;
-        break;        
+        break;
     }
     return color!;
   }
-   
 }

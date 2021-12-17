@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/size.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/finding_customers/controller/finding_customer_controller.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/size.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/finding_customers/controller/finding_customer_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class HomeViewsPage extends GetView<FindingCustomerController> {
   BuildContext? mContext;
@@ -23,6 +23,7 @@ class HomeViewsPage extends GetView<FindingCustomerController> {
       ),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
@@ -32,7 +33,7 @@ class HomeViewsPage extends GetView<FindingCustomerController> {
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
-          ),
+        ),
         flexibleSpace: Image(
           image: AssetImage(BG_IMG),
           fit: BoxFit.cover,
@@ -48,7 +49,8 @@ class HomeViewsPage extends GetView<FindingCustomerController> {
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Center();
   }
-} 
+}

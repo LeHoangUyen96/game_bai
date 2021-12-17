@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/address/controller/address_page_controller.dart';
-import 'package:viet_trung_mobile/ui/address/view/add_address_page.dart';
-import 'package:viet_trung_mobile/ui/address/view/update_address_page.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/popup_del_address.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/address/controller/address_page_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/address/view/add_address_page.dart';
+import 'package:viet_trung_mobile_admin/ui/address/view/update_address_page.dart';
+import 'package:viet_trung_mobile_admin/widget/initial_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/popup_del_address.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class AddressPage extends GetView<AddressController> {
   @override

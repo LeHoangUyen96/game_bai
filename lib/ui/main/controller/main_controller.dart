@@ -1,15 +1,15 @@
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
-import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
-import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
-import 'package:viet_trung_mobile/ui/main/contract/main_contract.dart';
-import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/home_reponsitory/home_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/notification_repository/notification_repository.dart';
+import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/profile_get_me_response.dart';
+import 'package:viet_trung_mobile_admin/ui/main/contract/main_contract.dart';
+import 'package:viet_trung_mobile_admin/ulti/key_storage/key_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile_admin/data/models/navigate_emblem.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:get_storage/get_storage.dart';
 
 class MainController extends GetxController implements MainContract {

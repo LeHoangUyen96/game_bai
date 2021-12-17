@@ -4,7 +4,7 @@ const String tekup_logo = _imagePath + "tekup_logo.png";
 const String icon_user = _imagePath + "icon_user.svg";
 const String icon_line = _imagePath + "icon_line.svg";
 const String icon_password = _imagePath + "ic_password.svg";
-const String viet_trung_mobile_logo = _imagePath + "logo_app.png";
+const String viet_trung_mobile_admin_logo = _imagePath + "logo_app.png";
 const String icon_email = _imagePath + "icon_email.svg";
 const String icon_phone = _imagePath + "icon_phone.svg";
 
@@ -66,3 +66,5 @@ const String IMG_LOGO = "assets/images/img_logo.png";
 const String ic_edit = "assets/images/ic_edit.svg";
 const String BG_IMG_DASHBOARD_ADMIN = "assets/images/img_backgourd_admin.png";
 const String IC_CALENDAR = "assets/images/icon_calendar.svg";
+const String ic_success = "assets/images/ic_success.svg";
+const String ic_faild = "assets/images/ic_faild.svg";

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/dashboard_product/controller/product_detail_controller.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/dashboard_product/controller/product_detail_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class DialogEditProduct extends GetView<ProductDetailController> {
   @override
@@ -32,7 +32,14 @@ class DialogEditProduct extends GetView<ProductDetailController> {
                   children: [
                     Container(
                       height: 56,
-                      color: COLOR_BT,
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: COLOR_BT,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(9),
+                          topRight: Radius.circular(9),
+                        ),
+                      ),
                       child: Row(
                         children: [
                           Spacer(),

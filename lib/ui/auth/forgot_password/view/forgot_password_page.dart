@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/auth/forgot_password/controller/forgot_password_controller.dart';
-import 'package:viet_trung_mobile/ui/auth/forgot_password/view/forgot_password_step_1.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/forgot_password/controller/forgot_password_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/forgot_password/view/forgot_password_step_1.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class ForgotPage extends GetView<ForgotController> {
   @override
@@ -35,24 +35,37 @@ class ForgotPage extends GetView<ForgotController> {
               Container(
                   width: Get.width,
                   alignment: Alignment.center,
-                  //padding: EdgeInsets.all(20),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         Container(
-                            padding: EdgeInsets.only(top: 30),
+                            padding: EdgeInsets.all(16),
+                            child: Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: WHITE,
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Container(
+                            padding: EdgeInsets.only(top: 20),
                             child: ImageCustomized(
                               path: IMG_LOGO,
                               height: 150,
                               width: 150,
                             )),
-                        SizedBox(height: 8),
+                        SizedBox(height: 50),
                         Expanded(
-                          //flex: 4,
                           child: Container(
+                            height: Get.height * 0.7,
                             padding: EdgeInsets.all(20),
-                            height: double.maxFinite,
                             decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20),
@@ -87,15 +100,7 @@ class ForgotPage extends GetView<ForgotController> {
                                       font: SanFranciscoText,
                                       color: boderTextFieldEnabledColor,
                                     ),
-                                    // TextFieldCustom(
-                                    //  textController: controller.emailController,
-                                    //  errorText: !controller.isEmailValid ? controller.emailError : null,
-                                    //  hint: LOGIN_EMAIL_OR_PHONE,
-
-                                    //   ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
+                                    SizedBox(height: 5),
                                     TextFieldCustomized(
                                       textController:
                                           controller.emailController,
@@ -104,9 +109,7 @@ class ForgotPage extends GetView<ForgotController> {
                                           : null,
                                       hint: LOGIN_EMAIL_OR_PHONE,
                                     ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
+                                    SizedBox(height: 5),
                                     Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -122,17 +125,13 @@ class ForgotPage extends GetView<ForgotController> {
                                             : Container(),
                                       ],
                                     ),
-
-                                    SizedBox(
-                                      height: 16,
-                                    ),
+                                    SizedBox(height: 16),
                                     ButtonCustomized(
                                       LOGIN_RESET,
                                       onTap: () {
-                                        //controller.onForgotPass();
                                         Get.to(ForgotStepOnePage());
                                       },
-                                      backgroundColor: MAIN_BLACK,
+                                      backgroundColor: COLOR_BT,
                                     ),
                                   ]),
                             ),

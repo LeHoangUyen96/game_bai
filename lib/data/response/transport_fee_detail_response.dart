@@ -1,4 +1,4 @@
-import 'package:viet_trung_mobile/data/response/transport_admin_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_admin_detail_response.dart';
 
 class TransportFeeDetailResponse {
   final DataTransportFormAdminDetail? data;

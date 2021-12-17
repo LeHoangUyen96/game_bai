@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/size.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/general_management/controller/general_management_controller.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/view/manager_bag_page.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/view/manager_staff_list_page.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_user/view/manager_user_list_page.dart';
-import 'package:viet_trung_mobile/ui/admin/order_valid/create_bag_ord_vaild/view/create_bag_ord_vaild_page.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/size.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/general_management/controller/general_management_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/manager_bag_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_feedback_review/view/manager_feedback_review_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/view/manager_staff_list_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/manager_user_list_page.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class GenaeralManagePage extends GetView<GenaralManageController> {
-  BuildContext? mContext;
   @override
   Widget build(BuildContext context) {
-    mContext = context;
     return GetBuilder<GenaralManageController>(
       init: GenaralManageController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
         body: SingleChildScrollView(child: buildBody()),
-        //body: buildBody(),
         backgroundColor: BT_GRAY,
       ),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
@@ -38,23 +36,18 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
-          ),
+        ),
         flexibleSpace: Image(
           image: AssetImage(BG_IMG),
           fit: BoxFit.cover,
         ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        // leading: InkWell(
-        //   onTap: (){
-        //     Get.back();
-        //   },
-        //   child: Icon(Icons.arrow_back_ios, color: WHITE,),
-        // ),
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return Container(
       color: BT_GRAY,
       child: Column(
@@ -63,20 +56,16 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: WHITE,
-              border: Border(
-                bottom: BorderSide(color: GRAY)
-              ),
+              border: Border(bottom: BorderSide(color: GRAY)),
             ),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Get.to(ManagerBagPage());
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset(IC_WAREHOUSE)),
+                  Expanded(flex: 1, child: SvgPicture.asset(IC_WAREHOUSE)),
                   Expanded(
                     flex: 6,
                     child: TextCustomized(
@@ -95,20 +84,16 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: WHITE,
-              border: Border(
-                bottom: BorderSide(color: GRAY)
-              ),
+              border: Border(bottom: BorderSide(color: GRAY)),
             ),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Get.to(ManagerStaffPage());
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset(IC_ID_CARD)),
+                  Expanded(flex: 1, child: SvgPicture.asset(IC_ID_CARD)),
                   Expanded(
                     flex: 6,
                     child: TextCustomized(
@@ -127,20 +112,16 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: WHITE,
-              border: Border(
-                bottom: BorderSide(color: GRAY)
-              ),
+              border: Border(bottom: BorderSide(color: GRAY)),
             ),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Get.to(ManagerUserPage());
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset(IC_MANAGER_USER)),
+                  Expanded(flex: 1, child: SvgPicture.asset(IC_MANAGER_USER)),
                   Expanded(
                     flex: 6,
                     child: TextCustomized(
@@ -155,22 +136,19 @@ class GenaeralManagePage extends GetView<GenaralManageController> {
               ),
             ),
           ),
-           Container(
+          Container(
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: WHITE,
-              border: Border(
-                bottom: BorderSide(color: GRAY)
-              ),
             ),
             child: InkWell(
-              onTap: (){},
+              onTap: () {
+                Get.to(FeedbackAndReviewPage());
+              },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset(IC_REVIEW)),
+                  Expanded(flex: 1, child: SvgPicture.asset(IC_REVIEW)),
                   Expanded(
                     flex: 6,
                     child: TextCustomized(
