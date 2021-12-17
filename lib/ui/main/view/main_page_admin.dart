@@ -81,6 +81,8 @@ class MainPageAdmin extends GetView<MainController> {
             badgeCount: navigateEmblemAdmin.badgeCount,
             showBadge: navigateEmblemAdmin.showBadge,
             icon: ImageCustomized(
+              width: 30,
+              height: 30,
               path: navigateEmblemAdmin.image,
               color: navigateEmblemAdmin.color,
               margin: const EdgeInsets.only(bottom: 5),

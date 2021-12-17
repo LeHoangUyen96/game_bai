@@ -54,4 +54,11 @@ class DetailStaffController extends GetxController {
       //Get.defaultDialog(title: onError.toString(), middleText: '');
     });
   }
+  void onResetPasswordAdmin(){
+     managerStaffRepositories!.onResetPasswordAdmin(id!).then((value) {
+      Get.snackbar(NOTIFY, "Thay đổi mật khẩu thành công");
+    }).catchError((onError){
+      print("-----------------$onError");
+    });
+  }
 }

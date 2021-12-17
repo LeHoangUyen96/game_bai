@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:viet_trung_mobile_admin/data/response/list_status_bag_response.dart';
-import 'package:viet_trung_mobile_admin/res/colors.dart';
-import 'package:viet_trung_mobile_admin/res/dimens.dart';
-import 'package:viet_trung_mobile_admin/res/fonts.dart';
-import 'package:viet_trung_mobile_admin/res/images.dart';
-import 'package:viet_trung_mobile_admin/res/size.dart';
-import 'package:viet_trung_mobile_admin/res/strings.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/controller/bag_details_controller.dart';
-import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
+import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/dimens.dart';
+import 'package:viet_trung_mobile/res/fonts.dart';
+import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/res/size.dart';
+import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/bag_details_controller.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class BagDeatailsPage extends GetView<BagDetailsController> {
   BuildContext? mContext;
@@ -406,17 +407,19 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                 ),
                 controller.changeBill == true
                     ? Container(
-                        color: WHITE,
-                        child: ListView.separated(
-                            itemCount: 6,
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return SizedBox(height: 10);
-                            },
-                            physics: ClampingScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) {
-                              return _buildListBill();
-                            }))
+                      color: WHITE,
+                      child: ListView.separated(
+                        itemCount: controller.bagDetailsResponse!.data!.orders!.length,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 10);
+                        },
+                        physics: ClampingScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index){
+                          return _buildListBill(controller.bagDetailsResponse!.data!.orders![index]);
+                        }
+                        )
+                    )
                     : Container(),
               ]),
             ),
@@ -436,24 +439,33 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     weight: FontWeight.w700,
                     color: BLACK,
                   ),
-                ),
-                Container(
-                  width: Get.width,
-                  height: 0.5,
-                  color: BT_GRAY,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8), color: WHITE),
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextCustomized(
-                        text: ORDER_LIST_JOURNEY,
-                        size: normalSize,
-                        weight: FontWeight.w600,
-                        color: BLACK_1,
+                  Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: WHITE 
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: ORDER_LIST_JOURNEY,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
+                              ),
+                              SizedBox(height: 20,),
+                            ListView.builder(
+                              itemCount: controller.bagDetailsResponse!.data!.packing_journey!.length,
+                              shrinkWrap: true,
+                              reverse: true,
+                              physics: ClampingScrollPhysics(),
+                              itemBuilder: (BuildContext context, index){
+                                return _buildListJourney(index);
+                              }
+                              ),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: 20,
@@ -599,31 +611,29 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
       ),
     );
   }
-
-  Widget _buildListBill() {
-    return Container(
+  Widget _buildListBill(DataListOrderAddBagResponse data){
+    return  Container(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-          Container(
-            padding: EdgeInsets.only(top: 5, bottom: 10),
-            decoration: BoxDecoration(
-                border: Border(
-              top: BorderSide(color: BT_GRAY),
-              //bottom: BorderSide(color: BT_GRAY)
-            )),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              TextCustomized(
-                text: '0123456AMHDI2',
-                font: SanFranciscoText,
-                weight: FontWeight.w700,
-                color: MAIN_BLACK,
-                size: normalSize,
-              ),
-              SizedBox(
-                height: 5,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:[
+             Container(
+               padding: EdgeInsets.only(top: 5,bottom: 10),
+               decoration: BoxDecoration(
+                 border: Border(
+                   top: BorderSide(color: BT_GRAY),
+                   //bottom: BorderSide(color: BT_GRAY)
+                 )
+               ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+            TextCustomized(
+              text: data.bill_code.toString(),
+              font: SanFranciscoText,
+              weight: FontWeight.w700,
+              color: MAIN_BLACK,
+              size: normalSize,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -634,9 +644,9 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     weight: FontWeight.w500,
                     size: normalSize,
                     color: BLACK_1,
-                  ),
-                  TextCustomized(
-                    text: ORDER_NULL,
+                    ),
+                    TextCustomized(
+                    text: data.packing_form.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
@@ -650,24 +660,41 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
-                    text: DELIVERY_PACKAGE,
+                    text: ORDER_LIST_PARCELS,
                     font: SanFranciscoUIText,
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                  ),
-                  TextCustomized(
-                    text: ORDER_NULL,
+                    ),
+                    TextCustomized(
+                    text: data.number_package_remain.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
                   ),
                 ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
+              ),   
+              SizedBox(height: 5,),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: BAG_WEIGHT,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: data.surcharge.toString(),
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ),   
+              // SizedBox(height: 5,),      
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -676,9 +703,9 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                  ),
-                  TextCustomized(
-                    text: ORDER_NULL,
+                    ),
+                    TextCustomized(
+                    text: "¥" + data.transport_fee.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
@@ -697,35 +724,35 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                  ),
-                  TextCustomized(
-                    text: ORDER_NULL,
+                    ),
+                    TextCustomized(
+                    text: data.surcharge.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
-                    color: RED_1,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextCustomized(
-                    text: DELIVERY_FEE_TRANSACTION,
-                    font: SanFranciscoUIText,
-                    size: normalSize,
-                    weight: FontWeight.w500,
                     color: BLACK_1,
-                  ),
-                  TextCustomized(
-                    text: ORDER_NULL,
-                    font: SanFranciscoText,
-                    weight: FontWeight.w400,
-                    color: BLACK,
-                  ),
+                    ),
                 ],
+              ), 
+              SizedBox(height: 5,),     
+              //  Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: DELIVERY_FEE_TRANSACTION,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: ORDER_NULL,
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ), 
+                ]
               ),
             ]),
           )
@@ -760,52 +787,49 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
     );
   }
 
-  Widget _buildListJourney(index) {
-    return Center(
-      child: TimelineTile(
-        isFirst: index == 0,
-        isLast: index ==
-            controller.bagDetailsResponse!.data!.packing_journey!.length - 1,
-        //  isLast: true,
-        hasIndicator: true,
-        axis: TimelineAxis.vertical,
-        alignment: TimelineAlign.center,
-        lineXY: 0.1,
-        indicatorStyle: IndicatorStyle(
-          color: BT_GRAY,
-          height: 10,
-          width: 10,
-          drawGap: true,
-          indicatorXY: 0.3,
-        ),
-        beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 1),
-        endChild: Container(
-          padding: EdgeInsets.only(left: 20),
-          height: 50,
-          child: TextCustomized(
-            text: controller
-                .bagDetailsResponse!.data!.packing_journey![index].status_name
-                .toString(),
-            font: SanFranciscoTextLight,
-            size: normalSize,
-            weight: FontWeight.w600,
-            color: COLOR_ORDER_DELIVERY_SUCCESSFULL,
-          ),
-        ),
-        startChild: Container(
-          height: 50,
-          padding: EdgeInsets.only(left: 30),
-          child: TextCustomized(
-            text: controller
-                .bagDetailsResponse!.data!.packing_journey![index].created_at
-                .toString(),
-            font: SanFranciscoTextLight,
-            size: smallSize,
-            weight: FontWeight.w400,
-            color: BT_GRAY,
-          ),
-        ),
-      ),
-    );
-  }
+   );
+ }
+ Widget _buildListJourney(index){
+   return Center(
+     child: TimelineTile(
+               isLast: index == 0,
+               isFirst: index == controller.bagDetailsResponse!.data!.packing_journey!.length -1,
+               hasIndicator: true,
+              axis: TimelineAxis.vertical,
+              alignment: TimelineAlign.center,
+              lineXY: 0.1,
+              indicatorStyle: IndicatorStyle(
+                color: TEXT_DATETIME_NT,
+                height: 10,
+                width: 10,
+                drawGap: true,
+                indicatorXY: 0.3,
+              ),
+              beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 1),
+              endChild: Container(
+                padding: EdgeInsets.only(left: 20),
+                height: 50,
+                child:  TextCustomized(
+                            text: controller.bagDetailsResponse!.data!.packing_journey![index].status_name.toString(),
+                            font: SanFranciscoTextLight,
+                            size: normalSize,
+                            weight: FontWeight.w400,
+                            color: COLOR_ORDER_DELIVERY_SUCCESSFULL,
+                          ),
+              ),
+              startChild: Container(
+                height: 50,
+                padding: EdgeInsets.only(left: 30),
+                child: TextCustomized(
+                  text: controller.bagDetailsResponse!.data!.packing_journey![index].created_at.toString(),
+                  font: SanFranciscoTextLight,
+                  size: smallSize,
+                  weight: FontWeight.w400,
+                  color: TITLE_POPUP,
+                  ),
+              ),
+              
+            ),
+   );
+ }
 }

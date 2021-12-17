@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.viet_trung_mobile_admin">
    <application
-        android:label="viet_trung_admin"
+        android:label="viet_trung_mobile_admin"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

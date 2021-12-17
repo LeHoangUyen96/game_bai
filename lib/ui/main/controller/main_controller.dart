@@ -1,11 +1,12 @@
-import 'package:viet_trung_mobile_admin/data/di/injector.dart';
-import 'package:viet_trung_mobile_admin/data/repository/home_reponsitory/home_repositories.dart';
-import 'package:viet_trung_mobile_admin/data/repository/notification_repository/notification_repository.dart';
-import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
-import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
-import 'package:viet_trung_mobile_admin/data/response/profile_get_me_response.dart';
-import 'package:viet_trung_mobile_admin/ui/main/contract/main_contract.dart';
-import 'package:viet_trung_mobile_admin/ulti/key_storage/key_storage.dart';
+import 'package:viet_trung_mobile/data/di/injector.dart';
+import 'package:viet_trung_mobile/data/repository/home_reponsitory/home_repositories.dart';
+import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
+import 'package:viet_trung_mobile/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile/data/response/profile_get_me_response.dart';
+import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/ui/main/contract/main_contract.dart';
+import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/models/navigate_emblem.dart';
@@ -45,11 +46,11 @@ class MainController extends GetxController implements MainContract {
     tabIndex.value = navigateItemAdmin[index].id;
 
     if (index != 2) {
-      //navigateItem[index].image = getNavImage(navigateItem[index].id, true);
+      navigateItemAdmin[index].image = getNavImage(navigateItemAdmin[index].id, true);
       navigateItemAdmin[index].color = BLACK_1;
       for (var i = 0; i < navigateItemAdmin.length; i++) {
         if (i != index) {
-          //navigateItem[i].image = getNavImage(navigateItem[i].id, false);
+          navigateItemAdmin[i].image = getNavImage(navigateItemAdmin[i].id, false);
         }
         if (i != index) navigateItemAdmin[i].color = BLACK_1;
       }
@@ -128,27 +129,27 @@ class MainController extends GetxController implements MainContract {
     switch (id) {
       case 0:
         if (isActive) {
-          return 'aaaa';
+          return IC_HOME_ACTIVE;
         } else {
-          return "icNavHome";
+          return IC_NAV_HOME;
         }
       case 1:
         if (isActive) {
-          return "icNavOrderActive";
+          return IC_ORDER_ACTIVE;
         } else {
-          return "icNavOrder";
+          return IC_ORDER;
         }
       case 2:
         if (isActive) {
-          return "icNavNotificationActive";
+          return IC_PRESON_ACTIVE;
         } else {
-          return "icNavNotification";
+          return IC_ACCOUNT;
         }
       case 3:
         if (isActive) {
-          return "icNavProfileActive";
+          return IC_SETTING_ACTIVE;
         } else {
-          return "icNavProfile";
+          return IC_SETTING;
         }
       default:
         return '';

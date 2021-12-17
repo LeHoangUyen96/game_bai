@@ -33,8 +33,7 @@ class TextFieldCustomized extends StatefulWidget {
   final Color? colorBackgrount;
   final Color? colorHintText;
   final double? width;
-  final TextStyle? style;
-  final TextAlign? align;
+  final bool? readOnly;
 
   TextFieldCustomized({
     this.invalid,
@@ -61,8 +60,7 @@ class TextFieldCustomized extends StatefulWidget {
     this.colorBackgrount,
     this.colorHintText,
     this.width,
-    this.style,
-    this.align,
+    this.readOnly,
   });
 
   @override
@@ -75,6 +73,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
   FocusNode _focusNode = FocusNode();
   bool _enabled = false;
   bool _obscureText = true;
+  bool _readOnly = true;
 
   @override
   void initState() {
@@ -138,6 +137,7 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
                   _enabled = true;
                 });
               },
+              readOnly: widget.readOnly == null ? false : _readOnly,
               textAlign: TextAlign.left,
               onChanged: widget.onChanged,
               onSubmitted: widget.onSubmitted,

@@ -10,5 +10,6 @@ abstract class ManagerUserRepositories {
       String search_name_phone, int page, int perPage);
   Future<UploadStatusBagResponse> onDeleteUser(int id);
   Future<DetailUserResponse> onGetDetailUser(int id);
-  Future<CreateAdminResponse> onCreateUser(CreateUserRequest request);
+  Future<CreateAdminResponse> onCreateUser(CreateUserRequest request); 
+  Future<bool> onResetPasswordUser(int id);
 }

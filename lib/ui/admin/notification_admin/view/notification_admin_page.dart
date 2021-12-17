@@ -18,22 +18,14 @@ class NotificationAdminPage extends GetView<NotificationAdminController> {
         backgroundAppBar: Colors.black26,
         isCenterTitle: false,
         isShowBack: true,
-        iconBack: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: WHITE,
-          ),
-        ),
+        iconBack: Icon(Icons.arrow_back_ios),
         child: ListView.builder(
             itemCount: controller.listNotification.length,
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, i) {
               return InkWell(
                 onTap: () {
-                  Get.to(OrderDetailsWaitingForConfirmPage());
+                  //Get.to(OrderDetailsWaitingForConfirmPage());
                 },
                 child: ItemNotificationAdmin(controller.listNotification[i]),
               );

@@ -173,6 +173,7 @@ class NetworkConfig {
   static const String BAG_UPDATE_STATUS =
       URL_SERVER + "/admin/bag/update-status/";
   static const String BAG_LIST_ORDER = URL_SERVER + "/admin/bag/list-order";
+  static const String BAG_CREATE = URL_SERVER + "/admin/bag/create";
 
   //Setting
   static const String SETTING_PACKING_FORM =
@@ -261,20 +262,16 @@ class NetworkConfig {
   static const String RATING_ORDER_LIST = URL_SERVER + "/comment/list";
   // Manager Staff
   static const String MANAGER_STAFF_LIST = URL_SERVER + "/admin/users/list/1";
-  static const String MANAGER_STAFF_DETAIL =
-      URL_SERVER + "/admin/users/detail-admin/";
-  static const String MANAGER_STAFF_DELETE =
-      URL_SERVER + "/admin/users/delete-user/";
-  static const String MANAGER_STAFF_CHANGE_STATUS =
-      URL_SERVER + "/admin/users/changed-status/";
-  static const String MANAGER_STAFF_CREATE =
-      URL_SERVER + "/admin/users/create-admin";
+  static const String MANAGER_STAFF_DETAIL = URL_SERVER + "/admin/users/detail-admin/";
+  static const String MANAGER_STAFF_DELETE = URL_SERVER + "/admin/users/delete-user/";
+  static const String MANAGER_STAFF_CHANGE_STATUS = URL_SERVER + "/admin/users/changed-status/";
+  static const String MANAGER_STAFF_CREATE = URL_SERVER + "/admin/users/create-admin";
+  
   // Manager User
   static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
-  static const String MANAGER_USER_DETAIL =
-      URL_SERVER + "/admin/users/detail-user/";
-  static const String MANAGER_USER_CREATE =
-      URL_SERVER + "/admin/users/create-user";
+  static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
+  static const String MANAGER_USER_CREATE = URL_SERVER + "/admin/users/create-user";
+  static const String MANAGER_USER_RESET_PASSWORD = URL_SERVER + "/admin/users/reset-password-admin/";
 
   //settings packing
   static const String listPacking =

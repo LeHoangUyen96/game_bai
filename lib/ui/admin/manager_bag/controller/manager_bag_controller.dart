@@ -27,7 +27,7 @@ class ManagerBagController extends GetxController
   ListTransportFormResponse? listTransportFormResponse;
   SettingRepositories? settingRepositories;
   ListStatusBagResponse? listStatusBagResponse;
-  ManagerBagContract? contract;
+  late ManagerBagContract  contract;
   bool isNextPage = false;
   int page = 1;
   int perPage = 10;
@@ -48,6 +48,8 @@ class ManagerBagController extends GetxController
     getListBag(false);
     fromDay = DateTime.now();
     toDay = DateTime.now();
+    getDataStatusBag();
+    getDataTransportForm();
   }
 
   void getListBag(bool isRefresh) {
@@ -55,10 +57,10 @@ class ManagerBagController extends GetxController
       mDataBagResponse!.clear();
     }
     bagRepositories!.onGetListBag(page, perPage).then((value) {
-      return contract!.onGetListBagSuccess(value);
+      return contract.onGetListBagSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
-      return contract!.onGetListBagError(onError);
+      return contract.onGetListBagError(onError);
     });
   }
 
@@ -87,7 +89,6 @@ class ManagerBagController extends GetxController
     if (refreshController.isRefresh) {
       refreshController.refreshCompleted();
     }
-
     update();
   }
 
@@ -219,7 +220,7 @@ class ManagerBagController extends GetxController
     bagRepositories!.onSearchListBag(request, page, perPage).then((value) {
       // Get.back();
       // onCheckFilter();
-      return contract!.onGetListBagSuccess(value);
+      return contract.onGetListBagSuccess(value);
     }).catchError((onError) {
       Get.defaultDialog(
           title: (onError as ErrorResponse).message.toString(), middleText: '');
@@ -228,14 +229,11 @@ class ManagerBagController extends GetxController
   }
 
   void onGetListBagFilter() {
-    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     mDataBagResponse!.clear();
     bagRepositories!
         .onFilterListBag(codeController.text.toString(), page, perPage)
         .then((value) {
-      // Get.back();
-      // onCheckFilter();
-      return contract!.onGetListBagSuccess(value);
+      return contract.onGetListBagSuccess(value);
     }).catchError((onError) {
       Get.defaultDialog(
           title: (onError as ErrorResponse).message.toString(), middleText: '');

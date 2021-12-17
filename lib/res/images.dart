@@ -61,10 +61,13 @@ const String IC_SETTING = "assets/images/icon_setting.svg";
 const String BG_IMG_DASHBOARD = "assets/images/img_background_dashboard.png";
 const String IMG_DASHBOARD = "assets/images/image_notify.png";
 const String bg_card = "assets/images/viettrung_bg.png";
-const String IMG_LOGO = "assets/images/img_logo.png";
+const String IMG_LOGO = "assets/images/img_logo-1.png";
 
 const String ic_edit = "assets/images/ic_edit.svg";
 const String BG_IMG_DASHBOARD_ADMIN = "assets/images/img_backgourd_admin.png";
 const String IC_CALENDAR = "assets/images/icon_calendar.svg";
-const String ic_success = "assets/images/ic_success.svg";
-const String ic_faild = "assets/images/ic_faild.svg";
+const String IC_SETTING_ACTIVE = "assets/images/navbar/setting_active.png";
+const String IC_PRESON_ACTIVE = "assets/images/navbar/user_active.png";
+const String IC_ORDER_ACTIVE = "assets/images/navbar/order_active.png";
+const String IC_HOME_ACTIVE = "assets/images/navbar/home_active.png";
+const String IC_HOME = "assets/images/icon_house.svg";

@@ -502,6 +502,7 @@ const String DIALOG_WALLET_BT_RECHARGE = 'Nạp tiền';
 const String DELIVERY_REQUEST_HD = 'Tạo yêu cầu giao hàng';
 const String DELIVERY_CODE = 'Mã phiếu giao hàng';
 const String DELIVERY_TOTAL_PACKAGE = 'Tổng số kiện hàng';
+
 const String DELIVERY_TOTAL_WEIGHT = 'Tổng cân nặng phí ';
 const String DELIVERY_ORDER_NUMBER = 'Số đơn hàng';
 const String DELIVERY_ORDER_NORMAR = 'Đơn thường';
@@ -845,7 +846,8 @@ const String STATUS_TRANFORM = 'Trạng thái giao hàng';
 const String DELIVERY_PACKAGE = 'Hình thức đóng gói';
 const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';
 const String ID_STAFF = 'Mã nhân viên';
-
+const String BAG_WEIGHT = 'Trọng lượng';
+const String RESET_PASSWORD = 'Reset Password';
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';
 const String goodsShipper = 'Hàng đã chuyển';

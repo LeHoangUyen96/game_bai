@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile_admin/data/response/detail_user_response.dart';
-import 'package:viet_trung_mobile_admin/res/colors.dart';
-import 'package:viet_trung_mobile_admin/res/dimens.dart';
-import 'package:viet_trung_mobile_admin/res/fonts.dart';
-import 'package:viet_trung_mobile_admin/res/images.dart';
-import 'package:viet_trung_mobile_admin/res/size.dart';
-import 'package:viet_trung_mobile_admin/res/strings.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/detail_user_controller.dart';
-import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
-import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile/data/response/detail_user_response.dart';
+import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile/res/dimens.dart';
+import 'package:viet_trung_mobile/res/fonts.dart';
+import 'package:viet_trung_mobile/res/images.dart';
+import 'package:viet_trung_mobile/res/size.dart';
+import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_user/controller/detail_user_controller.dart';
+import 'package:viet_trung_mobile/widget/button_customized.dart';
+import 'package:viet_trung_mobile/widget/image_customized.dart';
+import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile/widget/text_customized.dart';
 
 class DetailUserPage extends GetView<DetailUserController> {
   BuildContext? mContext;
@@ -38,7 +39,7 @@ class DetailUserPage extends GetView<DetailUserController> {
       child: AppBar(
         //centerTitle: true,
         title: TextCustomized(
-          text: MANAGE_PACKAGE_EMPLOYEE,
+          text: MANAGE_PACKAGE_CUSTOMER,
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
@@ -189,9 +190,22 @@ class DetailUserPage extends GetView<DetailUserController> {
                       itemCount: controller
                           .detailUserResponse!.data!.addresses!.length),
                 ),
+               
               ],
             ),
           ),
+           SizedBox(height: 10.0),
+            Container(
+              padding: EdgeInsets.all(15),
+              child: ButtonCustomized(
+                RESET_PASSWORD,
+                textColor: WHITE,
+                onTap: (){
+                  controller.onResetPassword();
+                },
+                backgroundColor: BT_CONFIRM,
+              ),
+            )
         ],
       ),
     );

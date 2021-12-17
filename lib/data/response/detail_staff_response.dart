@@ -19,8 +19,10 @@ class DataDetailStaff {
   String? email;
   String? phone;
   String? avatar;
-  String? user_code;
-  int? status;
+  String ? user_code;
+  int ? status;
+  int? role_id;
+  String? role_name;
 
   DataDetailStaff({
     this.id,
@@ -30,6 +32,8 @@ class DataDetailStaff {
     this.avatar,
     this.user_code,
     this.status,
+    this.role_id,
+    this.role_name,
   });
   DataDetailStaff.empty() {
     this.id = -1;
@@ -39,6 +43,9 @@ class DataDetailStaff {
     this.avatar = '';
     this.user_code = '';
     this.status = -1;
+    this.role_name = '';
+    this.role_id = -1;
+ 
   }
 
   DataDetailStaff.fromJson(Map<String, dynamic> json) {
@@ -49,5 +56,7 @@ class DataDetailStaff {
     this.avatar = json['avatar'] != null ? json['avatar'] : '';
     this.user_code = json['user_code'] != null ? json['user_code'] : '';
     this.status = ParseNumber.parseInt(json['status']);
+    this.role_id = ParseNumber.parseInt(json['role_id']);
+    this.role_name = json['role_name'] != null ? json['role_name'] : '';
   }
 }
