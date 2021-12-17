@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/order_admin_repository/order_admin_repositories.dart';
-import 'package:viet_trung_mobile_admin/data/request/update_fee_warhouse_china.dart';
+import 'package:viet_trung_mobile_admin/data/request/update_fee_warehouse_vn.dart';
 import 'package:viet_trung_mobile_admin/data/response/order_admin_detail_response.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -13,17 +13,22 @@ import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
-class OrderStorageDetailController extends GetxController {
+class OrderVietnamDetailController extends GetxController {
   OrderAdminRepositories? orderAminRepositories;
-  OrderAdminDetailResponse? orderStorage;
+  OrderAdminDetailResponse? orderDetail;
   TextEditingController? surchargeController = TextEditingController();
   TextEditingController? transportFeeController = TextEditingController();
+  TextEditingController? vnFeeController = TextEditingController();
+  TextEditingController? volumeController = TextEditingController();
+  TextEditingController? weightController = TextEditingController();
   String? orderId;
   bool isCheck = false;
   bool isEditTransport = false;
   bool isEditSurcharge = false;
+  bool isEditVNFee = false;
   String? textTransportFee;
   String? textSurcharge;
+  String? textVNFee;
   List<DataImagesEnterWareHouseResponse>? mImages = [];
   String? mDataUploadImage;
   int? id;
@@ -46,13 +51,15 @@ class OrderStorageDetailController extends GetxController {
     onGetOrderDetail(orderId!);
     transportFeeController = TextEditingController(text: textTransportFee);
     surchargeController = TextEditingController(text: textSurcharge);
+    vnFeeController = TextEditingController(text: textVNFee);
   }
 
   void onGetOrderDetail(String id) {
     orderAminRepositories!.onGetOrderDetail(id).then((value) {
-      orderStorage = value;
+      orderDetail = value;
       textTransportFee = value.data!.transportFee!.toString();
       textSurcharge = value.data!.surcharge!;
+      textVNFee = value.data!.transpotVNFee!;
       update();
     }).catchError((onError) {
       print(onError);
@@ -109,15 +116,22 @@ class OrderStorageDetailController extends GetxController {
     update();
   }
 
-  void onSave(int id) {
-    UpdateFeeWarhouseChina request = UpdateFeeWarhouseChina(
+  void onChangeVNFee() {
+    isEditVNFee = true;
+    update();
+  }
+
+  void onSave() {
+    UpdateFeeWarhouseVN request = UpdateFeeWarhouseVN(
       surcharge: textSurcharge,
       transportFee: textTransportFee,
-      isProhibitedItem: isCheck == true ? 2 : 1,
       image: img,
+      vnFee: textVNFee,
+      volume: volumeController!.text,
+      weight: weightController!.text,
     );
     orderAminRepositories!
-        .onUpdateFeeWarhouseChina(request, orderId!)
+        .onUpdateFeeWarhouseVN(request, orderId!)
         .then((value) {
       Get.back();
       Get.snackbar(NOTIFY, value.message!);

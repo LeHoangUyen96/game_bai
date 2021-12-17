@@ -13,9 +13,9 @@ import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
-class OrderStorageDetailController extends GetxController {
+class OrderChinaDetailController extends GetxController {
   OrderAdminRepositories? orderAminRepositories;
-  OrderAdminDetailResponse? orderStorage;
+  OrderAdminDetailResponse? orderDetail;
   TextEditingController? surchargeController = TextEditingController();
   TextEditingController? transportFeeController = TextEditingController();
   String? orderId;
@@ -50,7 +50,7 @@ class OrderStorageDetailController extends GetxController {
 
   void onGetOrderDetail(String id) {
     orderAminRepositories!.onGetOrderDetail(id).then((value) {
-      orderStorage = value;
+      orderDetail = value;
       textTransportFee = value.data!.transportFee!.toString();
       textSurcharge = value.data!.surcharge!;
       update();
@@ -109,11 +109,10 @@ class OrderStorageDetailController extends GetxController {
     update();
   }
 
-  void onSave(int id) {
+  void onSave() {
     UpdateFeeWarhouseChina request = UpdateFeeWarhouseChina(
       surcharge: textSurcharge,
       transportFee: textTransportFee,
-      isProhibitedItem: isCheck == true ? 2 : 1,
       image: img,
     );
     orderAminRepositories!

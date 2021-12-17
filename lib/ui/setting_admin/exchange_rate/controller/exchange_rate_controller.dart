@@ -42,7 +42,7 @@ class ExchangeRateController extends GetxController {
       repository!
           .onUpdateExchangeRate(exchangeRateController.text)
           .then((value) {
-        Get.snackbar('Thông báo', value.message!);
+        Get.snackbar(NOTIFY, value.message!);
         update();
       }).catchError((onError) {
         update();

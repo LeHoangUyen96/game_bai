@@ -51,7 +51,7 @@ class ProductDetailController extends GetxController {
           .onUpdateProduct(productId!, nameProductController.text)
           .then((value) {
         Get.back();
-        Get.snackbar('Thông báo', value.message!);
+        Get.snackbar(NOTIFY, value.message!);
         update();
       }).catchError((onError) {
         update();

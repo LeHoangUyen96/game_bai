@@ -44,7 +44,7 @@ class AddPackingController extends GetxController {
       );
       repository!.onAddPacking(request).then((value) {
         Get.back();
-        Get.snackbar('Thông báo', value.message!);
+        Get.snackbar(NOTIFY, value.message!);
         update();
       }).catchError((onError) {
         update();

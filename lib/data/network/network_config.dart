@@ -224,6 +224,8 @@ class NetworkConfig {
   //order admin shipped
   static const String listOrderShipped =
       URL_SERVER + "/admin/order/list-order-shipped";
+  static const String updateVNFee =
+      URL_SERVER + "/admin/order/update-warehouse-vn/";
 
   //setting role admin
   static const String listRole = URL_SERVER + "/admin/role";
@@ -253,6 +255,7 @@ class NetworkConfig {
       URL_SERVER + "/admin/transport-form-fee/detail/";
   static const String updateTransportFee =
       URL_SERVER + "/admin/transport-form-fee/update-fee/";
+  static const String listStatus = URL_SERVER + "/admin/order/list-status";
 
   // Dashboard User
   static const String DASHBOARD_USER = URL_SERVER + "/dashboard";

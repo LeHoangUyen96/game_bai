@@ -3,7 +3,7 @@ const String LICENSE = "This Base of Project belongs to Tekup Solution";
 
 const String NAV_HOME = 'Trang chủ';
 const String NAV_CART = 'Giỏ hàng';
-const String NAV_NOTIFICATION = 'Thông báo';
+const String NAV_NOTIFICATION = NOTIFY;
 const String NAV_PROFILE = 'Cá nhân';
 const String NAV_SETTING = 'Cài đặt';
 
@@ -690,7 +690,7 @@ const String DISCOUNT_CODE_ALL =
     '* Đã hiển thị tất cả mã giảm giá thuộc danh mục giảm giá của bạn';
 
 //Notification
-const String NOTIFICATION_APP_BAR = 'Thông báo';
+const String NOTIFICATION_APP_BAR = NOTIFY;
 const String NOTIFICATION_INFO_APP_BAR = 'Chi tiết thông báo';
 const String NOTIFICATION_FROM_ORDER = 'Thông báo đơn hàng';
 const String NOTIFICATION_FROM_SYSTEM = 'Thông báo từ hệ thống';
@@ -958,3 +958,7 @@ const String all = "Tất cả";
 const String noFeedback = "Không có đánh giá nào";
 const String deliverySuccess = "Giao hàng thành công";
 const String deliveryForm = "Hình thức nhận hàng";
+const String noOrders = "Không có đơn hàng nào";
+const String inputWeight = "Nhập khối lượng";
+const String inputVolume = "Nhập thể tích";
+const String transportFee = "Phí vận chuyển";

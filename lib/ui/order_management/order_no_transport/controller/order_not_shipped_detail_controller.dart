@@ -128,7 +128,7 @@ class OrderNoTransportDetailController extends GetxController {
         .onUpdateOrderNoTransport(request, orderId!)
         .then((value) {
       Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);
