@@ -16,7 +16,8 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
   @override
   Future<ListAdminResponse> onGetListAdmin(int page, int perPage) async {
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.MANAGER_STAFF_LIST;
+    final url =
+        NetworkConfig.MANAGER_STAFF_LIST + "?&page=$page&per_page=$perPage";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ListAdminResponse.fromJson(responseJson.body);
@@ -80,6 +81,18 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
     final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return CreateAdminResponse.fromJson(responseJson.body);
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<bool> onResetPasswordAdmin(int id) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.MANAGER_USER_RESET_PASSWORD + "$id";
+    //final body = json.encode(request);
+    final responseJson = await post(url, {}, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return true;
     }
     throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }

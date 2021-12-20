@@ -962,3 +962,4 @@ const String noOrders = "Không có đơn hàng nào";
 const String inputWeight = "Nhập khối lượng";
 const String inputVolume = "Nhập thể tích";
 const String transportFee = "Phí vận chuyển";
+const String youSureDelete = "Bạn có chắc chắn muốn xoá";

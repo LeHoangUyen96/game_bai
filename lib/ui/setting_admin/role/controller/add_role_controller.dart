@@ -60,6 +60,7 @@ class AddRoleController extends GetxController {
         permissions: permision,
       );
       repository!.onAddRole(request).then((value) {
+        Get.back(result: true);
         Get.snackbar(NOTIFY, value.message!);
         update();
       }).catchError((onError) {

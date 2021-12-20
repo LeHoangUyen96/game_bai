@@ -29,7 +29,11 @@ class RolePage extends GetView<RoleController> {
                       padding: EdgeInsets.only(right: 10),
                       child: InkWell(
                         onTap: () {
-                          Get.to(AddRolePage());
+                          Get.to(AddRolePage())!.then((value) {
+                            if (value != null) {
+                              controller.onGetListRole();
+                            }
+                          });
                         },
                         child: Icon(
                           Icons.add,
@@ -58,7 +62,12 @@ class RolePage extends GetView<RoleController> {
                   Get.to(
                     RoleDetailPage(),
                     arguments: controller.response!.data![index].id.toString(),
-                  );
+                  )!
+                      .then((value) {
+                    if (value != null) {
+                      controller.onGetListRole();
+                    }
+                  });
                 },
               );
             }),

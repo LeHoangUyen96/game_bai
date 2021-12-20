@@ -24,7 +24,7 @@ class InventoryManagementPage extends GetView<InventoryManagementcontroller> {
   Widget buildBody() {
     return Container(
         color: WHITE,
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +54,7 @@ class InventoryManagementPage extends GetView<InventoryManagementcontroller> {
             InkWell(
                 onTap: () {
                   Get.to(ManagerWarehouseDetailPage(response.name!),
-                      arguments: response.id!.toString());
+                      arguments: response.id!);
                 },
                 child: Row(children: [
                   const SizedBox(width: 12),

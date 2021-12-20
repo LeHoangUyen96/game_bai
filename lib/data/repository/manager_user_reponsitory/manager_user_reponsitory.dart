@@ -11,4 +11,5 @@ abstract class ManagerUserRepositories {
   Future<UploadStatusBagResponse> onDeleteUser(int id);
   Future<DetailUserResponse> onGetDetailUser(int id);
   Future<CreateAdminResponse> onCreateUser(CreateUserRequest request);
+  Future<bool> onResetPasswordUser(int id);
 }

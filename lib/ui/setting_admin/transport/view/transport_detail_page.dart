@@ -35,7 +35,13 @@ class TransportDetailPage extends GetView<TransportDetailController> {
                         child: InkWell(
                           onTap: () {
                             Get.dialog(DialogAddTransportFee(),
-                                arguments: controller.transportId!);
+                                    arguments: controller.transportId!)
+                                .then((value) {
+                              if (value != null) {
+                                controller.onGetTransportDetail(
+                                    controller.transportId!);
+                              }
+                            });
                           },
                           child: Icon(
                             Icons.add,
@@ -91,7 +97,13 @@ class TransportDetailPage extends GetView<TransportDetailController> {
                                   InkWell(
                                       onTap: () {
                                         Get.dialog(DialogEditTransportFee(),
-                                            arguments: e.id!.toString());
+                                                arguments: e.id!.toString())
+                                            .then((value) {
+                                          if (value != null) {
+                                            controller.onGetTransportDetail(
+                                                controller.transportId!);
+                                          }
+                                        });
                                       },
                                       child: ImageCustomized(
                                         path: ic_edit,

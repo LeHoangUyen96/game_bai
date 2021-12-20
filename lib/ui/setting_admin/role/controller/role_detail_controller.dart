@@ -69,6 +69,7 @@ class RoleDetailController extends GetxController {
       permissions: permision,
     );
     repository!.onUpdateRole(request, roleId!).then((value) {
+      Get.back(result: true);
       Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {

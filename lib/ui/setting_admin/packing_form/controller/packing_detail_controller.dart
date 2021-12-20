@@ -53,7 +53,7 @@ class PackingDetailController extends GetxController {
 
   void onDeletePacking(String id) {
     repository!.onDeletePacking(packingId!).then((value) {
-      Get.back();
+      Get.back(result: true);
       Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
@@ -68,7 +68,7 @@ class PackingDetailController extends GetxController {
       packingFee: feeController.text,
     );
     repository!.onUpdatePacking(packingId!, request).then((value) {
-      Get.back();
+      Get.back(result: true);
       onGetListPacking();
       Get.snackbar(NOTIFY, value.message!);
       update();

@@ -50,7 +50,7 @@ class ProductDetailController extends GetxController {
       dashboardProductRepository!
           .onUpdateProduct(productId!, nameProductController.text)
           .then((value) {
-        Get.back();
+        Get.back(result: true);
         Get.snackbar(NOTIFY, value.message!);
         update();
       }).catchError((onError) {

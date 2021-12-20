@@ -173,6 +173,7 @@ class NetworkConfig {
   static const String BAG_UPDATE_STATUS =
       URL_SERVER + "/admin/bag/update-status/";
   static const String BAG_LIST_ORDER = URL_SERVER + "/admin/bag/list-order";
+  static const String BAG_CREATE = URL_SERVER + "/admin/bag/create";
 
   //Setting
   static const String SETTING_PACKING_FORM =
@@ -278,6 +279,8 @@ class NetworkConfig {
       URL_SERVER + "/admin/users/detail-user/";
   static const String MANAGER_USER_CREATE =
       URL_SERVER + "/admin/users/create-user";
+  static const String MANAGER_USER_RESET_PASSWORD =
+      URL_SERVER + "/admin/users/reset-password-admin/";
 
   //settings packing
   static const String listPacking =
@@ -314,4 +317,5 @@ class NetworkConfig {
   static const String updateWarehouse = URL_SERVER + "/admin/warehouses/update";
   static const String deleteWarehouse =
       URL_SERVER + "/admin/warehouses/delete/";
+  static const String checkWarehouse = URL_SERVER + "/admin/warehouses/get/";
 }

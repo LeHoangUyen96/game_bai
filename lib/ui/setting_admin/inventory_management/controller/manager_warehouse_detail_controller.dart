@@ -2,11 +2,12 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/manager_warehouse_repository/manager_warehouse_repositories.dart';
 import 'package:viet_trung_mobile_admin/data/response/list_warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class ManagerWarehouseDetailController extends GetxController {
   ManagerWarehouseRepositories? repository;
   ListWarehouseResponse? response;
-  String? warehouseId;
+  int? warehouseId;
 
   @override
   void onInit() {
@@ -20,9 +21,22 @@ class ManagerWarehouseDetailController extends GetxController {
     onGetListWarehouse(warehouseId!);
   }
 
-  void onGetListWarehouse(String id) {
+  void onGetListWarehouse(int id) {
     repository!.onGetWarehouseDetail(warehouseId!).then((value) {
       response = value;
+      update();
+    }).catchError((onError) {
+      update();
+    });
+    update();
+  }
+
+  void onDeleteWarehouse(String id) {
+    repository!.onDeleteWarehouse(id).then((value) {
+      Get.snackbar(NOTIFY, value.message!);
+      Get.back();
+      Get.back();
+      onGetListWarehouse(warehouseId!);
       update();
     }).catchError((onError) {
       update();

@@ -4,6 +4,8 @@ import 'package:viet_trung_mobile_admin/data/response/list_warehouse_response.da
 import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/ui/setting_admin/inventory_management/controller/manager_warehouse_detail_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/inventory_management/view/delete_popup.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/inventory_management/view/edit_warehouse_popup.dart';
 import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
 
 class ManagerWarehouseDetailPage
@@ -15,19 +17,22 @@ class ManagerWarehouseDetailPage
     return GetBuilder<ManagerWarehouseDetailController>(
       init: ManagerWarehouseDetailController(),
       builder: (value) => Scaffold(
-        appBar: buildAppBar(name!, SizedBox()),
-        body: controller.response != null
-            ? buildBody()
-            : Container(
-                padding: EdgeInsets.only(right: 10),
-                child: InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.add,
-                    color: WHITE,
-                  ),
+        appBar: buildAppBar(
+            name!,
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: () {
+                  Get.dialog(DialogEditWarehouse(),
+                      arguments: controller.warehouseId);
+                },
+                child: Icon(
+                  Icons.add,
+                  color: WHITE,
                 ),
               ),
+            )),
+        body: controller.response != null ? buildBody() : SizedBox(),
         backgroundColor: MAIN_BG,
       ),
     );
@@ -36,7 +41,7 @@ class ManagerWarehouseDetailPage
   Widget buildBody() {
     return Container(
         color: WHITE,
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -70,10 +75,14 @@ class ManagerWarehouseDetailPage
                     fontWeight: FontWeight.w500,
                   )),
               Spacer(),
-              Icon(
-                Icons.clear,
-                size: 16,
-              ),
+              InkWell(
+                  onTap: () {
+                    Get.dialog(DialogDelete(response.id!.toString()));
+                  },
+                  child: Icon(
+                    Icons.clear,
+                    size: 16,
+                  )),
               SizedBox(width: 16.5),
             ]),
             SizedBox(height: 16),
