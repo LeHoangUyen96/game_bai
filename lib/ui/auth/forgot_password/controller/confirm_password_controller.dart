@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/forgot_error_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/auth/forgot_password/contract/forgotpasss_contract.dart';
-import 'package:viet_trung_mobile/ui/auth/login/view/login_page.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/auth_repository/auth_repository.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/forgot_error_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/forgot_password/contract/forgotpasss_contract.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/login/view/login_page.dart';
 
 class ConfirmPasswordController extends GetxController
     implements ForgotPassContract {

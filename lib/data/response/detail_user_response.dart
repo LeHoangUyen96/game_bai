@@ -1,26 +1,25 @@
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
-class DetailUserResponse{
+class DetailUserResponse {
   DataDetailUser? data;
-  
+
   DetailUserResponse({
     this.data,
-    });
+  });
 
-  DetailUserResponse.fromJson(Map<String, dynamic> json){
-    this.data = json['data'] != null ? DataDetailUser.fromJson(json['data']) : null;
+  DetailUserResponse.fromJson(Map<String, dynamic> json) {
+    this.data =
+        json['data'] != null ? DataDetailUser.fromJson(json['data']) : null;
   }
-
 }
 
-
-class DataDetailUser{
+class DataDetailUser {
   int? id;
   String? name;
   String? email;
   String? phone;
   String? avatar;
-  String ? user_code;
+  String? user_code;
   List<DataAddresses>? addresses;
 
   DataDetailUser({
@@ -32,27 +31,30 @@ class DataDetailUser{
     this.user_code,
     this.addresses,
   });
-   DataDetailUser.empty(){
-    this.id = -1 ;
-    this.name = '' ;
+  DataDetailUser.empty() {
+    this.id = -1;
+    this.name = '';
     this.email = '';
-    this.phone = '' ;
-    this.avatar = '' ;
-    this.user_code = '' ;
- 
+    this.phone = '';
+    this.avatar = '';
+    this.user_code = '';
   }
 
-  DataDetailUser.fromJson(Map<String, dynamic> json){
+  DataDetailUser.fromJson(Map<String, dynamic> json) {
     this.id = ParseNumber.parseInt(json['id']);
     this.name = json['name'] != null ? json['name'] : '';
     this.email = json['email'] != null ? json['email'] : '';
     this.phone = json['phone'] != null ? json['phone'] : '';
     this.avatar = json['avatar'] != null ? json['avatar'] : '';
     this.user_code = json['user_code'] != null ? json['user_code'] : '';
-    this.addresses = json["addresses"] == null ? <DataAddresses>[] : json['addresses'].map<DataAddresses>((e)=> DataAddresses.fromJson(e)).toList();
+    this.addresses = json["addresses"] == null
+        ? <DataAddresses>[]
+        : json['addresses']
+            .map<DataAddresses>((e) => DataAddresses.fromJson(e))
+            .toList();
   }
-
 }
+
 class DataAddresses {
   int? id;
   String? name;
@@ -67,20 +69,19 @@ class DataAddresses {
   String? full_address;
   int? defaults;
 
-  DataAddresses({
-    this.id,
-    this.name,
-    this.phone,
-    this.city_id,
-    this.city_name,
-    this.district_id,
-    this.district_name,
-    this.wards_id,
-    this.wards_name,
-    this.address,
-    this.full_address,
-    this.defaults
-  });
+  DataAddresses(
+      {this.id,
+      this.name,
+      this.phone,
+      this.city_id,
+      this.city_name,
+      this.district_id,
+      this.district_name,
+      this.wards_id,
+      this.wards_name,
+      this.address,
+      this.full_address,
+      this.defaults});
 
   DataAddresses.fromJson(Map<String, dynamic> json) {
     id = json['id'];

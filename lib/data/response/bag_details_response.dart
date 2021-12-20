@@ -2,17 +2,19 @@ import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 
 class BagDetailsResponse {
-  DataBagDetailsResponse ? data;
-  BagDetailsResponse ({
+  DataBagDetailsResponse? data;
+  BagDetailsResponse({
     this.data,
   });
-  BagDetailsResponse.fromJson(Map <String,dynamic> json  ){
-     print('data.fromJson ${json} ');
-      this.data = json['data'] != null? DataBagDetailsResponse.fromJson(json['data']): null;
-   }
+  BagDetailsResponse.fromJson(Map<String, dynamic> json) {
+    print('data.fromJson ${json} ');
+    this.data = json['data'] != null
+        ? DataBagDetailsResponse.fromJson(json['data'])
+        : null;
+  }
 }
 
-class  DataBagDetailsResponse {
+class DataBagDetailsResponse {
   int? id;
   String? code;
   String? parent_pack_type;
@@ -35,7 +37,7 @@ class  DataBagDetailsResponse {
 
 
 
-   DataBagDetailsResponse({
+  DataBagDetailsResponse({
     this.id,
     this.code,
     this.parent_pack_type,
@@ -99,18 +101,15 @@ class  DataBagDetailsResponse {
     }
 
 }
-class DataPackingJourney{
+
+class DataPackingJourney {
   String? status_name;
   String? created_at;
 
-  DataPackingJourney({
-    this.status_name,
-    this.created_at
-  });
+  DataPackingJourney({this.status_name, this.created_at});
 
-  DataPackingJourney.fromJson(Map<String, dynamic> json){
+  DataPackingJourney.fromJson(Map<String, dynamic> json) {
     this.status_name = json['status_name'] != null ? json['status_name'] : '';
     this.created_at = json['created_at'] != null ? json['created_at'] : '';
   }
-
 }

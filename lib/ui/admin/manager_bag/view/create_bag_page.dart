@@ -24,7 +24,7 @@ import 'package:viet_trung_mobile/widget/text_field_customized.dart';
 
 class CreateBagPage extends GetView<CreateBagController> {
   BuildContext? mContext;
-  List listBill = [{},{},{},{}];
+  List listBill = [{}, {}, {}, {}];
   @override
   Widget build(BuildContext context) {
     mContext = context;
@@ -32,14 +32,15 @@ class CreateBagPage extends GetView<CreateBagController> {
       init: CreateBagController(),
       builder: (value) => Scaffold(
         appBar: buildAppBar(),
-        body:  SingleChildScrollView(
+        body: SingleChildScrollView(
           child: buildBody(),
           physics: BouncingScrollPhysics(),
-          ) ,
+        ),
         backgroundColor: WHITE,
       ),
     );
   }
+
   PreferredSize buildAppBar() {
     return PreferredSize(
       preferredSize: sizeHeader,
@@ -50,28 +51,31 @@ class CreateBagPage extends GetView<CreateBagController> {
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
-          ),
+        ),
         flexibleSpace: Image(
           image: AssetImage(BG_IMG),
           fit: BoxFit.cover,
         ),
         backgroundColor: Colors.transparent,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back_ios, color: WHITE,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: WHITE,
+          ),
         ),
       ),
     );
   }
-  Widget buildBody(){
+
+  Widget buildBody() {
     return GestureDetector(
       onTap: () {
         FocusScope.of(Get.context!).requestFocus(FocusNode());
       },
-      child:  
-      Container(
+      child: Container(
         padding: EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,34 +86,38 @@ class CreateBagPage extends GetView<CreateBagController> {
               size: normalSize,
               weight: FontWeight.w600,
               color: BLACK_1,
-              ),
-              SizedBox(height: 15),
-               Container(
-                child: DropdownSearch<DataBagType>(
-                  mode: Mode.MENU,
-                  maxHeight: 80,
-                  popupSafeArea: PopupSafeArea(),
-                  items: [
-                    DataBagType(codeBagType: "graft_bag", nameBagType: "Bao ghép"),
-                    DataBagType(codeBagType: "intact_bag", nameBagType: "Bao nguyên"),
-                  ],
-                  //onFind: (String? filter) => getData(filter),
-                  hint: "Chọn kiểu bao",
-                  onChanged:( data ){
-                    print('${controller.typeBag}');
-                    controller.typeBag = data!.codeBagType!;
-                    controller.update();
-                    },
-                  itemAsString: (DataBagType u) => u.nameBagType!,
-                  dropdownButtonBuilder: (_)=> Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+            ),
+            SizedBox(height: 15),
+            Container(
+              child: DropdownSearch<DataBagType>(
+                mode: Mode.MENU,
+                maxHeight: 80,
+                popupSafeArea: PopupSafeArea(),
+                items: [
+                  DataBagType(
+                      codeBagType: "graft_bag", nameBagType: "Bao ghép"),
+                  DataBagType(
+                      codeBagType: "intact_bag", nameBagType: "Bao nguyên"),
+                ],
+                //onFind: (String? filter) => getData(filter),
+                hint: "Chọn kiểu bao",
+                onChanged: (data) {
+                  print('${controller.typeBag}');
+                  controller.typeBag = data!.codeBagType!;
+                  controller.update();
+                },
+                itemAsString: (DataBagType u) => u.nameBagType!,
+                dropdownButtonBuilder: (_) => Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: SvgPicture.asset(
+                    IC_ARROW_DOWN,
+                    color: GRAY,
                   ),
-                  popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
-                  popupItemBuilder: _customDropdown,
-                  ),
+                ),
+                popupShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                popupItemBuilder: _customDropdown,
               ),
               SizedBox(height: 5),
               controller.isTypeBagValid == false
@@ -159,30 +167,33 @@ class CreateBagPage extends GetView<CreateBagController> {
               size: normalSize,
               weight: FontWeight.w600,
               color: BLACK_1,
-              ),
-              SizedBox(height: 15),
-               Container(
-                child: DropdownSearch<DataListWareHouseBackResponse>(
-                  mode: Mode.MENU,
-                  maxHeight: 120,
-                  popupSafeArea: PopupSafeArea(),
-                  onFind: (String? filter) => controller.getDataWareHouseBack(),
-                  hint: "Chọn kho",
-                  onChanged:( data ){
-                    print('$data');
-                    controller.warehouse_back_code = data!.status_code!;
-                    controller.update();
-                    },
-                  itemAsString: (DataListWareHouseBackResponse u) => u.status_name!,
-                  dropdownButtonBuilder: (_)=> Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+            ),
+            SizedBox(height: 15),
+            Container(
+              child: DropdownSearch<DataListWareHouseBackResponse>(
+                mode: Mode.MENU,
+                maxHeight: 120,
+                popupSafeArea: PopupSafeArea(),
+                onFind: (String? filter) => controller.getDataWareHouseBack(),
+                hint: "Chọn kho",
+                onChanged: (data) {
+                  print('$data');
+                  controller.warehouse_back_code = data!.status_code!;
+                  controller.update();
+                },
+                itemAsString: (DataListWareHouseBackResponse u) =>
+                    u.status_name!,
+                dropdownButtonBuilder: (_) => Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: SvgPicture.asset(
+                    IC_ARROW_DOWN,
+                    color: GRAY,
                   ),
-                  popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
-                  popupItemBuilder: _customDropdownWareHouseBack,
-                  ),
+                ),
+                popupShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                popupItemBuilder: _customDropdownWareHouseBack,
               ),
               SizedBox(height: 5),
                 controller.isWarehouseBackCodeValid == false
@@ -226,6 +237,11 @@ class CreateBagPage extends GetView<CreateBagController> {
                       ),
                   popupItemBuilder: _customDropdownTransportForm,
                   ),
+                ),
+                popupShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                popupItemBuilder: _customDropdownTransportForm,
               ),
               SizedBox(height: 5),
               controller.isTransportFormIdValid == false
@@ -245,29 +261,26 @@ class CreateBagPage extends GetView<CreateBagController> {
               size: normalSize,
               weight: FontWeight.w600,
               color: BLACK_1,
-              ),
-              SizedBox(height: 15),
-               Container(
-                child: DropdownSearch<DataListPackingFormFormResponse>(
-                  mode: Mode.MENU,
-                  maxHeight: 120,
-                  popupSafeArea: PopupSafeArea(),
-                  onFind: (String? filter) => controller.getDataListTransport(),
-                  hint: "Chọn hình thức đóng gói",
-                  onChanged:( data ){
-                    print('$data');
-                    controller.packing_from = data!.name!;
-                    controller.update();
-                    },
-                  itemAsString: (DataListPackingFormFormResponse u) => u.name!,
-                  dropdownButtonBuilder: (_)=> Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
-                  ),
-                  popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
-                  popupItemBuilder: _customDropdownPackingForm,
+            ),
+            SizedBox(height: 15),
+            Container(
+              child: DropdownSearch<DataListPackingFormFormResponse>(
+                mode: Mode.MENU,
+                maxHeight: 120,
+                popupSafeArea: PopupSafeArea(),
+                onFind: (String? filter) => controller.getDataListTransport(),
+                hint: "Chọn hình thức đóng gói",
+                onChanged: (data) {
+                  print('$data');
+                  controller.packing_from = data!.name!;
+                  controller.update();
+                },
+                itemAsString: (DataListPackingFormFormResponse u) => u.name!,
+                dropdownButtonBuilder: (_) => Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: SvgPicture.asset(
+                    IC_ARROW_DOWN,
+                    color: GRAY,
                   ),
               ),
               SizedBox(height: 5),
@@ -336,7 +349,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     ]
                   )
                 ),
-                ]
+                popupItemBuilder: _customDropdownPackingForm,
               ),
                 SizedBox(height: 5),
                 controller.isWeightFromValid == false
@@ -398,37 +411,107 @@ class CreateBagPage extends GetView<CreateBagController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextCustomized(
+                              text: MANAGE_PACKAGE_WEIGHT,
+                              font: SanFranciscoUIText,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              //width: Get.width*0.4,
+                              child: TextFieldCustomized(
+                                hint: "Nhập số cân",
+                              ),
+                            )
+                          ])),
+                  SizedBox(width: 10),
+                  Expanded(
+                      flex: 2,
+                      //width: Get.width*0.4,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: ORDER_LIST_PARCELS,
+                              font: SanFranciscoUIText,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              //width: Get.width*0.5,
+                              child: TextFieldCustomized(
+                                hint: ORDER_LIST_NULL,
+                              ),
+                            )
+                          ])),
+                ]),
+            SizedBox(height: 15),
+            TextCustomized(
+              text: MANAGE_PACKAGE_TOTAL_COD,
+              font: SanFranciscoUIText,
+              size: normalSize,
+              weight: FontWeight.w600,
+              color: BLACK_1,
+            ),
+            SizedBox(height: 5),
+            TextFieldCustomized(
+              hint: ORDER_LIST_NULL,
+            ),
+            SizedBox(height: 15),
+            Container(
+                width: Get.width,
+                padding: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    border: Border(
+                  bottom: BorderSide(color: BT_GRAY),
+                )),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          flex: 10,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextCustomized(
                                 text: MANAGE_PACKAGE_LIST_BILL,
                                 font: SanFranciscoUIText,
                                 size: normalSize,
                                 weight: FontWeight.w600,
                                 color: BLACK_1,
-                            ),
-                          ],
-                        )
-                    ),
-                    Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            InkWell(
-                                onTap: (){controller.onChange(1);},
-                                child: controller.changeBill == true
-                                    ? Icon(
-                                    Icons.keyboard_arrow_up
-                                     )
-                                    : Icon(
-                                    Icons.keyboard_arrow_down
-                                )
-                            ),
-                          ],
-                        )
-                    ),
-                  ],
-                ),
-              )
+                              ),
+                            ],
+                          )),
+                      Expanded(
+                          flex: 1,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    controller.onChange(1);
+                                  },
+                                  child: controller.changeBill == true
+                                      ? Icon(Icons.keyboard_arrow_up)
+                                      : Icon(Icons.keyboard_arrow_down)),
+                            ],
+                          )),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: 10,
             ),
             controller.isOrderValid == false
                 ?  TextCustomized(
@@ -466,13 +549,16 @@ class CreateBagPage extends GetView<CreateBagController> {
                 child: Wrap(
                   spacing: 5.0,
                   children: [
-                    SvgPicture.asset(IC_ADD_CIRCLE, color: GRAY8,),
+                    SvgPicture.asset(
+                      IC_ADD_CIRCLE,
+                      color: GRAY8,
+                    ),
                     TextCustomized(
                       text: MANAGE_PACKAGE_MOVE_GOOD,
                       size: normalSize,
                       color: GRAY8,
                       weight: FontWeight.w700,
-                      ),
+                    ),
                   ],
                 ),
               ),
@@ -494,8 +580,6 @@ class CreateBagPage extends GetView<CreateBagController> {
               backgroundColor: WHITE,
               textColor: BT_CONFIRM,
               borderColor: BT_GRAY,
-              
-              
             ),
           ],
         ),
@@ -505,20 +589,16 @@ class CreateBagPage extends GetView<CreateBagController> {
    Widget _buildListBill(DataOrderAddBag data, index){
     return  Container(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-             Container(
-               padding: EdgeInsets.only(top: 5,bottom: 10),
-               decoration: BoxDecoration(
-                 border: Border(
-                   bottom: BorderSide(color: BT_GRAY)
-                 )
-               ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+          Container(
+            padding: EdgeInsets.only(top: 5, bottom: 10),
+            decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: BT_GRAY))),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -537,12 +617,14 @@ class CreateBagPage extends GetView<CreateBagController> {
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
                       color: RED_1,
-                      ),
                     ),
+                  ),
                 ],
               ),
-              SizedBox(height: 5,),     
-               Row(
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -557,11 +639,13 @@ class CreateBagPage extends GetView<CreateBagController> {
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
-              ), 
-               SizedBox(height: 5,),     
-               Row(
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -576,7 +660,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
               ),   
               SizedBox(height: 5,),
@@ -615,11 +699,13 @@ class CreateBagPage extends GetView<CreateBagController> {
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
-                    ),
+                  ),
                 ],
-              ), 
-              SizedBox(height: 5,),     
-               Row(
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -634,7 +720,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: RED_1,
-                    ),
+                  ),
                 ],
               ), 
               SizedBox(height: 5,),     
@@ -658,144 +744,131 @@ class CreateBagPage extends GetView<CreateBagController> {
               // ), 
                 ]
               ),
-             )
-          ]
-        )
+            ]),
+          )
+        ]));
+  }
+
+  Widget _customDropdown(
+      BuildContext context, DataBagType item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.nameBagType?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
+              //  Flexible(
+              //    child: SvgPicture.asset(IC_CHECK1),
+              //    )
+            ],
+          )),
     );
   }
 
-  Widget _customDropdown (BuildContext context, DataBagType item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
+  Widget _customDropdownWareHouseBack(BuildContext context,
+      DataListWareHouseBackResponse item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.nameBagType?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.status_name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
+              //    )
+            ],
+          )),
+    );
+  }
 
-      ), 
-
-   );
- }
- Widget _customDropdownWareHouseBack (BuildContext context, DataListWareHouseBackResponse item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
+  Widget _customDropdownTransportForm(BuildContext context,
+      DataListTransportFormResponse item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.status_name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
+              //    )
+            ],
+          )),
+    );
+  }
 
-      ), 
-
-   );
- }
-  Widget _customDropdownTransportForm (BuildContext context, DataListTransportFormResponse item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
+  Widget _customDropdownPackingForm(BuildContext context,
+      DataListPackingFormFormResponse item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
-
-      ), 
-
-   );
- }
-  Widget _customDropdownPackingForm (BuildContext context, DataListPackingFormFormResponse item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
-              //  Flexible(
-              //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
-
-      ), 
-
-   );
- }
+              //    )
+            ],
+          )),
+    );
+  }
 }
 
 class DataBagType {
   String? codeBagType;
   String? nameBagType;
-  DataBagType({
-   required this.codeBagType,
-   required this.nameBagType
-    });
+  DataBagType({required this.codeBagType, required this.nameBagType});
 }
+
 List<DataBagType> dataBagType = <DataBagType>[
   DataBagType(codeBagType: "graft_bag", nameBagType: "Bao ghép"),
   DataBagType(codeBagType: "intact_bag", nameBagType: "Bao nguyên"),
-  
 ];

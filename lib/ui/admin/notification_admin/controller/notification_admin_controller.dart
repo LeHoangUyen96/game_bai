@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/notification_repository/notification_repository.dart';
-import 'package:viet_trung_mobile/data/response/notification_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/ui/admin/notification_admin/contract/notification_admin_contract.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/notification_repository/notification_repository.dart';
+import 'package:viet_trung_mobile_admin/data/response/notification_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/notification_admin/contract/notification_admin_contract.dart';
 
 class NotificationAdminController extends GetxController
     implements NotificationContract {
@@ -17,7 +17,6 @@ class NotificationAdminController extends GetxController
   void onInit() {
     super.onInit();
     repository = Injector().notification;
-    //orderRepositories = Injector().order;
     contract = this;
     getListNotification();
   }
@@ -44,12 +43,4 @@ class NotificationAdminController extends GetxController
     listNotification.addAll(listNotificationResponse!.data!);
     update();
   }
-
-  // bool isNumericUsingRegularExpression(String string) {
-  //   final numericRegex =
-  //   RegExp(r'^-?(([0-9]*)|(([0-9]*)))$');
-
-  //   return numericRegex.hasMatch(string);
-  // }
-
 }

@@ -1,20 +1,23 @@
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class ListBagResponse {
- List< DataBagResponse> ? data;
- DataPaginateResponse? paginate;
-  ListBagResponse ({
-    this.data,
-    this.paginate
-  });
-  ListBagResponse.fromJson(Map <String,dynamic> json  ){
-     print('data.fromJson ${json} ');
-      this.data = json["data"] == null ? <DataBagResponse>[] : json['data'].map<DataBagResponse>((e)=> DataBagResponse.fromJson(e)).toList();
-      this.paginate = json['paginate'] != null? DataPaginateResponse.fromJson(json['paginate']): null;
-   }
+  List<DataBagResponse>? data;
+  DataPaginateResponse? paginate;
+  ListBagResponse({this.data, this.paginate});
+  ListBagResponse.fromJson(Map<String, dynamic> json) {
+    print('data.fromJson ${json} ');
+    this.data = json["data"] == null
+        ? <DataBagResponse>[]
+        : json['data']
+            .map<DataBagResponse>((e) => DataBagResponse.fromJson(e))
+            .toList();
+    this.paginate = json['paginate'] != null
+        ? DataPaginateResponse.fromJson(json['paginate'])
+        : null;
+  }
 }
 
-class  DataBagResponse {
+class DataBagResponse {
   int? id;
   String? code;
   String? parent_pack_type;
@@ -32,9 +35,7 @@ class  DataBagResponse {
   String? created_at;
   String? updated_at;
 
-
-
-   DataBagResponse({
+  DataBagResponse({
     this.id,
     this.code,
     this.parent_pack_type,
@@ -91,6 +92,7 @@ class  DataBagResponse {
     }
 
 }
+
 class DataPaginateResponse {
   int? total;
   int? per_page;
@@ -115,18 +117,18 @@ class DataPaginateResponse {
         : -1;
     this.per_page = json["per_page"] != null
         ? (json["per_page"] is int
-        ? json["per_page"]
-        : int.parse(json["per_page"]))
+            ? json["per_page"]
+            : int.parse(json["per_page"]))
         : -1;
     this.current_page = json["current_page"] != null
         ? (json["current_page"] is int
-        ? json["current_page"]
-        : int.parse(json["current_page"]))
+            ? json["current_page"]
+            : int.parse(json["current_page"]))
         : -1;
     this.last_page = json["last_page"] != null
         ? (json["last_page"] is int
-        ? json["last_page"]
-        : int.parse(json["last_page"]))
+            ? json["last_page"]
+            : int.parse(json["last_page"]))
         : -1;
     this.next = json["next"] != null
         ? (json["next"] is int ? json["next"] : int.parse(json["next"]))

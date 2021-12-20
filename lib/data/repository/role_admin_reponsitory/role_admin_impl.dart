@@ -1,12 +1,12 @@
 import 'package:get/get_connect.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/update_role_request.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/list_role_response.dart';
-import 'package:viet_trung_mobile/data/response/list_rights_group.dart';
-import 'package:viet_trung_mobile/data/response/role_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/update_role_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_role_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_rights_group.dart';
+import 'package:viet_trung_mobile_admin/data/response/role_detail_response.dart';
 import 'dart:convert';
 
 class RoleAdminImpl extends GetConnect implements RoleAdminRepositories {

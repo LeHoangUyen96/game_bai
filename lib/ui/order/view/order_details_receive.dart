@@ -2,16 +2,16 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_details_receive_controller.dart';
-import 'package:viet_trung_mobile/ui/rating_order/view/review_order_page.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order/controller/order_details_receive_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/rating_order/view/review_order_page.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/initial_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class OrderDetailReceivePage extends GetView<OrderDetailReceiveController> {
   @override
@@ -87,8 +87,10 @@ class OrderDetailReceivePage extends GetView<OrderDetailReceiveController> {
                             ),
                             ButtonCustomized(
                               REVIEW_ORDER,
-                              onTap: (){
-                                Get.to(ReviewOrderPage(), arguments: controller.orderDetailsResponse!);
+                              onTap: () {
+                                Get.to(ReviewOrderPage(),
+                                    arguments:
+                                        controller.orderDetailsResponse!);
                               },
                               backgroundColor: BT_CONFIRM,
                               textColor: WHITE,

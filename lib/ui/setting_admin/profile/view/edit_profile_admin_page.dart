@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/profile/controller/edit_profile_admin_controller.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/profile/controller/edit_profile_admin_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class EditProfileAdminPage extends GetView<EditProfileAdminController> {
   BuildContext? mContext;

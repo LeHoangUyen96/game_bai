@@ -1,9 +1,9 @@
 import 'package:get/get_connect.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/exchange_rate_reponsitory/exchange_rate_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/exchange_rate_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/exchange_rate_reponsitory/exchange_rate_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/exchange_rate_response.dart';
 
 class ExchangeRateImpl extends GetConnect implements ExchangeRateRepositories {
   @override

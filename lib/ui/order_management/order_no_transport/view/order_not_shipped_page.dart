@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_no_transport/controller/order_not_shipped_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_no_transport/view/order_no_transport_detail_page.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_admin_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_no_transport/controller/order_not_shipped_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_no_transport/view/order_no_transport_detail_page.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class OrderNotShippedPage extends GetView<OrderNoTransportController> {
   @override

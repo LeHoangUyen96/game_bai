@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order/controller/order_controller.dart';
-import 'package:viet_trung_mobile/ui/order/view/order_details_receive.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order/controller/order_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order/view/order_details_receive.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class OrderListPage extends GetView<OrderController> {
   final List<Status> listStatus = [

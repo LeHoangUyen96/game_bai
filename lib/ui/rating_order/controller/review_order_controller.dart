@@ -2,23 +2,23 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/repository/rating_order_reponsitory/rating_order_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/rating_order_request.dart';
-import 'package:viet_trung_mobile/data/response/order_detail_response.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/rating_order_reponsitory/rating_order_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/rating_order_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
-class ReviewOrderController extends GetxController  {
+class ReviewOrderController extends GetxController {
   TextEditingController commentController = TextEditingController();
   Color? color;
   OrderRepositories? orderRepositories;
   OrderResponse? orderResponse;
   OrderDetailsResponse? orderDetailsResponse;
-  RatingOrderRepositories ? ratingOrderRepositories;
+  RatingOrderRepositories? ratingOrderRepositories;
   int? id;
   double? star;
   @override
@@ -26,13 +26,14 @@ class ReviewOrderController extends GetxController  {
     super.onInit();
     orderRepositories = Injector().order;
     ratingOrderRepositories = Injector().ratingOrder;
-    if(Get.arguments == null){
-      }else{
-        orderDetailsResponse = Get.arguments;
-      }
+    if (Get.arguments == null) {
+    } else {
+      orderDetailsResponse = Get.arguments;
+    }
     print('$orderDetailsResponse');
   }
-  Color ColorStatusName( String order_status_name) {
+
+  Color ColorStatusName(String order_status_name) {
     switch (order_status_name) {
       case ORDER_LIST_CHINA_WAREHOUSE:
         color = COLOR_ORDER_CHINESE_WAREHOUSE;
@@ -60,23 +61,24 @@ class ReviewOrderController extends GetxController  {
         break;
       case ORDER_DELIVERY_SUCCESSFULL:
         color = COLOR_ORDER_DELIVERY_SUCCESSFULL;
-        break;        
+        break;
     }
     return color!;
   }
-  void onRatingOrder(){
-     RatingOrderRequest request = RatingOrderRequest(
-        order_id : orderDetailsResponse!.dataOrderDetails!.id,
-        star : ParseNumber.parseInt(star),
-        comment: commentController.text.toString(),
-      );
-      ratingOrderRepositories!.onRatingOrder(request).then((value){
-        Get.snackbar(NOTIFY, value.message.toString());
-          }).catchError((onError) {
-            return onError(onError);
-          });
-      Get.back(result: request);
-      
-      update();
+
+  void onRatingOrder() {
+    RatingOrderRequest request = RatingOrderRequest(
+      order_id: orderDetailsResponse!.dataOrderDetails!.id,
+      star: ParseNumber.parseInt(star),
+      comment: commentController.text.toString(),
+    );
+    ratingOrderRepositories!.onRatingOrder(request).then((value) {
+      Get.snackbar(NOTIFY, value.message.toString());
+    }).catchError((onError) {
+      return onError(onError);
+    });
+    Get.back(result: request);
+
+    update();
   }
 }

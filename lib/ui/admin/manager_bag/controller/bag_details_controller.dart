@@ -14,12 +14,12 @@ import 'package:viet_trung_mobile/res/colors.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
 
-class BagDetailsController extends GetxController  {
-  List< DataListStatusBagResponse> ? mDataListStatusBagResponse =[];
-  BagRepositories ? bagRepositories;
-  ListStatusBagResponse ? listStatusBagResponse;
-  DataBagDetailsResponse ? mDataBagDetailsResponse;
-  BagDetailsResponse ? bagDetailsResponse;
+class BagDetailsController extends GetxController {
+  List<DataListStatusBagResponse>? mDataListStatusBagResponse = [];
+  BagRepositories? bagRepositories;
+  ListStatusBagResponse? listStatusBagResponse;
+  DataBagDetailsResponse? mDataBagDetailsResponse;
+  BagDetailsResponse? bagDetailsResponse;
   String? item_code;
   bool changeBill = false;
   int? id;
@@ -37,31 +37,33 @@ class BagDetailsController extends GetxController  {
     onGetDetailBag();
     getDataStatusBag();
   }
-  Future<List<DataListStatusBagResponse>> getDataStatusBag () async {
-    bagRepositories!.onGetListBagStatus().then((value){
+
+  Future<List<DataListStatusBagResponse>> getDataStatusBag() async {
+    bagRepositories!.onGetListBagStatus().then((value) {
       listStatusBagResponse = value;
       mDataListStatusBagResponse!.addAll(listStatusBagResponse!.data!);
-    }).catchError((onError){
-    });
+    }).catchError((onError) {});
     return mDataListStatusBagResponse!;
   }
-  void onChange (int change){
-    if(change == 1){
+
+  void onChange(int change) {
+    if (change == 1) {
       changeBill = !changeBill;
     }
     update();
   }
+
   void isShowCard(DataSearchCustomer data) {
-    
     update();
   }
+
   void onGetDetailBag() {
-    bagRepositories!.onGetDetailsBag(id!).then((value){
+    bagRepositories!.onGetDetailsBag(id!).then((value) {
       bagDetailsResponse = value;
     
       update();
-   }).catchError((onError){
-     Get.defaultDialog(title: (onError).message.toString(), middleText: '');
+    }).catchError((onError) {
+      Get.defaultDialog(title: (onError).message.toString(), middleText: '');
       update();
     });
   }
@@ -79,9 +81,7 @@ class BagDetailsController extends GetxController  {
     });
   }
   void onUpdateStatusBag() {
-    bagRepositories!
-        .onUpdateSatusBag(item_code!, id!)
-        .then((value) {
+    bagRepositories!.onUpdateSatusBag(item_code!, id!).then((value) {
       Get.snackbar(NAV_NOTIFICATION, value.message.toString());
       print("--------------$value");
       update();
@@ -89,7 +89,8 @@ class BagDetailsController extends GetxController  {
       Get.snackbar(PROFILE_NOTIFY, onError.toString());
     });
   }
-  Color ColorStatusName( String parent_pack_status_name) {
+
+  Color ColorStatusName(String parent_pack_status_name) {
     switch (parent_pack_status_name) {
       case ORDER_LIST_CHINA_WAREHOUSE:
         color = COLOR_ORDER_CHINESE_WAREHOUSE;
@@ -117,9 +118,9 @@ class BagDetailsController extends GetxController  {
         break;
       case ORDER_DELIVERY_SUCCESSFULL:
         color = COLOR_ORDER_DELIVERY_SUCCESSFULL;
-        break;        
+        break;
     }
-    return color !;
+    return color!;
   }
   String onGetNumberPackageInBag (DataListOrderAddBagResponse data){
     String? temp;

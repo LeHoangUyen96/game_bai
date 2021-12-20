@@ -1,4 +1,4 @@
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 import 'package:money2/money2.dart';
 
 class ServiceFeeResponse {
@@ -7,7 +7,8 @@ class ServiceFeeResponse {
   ServiceFeeResponse({this.dataServiceFee});
 
   ServiceFeeResponse.fromJson(Map<String, dynamic> json) {
-    dataServiceFee = json['data'] != null ? DataServiceFee.fromJson(json['data']) : null;
+    dataServiceFee =
+        json['data'] != null ? DataServiceFee.fromJson(json['data']) : null;
   }
 }
 
@@ -35,7 +36,9 @@ class DataServiceFee {
     from_amount = ParseNumber.parseDouble(json["from_amount"]);
     to_amount = ParseNumber.parseDouble(json["to_amount"]);
     service_fee = ParseNumber.parseDouble(json["service_fee"]);
-    service_fee_type_status_code = json["service_fee_type_status_code"] != null ? json["service_fee_type_status_code"] : 'percent';
+    service_fee_type_status_code = json["service_fee_type_status_code"] != null
+        ? json["service_fee_type_status_code"]
+        : 'percent';
   }
 
   Map<String, dynamic> toJson() {
@@ -49,9 +52,9 @@ class DataServiceFee {
 
   String toStringFee(Currency currency) {
     // print('toStringFee service_fee $service_fee');
-    if( service_fee_type_status_code == 'percent'){
+    if (service_fee_type_status_code == 'percent') {
       return '$service_fee%';
-    } else if( service_fee_type_status_code == 'money'){
+    } else if (service_fee_type_status_code == 'money') {
       Money moneyFee = Money.from(service_fee ?? 0, currency); // CNY
       // print('toStringFee moneyFee $moneyFee');
       // print('toStringFee moneyFee.format  ${moneyFee.format('###,###,###,###S')}');
@@ -59,5 +62,4 @@ class DataServiceFee {
     }
     return '0đ';
   }
-
 }

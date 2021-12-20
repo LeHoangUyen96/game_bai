@@ -1,9 +1,9 @@
 import 'package:get/get_connect.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/product_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/dashboard_product_reponsitory/dashboard_product_reponsitories.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/product_detail_response.dart';
 
 class DashboardProductImpl extends GetConnect
     implements DashboardProductRepositories {

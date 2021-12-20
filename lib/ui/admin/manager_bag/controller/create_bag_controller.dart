@@ -18,12 +18,11 @@ import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_p
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
-
-class CreateBagController extends GetxController  {
-  List< DataListWareHouseBackResponse> ? mDataListWareHouseBackResponse =[];
-  List< DataListStatusBagResponse> ? mDataListStatusBagResponse =[];
-  List< DataListTransportFormResponse> ? mDataListTransportFormResponse = [];
-  List< DataListPackingFormFormResponse> ? mDataListPackingFormFormResponse =[];
+class CreateBagController extends GetxController {
+  List<DataListWareHouseBackResponse>? mDataListWareHouseBackResponse = [];
+  List<DataListStatusBagResponse>? mDataListStatusBagResponse = [];
+  List<DataListTransportFormResponse>? mDataListTransportFormResponse = [];
+  List<DataListPackingFormFormResponse>? mDataListPackingFormFormResponse = [];
   TextEditingController searchController = TextEditingController();
   TextEditingController totalCodController = TextEditingController();
   
@@ -122,42 +121,43 @@ class CreateBagController extends GetxController  {
     bagRepositories!.onGetListWarehouseback().then((value){
       listWareHouseBackResponse = value;
       mDataListWareHouseBackResponse!.addAll(listWareHouseBackResponse!.data!);
-    }).catchError((onError){
-    });
+    }).catchError((onError) {});
     return mDataListWareHouseBackResponse!;
   }
-  Future<List<DataListStatusBagResponse>> getDataStatusBag () async {
-    bagRepositories!.onGetListBagStatus().then((value){
+
+  Future<List<DataListStatusBagResponse>> getDataStatusBag() async {
+    bagRepositories!.onGetListBagStatus().then((value) {
       listStatusBagResponse = value;
       mDataListStatusBagResponse!.addAll(listStatusBagResponse!.data!);
-    }).catchError((onError){
-    });
+    }).catchError((onError) {});
     return mDataListStatusBagResponse!;
   }
 
-  Future<List<DataListTransportFormResponse>> getDataTransportForm () async {
-    settingRepositories!.onGetListTransport().then((value){
+  Future<List<DataListTransportFormResponse>> getDataTransportForm() async {
+    settingRepositories!.onGetListTransport().then((value) {
       listTransportFormResponse = value;
       mDataListTransportFormResponse!.addAll(listTransportFormResponse!.data!);
-    }).catchError((onError){
-    });
+    }).catchError((onError) {});
     return mDataListTransportFormResponse!;
   }
-  Future<List<DataListPackingFormFormResponse>> getDataListTransport () async {
-    settingRepositories!.onGetListPackingForm().then((value){
+
+  Future<List<DataListPackingFormFormResponse>> getDataListTransport() async {
+    settingRepositories!.onGetListPackingForm().then((value) {
       listPackingFormFormResponse = value;
-      mDataListPackingFormFormResponse!.addAll(listPackingFormFormResponse!.data!);
-    }).catchError((onError){
-    });
+      mDataListPackingFormFormResponse!
+          .addAll(listPackingFormFormResponse!.data!);
+    }).catchError((onError) {});
     return mDataListPackingFormFormResponse!;
   }
-  void onChange (int change){
-    if(change == 1){
+
+  void onChange(int change) {
+    if (change == 1) {
       changeBill = !changeBill;
     }
     update();
   }
-   void onGetListSearch(String? phone) {
+
+  void onGetListSearch(String? phone) {
     orderAminRepositories!.onGetListSearchCustomer(phone!).then((value) {
       searchResponse = value.data!;
       update();
@@ -264,6 +264,4 @@ class CreateBagController extends GetxController  {
     }
     update();
   }
-
 }
-

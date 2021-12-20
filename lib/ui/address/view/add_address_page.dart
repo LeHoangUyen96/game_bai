@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/response/city_response.dart';
-import 'package:viet_trung_mobile/data/response/district_response.dart';
-import 'package:viet_trung_mobile/data/response/wards_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/address/controller/add_address_controller.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/city_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/district_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/wards_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/address/controller/add_address_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/initial_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class AddAddressPage extends GetView<AddAddressController> {
   @override

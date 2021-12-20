@@ -9,8 +9,8 @@ import 'package:viet_trung_mobile/ui/main/contract/main_contract.dart';
 import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/models/navigate_emblem.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
+import 'package:viet_trung_mobile_admin/data/models/navigate_emblem.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:get_storage/get_storage.dart';
 
 class MainController extends GetxController implements MainContract {

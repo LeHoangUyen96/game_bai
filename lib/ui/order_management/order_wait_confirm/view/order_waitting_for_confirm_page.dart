@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/response/order_admin_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/controller/order_wait_confirm_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_wait_confirm/view/order_detail_waitting_for_confirm_page.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_admin_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_wait_confirm/controller/order_wait_confirm_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_wait_confirm/view/order_detail_waitting_for_confirm_page.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
   @override
@@ -114,10 +114,10 @@ class OrderWaittingForConfirmPage extends GetView<OrderWaitConfirmController> {
                       color: MAIN_BLACK,
                     ),
                     TextCustomized(
-                      text: response.orderStatusName!,
+                      text: waitConfirm,
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
-                      color: BG_ID_PD,
+                      color: TEXT_ORDER_W_CONFIRM,
                     ),
                   ],
                 ),

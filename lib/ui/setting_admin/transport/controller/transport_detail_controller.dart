@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/response/transport_admin_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/transport_admin_reponsitory/transport_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_admin_detail_response.dart';
 
 class TransportDetailController extends GetxController {
   TransportAdminRepositories? repository;
@@ -37,6 +37,7 @@ class TransportDetailController extends GetxController {
   void onDeleteTransport(String id) {
     repository!.onDeleteTransportFee(id).then((value) {
       Get.snackbar('Thông báo', value.message!);
+      onGetTransportDetail(transportId!);
       update();
     }).catchError((onError) {
       update();

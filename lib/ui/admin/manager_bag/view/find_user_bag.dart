@@ -3,16 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/controller/order_ownerless_confirm_controller.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/response/search_customer_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/controller/create_bag_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_ownerless/controller/order_ownerless_confirm_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class SearchTextFieldUser extends GetView<CreateBagController> {
   final TextEditingController? searchController;
@@ -122,7 +122,7 @@ class SearchTextFieldUser extends GetView<CreateBagController> {
             //   weight: FontWeight.w400,
             //   size: 16,
             // ),
-          );
+            );
   }
 
   Widget _itemSearch(DataSearchCustomer response) {

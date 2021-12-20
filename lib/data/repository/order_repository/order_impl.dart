@@ -2,20 +2,19 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/request/confirm_order_request.dart';
-import 'package:viet_trung_mobile/data/request/enter_warehouse_request.dart';
-import 'package:viet_trung_mobile/data/request/packing_order_requets.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/errors_enter_warehouse.dart';
-import 'package:viet_trung_mobile/data/response/order_detail_response.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/data/response/ramdom_bill_order_response.dart';
-import 'package:viet_trung_mobile/data/response/warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/confirm_order_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/enter_warehouse_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/packing_order_requets.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/errors_enter_warehouse.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/ramdom_bill_order_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/warehouse_response.dart';
 
 class OrderImpl extends GetConnect implements OrderRepositories {
-
   @override
   Future<OrderResponse> onGetListOrder(int type) async {
     final header = NetworkConfig.onBuildHeader();
@@ -43,7 +42,7 @@ class OrderImpl extends GetConnect implements OrderRepositories {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.PACKING_ORDER;
     final body = jsonEncode(request);
-    final responseJson = await post(url,body, headers: header);
+    final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return true;
     }
@@ -51,11 +50,11 @@ class OrderImpl extends GetConnect implements OrderRepositories {
   }
 
   @override
-  Future<bool> onEnterWarehouse(EnterWareHouseRequest request)async {
-   final header = NetworkConfig.onBuildHeader();
+  Future<bool> onEnterWarehouse(EnterWareHouseRequest request) async {
+    final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.ENTER_WAREHOUSE;
     final body = jsonEncode(request);
-    final responseJson = await post(url,body, headers: header);
+    final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return true;
     }
@@ -67,7 +66,7 @@ class OrderImpl extends GetConnect implements OrderRepositories {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.RAMDOM_BILL_ORDER + "?user_id=$user_id";
     final urls = NetworkConfig.RAMDOM_BILL_ORDER;
-    final responseJson = await get(user_id != 0  ? url: urls, headers: header);
+    final responseJson = await get(user_id != 0 ? url : urls, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return RamdomBillOrderResponse.fromJson(responseJson.body);
     }
@@ -81,8 +80,8 @@ class OrderImpl extends GetConnect implements OrderRepositories {
   }
 
   @override
-  Future<OrderDetailsResponse> onGetDetailsOrder(int id)async {
-     final header = NetworkConfig.onBuildHeader();
+  Future<OrderDetailsResponse> onGetDetailsOrder(int id) async {
+    final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.ORDER_DETAILS + "$id";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
@@ -92,15 +91,14 @@ class OrderImpl extends GetConnect implements OrderRepositories {
   }
 
   @override
-  Future<bool> onConfirmOrder(ConfirmOrderRequest request)async {
+  Future<bool> onConfirmOrder(ConfirmOrderRequest request) async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.ORDER_CONFIRM;
     final body = jsonEncode(request);
-    final responseJson = await post(url,body, headers: header);
+    final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return true;
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }
-  
 }

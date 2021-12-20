@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/packing_form/controller/packing_controller.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/packing_form/view/add_packing_page.dart';
-import 'package:viet_trung_mobile/ui/setting_admin/packing_form/view/packing_detail_page.dart';
-import 'package:viet_trung_mobile/widget/header_order._page.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/packing_form/controller/packing_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/packing_form/view/add_packing_page.dart';
+import 'package:viet_trung_mobile_admin/ui/setting_admin/packing_form/view/packing_detail_page.dart';
+import 'package:viet_trung_mobile_admin/widget/header_order._page.dart';
 
 class PackingPage extends GetView<PackingController> {
   @override

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
-import 'package:viet_trung_mobile/data/response/list_admin_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_staff/contract/manager_staff_contract.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/manager_staff_reponsitory/manager_staff_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/create_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/errors_create_admin.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_admin_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/contract/manager_staff_contract.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
-class ManagerStaffController extends GetxController implements ManagerStaffContract  {
-  RefreshController refreshController = RefreshController(initialRefresh: false);
+class ManagerStaffController extends GetxController
+    implements ManagerStaffContract {
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
   TextEditingController searchNamePhone = TextEditingController();
-  ManagerStaffRepositories ? managerStaffRepositories;
+  ManagerStaffRepositories? managerStaffRepositories;
   ListAdminResponse? listAdminResponse;
-  List< DataListAdminResponse> ? mDataListAdminResponse = [];
+  List<DataListAdminResponse>? mDataListAdminResponse = [];
   bool isNextPage = false;
   late ManagerStaffContract contract;
   int page = 1;
@@ -28,8 +30,9 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
     contract = this;
     onGetListAdmin(false);
   }
- void onGetListAdmin(bool isRefresh){
-   if (isRefresh) {
+
+  void onGetListAdmin(bool isRefresh) {
+    if (isRefresh) {
       mDataListAdminResponse!.clear();
     }
     managerStaffRepositories!.onGetListAdmin(page, perPage).then((value) {
@@ -37,8 +40,9 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
     }).catchError((onError) {
       print("-----------------$onError");
     });
- }
- void onListLoading() async {
+  }
+
+  void onListLoading() async {
     if (isNextPage) {
       page = (page + 1);
       onGetListAdmin(false);
@@ -60,8 +64,9 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
   void onGetListAdminSuccess(ListAdminResponse data) {
     listAdminResponse = data;
     mDataListAdminResponse!.addAll(listAdminResponse!.data!);
-    
-    if (listAdminResponse!.paginate!.current_page! <= listAdminResponse!.paginate!.last_page!) {
+
+    if (listAdminResponse!.paginate!.current_page! <=
+        listAdminResponse!.paginate!.last_page!) {
       if (listAdminResponse!.paginate!.next! > 0) {
         isNextPage = true;
       } else {
@@ -88,17 +93,17 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
       });
     update();
   }
-  void onDeleteStaff (int id){
+
+  void onDeleteStaff(int id) {
     managerStaffRepositories!.onDeleteAdmin(id).then((value) {
       Get.snackbar(NAV_NOTIFICATION, value.message.toString());
       onGetListAdmin(true);
       update();
-    }).catchError((onError){
-      Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
+    }).catchError((onError) {
+      Get.defaultDialog(
+          title: (onError as ErrorResponse).message.toString(), middleText: '');
     });
   }
-
- 
 
   @override
   void onCreateAdminSuccess(CreateAdminResponse data) {
@@ -109,5 +114,4 @@ class ManagerStaffController extends GetxController implements ManagerStaffContr
   void onCreateAdminAdminError(ErrorCreateAdminResponse error) {
     // TODO: implement onCreateAdminAdminError
   }
-
 }

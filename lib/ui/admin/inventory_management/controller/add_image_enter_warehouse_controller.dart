@@ -2,10 +2,10 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
-import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/ulti/helper/handle_image.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/response/admin_add_image_enter_warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
 class EnterWarehouseUploadImageController extends GetxController {
   int? selectedReason;

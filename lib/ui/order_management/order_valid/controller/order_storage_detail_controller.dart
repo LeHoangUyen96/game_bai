@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/request/update_fee_warhouse_china.dart';
-import 'package:viet_trung_mobile/data/response/order_admin_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/request/update_fee_warhouse_china.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_admin_detail_response.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
-import 'package:viet_trung_mobile/data/response/admin_add_image_enter_warehouse_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/ulti/helper/handle_image.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/response/admin_add_image_enter_warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
 class OrderStorageDetailController extends GetxController {
   OrderAdminRepositories? orderAminRepositories;

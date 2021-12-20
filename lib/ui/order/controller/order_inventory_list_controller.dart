@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/order_repository/order_repositories.dart';
-import 'package:viet_trung_mobile/data/response/order_response.dart';
-import 'package:viet_trung_mobile/ui/order/contract/order_contract.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_repository/order_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_response.dart';
+import 'package:viet_trung_mobile_admin/ui/order/contract/order_contract.dart';
 
 class OrderInventoryListController extends GetxController
     implements OrderContract {
