@@ -1,9 +1,9 @@
-import 'package:viet_trung_mobile/data/request/add_transport_form_fee_request.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/list_product_response.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/transport_admin_detail_response.dart';
-import 'package:viet_trung_mobile/data/response/transport_fee_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_transport_form_fee_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_product_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_admin_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/transport_fee_detail_response.dart';
 
 abstract class TransportAdminRepositories {
   Future<TransportFormAdminResponse> onGetListTransport();

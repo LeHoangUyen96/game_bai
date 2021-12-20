@@ -1,21 +1,22 @@
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
-import 'package:viet_trung_mobile/data/response/dashboard_user_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
+import 'package:viet_trung_mobile_admin/data/response/dashboard_user_response.dart';
 
-class DashboardUserController extends GetxController  {
- DashboardUsesResponse? dashboardUsesResponse;
- DashboardRepositories? dashboardRepositories;
+class DashboardUserController extends GetxController {
+  DashboardUsesResponse? dashboardUsesResponse;
+  DashboardRepositories? dashboardRepositories;
   @override
   void onInit() {
     super.onInit();
-    dashboardRepositories =Injector().dashboard;
+    dashboardRepositories = Injector().dashboard;
     onGetDashboard();
   }
-  void onGetDashboard(){
+
+  void onGetDashboard() {
     dashboardRepositories!.onGetDashboard().then((value) {
       dashboardUsesResponse = value;
-    }).catchError((onError){
+    }).catchError((onError) {
       Get.defaultDialog(title: (onError).message.toString(), middleText: '');
     });
   }

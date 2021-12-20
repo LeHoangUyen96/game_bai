@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
-import 'package:viet_trung_mobile/data/request/auth_request.dart';
-import 'package:viet_trung_mobile/data/response/register_response.dart';
-import 'package:viet_trung_mobile/data/response/register_address_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/register_step_1_response.dart';
-import 'package:viet_trung_mobile/data/response/register_step_2_response.dart';
-import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
-import 'package:viet_trung_mobile/ui/auth/register/view/resigter_step_2.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/auth_repository/auth_repository.dart';
+import 'package:viet_trung_mobile_admin/data/request/auth_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_address_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_step_1_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_step_2_response.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/register/contract/register_contract.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/register/view/resigter_step_2.dart';
 
 class RegisterStepOneController extends GetxController
     implements RegisterContract {

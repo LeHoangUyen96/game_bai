@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
-import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
-import 'package:viet_trung_mobile/data/response/list_user_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_user/contract/manager_user_contract.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/response/create_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/errors_create_admin.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_user_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_user/contract/manager_user_contract.dart';
 
-class ManagerUserController extends GetxController implements ManagerUserContract {
- RefreshController refreshController = RefreshController(initialRefresh: false);
+class ManagerUserController extends GetxController
+    implements ManagerUserContract {
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
   TextEditingController searchNamePhone = TextEditingController();
-  ManagerUserRepositories ? managerUserRepositories;
+  ManagerUserRepositories? managerUserRepositories;
   ListUserResponse? listUserResponse;
-  List< DataListUserResponse> ? mDataListUserResponse = [];
+  List<DataListUserResponse>? mDataListUserResponse = [];
   bool isNextPage = false;
   late ManagerUserContract contract;
   int page = 1;
@@ -27,8 +29,9 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
     contract = this;
     onGetListUser(false);
   }
- void onGetListUser(bool isRefresh){
-   if (isRefresh) {
+
+  void onGetListUser(bool isRefresh) {
+    if (isRefresh) {
       mDataListUserResponse!.clear();
     }
     managerUserRepositories!.onGetListUser(page, perPage).then((value) {
@@ -37,8 +40,9 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
       print("-----------------$onError");
     });
     update();
- }
- void onListLoading() async {
+  }
+
+  void onListLoading() async {
     if (isNextPage) {
       page = (page + 1);
       onGetListUser(false);
@@ -88,13 +92,15 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
       });
     update();
   }
-  void onDeleteStaff (int id){
+
+  void onDeleteStaff(int id) {
     managerUserRepositories!.onDeleteUser(id).then((value) {
       Get.snackbar(NAV_NOTIFICATION, value.message.toString());
       onGetListUser(true);
       update();
-    }).catchError((onError){
-      Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
+    }).catchError((onError) {
+      Get.defaultDialog(
+          title: (onError as ErrorResponse).message.toString(), middleText: '');
     });
   }
 
@@ -107,6 +113,4 @@ class ManagerUserController extends GetxController implements ManagerUserContrac
   void onCreatetUserError(ErrorCreateAdminResponse error) {
     // TODO: implement onCreatetUserError
   }
-
- 
 }

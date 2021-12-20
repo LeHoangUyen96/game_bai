@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/auth_repository/auth_repository.dart';
-import 'package:viet_trung_mobile/data/request/auth_request.dart';
-import 'package:viet_trung_mobile/data/response/register_step_2_response.dart';
-import 'package:viet_trung_mobile/data/response/register_step_1_response.dart';
-import 'package:viet_trung_mobile/data/response/register_response.dart';
-import 'package:viet_trung_mobile/data/response/register_address_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/auth/login/view/login_page.dart';
-import 'package:viet_trung_mobile/ui/auth/register/contract/register_contract.dart';
-import 'package:viet_trung_mobile/ui/main/view/main_page_admin.dart';
-import 'package:viet_trung_mobile/ulti/key_storage/key_storage.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/auth_repository/auth_repository.dart';
+import 'package:viet_trung_mobile_admin/data/request/auth_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_step_2_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_step_1_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/register_address_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/login/view/login_page.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/register/contract/register_contract.dart';
+import 'package:viet_trung_mobile_admin/ui/main/view/main_page_admin.dart';
+import 'package:viet_trung_mobile_admin/ulti/key_storage/key_storage.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
 class RegisterStepThreeController extends GetxController
     implements RegisterContract {

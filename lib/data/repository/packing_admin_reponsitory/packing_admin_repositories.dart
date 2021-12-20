@@ -1,7 +1,7 @@
-import 'package:viet_trung_mobile/data/request/add_packing_request.dart';
-import 'package:viet_trung_mobile/data/response/auth_response.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/packing_detail_response.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_packing_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/packing_detail_response.dart';
 
 abstract class PackingAdminRepositories {
   Future<TransportFormAdminResponse> onGetListPacking();

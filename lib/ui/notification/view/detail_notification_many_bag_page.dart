@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/notification/controller/detail_notification_many_bag_controller.dart';
-import 'package:viet_trung_mobile/widget/image_customized.dart';
-import 'package:viet_trung_mobile/widget/initial_widget.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/notification/controller/detail_notification_many_bag_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/initial_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
-class DetailNotificationManyBagPage extends GetView<NotificationManyBagController> {
+class DetailNotificationManyBagPage
+    extends GetView<NotificationManyBagController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NotificationManyBagController>(
@@ -43,86 +44,81 @@ class DetailNotificationManyBagPage extends GetView<NotificationManyBagControlle
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            flex: 1,
-                            child: ImageCustomized(
-                                    path: IMG_DASHBOARD,
-                                    height: 60,
-                                    width: 60,
-                                  )
-                          ),
+                              flex: 1,
+                              child: ImageCustomized(
+                                path: IMG_DASHBOARD,
+                                height: 60,
+                                width: 60,
+                              )),
                           Expanded(
-                            flex: 4,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextCustomized(
-                                  text: "Bạn có 10 đơn hàng đã xuất kho Trung Quốc nằm trong 2 bao",
-                                  font: SanFranciscoTextLight,
-                                  weight: FontWeight.w700,
-                                  color: MAIN_BLACK,
-                                  size: normalSize,
+                              flex: 4,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextCustomized(
+                                    text:
+                                        "Bạn có 10 đơn hàng đã xuất kho Trung Quốc nằm trong 2 bao",
+                                    font: SanFranciscoTextLight,
+                                    weight: FontWeight.w700,
+                                    color: MAIN_BLACK,
+                                    size: normalSize,
                                   ),
-                                SizedBox(height: 5.0),
-                                TextCustomized(
-                                  text: "18:00 10/08/2021",
-                                  font: SanFranciscoTextLight,
-                                  weight: FontWeight.w700,
-                                  color: TEXT_DATETIME_NT,
+                                  SizedBox(height: 5.0),
+                                  TextCustomized(
+                                    text: "18:00 10/08/2021",
+                                    font: SanFranciscoTextLight,
+                                    weight: FontWeight.w700,
+                                    color: TEXT_DATETIME_NT,
                                   ),
-                              ],
-                            )
-                          ),
+                                ],
+                              )),
                         ],
                       ),
                     ),
-                    SizedBox(height: 25,),
+                    SizedBox(
+                      height: 25,
+                    ),
                     Container(
                       color: WHITE,
                       padding: EdgeInsets.only(bottom: 15),
                       child: ListView.builder(
-                        itemBuilder: (BuildContext context, int index){
+                        itemBuilder: (BuildContext context, int index) {
                           return _buildListBag();
-                        }, 
+                        },
                         itemCount: 20,
                         padding: EdgeInsets.all(0.0),
                         physics: ClampingScrollPhysics(),
                         shrinkWrap: true,
-                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-            )
-        )
-    );
+            )));
   }
-  Widget _buildListBag(){
+
+  Widget _buildListBag() {
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: BT_GRAY
-          )
-        )
-      ),
+      decoration:
+          BoxDecoration(border: Border(bottom: BorderSide(color: BT_GRAY))),
       padding: EdgeInsets.all(15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-         TextCustomized(
+          TextCustomized(
             text: "#Bao_BinhAn_HN_2710_01",
             font: SanFranciscoUIText,
             weight: FontWeight.w400,
             color: MAIN_BLACK,
             size: normalSize,
-            ),
+          ),
           TextCustomized(
             text: "Kho cửa khẩu",
             font: SanFranciscoUIText,
             weight: FontWeight.w700,
             color: RED_1,
             size: normalSize,
-            ),
+          ),
         ],
       ),
     );

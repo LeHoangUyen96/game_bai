@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/address_reponsitory/address_respositories.dart';
-import 'package:viet_trung_mobile/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/create_user_request.dart';
-import 'package:viet_trung_mobile/data/response/city_response.dart';
-import 'package:viet_trung_mobile/data/response/create_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/district_response.dart';
-import 'package:viet_trung_mobile/data/response/list_user_response.dart';
-import 'package:viet_trung_mobile/data/response/errors_create_admin.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
-import 'package:viet_trung_mobile/data/response/wards_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_user/contract/manager_user_contract.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/address_reponsitory/address_respositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/manager_user_reponsitory/manager_user_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/create_user_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/city_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/create_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/district_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_user_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/errors_create_admin.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/wards_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_user/contract/manager_user_contract.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
-class CreateUserController extends GetxController implements ManagerUserContract {
- TextEditingController addressController = TextEditingController();
- TextEditingController nameController = TextEditingController();
- TextEditingController phoneController = TextEditingController();
- TextEditingController emailController = TextEditingController();
- bool isNameValid = true;
- bool isPhoneValid = true;
- bool isEmailValid = true;
- String nameError = "";
- String phoneError = "";
- String emailError = "";
+class CreateUserController extends GetxController
+    implements ManagerUserContract {
+  TextEditingController addressController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  bool isNameValid = true;
+  bool isPhoneValid = true;
+  bool isEmailValid = true;
+  String nameError = "";
+  String phoneError = "";
+  String emailError = "";
   late AddressRepository addressRepository;
-  ManagerUserRepositories ? managerUserRepositories;
-  ManagerUserContract ? contract;
+  ManagerUserRepositories? managerUserRepositories;
+  ManagerUserContract? contract;
   List<DataCity>? mcity;
   List<DataDistrict>? mdistric;
   List<DataWards>? mwards;
@@ -76,6 +77,7 @@ class CreateUserController extends GetxController implements ManagerUserContract
     onGetListDistrict(id);
     update();
   }
+
   void onGetListDistrict(int id) {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     addressRepository.onGetDistric(id).then((value) {
@@ -99,6 +101,7 @@ class CreateUserController extends GetxController implements ManagerUserContract
     onGetListWards(id);
     update();
   }
+
   void onGetListWards(int id) {
     Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     addressRepository.onGetWards(id).then((value) {
@@ -120,8 +123,9 @@ class CreateUserController extends GetxController implements ManagerUserContract
     wards = id;
     update();
   }
-  void onCreateUser(){
-     if (nameController.text.isEmpty) {
+
+  void onCreateUser() {
+    if (nameController.text.isEmpty) {
       isNameValid = false;
       nameError = ERROR_NAME;
     } else {
@@ -174,21 +178,21 @@ class CreateUserController extends GetxController implements ManagerUserContract
         cityValid &&
         districtValid &&
         wardsValid) {
-          CreateUserRequest request = CreateUserRequest(
-            address: addressController.text,
-            name: nameController.text,
-            phone: phoneController.text,
-            email: emailController.text,
-            city_id: city,
-            district_id: district,
-            wards_id: wards,
-            );
-            managerUserRepositories!.onCreateUser(request).then((value) {
-              Get.snackbar(NOTIFY, value.message.toString());
-            }).catchError((onError){
-              return contract!.onCreatetUserError(onError);
-            });
-        }
+      CreateUserRequest request = CreateUserRequest(
+        address: addressController.text,
+        name: nameController.text,
+        phone: phoneController.text,
+        email: emailController.text,
+        city_id: city,
+        district_id: district,
+        wards_id: wards,
+      );
+      managerUserRepositories!.onCreateUser(request).then((value) {
+        Get.snackbar(NOTIFY, value.message.toString());
+      }).catchError((onError) {
+        return contract!.onCreatetUserError(onError);
+      });
+    }
   }
 
   @override
@@ -198,7 +202,7 @@ class CreateUserController extends GetxController implements ManagerUserContract
 
   @override
   void onCreatetUserError(ErrorCreateAdminResponse msg) {
-     if (msg.error!.phone!.toList().isNotEmpty) {
+    if (msg.error!.phone!.toList().isNotEmpty) {
       isPhoneValid = false;
       phoneError = msg.error!.phone![0].toString();
       update();

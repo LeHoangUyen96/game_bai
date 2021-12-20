@@ -1,20 +1,19 @@
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
-class DetailStaffResponse{
+class DetailStaffResponse {
   DataDetailStaff? data;
-  
+
   DetailStaffResponse({
     this.data,
-    });
+  });
 
-  DetailStaffResponse.fromJson(Map<String, dynamic> json){
-    this.data = json['data'] != null ? DataDetailStaff.fromJson(json['data']) : null;
+  DetailStaffResponse.fromJson(Map<String, dynamic> json) {
+    this.data =
+        json['data'] != null ? DataDetailStaff.fromJson(json['data']) : null;
   }
-
 }
 
-
-class DataDetailStaff{
+class DataDetailStaff {
   int? id;
   String? name;
   String? email;
@@ -36,20 +35,20 @@ class DataDetailStaff{
     this.role_id,
     this.role_name,
   });
-   DataDetailStaff.empty(){
-    this.id = -1 ;
-    this.name = '' ;
+  DataDetailStaff.empty() {
+    this.id = -1;
+    this.name = '';
     this.email = '';
-    this.phone = '' ;
-    this.avatar = '' ;
-    this.user_code = '' ;
+    this.phone = '';
+    this.avatar = '';
+    this.user_code = '';
     this.status = -1;
     this.role_name = '';
     this.role_id = -1;
  
   }
 
-  DataDetailStaff.fromJson(Map<String, dynamic> json){
+  DataDetailStaff.fromJson(Map<String, dynamic> json) {
     this.id = ParseNumber.parseInt(json['id']);
     this.name = json['name'] != null ? json['name'] : '';
     this.email = json['email'] != null ? json['email'] : '';
@@ -60,5 +59,4 @@ class DataDetailStaff{
     this.role_id = ParseNumber.parseInt(json['role_id']);
     this.role_name = json['role_name'] != null ? json['role_name'] : '';
   }
-
 }

@@ -1,12 +1,12 @@
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class CreateAdminResponse {
   String? message;
   DataCreateAdmin? data;
 
-  CreateAdminResponse({this.message,this.data});
+  CreateAdminResponse({this.message, this.data});
 
-  CreateAdminResponse.fromJson(Map<String,dynamic> json){
+  CreateAdminResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     data = json['data'] != null ? DataCreateAdmin.fromJson(json['data']) : null;
   }
@@ -37,6 +37,4 @@ class DataCreateAdmin {
     avatar = json['avatar'] != null ? json['avatar'] : '';
     user_code = json['user_code'] != null ? json['user_code'] : '';
   }
-
-  
 }

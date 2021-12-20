@@ -135,117 +135,164 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextCustomized(
-                                text: "8.223",
-                                size: 36.0,
+                                text: "abc",
                                 color: WHITE,
+                                size: mediumSize,
                                 weight: FontWeight.w700,
                               ),
-                              SizedBox(height: 5.0),
                               TextCustomized(
                                 text: "Tổng đơn hàng",
                                 size: smallSize,
                                 color: WHITE,
-                                weight: FontWeight.w700,
+                                size: smallSize,
+                                weight: FontWeight.w400,
                               ),
-                              SizedBox(height: 10.0),
-                              Wrap(
-                                spacing: 5.0,
-                                children: [
-                                  TextCustomized(
-                                    text: "+15%",
-                                    size: smallSize,
-                                    color: STATUS_SUCCESS,
-                                    weight: FontWeight.w700,
-                                  ),
-                                  TextCustomized(
-                                    text: "Hôm nay",
-                                    size: smallSize,
-                                    color: WHITE,
-                                    weight: FontWeight.w700,
-                                  ),
-                                ],
-                              )
                             ],
                           ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                        ],
+                      ),
+                    ),
+                    Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 5.0,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(right: 10.0),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border(right: BorderSide(color: BT_GRAY))),
+                            child: TextCustomized(
+                              text: "Tỷ giá: 3.75",
+                              color: WHITE,
+                              size: smallSize,
+                              weight: FontWeight.w700,
+                            ),
+                          ),
+                          Container(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(NotificationAdminPage());
+                              },
+                              child: ImageCustomized(
+                                path: IC_NAV_NOTIFICATION,
+                                color: WHITE,
+                                width: 28,
+                                height: 28,
+                              ),
+                            ),
+                          ),
+                        ]),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TextCustomized(
+                            text: "8.223",
+                            size: 36.0,
+                            color: WHITE,
+                            weight: FontWeight.w700,
+                          ),
+                          SizedBox(height: 5.0),
+                          TextCustomized(
+                            text: "ĐH chuyển về",
+                            size: smallSize,
+                            color: WHITE,
+                            weight: FontWeight.w700,
+                          ),
+                          SizedBox(height: 10.0),
+                          Wrap(
+                            spacing: 5.0,
                             children: [
                               TextCustomized(
-                                text: "932 ",
-                                size: 36.0,
-                                color: WHITE,
+                                text: "+15%",
+                                size: smallSize,
+                                color: STATUS_SUCCESS,
                                 weight: FontWeight.w700,
                               ),
-                              SizedBox(height: 5.0),
                               TextCustomized(
-                                text: "ĐH chờ xác nhận",
+                                text: "Hôm nay",
                                 size: smallSize,
                                 color: WHITE,
                                 weight: FontWeight.w700,
                               ),
-                              SizedBox(height: 10.0),
-                              Wrap(
-                                spacing: 5.0,
-                                children: [
-                                  TextCustomized(
-                                    text: "-4%",
-                                    size: smallSize,
-                                    color: RED_1,
-                                    weight: FontWeight.w700,
-                                  ),
-                                  TextCustomized(
-                                    text: "Tuần này",
-                                    size: smallSize,
-                                    color: WHITE,
-                                    weight: FontWeight.w700,
-                                  ),
-                                ],
-                              )
                             ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15.0),
-                  Container(
-                    // padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
+                          )
+                        ],
                       ),
-                      color: GRAY9,
                     ),
-                    child: Column(
-                      //mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(20),
-                          // decoration: BoxDecoration(
-                          //   border: Border(bottom: BorderSide(color: BT_GRAY))
-                          // ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          TextCustomized(
+                            text: "932 ",
+                            size: 36.0,
+                            color: WHITE,
+                            weight: FontWeight.w700,
+                          ),
+                          SizedBox(height: 5.0),
+                          TextCustomized(
+                            text: "ĐH chờ xác nhận",
+                            size: smallSize,
+                            color: WHITE,
+                            weight: FontWeight.w700,
+                          ),
+                          SizedBox(height: 10.0),
+                          Wrap(
+                            spacing: 5.0,
                             children: [
                               TextCustomized(
-                                text: ORDER_SHIPPED,
-                                color: BLACK_1,
+                                text: "-4%",
+                                size: smallSize,
+                                color: RED_1,
                                 weight: FontWeight.w700,
                               ),
-                              InkWell(
-                                onTap: () {},
-                                child: TextCustomized(
-                                  text: HOME_SHOW_ALL,
-                                  color: RED_2,
-                                  size: smallSize,
-                                  weight: FontWeight.w700,
-                                ),
-                              )
+                              TextCustomized(
+                                text: "Tuần này",
+                                size: smallSize,
+                                color: WHITE,
+                                weight: FontWeight.w700,
+                              ),
                             ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 15.0),
+              Container(
+                // padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                  color: GRAY9,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextCustomized(
+                            text: ORDER_SHIPPED,
+                            color: BLACK_1,
+                            weight: FontWeight.w700,
                           ),
                         ),
                         Container(
@@ -266,12 +313,29 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    Container(
+                      padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                      child: ListView.separated(
+                        itemBuilder: (BuildContext context, int index) {
+                          return _builListItem();
+                        },
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 10);
+                        },
+                        physics: BouncingScrollPhysics(),
+                        itemCount: 10,
+                        padding: EdgeInsets.all(0.0),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-        ]);
+        ),
+      ),
+    ]);
   }
 
   Widget imgBackGround() {
@@ -378,25 +442,6 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
             ),
           ),
           SizedBox(height: 10.0),
-          //  Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     TextCustomized(
-          //       text: ORDER_LIST_PACKING_FORM,
-          //       font: SanFranciscoTextLight,
-          //       weight: FontWeight.w700,
-          //       color: GRAY1,
-          //       ),
-          //       TextCustomized(
-          //       // text: dataOrder.packing_form.toString(),
-          //       text: ORDER_NULL,
-          //       font: SanFranciscoText,
-          //       weight: FontWeight.w400,
-          //       color: BLACK,
-          //       ),
-          //   ],
-          // ),
-          // SizedBox(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

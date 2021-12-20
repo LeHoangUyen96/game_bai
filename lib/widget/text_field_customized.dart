@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/styles.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -115,16 +115,17 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
           borderRadius: BorderRadius.all(Radius.circular(9))),
       child: Row(
         children: [
-          SizedBox(width: widget.path != null ? 10 : 10),
+          SizedBox(width: 10),
           Expanded(
             flex: 10,
             child: TextField(
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: BLACK,
-                fontSize: customSize,
-                fontFamily: SanFranciscoUIText,
-              ),
+              style: widget.style ??
+                  TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: BLACK,
+                    fontSize: customSize,
+                    fontFamily: SanFranciscoUIText,
+                  ),
               controller: widget.textController,
               keyboardType: widget.textInputType,
               textInputAction: widget.textInputAction,
@@ -155,20 +156,10 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                suffixIcon: widget.isSuffixIcon != null
-                    ? GestureDetector(
-                        onTap: _toggleObscured,
-                        child: Icon(
-                          _obscureText
-                              ? Icons.visibility_off_rounded
-                              : Icons.visibility_rounded,
-                          color: GRAY,
-                          size: 24,
-                        ))
-                    : SizedBox(),
               ),
             ),
           ),
+          SizedBox(width: 10),
         ],
       ),
     );
