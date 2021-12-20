@@ -636,7 +636,7 @@ class ManagerBagPage extends GetView<ManagerBagController> {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(AddProductDialog());
+                        controller.onAddProduct();
                       },
                       child: Wrap(
                         spacing: 5.0,

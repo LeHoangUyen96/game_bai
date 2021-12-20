@@ -245,16 +245,55 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                         ),
                     ],
                   ),
+                  SizedBox(height: 5,),     
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextCustomized(
+                        text: MANAGE_PACKAGE_TOTAL_COD,
+                        font: SanFranciscoUIText,
+                        size: normalSize,
+                        weight: FontWeight.w500,
+                        color: BLACK_1,
+                        ),
+                        TextCustomized(
+                        text: "¥" +  controller.bagDetailsResponse!.data!.total_cod.toString(),
+                        font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: BLACK,
+                        ),
+                    ],
+                  ),
+                  SizedBox(height: 5,),     
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextCustomized(
+                        text: DELIVERY_NOTE_WEIGHT,
+                        font: SanFranciscoUIText,
+                        size: normalSize,
+                        weight: FontWeight.w500,
+                        color: BLACK_1,
+                        ),
+                        TextCustomized(
+                        text: controller.bagDetailsResponse!.data!.weight.toString(),
+                        font: SanFranciscoText,
+                        weight: FontWeight.w400,
+                        color: BLACK,
+                        ),
+                    ],
+                  ),
                   SizedBox(height: 15,),
                   ],
                 ),
               ),
               SizedBox(height: 15),
+              controller.bagDetailsResponse!.data!.parent_pack_status_code == "warehouse_china"?
               Container(
                 alignment: Alignment.center,
                 child: InkWell(
                   onTap: (){
-                    
+                    controller.onAddProduct();
                   },
                   child: Wrap(
                     spacing: 5.0,
@@ -269,7 +308,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     ],
                   ),
                 ),
-              ),
+              ) : Container(),
               ]
             ),
           ),
@@ -590,13 +629,30 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-            TextCustomized(
-              text: data.bill_code.toString(),
-              font: SanFranciscoText,
-              weight: FontWeight.w700,
-              color: MAIN_BLACK,
-              size: normalSize,
-              ),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:[ 
+              TextCustomized(
+                text: data.bill_code.toString(),
+                font: SanFranciscoText,
+                weight: FontWeight.w700,
+                color: MAIN_BLACK,
+                size: normalSize,
+                ),
+                controller.bagDetailsResponse!.data!.parent_pack_status_code == "warehouse_china"?
+                InkWell(
+                      onTap: (){
+                        controller.onDelPackage(data.id!);
+                      },
+                      child: TextCustomized(
+                      text: delete,
+                      font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: RED_1,
+                      ),
+                    ): Container(),
+              ]
+            ),
                    
               SizedBox(height: 5,),     
                Row(
@@ -629,7 +685,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: data.number_package_remain.toString(),
+                    text: controller.onGetNumberPackageInBag(data),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,

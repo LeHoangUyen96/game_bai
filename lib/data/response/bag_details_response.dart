@@ -23,11 +23,13 @@ class  DataBagDetailsResponse {
   String? parent_pack_status_name;
   int? item_number;
   int? customer_number;
+  int? transport_form_id;
   String? transport_form;
   String? weight;
   String? volume;
   String? created_at;
   String? updated_at;
+  int? total_cod;
   List<DataPackingJourney> ? packing_journey;
   List<DataListOrderAddBagResponse> ? orders;
 
@@ -51,6 +53,8 @@ class  DataBagDetailsResponse {
     this.updated_at,
     this.packing_journey,
     this.orders,
+    this.total_cod,
+    this.transport_form_id
   });
     DataBagDetailsResponse.empty(){
      this.id = -1;
@@ -68,6 +72,8 @@ class  DataBagDetailsResponse {
      this.volume= '';
      this.created_at= '';
      this.updated_at= '';
+     this.transport_form_id = -1;
+     this.total_cod = -1;
 
    }
     DataBagDetailsResponse.fromJson( Map<String,dynamic> json) {
@@ -86,6 +92,8 @@ class  DataBagDetailsResponse {
      this.volume = json["volume"] != null ? json["volume"].toString() : '';
      this.created_at = json["created_at"] != null ? json["created_at"].toString() : '';
      this.updated_at = json["updated_at"] != null ? json["updated_at"].toString() : '';
+     this.transport_form_id = ParseNumber.parseInt(json['transport_form_id']);
+     this.total_cod = ParseNumber.parseInt(json['total_cod']);
      this.packing_journey = json["packing_journey"] == null ? <DataPackingJourney>[] : json['packing_journey'].map<DataPackingJourney>((e)=> DataPackingJourney.fromJson(e)).toList();
      this.orders = json["orders"] == null ? <DataListOrderAddBagResponse>[] : json['orders'].map<DataListOrderAddBagResponse>((e)=> DataListOrderAddBagResponse.fromJson(e)).toList();
     }

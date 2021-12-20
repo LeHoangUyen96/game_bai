@@ -26,6 +26,7 @@ class  DataBagResponse {
   int? item_number;
   int? customer_number;
   String? transport_form;
+  int? transport_form_id;
   String? weight;
   String? volume;
   String? created_at;
@@ -47,6 +48,7 @@ class  DataBagResponse {
     this.transport_form,
     this.weight,
     this.volume,
+    this.transport_form_id,
     this.created_at,
     this.updated_at,
   });
@@ -61,6 +63,7 @@ class  DataBagResponse {
      this.parent_pack_status_name= '';
      this.item_number= -1;
      this.customer_number= -1;
+     this.transport_form_id= -1;
      this.transport_form= '';
      this.weight= '';
      this.volume= '';
@@ -79,6 +82,7 @@ class  DataBagResponse {
      this.parent_pack_status_name = json["parent_pack_status_name"] != null ? json["parent_pack_status_name"].toString() : '';
      this.item_number = ParseNumber.parseInt(json['item_number']);
      this.customer_number =ParseNumber.parseInt(json['customer_number']);
+     this.transport_form_id =ParseNumber.parseInt(json['transport_form_id']);
      this.transport_form = json["transport_form"] != null ? json["transport_form"].toString() : '';
      this.weight = json["weight"] != null ? json["weight"].toString() : '';
      this.volume = json["volume"] != null ? json["volume"].toString() : '';

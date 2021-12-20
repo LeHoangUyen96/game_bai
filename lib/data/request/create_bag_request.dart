@@ -40,7 +40,7 @@ class CreateBagRequest {
     return data;
   }
 }
-class  DataOrderCreateBag {
+class   DataOrderCreateBag {
     int? order_id;
     int? number_package;
 

@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile/data/models/order_item_add_to_bag.dart';
 import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
 import 'package:viet_trung_mobile/data/response/list_packing_form_response.dart';
 import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
@@ -443,14 +444,14 @@ class CreateBagPage extends GetView<CreateBagController> {
             controller.changeBill == true 
               ? Container(
                 child: ListView.separated(
-                  itemCount: controller.mDataListOrder!.length,
+                  itemCount: controller.mListOrder!.length,
                   shrinkWrap: true,
                   separatorBuilder: (context, index) {
                     return SizedBox(height: 10);
                   },
                   physics: ClampingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index){
-                    return _buildListBill(controller.mDataListOrder![index],index);
+                    return _buildListBill(controller.mListOrder![index],index);
                   }
                   )
               )
@@ -501,7 +502,7 @@ class CreateBagPage extends GetView<CreateBagController> {
       ),
     );
   }
-   Widget _buildListBill(DataListOrderAddBagResponse data, index){
+   Widget _buildListBill(DataOrderAddBag data, index){
     return  Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -529,7 +530,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     ),
                     InkWell(
                       onTap: (){
-                        controller.onClearOrder(data,index);
+                        controller.onClearOrder(data.id,index);
                       },
                       child: TextCustomized(
                       text: delete,
@@ -571,7 +572,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                     color: BLACK_1,
                     ),
                     TextCustomized(
-                    text: data.number_package_remain.toString(),
+                    text: data.number_package.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,

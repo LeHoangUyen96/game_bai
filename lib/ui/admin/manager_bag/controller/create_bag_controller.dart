@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
+import 'package:viet_trung_mobile/data/models/order_item_add_to_bag.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
 import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
@@ -69,6 +70,7 @@ class CreateBagController extends GetxController  {
   String orderErros = '';
   bool isOrderValid = true;
   double? totalCodPackage = 0.0;
+  List<DataOrderAddBag>? mListOrder = [];
   @override
   void onInit() {
     super.onInit();
@@ -93,23 +95,26 @@ class CreateBagController extends GetxController  {
     getDataTransportForm();
     getDataListTransport();
   }
-  void onGetListOrder(List<DataListOrderAddBagResponse> data){
-    mDataListOrder = data;
-    for(var i = 0; i < mDataListOrder!.length; i++){
-      total_numberPackage = total_numberPackage + mDataListOrder![i].number_package_remain!;
-      totalCodPackage = totalCodPackage! + mDataListOrder![i].transport_fee!;
+  void onGetListOrder(List<DataOrderAddBag> data){
+    mListOrder = data;
+    for(var i = 0; i < mListOrder!.length; i++){
+      total_numberPackage = total_numberPackage + mListOrder![i].number_package!;
+      totalCodPackage = totalCodPackage! + mListOrder![i].transport_fee!;
     }
     print("${mDataListOrder!.length}");
     update();
   }
-  void onClearOrder( data,int index) {
-    mDataListOrder!.removeAt(index);
-    //mDataListOrder = data;
-    // for(var i = 0; i < mDataListOrder!.length; i++){
-    //   total_numberPackage = total_numberPackage - mDataListOrder![index].number_package_remain!;
-    //   totalCodPackage = totalCodPackage! - mDataListOrder![index].transport_fee!;
-    // }
-    onGetListOrder(mDataListOrder!);
+  void onClearOrder( data, int index) {
+   
+    for(var i = 0; i < mListOrder!.length; i++){
+      if(mListOrder![i].id == data){
+        total_numberPackage = total_numberPackage - mListOrder![i].number_package!;
+      print('--------------------------${total_numberPackage}');
+      totalCodPackage = totalCodPackage! - mListOrder![i].transport_fee!;
+      } 
+    }
+     mListOrder!.removeAt(index);
+    //onGetListOrder(mListOrder!);
     update();
   }
   Future<List<DataListWareHouseBackResponse>> getDataWareHouseBack () async {
@@ -170,10 +175,10 @@ class CreateBagController extends GetxController  {
   }
   void onCreateBag(){
 
-    for(var i = 0; i < mDataListOrder!.length; i++){
+    for(var i = 0; i < mListOrder!.length; i++){
       mListOrders!.add(DataOrderCreateBag(
-        number_package: mDataListOrder![i].number_package_remain,
-        order_id: mDataListOrder![i].id,
+        number_package: mListOrder![i].number_package,
+        order_id: mListOrder![i].id,
       ));
     }
     if (warehouse_back_code == null) {
@@ -206,12 +211,6 @@ class CreateBagController extends GetxController  {
     } else {
       isWeightFromValid = true;
     }
-    // if (totalCodController.text.isEmpty) {
-    //   isTotalCodValid = false;
-    //   totalCodErros = "Tổng tiền thu hộ không được để trống";
-    // } else {
-    //   isTotalCodValid = true;
-    // }
     if (mListOrders!.length < 0) {
       isOrderValid = false;
       orderErros = "Danh sách đơn hàng không được để trống";
