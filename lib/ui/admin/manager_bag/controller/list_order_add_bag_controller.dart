@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/di/injector.dart';
+import 'package:viet_trung_mobile/data/models/order_item_add_to_bag.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/list_order_add_bag_request.dart';
 import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/view/create_bag_page.dart';
+import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
 
 class ListOrderAddToBagController extends GetxController {
@@ -21,7 +23,7 @@ class ListOrderAddToBagController extends GetxController {
   String? warehouse_back_code;
   int? order_id;
   int? number_package;
-  List<DataOrderCreateBag>? mListOrders = [];
+  List<DataOrderAddBag>? mListOrders = [];
   DataOrderCreateBag ? mDataOrderCreateBag;
   @override
   void onInit() {
@@ -38,7 +40,6 @@ class ListOrderAddToBagController extends GetxController {
         warehouse_back_code = Get.arguments['warehouse_back_code'];
       }
     }
-     numberPackageController = TextEditingController();
     print("transport_form_id:$transport_form_id");
     print("warehouse_back_code:$warehouse_back_code");
     onGetListOrderAddToBag();
@@ -71,14 +72,31 @@ class ListOrderAddToBagController extends GetxController {
        });
        update();
   }
+
+  void onChangeItem(int id, int val){
+      for(var i = 0; i < mDataListOrderAddBagResponse!.length; i++){    
+      if(mDataListOrderAddBagResponse![i].id == id ){
+            mDataListOrderAddBagResponse![i].number_package_remain = val;
+            print("${ mDataListOrderAddBagResponse![i].number_package_remain}");
+           }
+    }
+  }
+
   void onChangeNumberPackage(String val,int idOrder){
-    for(var i = 0; i < mDataListOrderAddBagResponse!.length; i++){
+    for(var i = 0; i < mDataListOrderAddBagResponse!.length; i++){    
       if(mDataListOrderAddBagResponse![i].id == idOrder 
            && number_package! <= mDataListOrderAddBagResponse![i].number_package_remain! && number_package! > 0){
              mDataListOrderAddBagResponse![i].isCheck = true;
              if(mDataListOrderAddBagResponse![i].isCheck = true){
-              mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
-              mDataListOrderAddBagResponse![i].number_package_remain = number_package;
+              mListOrders!.add(DataOrderAddBag(
+                id: idOrder,
+                bill_code: mDataListOrderAddBagResponse![i].bill_code,
+                number_package: number_package,
+                surcharge: mDataListOrderAddBagResponse![i].surcharge,
+                transport_fee: mDataListOrderAddBagResponse![i].transport_fee,
+                packing_form: mDataListOrderAddBagResponse![i].packing_form,
+              ));
+              //mDataListOrderAddBagResponse![i].number_package_remain = number_package;
 
               //update();
              }
@@ -90,35 +108,30 @@ class ListOrderAddToBagController extends GetxController {
   }
   void onAddBag(){
     for (var i = 0; i < mDataListOrderAddBagResponse!.length; i++) {
-      if(mDataListOrderAddBagResponse![i].isCheck = true){
-        //mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
-          print("order_id: $order_id");
-          print("number_package: $number_package");
-          Get.back(result: mDataListOrder);
-          update();
-      }
-      // if(number_package! <= mDataListOrderAddBagResponse![i].number_package_remain! && number_package! > 0){
-      //   mDataListOrderAddBagResponse![i].isCheck = true;
-      //   if(mDataListOrderAddBagResponse![i].isCheck = true){
-      //     mDataListOrderAddBagResponse![i].number_package_remain = number_package;
-      //     mDataListOrder!.add(mDataListOrderAddBagResponse![i]);
-          // mDataListOrderAddBagResponse![i].id = order_id;
-          // mListOrders!.add(DataOrderCreateBag(
-          //   order_id : mDataListOrderAddBagResponse![i].id,
-          //   number_package : number_package,
-          // ));
-          // Get.to(CreateBagPage(),arguments: {
-          //   "order_id" : order_id,
-          //   "number_package" : number_package,
-          // });
-      //     print("order_id: $order_id");
-      //     print("number_package: $number_package");
-      //     Get.back(result: mDataListOrder);
-      //     update();
-      //   }
-      // }
-      
+      if(mDataListOrderAddBagResponse![i].number_order! <= mDataListOrderAddBagResponse![i].number_package_remain! && mDataListOrderAddBagResponse![i].number_order! > 0){
+             if(mDataListOrderAddBagResponse![i].isCheck = true){
+              mListOrders!.add(DataOrderAddBag(
+                id: mDataListOrderAddBagResponse![i].id,
+                bill_code: mDataListOrderAddBagResponse![i].bill_code,
+                number_package: mDataListOrderAddBagResponse![i].number_order!,
+                surcharge: mDataListOrderAddBagResponse![i].surcharge,
+                transport_fee: mDataListOrderAddBagResponse![i].transport_fee,
+                packing_form: mDataListOrderAddBagResponse![i].packing_form,
+              ));
+             }
+           }  
+        }
+        Get.back(result: mListOrders);
+        update();
 
+}
+  void onNumberOrder(int id, String num) {
+    for (var i = 0; i < mDataListOrderAddBagResponse!.length; i++) {
+      if (mDataListOrderAddBagResponse![i].id == id) {
+        mDataListOrderAddBagResponse![i].isCheck = true;
+        mDataListOrderAddBagResponse![i].number_order = ParseNumber.parseInt(num);
+        print("$num");
+      }
     }
   }
 }

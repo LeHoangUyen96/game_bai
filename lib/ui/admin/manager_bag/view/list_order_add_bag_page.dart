@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile/res/fonts.dart';
 import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/list_order_add_bag_controller.dart';
+import 'package:viet_trung_mobile/ui/admin/manager_bag/view/item_order_add_to_bag.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile/widget/button_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -119,7 +120,14 @@ class AddProductToBagDialog extends GetView<ListOrderAddToBagController> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView.separated(
                     itemBuilder: (BuildContext context, int index) {
-                      return buildListProduct(controller.listOrderAddBagResponse!.data![index]);
+                      //return buildListProduct(controller.listOrderAddBagResponse!.data![index]);
+                      return ItemOrder(
+                        dataOrderAddBag: controller.listOrderAddBagResponse!.data![index],
+                        //bill_code: controller.listOrderAddBagResponse!.data![index].bill_code,
+                        id: controller.listOrderAddBagResponse!.data![index].id,
+                        numberPackage: controller.onNumberOrder,
+                        
+                      );
                     },
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 10);
@@ -289,14 +297,15 @@ class AddProductToBagDialog extends GetView<ListOrderAddToBagController> {
                           //controller.numberPackageController = TextEditingController(text: val);
                           controller.order_id = data.id;
                           print('onchange ${controller.numberPackageController}');
+                           controller.onChangeItem(data.id!, controller.number_package!);
                         },
-                    onSubmitted: (val){
-                      controller.number_package = int.parse(val,onError: (val) => -1) ;
-                      //controller.numberPackageController = TextEditingController(text: val);
-                      controller.onChangeNumberPackage(controller.numberPackageController.text, data.id!);
-                      //controller.order_id = data.id;
-                      print('----------onchange ${controller.number_package}');
-                    },
+                    // onSubmitted: (val){
+                    //   controller.number_package = int.parse(val,onError: (val) => -1) ;
+                    //   //controller.numberPackageController = TextEditingController(text: val);
+                    //   controller.onChangeNumberPackage(val, data.id!);
+                    //   //controller.order_id = data.id;
+                    //   print('----------onchange ${controller.number_package}');
+                    // },
                     
                     keyboardType: TextInputType.number,
                     controller: controller.numberPackageController,

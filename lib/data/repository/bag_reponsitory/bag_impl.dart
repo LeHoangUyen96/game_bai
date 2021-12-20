@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile/data/network/network_config.dart';
 import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile/data/request/add_order_to_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
+import 'package:viet_trung_mobile/data/request/del_package.dart';
 import 'package:viet_trung_mobile/data/request/list_order_add_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/manager_bag_filter_request.dart';
 import 'package:viet_trung_mobile/data/request/update_status_detail_bag_request.dart';
@@ -164,5 +166,30 @@ class BagImpl extends GetConnect implements BagRepositories {
     }
     throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }
+
+  @override
+  Future<bool> onAddPackage(AddOrderToBagRequest request) async{
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_ADD_PACKAGE;
+    final body = json.encode(request);
+    final responseJson = await post(url,body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return true;
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<bool> onDelPackage(DelOrderToBagRequest request) async{
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_DEL_PACKAGE;
+    final body = json.encode(request);
+    final responseJson = await post(url,body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return true;
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
+  }
+
 
 }

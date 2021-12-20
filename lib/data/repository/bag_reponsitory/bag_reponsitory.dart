@@ -1,4 +1,6 @@
+import 'package:viet_trung_mobile/data/request/add_order_to_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
+import 'package:viet_trung_mobile/data/request/del_package.dart';
 import 'package:viet_trung_mobile/data/request/list_order_add_bag_request.dart';
 import 'package:viet_trung_mobile/data/request/manager_bag_filter_request.dart';
 import 'package:viet_trung_mobile/data/request/update_status_detail_bag_request.dart';
@@ -23,4 +25,6 @@ abstract class BagRepositories {
   Future<ListOrderAddBagResponse> onGetListOrderAddBag(ListOrderAddBagRequest request);
   Future<ListOrderAddBagResponse> onSearchBillCode( String bill_code, String warehouse_back_code ,int transport_form_id  );
   Future<CreateBagResponse> onCreateBag(CreateBagRequest request);
+  Future<bool> onAddPackage(AddOrderToBagRequest request);
+  Future<bool> onDelPackage(DelOrderToBagRequest request);
 }
