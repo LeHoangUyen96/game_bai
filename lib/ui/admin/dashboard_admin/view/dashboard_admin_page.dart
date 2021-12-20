@@ -10,7 +10,6 @@ import 'package:viet_trung_mobile/ui/admin/dashboard_admin/controller/dashboard_
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_ship_back_detail_page.dart';
 import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_ship_back.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -52,20 +51,16 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                               CircleAvatar(
                                 radius: 30.0,
                                 child: ClipOval(
-                                  child: controller.dashboardAdminResponse!
-                                                  .avatar ==
-                                              null ||
-                                          controller.dashboardAdminResponse!
-                                                  .avatar ==
-                                              ''
+                                  child: controller.dashboardAdminResponse!.avatar ==null ||
+                                          controller.dashboardAdminResponse!.avatar ==''
                                       ? ImageCustomized(
                                           path: LOGO_IMG,
                                           height: 60,
                                           width: 60,
                                         )
                                       : ImageCustomized(
-                                          path: controller
-                                              .dashboardAdminResponse!.avatar,
+                                          path: controller.dashboardAdminResponse!.avatar,
+                                          fit: BoxFit.fill,
                                           height: 60,
                                           width: 60,
                                         ),
@@ -121,7 +116,8 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                                     ),
                                   ),
                                 ),
-                              ]),
+                              ]
+                              ),
                         
                       ],
                     ),
@@ -139,16 +135,15 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                             children: [
                               TextCustomized(
                                 text: controller.orderTotal.toString(),
-                                size: 36.0,
                                 color: WHITE,
+                                size: 36.0,
                                 weight: FontWeight.w700,
                               ),
-                              SizedBox(height: 5.0),
                               TextCustomized(
                                 text: "Tổng đơn hàng",
-                                size: smallSize,
                                 color: WHITE,
-                                weight: FontWeight.w700,
+                                size: smallSize,
+                                weight: FontWeight.w400,
                               ),
                               SizedBox(height: 10.0),
                               Container(
@@ -243,150 +238,150 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                                                 hint: Text("Chưa xác định"),
                                               )),
                                   ),
-                               ),
+                               ), 
                             ],
                           ),
                         ),
                         Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              TextCustomized(
-                                text: controller.orderWaits.toString(),
-                                size: 36.0,
-                                color: WHITE,
-                                weight: FontWeight.w700,
-                              ),
-                              SizedBox(height: 5.0),
-                              TextCustomized(
-                                text: "ĐH chờ xác nhận",
-                                size: smallSize,
-                                color: WHITE,
-                                weight: FontWeight.w700,
-                              ),
-                              SizedBox(height: 10.0),
-                               Container(
-                                 width: Get.width*0.35,
-                                 height: 20,
-                                 child: DropdownButtonHideUnderline(
-                                    child: ButtonTheme(
-                                      padding: EdgeInsets.all(0.0),
-                                        alignedDropdown: true,
-                                        child: controller.dashboardAdminResponse!.order_waits != null
-                                            ? DropdownButton(
-                                                value: controller.selectedOrderWaits !=
-                                                        null
-                                                    ? controller.selectedOrderWaits
-                                                    : null,
-                                                icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  color: MAIN_LINE,
-                                                ),
-                                                underline: Container(),
-                                                iconSize: 20,
-                                                elevation: 16,
-                                                isExpanded: true,
-                                                items: controller.dashboardAdminResponse!.order_waits!
-                                                    .map((DataOrderWaits value) {
-                                                  return DropdownMenuItem<
-                                                      DataOrderWaits>(
-                                                    value: value,
-                                                    child: Wrap(
-                                                      spacing:  5.0,
-                                                      children:[ 
-                                                        TextCustomized(
-                                                          text: value.percent.toString() + "%",
-                                                          size: smallSize,
-                                                          color: value.percent! >= 0 ? STATUS_SUCCESS : RED,
-                                                          weight: FontWeight.w600,
-                                                          )
-                                                          ,
-                                                      Text(
-                                                          value.time.toString(),
-                                                        style: TextStyle(
-                                                          color: MAIN_LINE,
-                                                          fontSize: smallSize,
-                                                          fontWeight: FontWeight.w600
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    TextCustomized(
+                                      text: controller.orderWaits.toString(),
+                                      size: 36.0,
+                                      color: WHITE,
+                                      weight: FontWeight.w700,
+                                    ),
+                                    SizedBox(height: 5.0),
+                                    TextCustomized(
+                                      text: "ĐH chuyển về",
+                                      size: smallSize,
+                                      color: WHITE,
+                                      weight: FontWeight.w700,
+                                    ),
+                                    SizedBox(height: 10.0),
+                                    Container(
+                                          width: Get.width*0.35,
+                                          height: 20,
+                                          child: DropdownButtonHideUnderline(
+                                              child: ButtonTheme(
+                                                padding: EdgeInsets.all(0.0),
+                                                  alignedDropdown: true,
+                                                  child: controller.dashboardAdminResponse!.order_waits != null
+                                                      ? DropdownButton(
+                                                          value: controller.selectedOrderWaits !=
+                                                                  null
+                                                              ? controller.selectedOrderWaits
+                                                              : null,
+                                                          icon: Icon(
+                                                            Icons.keyboard_arrow_down,
+                                                            color: MAIN_LINE,
                                                           ),
-                                                      ),
-                                                      ]
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (DataOrderWaits? value) {
-                                                  controller.onChangeOrderWaits(value!, value.time.toString()) ;
-                                                  //controller.onGetOrderWait();
-                                                },
-                                                hint: Text("Chọn ngày"),
-                                              )
-                                            : DropdownButton(
-                                                icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                  color: MAIN_LINE,
-                                                ),
-                                                iconSize: 24,
-                                                elevation: 16,
-                                                isExpanded: true,
-                                                items: [
-                                                  DropdownMenuItem<String>(
-                                                    value: "1",
-                                                    child: Center(
-                                                      child: Text("Chưa xác định"),
-                                                    ),
-                                                  ),
-                                                ],
-                                                onChanged: (value) {},
-                                                hint: Text("Chưa xác định"),
-                                              )),
-                                  ),
-                               ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                                                          underline: Container(),
+                                                          iconSize: 20,
+                                                          elevation: 16,
+                                                          isExpanded: true,
+                                                          items: controller.dashboardAdminResponse!.order_waits!
+                                                              .map((DataOrderWaits value) {
+                                                            return DropdownMenuItem<
+                                                                DataOrderWaits>(
+                                                              value: value,
+                                                              child: Wrap(
+                                                                spacing:  5.0,
+                                                                children:[ 
+                                                                  TextCustomized(
+                                                                    text: value.percent.toString() + "%",
+                                                                    size: smallSize,
+                                                                    color: value.percent! >= 0 ? STATUS_SUCCESS : RED,
+                                                                    weight: FontWeight.w600,
+                                                                    )
+                                                                    ,
+                                                                Text(
+                                                                    value.time.toString(),
+                                                                  style: TextStyle(
+                                                                    color: MAIN_LINE,
+                                                                    fontSize: smallSize,
+                                                                    fontWeight: FontWeight.w600
+                                                                    ),
+                                                                ),
+                                                                ]
+                                                              ),
+                                                            );
+                                                          }).toList(),
+                                                          onChanged: (DataOrderWaits? value) {
+                                                            controller.onChangeOrderWaits(value!, value.time.toString()) ;
+                                                            //controller.onGetOrderWait();
+                                                          },
+                                                          hint: Text("Chọn ngày"),
+                                                        )
+                                                      : DropdownButton(
+                                                          icon: Icon(
+                                                            Icons.keyboard_arrow_down,
+                                                            color: MAIN_LINE,
+                                                          ),
+                                                          iconSize: 24,
+                                                          elevation: 16,
+                                                          isExpanded: true,
+                                                          items: [
+                                                            DropdownMenuItem<String>(
+                                                              value: "1",
+                                                              child: Center(
+                                                                child: Text("Chưa xác định"),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                          onChanged: (value) {},
+                                                          hint: Text("Chưa xác định"),
+                                                        )),
+                                            ),
+                                        ),
+                        
+                                  ]
+                                )
+                      
+              
+                              
+                        ),
+                        
+                      ]
+                    )
                   ),
                   SizedBox(height: 15.0),
-                  Container(
-                    // padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                      ),
-                      color: GRAY9,
-                    ),
-                    child: Column(
-                      //mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(20),
-                          // decoration: BoxDecoration(
-                          //   border: Border(bottom: BorderSide(color: BT_GRAY))
-                          // ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextCustomized(
-                                text: ORDER_SHIPPED,
-                                color: BLACK_1,
-                                weight: FontWeight.w700,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(ValidOrderPage());
-                                },
-                                child: TextCustomized(
-                                  text: HOME_SHOW_ALL,
-                                  color: RED_2,
-                                  size: smallSize,
-                                  weight: FontWeight.w700,
-                                ),
-                              )
-                            ],
+              Container(
+                // padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                  color: GRAY9,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextCustomized(
+                            text: ORDER_SHIPPED,
+                            color: BLACK_1,
+                            weight: FontWeight.w700,
                           ),
-                        ),
+                          InkWell(
+                            onTap: (){
+                              Get.to(ValidOrderPage());
+                            },
+                            child: TextCustomized(
+                              text: HOME_SHOW_MORE,
+                              color: RED_1,
+                              weight: FontWeight.w600,
+                            ),
+                             ),
+                           ] 
+                           ),
+                         ),
                         Container(
                           padding:
                               EdgeInsets.only(left: 15, right: 15, bottom: 15),
@@ -401,17 +396,21 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                             physics: BouncingScrollPhysics(),
                             itemCount: controller.dashboardAdminResponse!.order_closes!.length,
                             padding: EdgeInsets.all(0.0),
-                          ),
+                            ),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ]);
+                        ]
+                       )
+                       )
+                ]
+              )
+            )
+          )
+        ]
+      );
+
   }
+ 
+
 
   Widget imgBackGround() {
     return Image.asset(
