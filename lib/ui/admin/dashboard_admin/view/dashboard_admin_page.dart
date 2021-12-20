@@ -8,6 +8,9 @@ import 'package:viet_trung_mobile/res/images.dart';
 import 'package:viet_trung_mobile/res/strings.dart';
 import 'package:viet_trung_mobile/ui/admin/dashboard_admin/controller/dashboard_admin_controller.dart';
 import 'package:viet_trung_mobile/ui/admin/notification_admin/view/notification_admin_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_ship_back_detail_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_page.dart';
+import 'package:viet_trung_mobile/ui/order_management/order_valid/view/order_valid_ship_back.dart';
 import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile/widget/image_customized.dart';
 import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
@@ -135,7 +138,7 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextCustomized(
-                                text: "8.223",
+                                text: controller.orderTotal.toString(),
                                 size: 36.0,
                                 color: WHITE,
                                 weight: FontWeight.w700,
@@ -148,23 +151,99 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                                 weight: FontWeight.w700,
                               ),
                               SizedBox(height: 10.0),
-                              Wrap(
-                                spacing: 5.0,
-                                children: [
-                                  TextCustomized(
-                                    text: "+15%",
-                                    size: smallSize,
-                                    color: STATUS_SUCCESS,
-                                    weight: FontWeight.w700,
+                              Container(
+                                 width: Get.width*0.35,
+                                 height: 20,
+                                 child: DropdownButtonHideUnderline(
+                                    child: ButtonTheme(
+                                      padding: EdgeInsets.all(0.0),
+                                        alignedDropdown: true,
+                                        child: controller.dashboardAdminResponse!.orders != null
+                                            ? DropdownButton(
+                                                value: controller.selectedTotalOrder !=
+                                                        null
+                                                    ? controller.selectedTotalOrder
+                                                    : null,
+                                                icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  color: MAIN_LINE,
+                                                ),
+                                                underline: Container(),
+                                                iconSize: 20,
+                                                elevation: 16,
+                                                isExpanded: true,
+                                                items: controller.dashboardAdminResponse!.orders!
+                                                    .map((DataTotalOrder value) {
+                                                  return DropdownMenuItem<
+                                                      DataTotalOrder>(
+                                                    value: value,
+                                                    child: Wrap(
+                                                      spacing:  5.0,
+                                                      children:[ 
+                                                        TextCustomized(
+                                                          text: value.percent.toString() + "%",
+                                                          size: smallSize,
+                                                          color: value.percent! >= 0 ? STATUS_SUCCESS : RED,
+                                                          weight: FontWeight.w600,
+                                                          )
+                                                          ,
+                                                      Text(
+                                                          value.time.toString(),
+                                                        style: TextStyle(
+                                                          color: MAIN_LINE,
+                                                          fontSize: smallSize,
+                                                          fontWeight: FontWeight.w600
+                                                          ),
+                                                      ),
+                                                      ]
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                                onChanged: (DataTotalOrder? value) {
+                                                  controller.onChangeOrderTotal(value!, value.time.toString()) ;
+                                                  //controller.onGetOrderTotal();
+                                                },
+                                                hint: Row(
+                                                  children: [
+                                                   TextCustomized(
+                                                          text: controller.dashboardAdminResponse!.orders![0].percent.toString() + "%",
+                                                          size: smallSize,
+                                                          color:controller.dashboardAdminResponse!.orders![0].percent! >= 0 ? STATUS_SUCCESS : RED,
+                                                          weight: FontWeight.w600,
+                                                          )
+                                                          ,
+                                                      Text(
+                                                          controller.dashboardAdminResponse!.orders![0].time.toString(),
+                                                        style: TextStyle(
+                                                          color: MAIN_LINE,
+                                                          fontSize: smallSize,
+                                                          fontWeight: FontWeight.w600
+                                                          ),
+                                                      )
+                                                  ],
+                                                ),
+                                              )
+                                            : DropdownButton(
+                                                icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  color: MAIN_LINE,
+                                                ),
+                                                iconSize: 24,
+                                                elevation: 16,
+                                                isExpanded: true,
+                                                items: [
+                                                  DropdownMenuItem<String>(
+                                                    value: "1",
+                                                    child: Center(
+                                                      child: Text("Chưa xác định"),
+                                                    ),
+                                                  ),
+                                                ],
+                                                onChanged: (value) {},
+                                                hint: Text("Chưa xác định"),
+                                              )),
                                   ),
-                                  TextCustomized(
-                                    text: "Hôm nay",
-                                    size: smallSize,
-                                    color: WHITE,
-                                    weight: FontWeight.w700,
-                                  ),
-                                ],
-                              )
+                               ),
                             ],
                           ),
                         ),
@@ -173,7 +252,7 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextCustomized(
-                                text: "932 ",
+                                text: controller.orderWaits.toString(),
                                 size: 36.0,
                                 color: WHITE,
                                 weight: FontWeight.w700,
@@ -186,23 +265,81 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                                 weight: FontWeight.w700,
                               ),
                               SizedBox(height: 10.0),
-                              Wrap(
-                                spacing: 5.0,
-                                children: [
-                                  TextCustomized(
-                                    text: "-4%",
-                                    size: smallSize,
-                                    color: RED_1,
-                                    weight: FontWeight.w700,
+                               Container(
+                                 width: Get.width*0.35,
+                                 height: 20,
+                                 child: DropdownButtonHideUnderline(
+                                    child: ButtonTheme(
+                                      padding: EdgeInsets.all(0.0),
+                                        alignedDropdown: true,
+                                        child: controller.dashboardAdminResponse!.order_waits != null
+                                            ? DropdownButton(
+                                                value: controller.selectedOrderWaits !=
+                                                        null
+                                                    ? controller.selectedOrderWaits
+                                                    : null,
+                                                icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  color: MAIN_LINE,
+                                                ),
+                                                underline: Container(),
+                                                iconSize: 20,
+                                                elevation: 16,
+                                                isExpanded: true,
+                                                items: controller.dashboardAdminResponse!.order_waits!
+                                                    .map((DataOrderWaits value) {
+                                                  return DropdownMenuItem<
+                                                      DataOrderWaits>(
+                                                    value: value,
+                                                    child: Wrap(
+                                                      spacing:  5.0,
+                                                      children:[ 
+                                                        TextCustomized(
+                                                          text: value.percent.toString() + "%",
+                                                          size: smallSize,
+                                                          color: value.percent! >= 0 ? STATUS_SUCCESS : RED,
+                                                          weight: FontWeight.w600,
+                                                          )
+                                                          ,
+                                                      Text(
+                                                          value.time.toString(),
+                                                        style: TextStyle(
+                                                          color: MAIN_LINE,
+                                                          fontSize: smallSize,
+                                                          fontWeight: FontWeight.w600
+                                                          ),
+                                                      ),
+                                                      ]
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                                onChanged: (DataOrderWaits? value) {
+                                                  controller.onChangeOrderWaits(value!, value.time.toString()) ;
+                                                  //controller.onGetOrderWait();
+                                                },
+                                                hint: Text("Chọn ngày"),
+                                              )
+                                            : DropdownButton(
+                                                icon: Icon(
+                                                  Icons.keyboard_arrow_down,
+                                                  color: MAIN_LINE,
+                                                ),
+                                                iconSize: 24,
+                                                elevation: 16,
+                                                isExpanded: true,
+                                                items: [
+                                                  DropdownMenuItem<String>(
+                                                    value: "1",
+                                                    child: Center(
+                                                      child: Text("Chưa xác định"),
+                                                    ),
+                                                  ),
+                                                ],
+                                                onChanged: (value) {},
+                                                hint: Text("Chưa xác định"),
+                                              )),
                                   ),
-                                  TextCustomized(
-                                    text: "Tuần này",
-                                    size: smallSize,
-                                    color: WHITE,
-                                    weight: FontWeight.w700,
-                                  ),
-                                ],
-                              )
+                               ),
                             ],
                           ),
                         )
@@ -237,7 +374,9 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                                 weight: FontWeight.w700,
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.to(ValidOrderPage());
+                                },
                                 child: TextCustomized(
                                   text: HOME_SHOW_ALL,
                                   color: RED_2,
@@ -308,11 +447,16 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextCustomized(
-                text: data.bill_code.toString(),
-                font: SanFranciscoText,
-                weight: FontWeight.w700,
-                color: MAIN_BLACK,
+              InkWell(
+                onTap: (){
+                  Get.to(OrderShipBackDetailPage(),arguments:data.id.toString() );
+                },
+                child: TextCustomized(
+                  text: data.bill_code.toString(),
+                  font: SanFranciscoText,
+                  weight: FontWeight.w700,
+                  color: MAIN_BLACK,
+                ),
               ),
               TextCustomized(
                  text: data.order_status_name.toString(),
@@ -378,25 +522,6 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
             ),
           ),
           SizedBox(height: 10.0),
-          //  Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     TextCustomized(
-          //       text: ORDER_LIST_PACKING_FORM,
-          //       font: SanFranciscoTextLight,
-          //       weight: FontWeight.w700,
-          //       color: GRAY1,
-          //       ),
-          //       TextCustomized(
-          //       // text: dataOrder.packing_form.toString(),
-          //       text: ORDER_NULL,
-          //       font: SanFranciscoText,
-          //       weight: FontWeight.w400,
-          //       color: BLACK,
-          //       ),
-          //   ],
-          // ),
-          // SizedBox(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
