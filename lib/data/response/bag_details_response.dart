@@ -1,3 +1,5 @@
+import 'package:viet_trung_mobile_admin/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class BagDetailsResponse {
@@ -24,31 +26,36 @@ class DataBagDetailsResponse {
   String? parent_pack_status_name;
   int? item_number;
   int? customer_number;
+  int? transport_form_id;
   String? transport_form;
   String? weight;
   String? volume;
   String? created_at;
   String? updated_at;
+  int? total_cod;
   List<DataPackingJourney>? packing_journey;
+  List<DataListOrderAddBagResponse>? orders;
 
-  DataBagDetailsResponse({
-    this.id,
-    this.code,
-    this.parent_pack_type,
-    this.parent_pack_name,
-    this.warehouse_back_code,
-    this.warehouse_back_name,
-    this.parent_pack_status_code,
-    this.parent_pack_status_name,
-    this.item_number,
-    this.customer_number,
-    this.transport_form,
-    this.weight,
-    this.volume,
-    this.created_at,
-    this.updated_at,
-    this.packing_journey,
-  });
+  DataBagDetailsResponse(
+      {this.id,
+      this.code,
+      this.parent_pack_type,
+      this.parent_pack_name,
+      this.warehouse_back_code,
+      this.warehouse_back_name,
+      this.parent_pack_status_code,
+      this.parent_pack_status_name,
+      this.item_number,
+      this.customer_number,
+      this.transport_form,
+      this.weight,
+      this.volume,
+      this.created_at,
+      this.updated_at,
+      this.packing_journey,
+      this.orders,
+      this.total_cod,
+      this.transport_form_id});
   DataBagDetailsResponse.empty() {
     this.id = -1;
     this.code = '';
@@ -65,6 +72,8 @@ class DataBagDetailsResponse {
     this.volume = '';
     this.created_at = '';
     this.updated_at = '';
+    this.transport_form_id = -1;
+    this.total_cod = -1;
   }
   DataBagDetailsResponse.fromJson(Map<String, dynamic> json) {
     this.id = ParseNumber.parseInt(json['id']);
@@ -97,10 +106,18 @@ class DataBagDetailsResponse {
         json["created_at"] != null ? json["created_at"].toString() : '';
     this.updated_at =
         json["updated_at"] != null ? json["updated_at"].toString() : '';
+    this.transport_form_id = ParseNumber.parseInt(json['transport_form_id']);
+    this.total_cod = ParseNumber.parseInt(json['total_cod']);
     this.packing_journey = json["packing_journey"] == null
         ? <DataPackingJourney>[]
         : json['packing_journey']
             .map<DataPackingJourney>((e) => DataPackingJourney.fromJson(e))
+            .toList();
+    this.orders = json["orders"] == null
+        ? <DataListOrderAddBagResponse>[]
+        : json['orders']
+            .map<DataListOrderAddBagResponse>(
+                (e) => DataListOrderAddBagResponse.fromJson(e))
             .toList();
   }
 }

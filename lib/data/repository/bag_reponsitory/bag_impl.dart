@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
 import 'package:viet_trung_mobile_admin/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_order_to_bag_request.dart';
 import 'package:viet_trung_mobile_admin/data/request/create_bag_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/del_package.dart';
 import 'package:viet_trung_mobile_admin/data/request/list_order_add_bag_request.dart';
 import 'package:viet_trung_mobile_admin/data/request/manager_bag_filter_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/update_status_detail_bag_request.dart';
 import 'package:viet_trung_mobile_admin/data/response/bag_details_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/create_bag_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
@@ -162,6 +165,30 @@ class BagImpl extends GetConnect implements BagRepositories {
     final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return CreateBagResponse.fromJson(responseJson.body);
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<bool> onAddPackage(AddOrderToBagRequest request) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_ADD_PACKAGE;
+    final body = json.encode(request);
+    final responseJson = await post(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return true;
+    }
+    throw ErrorCreateAdminResponse.fromJson(responseJson.body);
+  }
+
+  @override
+  Future<bool> onDelPackage(DelOrderToBagRequest request) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.BAG_DEL_PACKAGE;
+    final body = json.encode(request);
+    final responseJson = await post(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return true;
     }
     throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }

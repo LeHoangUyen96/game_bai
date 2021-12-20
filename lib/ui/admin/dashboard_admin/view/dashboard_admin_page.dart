@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:viet_trung_mobile_admin/data/response/dashboard_admin_response.dart';
 import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:viet_trung_mobile_admin/res/dimens.dart';
 import 'package:viet_trung_mobile_admin/res/fonts.dart';
@@ -7,7 +8,9 @@ import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/dashboard_admin/controller/dashboard_admin_controller.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/notification_admin/view/notification_admin_page.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class DashboardAdminPage extends GetView<DashboardAdminController> {
@@ -16,16 +19,20 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
     return GetBuilder<DashboardAdminController>(
         init: DashboardAdminController(),
         builder: (value) => Scaffold(
-              body: _buildBody(),
+              body: controller.dashboardAdminResponse != null
+                  ? _buildBody()
+                  : LoadingSpinKit(),
             ));
   }
 
   Widget _buildBody() {
-    return Stack(alignment: Alignment.center, fit: StackFit.expand, children: [
+    return Stack(alignment: Alignment.center, fit: StackFit.expand, children: <
+        Widget>[
       imgBackGround(),
       SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Container(
+          //padding: EdgeInsets.only(top: 20),
           alignment: Alignment.center,
           width: Get.width,
           child: Column(
@@ -36,45 +43,55 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 30.0,
-                            child: ClipOval(
-                              child: ImageCustomized(
-                                path: IMG_DASHBOARD,
-                                height: 60,
-                                width: 60,
-                              ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 30.0,
+                          child: ClipOval(
+                            child: controller.dashboardAdminResponse!.avatar ==
+                                        null ||
+                                    controller.dashboardAdminResponse!.avatar ==
+                                        ''
+                                ? ImageCustomized(
+                                    path: LOGO_IMG,
+                                    height: 60,
+                                    width: 60,
+                                  )
+                                : ImageCustomized(
+                                    path: controller
+                                        .dashboardAdminResponse!.avatar,
+                                    height: 60,
+                                    width: 60,
+                                  ),
+                          ),
+                          backgroundColor: Colors.transparent,
+                        ),
+                        SizedBox(width: 5.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: controller.dashboardAdminResponse!.name
+                                  .toString(),
+                              color: WHITE,
+                              size: normalSize,
+                              weight: FontWeight.w700,
                             ),
-                            backgroundColor: Colors.transparent,
-                          ),
-                          SizedBox(width: 10.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextCustomized(
-                                text: "abc",
-                                color: WHITE,
-                                size: mediumSize,
-                                weight: FontWeight.w700,
-                              ),
-                              TextCustomized(
-                                text: "Admin",
-                                color: WHITE,
-                                size: smallSize,
-                                weight: FontWeight.w400,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            TextCustomized(
+                              text: controller.dashboardAdminResponse!.role_name
+                                  .toString(),
+                              color: WHITE,
+                              size: smallSize,
+                              weight: FontWeight.w400,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 5.0,
+                    //SizedBox(width: 10,),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                             padding: EdgeInsets.only(right: 10.0),
@@ -82,7 +99,11 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                                 border:
                                     Border(right: BorderSide(color: BT_GRAY))),
                             child: TextCustomized(
-                              text: "Tỷ giá: 3.75",
+                              text: "Tỷ giá: " +
+                                  ParseNumber.parseInt(controller
+                                          .dashboardAdminResponse!
+                                          .exchange_rate)
+                                      .toString(),
                               color: WHITE,
                               size: smallSize,
                               weight: FontWeight.w700,
@@ -105,6 +126,65 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                   ],
                 ),
               ),
+              SizedBox(height: 20.0),
+              // Container(
+              //   padding: EdgeInsets.all(10),
+              //   child: Row(
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //     children: [
+              //       Container(
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.center,
+              //           children: [
+              //             TextCustomized(
+              //               text: "abc",
+              //               color: WHITE,
+              //               size: mediumSize,
+              //               weight: FontWeight.w700,
+              //             ),
+              //             TextCustomized(
+              //               text: "Tổng đơn hàng",
+              //               size: smallSize,
+              //               color: WHITE,
+              //               weight: FontWeight.w400,
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       Wrap(
+              //           crossAxisAlignment: WrapCrossAlignment.center,
+              //           spacing: 5.0,
+              //           children: [
+              //             Container(
+              //               padding: EdgeInsets.only(right: 10.0),
+              //               decoration: BoxDecoration(
+              //                   border:
+              //                       Border(right: BorderSide(color: BT_GRAY))),
+              //               child: TextCustomized(
+              //                 text: "Tỷ giá: 3.75",
+              //                 color: WHITE,
+              //                 size: smallSize,
+              //                 weight: FontWeight.w700,
+              //               ),
+              //             ),
+              //             Container(
+              //               child: InkWell(
+              //                 onTap: () {
+              //                   Get.to(NotificationAdminPage());
+              //                 },
+              //                 child: ImageCustomized(
+              //                   path: IC_NAV_NOTIFICATION,
+              //                   color: WHITE,
+              //                   width: 28,
+              //                   height: 28,
+              //                 ),
+              //               ),
+              //             ),
+              //           ]),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 20.0),
               Container(
                 padding: EdgeInsets.all(10),
@@ -204,43 +284,49 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextCustomized(
-                            text: ORDER_SHIPPED,
-                            color: BLACK_1,
-                            weight: FontWeight.w700,
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: TextCustomized(
-                              text: HOME_SHOW_ALL,
-                              color: RED_2,
-                              size: smallSize,
-                              weight: FontWeight.w700,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                        padding: EdgeInsets.all(20),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextCustomized(
+                                text: ORDER_SHIPPED,
+                                color: BLACK_1,
+                                weight: FontWeight.w700,
+                              ),
+                            ])),
                     Container(
                       padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
                       child: ListView.separated(
                         itemBuilder: (BuildContext context, int index) {
-                          return _builListItem();
+                          return _builListItem(controller
+                              .dashboardAdminResponse!.order_closes![index]);
                         },
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
                           return SizedBox(height: 10);
                         },
                         physics: BouncingScrollPhysics(),
-                        itemCount: 10,
+                        itemCount: controller
+                            .dashboardAdminResponse!.order_closes!.length,
                         padding: EdgeInsets.all(0.0),
                       ),
                     ),
+                    // Container(
+                    //   padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                    //   child: ListView.separated(
+                    //     itemBuilder: (BuildContext context, int index) {
+                    //       return _builListItem();
+                    //     },
+                    //     shrinkWrap: true,
+                    //     separatorBuilder: (context, index) {
+                    //       return SizedBox(height: 10);
+                    //     },
+                    //     physics: BouncingScrollPhysics(),
+                    //     itemCount: 10,
+                    //     padding: EdgeInsets.all(0.0),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -261,7 +347,9 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
     );
   }
 
-  Widget _builListItem() {
+  Widget _builListItem(DataOrderCloses data) {
+    final Color color;
+    color = controller.ColorStatusName(data.order_status_name.toString());
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
       decoration: BoxDecoration(
@@ -284,16 +372,16 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextCustomized(
-                text: "211003TODWE4MD",
+                text: data.bill_code.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w700,
                 color: MAIN_BLACK,
               ),
               TextCustomized(
-                text: "Kho Trung Quốc",
+                text: data.order_status_name.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w700,
-                color: BG_ID_PD,
+                color: color,
               ),
             ],
           ),
@@ -301,8 +389,7 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
             height: 5,
           ),
           TextCustomized(
-            text: "10:10 21/10/2021",
-            // text: dataOrder.created_at.toString(),
+            text: data.created_at.toString(),
             font: SanFranciscoTextLight,
             weight: FontWeight.w400,
             color: GRAY8,
@@ -321,8 +408,7 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                 color: GRAY1,
               ),
               TextCustomized(
-                // text: dataOrder.number_package.toString(),
-                text: "10",
+                text: data.number_package.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: BLACK,
@@ -346,8 +432,9 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                   color: GRAY1,
                 ),
                 TextCustomized(
-                  // text: dataOrder.item.toString(),
-                  text: "Máy phun khử khuẩn ",
+                  text: data.item != null
+                      ? data.item.toString()
+                      : "Chưa xác định",
                   font: SanFranciscoText,
                   weight: FontWeight.w400,
                   color: BLACK,
@@ -366,7 +453,7 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
                 color: GRAY1,
               ),
               TextCustomized(
-                text: "¥269.00",
+                text: "¥" + data.transport_fee.toString(),
                 font: SanFranciscoText,
                 weight: FontWeight.w400,
                 color: RED_2,
@@ -389,7 +476,7 @@ class DashboardAdminPage extends GetView<DashboardAdminController> {
               Expanded(
                 flex: 5,
                 child: TextCustomized(
-                  text: "0đ",
+                  text: data.surcharge.toString(),
                   font: SanFranciscoText,
                   weight: FontWeight.w400,
                   color: BLACK,

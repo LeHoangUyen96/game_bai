@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/models/order_item_add_to_bag.dart';
 import 'package:viet_trung_mobile_admin/data/repository/bag_reponsitory/bag_reponsitory.dart';
 import 'package:viet_trung_mobile_admin/data/repository/setting_reponsitory/setting_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_order_to_bag_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/create_bag_request.dart';
 import 'package:viet_trung_mobile_admin/data/request/manager_bag_filter_request.dart';
 import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/list_bag_resoonse.dart';
@@ -12,6 +15,7 @@ import 'package:viet_trung_mobile_admin/data/response/list_transport_form_respon
 import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/contract/manager_bag_contract.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
 import 'package:viet_trung_mobile_admin/ulti/helper/dateTime_helper.dart';
 
 class ManagerBagController extends GetxController
@@ -39,6 +43,8 @@ class ManagerBagController extends GetxController
   DateTime? toDay;
   String? toDateTime;
   String? fromDateTime;
+  List<DataOrderAddBag>? mListOrder = [];
+  List<DataOrderCreateBag>? mListOrders = [];
   @override
   void onInit() {
     super.onInit();
@@ -241,5 +247,52 @@ class ManagerBagController extends GetxController
           title: (onError as ErrorResponse).message.toString(), middleText: '');
     });
     update();
+  }
+
+  void onAddProduct() {
+    for (var i = 0; i < mListBagResponse!.data!.length; i++) {
+      Get.dialog(AddProductToBagDialog(), arguments: {
+        "warehouse_back_code": mListBagResponse!.data![i].warehouse_back_code,
+        "transport_form_id": mListBagResponse!.data![i].transport_form_id,
+      }).then((value) {
+        if (value != null) {
+          onGetListOrder(value);
+        }
+      });
+      print(
+          "warehouse_back_code :${mListBagResponse!.data![i].warehouse_back_code}");
+      print(
+          "transport_form_id :${mListBagResponse!.data![i].transport_form_id}");
+    }
+    update();
+  }
+
+  void onGetListOrder(List<DataOrderAddBag> data) {
+    mListOrder = data;
+    for (var i = 0; i < mListOrder!.length; i++) {
+      mListOrders!.add(DataOrderCreateBag(
+        number_package: mListOrder![i].number_package,
+        order_id: mListOrder![i].id,
+      ));
+    }
+    onAddPackge();
+    update();
+  }
+
+  void onAddPackge() {
+    for (var i = 0; i < mListBagResponse!.data!.length; i++) {
+      AddOrderToBagRequest request = AddOrderToBagRequest(
+        parent_pack_id: mListBagResponse!.data![i].id,
+        orders: mListOrders,
+      );
+      bagRepositories!.onAddPackage(request).then((value) {
+        getListBag(false);
+        Get.snackbar(NAV_NOTIFICATION, "Thêm đơn hàng thành công");
+        print("--------------$value");
+        update();
+      }).catchError((onError) {
+        Get.snackbar(PROFILE_NOTIFY, onError.toString());
+      });
+    }
   }
 }
