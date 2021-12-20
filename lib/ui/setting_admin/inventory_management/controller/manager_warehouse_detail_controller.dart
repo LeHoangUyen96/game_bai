@@ -28,7 +28,6 @@ class ManagerWarehouseDetailController extends GetxController {
     }).catchError((onError) {
       update();
     });
-    update();
   }
 
   void onDeleteWarehouse(String id) {
@@ -36,7 +35,6 @@ class ManagerWarehouseDetailController extends GetxController {
       Get.snackbar(NOTIFY, value.message!);
       Get.back();
       Get.back();
-      onGetListWarehouse(warehouseId!);
       update();
     }).catchError((onError) {
       update();

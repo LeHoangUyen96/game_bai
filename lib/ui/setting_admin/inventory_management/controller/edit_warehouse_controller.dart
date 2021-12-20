@@ -44,7 +44,6 @@ class EditWarehouseController extends GetxController {
       city.add(data.id!);
     }
     if (data.isCheck == false) {
-      // data.status = 0;
       city.remove(data.id!);
     }
     update();

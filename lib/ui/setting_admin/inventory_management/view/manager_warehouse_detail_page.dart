@@ -24,7 +24,12 @@ class ManagerWarehouseDetailPage
               child: InkWell(
                 onTap: () {
                   Get.dialog(DialogEditWarehouse(),
-                      arguments: controller.warehouseId);
+                          arguments: controller.warehouseId)
+                      .then((value) {
+                    if (value != null) {
+                      controller.onGetListWarehouse(controller.warehouseId!);
+                    }
+                  });
                 },
                 child: Icon(
                   Icons.add,
