@@ -68,3 +68,4 @@ const String BG_IMG_DASHBOARD_ADMIN = "assets/images/img_backgourd_admin.png";
 const String IC_CALENDAR = "assets/images/icon_calendar.svg";
 const String ic_success = "assets/images/ic_success.svg";
 const String ic_faild = "assets/images/ic_faild.svg";
+const String camera = "assets/images/camera.svg";

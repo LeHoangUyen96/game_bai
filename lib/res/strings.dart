@@ -703,7 +703,7 @@ const String HEADER_QUESTION = 'Câu hỏi thường gặp';
 //Notification
 const String AUTH_LOGIN_SUCCESS = 'Đăng nhập thành công';
 const String AUTH_LOGIN_ERROR_PASS = 'Mật khẩu tối thiểu 8 kí tự';
-const String AUTH_LOGIN_ERROR_EMAIL = 'Email/SĐT không được để trống';
+const String AUTH_LOGIN_ERROR_EMAIL = 'Email không được để trống';
 const String AUTH_LOGIN_EMAIL_ERROR = 'Email/SĐT không đúng định dạng';
 const String AUTH_LOGIN_ERROR_PASS_EMPTY = 'Mật khẩu không được để trống';
 const String AUTH_FORGOT_PASS_ERROR_INPUT =
@@ -963,3 +963,6 @@ const String inputWeight = "Nhập khối lượng";
 const String inputVolume = "Nhập thể tích";
 const String transportFee = "Phí vận chuyển";
 const String youSureDelete = "Bạn có chắc chắn muốn xoá";
+const String codeError = "Mã code không được để trống";
+const String inputCode = 'Nhập mã code';
+const String code = "Mã code";

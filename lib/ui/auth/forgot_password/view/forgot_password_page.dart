@@ -6,7 +6,7 @@ import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/auth/forgot_password/controller/forgot_password_controller.dart';
-import 'package:viet_trung_mobile_admin/ui/auth/forgot_password/view/forgot_password_step_1.dart';
+import 'package:viet_trung_mobile_admin/ui/auth/forgot_password/view/confirm_password_page.dart';
 import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
@@ -129,7 +129,7 @@ class ForgotPage extends GetView<ForgotController> {
                                     ButtonCustomized(
                                       LOGIN_RESET,
                                       onTap: () {
-                                        Get.to(ForgotStepOnePage());
+                                        controller.onForgotPass();
                                       },
                                       backgroundColor: COLOR_BT,
                                     ),

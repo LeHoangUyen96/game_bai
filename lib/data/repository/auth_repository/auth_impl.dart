@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:viet_trung_mobile_admin/data/models/user.dart';
 import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
 import 'package:viet_trung_mobile_admin/data/request/auth_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/confirm_pass_request.dart';
 import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/forgot_error_response.dart';
@@ -80,6 +81,29 @@ class AuthImpl extends GetConnect implements AuthRepository {
     final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return RegisterStep2Response.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  Future<ForgotPassResponse> onForgotPassStep1(String email) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.forgotPassStep1;
+    Map body = {"email": email};
+    final responseJson = await post(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return ForgotPassResponse.fromJson(responseJson.body);
+    }
+    throw ErrorResponse.fromJson(responseJson.body);
+  }
+
+  Future<ForgotPassResponse> onForgotPassStep2(
+      ConfirmPassRequest request) async {
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.forgotPassStep1;
+    final body = json.encode(request);
+    final responseJson = await post(url, body, headers: header);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return ForgotPassResponse.fromJson(responseJson.body);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }

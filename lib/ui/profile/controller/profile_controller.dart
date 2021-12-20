@@ -1,15 +1,21 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/auth_repository/auth_repository.dart';
 import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
+import 'package:viet_trung_mobile_admin/data/response/admin_add_image_enter_warehouse_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/errors_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/auth/login/view/login_page.dart';
 import 'package:viet_trung_mobile_admin/ui/profile/contract/profile_contract.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
 import 'package:viet_trung_mobile_admin/ulti/key_storage/key_storage.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController implements ProfileContract {
   ProfileRepositories? profileRepositories;
@@ -18,6 +24,8 @@ class ProfileController extends GetxController implements ProfileContract {
   final isAdmin = GetStorage();
   ProfileContract? contract;
   ProfileResponse? mDataProfile;
+  List<File>? images;
+  String? path;
 
   @override
   void onInit() {
@@ -25,6 +33,7 @@ class ProfileController extends GetxController implements ProfileContract {
     authRepository = Injector().auth;
     profileRepositories = Injector().profile;
     contract = this;
+    images = <File>[];
     onGetProfile();
   }
 
@@ -63,6 +72,54 @@ class ProfileController extends GetxController implements ProfileContract {
   @override
   void onGetProfileSuccess(ProfileResponse data) {
     mDataProfile = data;
+    update();
+  }
+
+  void onUpLoadImage() {
+    assert(profileRepositories != null);
+    profileRepositories!.onUploadImageProfile(images!).then((response) {
+      onUpLoadAvatar(response);
+    }).catchError((onError) {
+      contract!.onUploadImageError(onError);
+    });
+  }
+
+  void onUpLoadAvatar(String image) {
+    assert(profileRepositories != null);
+    profileRepositories!.onUploadAvatarProfile(image).then((response) {
+      onGetProfile();
+      Get.snackbar(NOTIFY, response.message!);
+    }).catchError((onError) {
+      return onError;
+    });
+  }
+
+  void onPickerImage(ImageSource imageSource) {
+    HandleImage().pickerImage(imageSource).then((value) {
+      images!.add(value!);
+      onUpLoadImage();
+      Get.back(result: images);
+      update();
+    }).catchError((onError) {
+      Get.back();
+    });
+  }
+
+  @override
+  void onUploadImageError(ErrorResponse error) {}
+
+  @override
+  void onUploadImageSuccess(File file) {}
+
+  @override
+  void onUpdateAvatarSuccess(String image) {
+    path = image;
+    update();
+  }
+
+  @override
+  void onUpdateAvatarError(ErrorResponse error) {
+    path = error.message;
     update();
   }
 }

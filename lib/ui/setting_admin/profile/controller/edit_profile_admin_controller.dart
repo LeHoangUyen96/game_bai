@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile_admin/data/request/edit_profile_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/errors_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/profile_get_me_response.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/profile/contract/profile_contract.dart';
+import 'dart:io';
 
 class EditProfileAdminController extends GetxController
     implements ProfileContract {
@@ -92,4 +94,16 @@ class EditProfileAdminController extends GetxController
     }
     update();
   }
+
+  @override
+  void onUploadImageError(ErrorResponse error) {}
+
+  @override
+  void onUploadImageSuccess(File file) {}
+
+  @override
+  void onUpdateAvatarSuccess(String image) {}
+
+  @override
+  void onUpdateAvatarError(ErrorResponse error) {}
 }

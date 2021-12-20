@@ -175,7 +175,8 @@ class NetworkConfig {
   static const String BAG_LIST_ORDER = URL_SERVER + "/admin/bag/list-order";
   static const String BAG_CREATE = URL_SERVER + "/admin/bag/create";
   static const String BAG_ADD_PACKAGE = URL_SERVER + "/admin/bag/add-package";
-  static const String BAG_DEL_PACKAGE = URL_SERVER + "/admin/bag/delete-package";
+  static const String BAG_DEL_PACKAGE =
+      URL_SERVER + "/admin/bag/delete-package";
 
   //Setting
   static const String SETTING_PACKING_FORM =
@@ -262,7 +263,7 @@ class NetworkConfig {
 
   // Dashboard User
   static const String DASHBOARD_USER = URL_SERVER + "/dashboard";
-   // Dashboard Admin
+  // Dashboard Admin
   static const String DASHBOARD_ADMIN = URL_SERVER + "/admin/dashboard";
   // Rating Order
   static const String RATING_ORDER = URL_SERVER + "/comment";
@@ -322,4 +323,8 @@ class NetworkConfig {
   static const String deleteWarehouse =
       URL_SERVER + "/admin/warehouses/delete/";
   static const String checkWarehouse = URL_SERVER + "/admin/warehouses/get/";
+
+  //forgot pass
+  static const forgotPassStep1 = URL_SERVER + "/auth/forgot";
+  static const forgotPassStep2 = URL_SERVER + "/auth/reset-password";
 }
