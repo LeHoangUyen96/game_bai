@@ -848,6 +848,16 @@ const String ENTER_NAME_OR_PHONE = 'Nhập tên hoặc số điện thoại';
 const String ID_STAFF = 'Mã nhân viên';
 const String BAG_WEIGHT = 'Trọng lượng';
 const String RESET_PASSWORD = 'Reset Password';
+const String PICK_TIME = 'Chọn thời gian';
+const String REPORT_BAG_OUT_OF_STOCK = 'Bao hàng xuất kho';
+const String REPORT_NUMBER_PARCEL_SHIPPED = 'Số kiện đã xuất kho';
+const String REPORT_NUMBER_USER = 'Số khách hàng có đơn xuất kho';
+const String REPORT_TOTAL_WEIGHT = 'Tổng khối lượng hàng xuất kho (kg)';
+const String REPORT_TOTAL_VOLUME = 'Tổng thể tích hàng xuất kho (m3) ';
+const String REPORT_TOTAL_COD = 'Tổng thu hộ (COD)';
+const String REPORT_TOTAL_COST_PACKING = 'Tổng chi phí đóng gói';
+const String REPORT_SHIPPING_FEE = 'Tổng phí vận chuyển';
+const String REPORT_EXPORT = 'Xuất Báo cáo';
 //order admin page
 const String goodsInWarehouseChina = 'Hàng tại kho Trung Quốc';
 const String goodsShipper = 'Hàng đã chuyển';

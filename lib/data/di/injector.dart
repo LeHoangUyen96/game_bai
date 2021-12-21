@@ -12,6 +12,8 @@ import 'package:viet_trung_mobile_admin/data/repository/feedback_reponsitory/fee
 import 'package:viet_trung_mobile_admin/data/repository/feedback_reponsitory/feedback_reponsitories.dart';
 import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_impl.dart';
 import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitory/packing_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/report_reponsitory/report_impl.dart';
+import 'package:viet_trung_mobile_admin/data/repository/report_reponsitory/report_reponsitories.dart';
 import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_impl.dart';
 import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
 import 'package:viet_trung_mobile_admin/data/repository/dashboard_reponsitoy/dashboard_impl.dart';
@@ -68,4 +70,5 @@ class Injector {
   DashboardProductRepositories get dashboardProduct => DashboardProductImpl();
   ExchangeRateRepositories get exchangeRate => ExchangeRateImpl();
   FeedbackRespositories get feedback => FeedbackImpl();
+  ReportRepositories get report => ReportImpl();
 }

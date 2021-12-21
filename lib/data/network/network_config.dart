@@ -278,6 +278,10 @@ class NetworkConfig {
   static const String MANAGER_USER_CREATE = URL_SERVER + "/admin/users/create-user";
   static const String MANAGER_USER_RESET_PASSWORD = URL_SERVER + "/admin/users/reset-password-admin/";
 
+  // Report
+  static const String REPORT = URL_SERVER + "/admin/report";
+  static const String REPORT_EXPORT = URL_SERVER + "/admin/report/export";
+
   //settings packing
   static const String listPacking =
       URL_SERVER + "/admin/setting/packing-form/list";

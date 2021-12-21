@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/report/view/report_page.dart';
 import 'package:viet_trung_mobile_admin/ui/order/controller/order_info_controller.dart';
 import 'package:viet_trung_mobile_admin/ui/setting_admin/dashboard_product/view/dashboard_product_page.dart';
 import 'package:viet_trung_mobile_admin/ui/setting_admin/exchange_rate/view/exchange_rate_page.dart';
@@ -58,7 +59,9 @@ class SettingAdminPage extends GetView<OrderInfoController> {
         _buildItem(rateSettings, () {
           Get.to(ExchangeRatePage());
         }),
-        _buildItem(report, () {}),
+        _buildItem(report, () {
+          Get.to(ReportPage());
+        }),
         Container(
             color: WHITE,
             child: Column(children: [
