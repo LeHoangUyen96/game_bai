@@ -967,3 +967,4 @@ const String codeError = "Mã code không được để trống";
 const String inputCode = 'Nhập mã code';
 const String code = "Mã code";
 const String nameCustomer = "Tên khách hàng";
+const String resetPassword = 'RESET PASSWORD';
