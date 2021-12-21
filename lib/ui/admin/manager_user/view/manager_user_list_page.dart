@@ -11,9 +11,11 @@ import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/view/edit_staff_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/manager_user_list_controller.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/create_user_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/detail_user_page.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/edit_customer_page.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
@@ -43,7 +45,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
       child: AppBar(
         //centerTitle: true,
         title: TextCustomized(
-          text: MANAGE_PACKAGE_EMPLOYEE,
+          text: 'Quản lý khách hàng',
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
@@ -211,22 +213,20 @@ class ManagerUserPage extends GetView<ManagerUserController> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: 30.0,
-                          child: ClipOval(
-                            child: data.avatar == null || data.avatar == ''
-                                ? ImageCustomized(
-                                    path: LOGO_IMG,
-                                    height: 60,
-                                    width: 60,
-                                  )
-                                : ImageCustomized(
-                                    path: data.avatar,
-                                    height: 60,
-                                    width: 60,
-                                  ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                          child: Material(
+                            color: Colors.transparent,
+                            clipBehavior: Clip.antiAlias,
+                            child: ImageCustomized(
+                              path: data.avatar.toString().isEmpty
+                                  ? LOGO_IMG
+                                  : data.avatar.toString(),
+                              fit: BoxFit.cover,
+                              width: 60,
+                              height: 60,
+                            ),
                           ),
-                          backgroundColor: Colors.transparent,
                         ),
                         SizedBox(width: 10.0),
                         Column(
@@ -263,7 +263,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
                       color: GREEN1, borderRadius: BorderRadius.circular(16)),
                   child: InkWell(
                       onTap: () {
-                        //Get.to(EditStaffPage(), arguments: data.id!);
+                        Get.to(EditCustomerPage(), arguments: data.id!);
                       },
                       child: Center(
                         child: SvgPicture.asset(IC_EDIT_ADDRESS,

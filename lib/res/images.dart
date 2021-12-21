@@ -69,3 +69,6 @@ const String IC_CALENDAR = "assets/images/icon_calendar.svg";
 const String ic_success = "assets/images/ic_success.svg";
 const String ic_faild = "assets/images/ic_faild.svg";
 const String camera = "assets/images/camera.svg";
+const String ic_down = "assets/images/ic_down.svg";
+const String bt_search = "assets/images/bt_search.svg";
+const String search = "assets/images/search.png";

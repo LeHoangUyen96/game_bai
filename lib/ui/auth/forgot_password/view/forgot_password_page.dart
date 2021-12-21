@@ -77,10 +77,10 @@ class ForgotPage extends GetView<ForgotController> {
                                   children: [
                                     TextCustomized(
                                       text: LOGIN_PASSWORD_RECOVERY,
-                                      font: SanFranciscoText,
-                                      size: largeSize,
+                                      font: inter,
+                                      size: 24,
                                       color: BLACK,
-                                      weight: FontWeight.w400,
+                                      weight: FontWeight.w500,
                                     ),
                                     const SizedBox(height: 15),
                                     TextCustomized(

@@ -34,29 +34,30 @@ class ButtonCustomized extends StatelessWidget {
     return InkWell(
       onTap: () => onTap != null ? onTap!() : null,
       child: Container(
-        height: height ?? 48,
-        width: width ?? double.infinity,
-        padding: EdgeInsets.all(10),
-        margin: margin,
-        decoration: BoxDecoration(
-          border: Border.all(
-              width: borderWidth ?? 2.0,
-              color: borderColor ?? (backgroundColor ?? GRAY)),
-          color: backgroundColor ?? GRAY,
-          borderRadius: borderRadius ?? BorderRadius.circular(9),
-        ),
-        child: Text(
-          text!,
-          style: textStyle ??
-              TextStyle(
-                fontSize: customSize,
-                fontFamily: inter,
-                fontWeight: FontWeight.w600,
-                color: textColor ?? Colors.white,
-              ),
-          textAlign: TextAlign.center,
-        ),
-      ),
+          height: height ?? 48,
+          width: width ?? double.infinity,
+          padding: EdgeInsets.all(10),
+          margin: margin,
+          decoration: BoxDecoration(
+            border: Border.all(
+                width: borderWidth ?? 2.0,
+                color: borderColor ?? (backgroundColor ?? GRAY)),
+            color: backgroundColor ?? GRAY,
+            borderRadius: borderRadius ?? BorderRadius.circular(9),
+          ),
+          child: Center(
+            child: Text(
+              text!,
+              style: textStyle ??
+                  TextStyle(
+                    fontSize: customSize,
+                    fontFamily: inter,
+                    fontWeight: FontWeight.w600,
+                    color: textColor ?? Colors.white,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          )),
     );
   }
 }

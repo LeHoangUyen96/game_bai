@@ -76,21 +76,16 @@ class ProfileController extends GetxController implements ProfileContract {
   }
 
   void onUpLoadImage() {
-    assert(profileRepositories != null);
     profileRepositories!.onUploadImageProfile(images!).then((response) {
-      onUpLoadAvatar(response);
+      profileRepositories!.onUploadAvatarProfile(response).then((response) {
+        onGetProfile();
+        update();
+        Get.snackbar(NOTIFY, response.message!);
+      }).catchError((onError) {
+        return onError;
+      });
     }).catchError((onError) {
       contract!.onUploadImageError(onError);
-    });
-  }
-
-  void onUpLoadAvatar(String image) {
-    assert(profileRepositories != null);
-    profileRepositories!.onUploadAvatarProfile(image).then((response) {
-      onGetProfile();
-      Get.snackbar(NOTIFY, response.message!);
-    }).catchError((onError) {
-      return onError;
     });
   }
 

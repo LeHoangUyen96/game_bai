@@ -327,4 +327,7 @@ class NetworkConfig {
   //forgot pass
   static const forgotPassStep1 = URL_SERVER + "/auth/forgot";
   static const forgotPassStep2 = URL_SERVER + "/auth/reset-password";
+
+  //manager customer
+  static const updateCustomer = URL_SERVER + "/admin/users/update-user/";
 }

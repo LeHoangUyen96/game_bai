@@ -51,19 +51,13 @@ class MainPageAdmin extends GetView<MainController> {
       },
       child: Container(
         margin: const EdgeInsets.only(top: 30),
-        width: 60,
-        height: 60,
+        width: 80,
+        height: 80,
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
         child: ImageCustomized(
-          path: IC_SEARCH,
-          width: 25,
-          height: 25,
-          color: WHITE,
-        ),
-        decoration: const BoxDecoration(
-          color: BT_CONFIRM,
-          shape: BoxShape.circle,
+          path: search,
+          width: 80,
+          height: 80,
         ),
       ),
     );

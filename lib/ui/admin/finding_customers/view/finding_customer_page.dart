@@ -104,7 +104,7 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
                 ),
                 SizedBox(height: 20),
                 DottedBorder(
-                  dashPattern: [10, 4],
+                  dashPattern: [8, 6],
                   strokeWidth: 2,
                   color: GRAY,
                   radius: Radius.circular(20),
@@ -119,6 +119,7 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
                     },
                     child: Container(
                       height: 8.0.w,
+
                       //width: Get.width*0.65,
                       alignment: Alignment.center,
                       child: TextCustomized(
