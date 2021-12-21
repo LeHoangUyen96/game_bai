@@ -20,7 +20,7 @@ class ManagerStaffController extends GetxController
   ListAdminResponse? listAdminResponse;
   List<DataListAdminResponse>? mDataListAdminResponse = [];
   bool isNextPage = false;
-  late ManagerStaffContract contract;
+  ManagerStaffContract? contract;
   int page = 1;
   int perPage = 10;
   @override
@@ -36,7 +36,7 @@ class ManagerStaffController extends GetxController
       mDataListAdminResponse!.clear();
     }
     managerStaffRepositories!.onGetListAdmin(page, perPage).then((value) {
-      return contract.onGetListAdminSuccess(value);
+      return contract!.onGetListAdminSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
     });
@@ -81,16 +81,21 @@ class ManagerStaffController extends GetxController
     if (refreshController.isRefresh) {
       refreshController.refreshCompleted();
     }
+
     update();
   }
-  void onSearchListAdmin(){
-     //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-      mDataListAdminResponse!.clear();
-      managerStaffRepositories!.onSearchListAdmin(searchNamePhone.text.toString(),page,perPage).then((value) {
-        return contract.onGetListAdminSuccess(value);
-      }).catchError((onError) {
-        Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
-      });
+
+  void onSearchListAdmin() {
+    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    mDataListAdminResponse!.clear();
+    managerStaffRepositories!
+        .onSearchListAdmin(searchNamePhone.text.toString(), page, perPage)
+        .then((value) {
+      return contract!.onGetListAdminSuccess(value);
+    }).catchError((onError) {
+      Get.defaultDialog(
+          title: (onError as ErrorResponse).message.toString(), middleText: '');
+    });
     update();
   }
 

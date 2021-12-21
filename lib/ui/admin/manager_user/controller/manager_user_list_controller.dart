@@ -19,9 +19,9 @@ class ManagerUserController extends GetxController
   ListUserResponse? listUserResponse;
   List<DataListUserResponse>? mDataListUserResponse = [];
   bool isNextPage = false;
-  late ManagerUserContract contract;
+  ManagerUserContract? contract;
   int page = 1;
-  int perPage = 10;
+  int perPage = 5;
   @override
   void onInit() {
     super.onInit();
@@ -35,7 +35,7 @@ class ManagerUserController extends GetxController
       mDataListUserResponse!.clear();
     }
     managerUserRepositories!.onGetListUser(page, perPage).then((value) {
-      return contract.onGetListUserSuccess(value);
+      return contract!.onGetListUserSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
     });
@@ -65,7 +65,9 @@ class ManagerUserController extends GetxController
   void onGetListUserSuccess(ListUserResponse data) {
     listUserResponse = data;
     mDataListUserResponse!.addAll(listUserResponse!.data!);
-    if (listUserResponse!.paginate!.current_page! <= listUserResponse!.paginate!.last_page!) {
+
+    if (listUserResponse!.paginate!.current_page! <=
+        listUserResponse!.paginate!.last_page!) {
       if (listUserResponse!.paginate!.next! > 0) {
         isNextPage = true;
       } else {
@@ -80,16 +82,21 @@ class ManagerUserController extends GetxController
     if (refreshController.isRefresh) {
       refreshController.refreshCompleted();
     }
+
     update();
   }
-  void onSearchListUser(){
-     //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-      mDataListUserResponse!.clear();
-      managerUserRepositories!.onSearchListUser(searchNamePhone.text.toString(),page,perPage).then((value) {
-        return contract.onGetListUserSuccess(value);
-      }).catchError((onError) {
-        Get.defaultDialog(title: (onError as ErrorResponse).message.toString(), middleText: '');
-      });
+
+  void onSearchListUser() {
+    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
+    mDataListUserResponse!.clear();
+    managerUserRepositories!
+        .onSearchListUser(searchNamePhone.text.toString(), page, perPage)
+        .then((value) {
+      return contract!.onGetListUserSuccess(value);
+    }).catchError((onError) {
+      Get.defaultDialog(
+          title: (onError as ErrorResponse).message.toString(), middleText: '');
+    });
     update();
   }
 

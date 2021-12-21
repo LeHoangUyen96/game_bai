@@ -19,8 +19,8 @@ class DataDetailStaff {
   String? email;
   String? phone;
   String? avatar;
-  String ? user_code;
-  int ? status;
+  String? user_code;
+  int? status;
   int? role_id;
   String? role_name;
 
@@ -45,7 +45,6 @@ class DataDetailStaff {
     this.status = -1;
     this.role_name = '';
     this.role_id = -1;
- 
   }
 
   DataDetailStaff.fromJson(Map<String, dynamic> json) {

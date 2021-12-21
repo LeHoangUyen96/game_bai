@@ -32,7 +32,9 @@ class EditStaffPage extends GetView<EditStaffController> {
       builder: (value) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
-        body:  controller.detailStaffResponse != null ? SingleChildScrollView(child: buildBody()) : LoadingSpinKit(),
+        body: controller.detailStaffResponse != null
+            ? SingleChildScrollView(child: buildBody())
+            : LoadingSpinKit(),
         backgroundColor: WHITE,
       ),
     );
@@ -88,20 +90,20 @@ class EditStaffPage extends GetView<EditStaffController> {
             TextFieldCustomized(
               textController: controller.userCodeController,
               //errorText: ,
-              hint: controller.detailStaffResponse!.data!.user_code.toString(),    
+              hint: controller.detailStaffResponse!.data!.user_code.toString(),
             ),
             SizedBox(height: 5),
-              controller.isUserCodeValid == false
-                ?  TextCustomized(
-                      text: controller.userCodeErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            controller.isUserCodeValid == false
+                ? TextCustomized(
+                    text: controller.userCodeErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-              SizedBox(height: 5),  
+            SizedBox(height: 5),
             TextCustomized(
               text: NAME,
               font: SanFranciscoText,
@@ -112,20 +114,20 @@ class EditStaffPage extends GetView<EditStaffController> {
             TextFieldCustomized(
               textController: controller.nameController,
               //errorText: ,
-              hint:  controller.detailStaffResponse!.data!.name.toString(),    
+              hint: controller.detailStaffResponse!.data!.name.toString(),
             ),
             SizedBox(height: 5),
-              controller.isNameValid == false
-                ?  TextCustomized(
-                      text: controller.nameErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            controller.isNameValid == false
+                ? TextCustomized(
+                    text: controller.nameErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-             SizedBox(height: 5),   
+            SizedBox(height: 5),
             TextCustomized(
               text: PHONE,
               font: SanFranciscoText,
@@ -136,20 +138,20 @@ class EditStaffPage extends GetView<EditStaffController> {
             TextFieldCustomized(
               textController: controller.phoneController,
               //errorText: ,
-              hint:  controller.detailStaffResponse!.data!.phone.toString(),    
+              hint: controller.detailStaffResponse!.data!.phone.toString(),
             ),
             SizedBox(height: 5),
-              controller.isPhoneValid == false
-                ?  TextCustomized(
-                      text: controller.phoneErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            controller.isPhoneValid == false
+                ? TextCustomized(
+                    text: controller.phoneErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-             SizedBox(height: 5),   
+            SizedBox(height: 5),
             TextCustomized(
               text: email,
               font: SanFranciscoText,
@@ -160,20 +162,20 @@ class EditStaffPage extends GetView<EditStaffController> {
             TextFieldCustomized(
               textController: controller.emailController,
               //errorText: ,
-              hint:  controller.detailStaffResponse!.data!.email.toString(),   
+              hint: controller.detailStaffResponse!.data!.email.toString(),
             ),
             SizedBox(height: 5),
-              controller.isEmailValid == false
-                ?  TextCustomized(
-                      text: controller.emailErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            controller.isEmailValid == false
+                ? TextCustomized(
+                    text: controller.emailErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-             SizedBox(height: 5),   
+            SizedBox(height: 5),
             TextCustomized(
               text: "Phân quyền",
               font: SanFranciscoText,
@@ -182,29 +184,31 @@ class EditStaffPage extends GetView<EditStaffController> {
             ),
             SizedBox(height: 5),
             Container(
-                child: DropdownSearch<DataRole>(
-                  mode: Mode.MENU,
-                  maxHeight: 120,
-                  popupSafeArea: PopupSafeArea(),
-                  
-                  onFind: (String? filter) => controller.onGetListRole(),
-                  hint:  controller.detailStaffResponse!.data!.role_name.toString(),
-                  onChanged:( data ){
-                    print('${controller.role_id}');
-                    controller.role_id = data!.id!;
-                    controller.update();
-                    },
-                  itemAsString: (DataRole u) => u.name!,
-                  dropdownButtonBuilder: (_)=> Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
+              child: DropdownSearch<DataRole>(
+                mode: Mode.MENU,
+                maxHeight: 120,
+                popupSafeArea: PopupSafeArea(),
+                onFind: (String? filter) => controller.onGetListRole(),
+                hint:
+                    controller.detailStaffResponse!.data!.role_name.toString(),
+                onChanged: (data) {
+                  print('${controller.role_id}');
+                  controller.role_id = data!.id!;
+                  controller.update();
+                },
+                itemAsString: (DataRole u) => u.name!,
+                dropdownButtonBuilder: (_) => Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: SvgPicture.asset(
+                    IC_ARROW_DOWN,
+                    color: GRAY,
                   ),
-                  popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
-                  popupItemBuilder: _customDropdown,
-                  ),
-                
+                ),
+                popupShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                popupItemBuilder: _customDropdown,
+              ),
             ),
             SizedBox(
               height: 15,
@@ -218,38 +222,40 @@ class EditStaffPage extends GetView<EditStaffController> {
             SizedBox(height: 5),
             //AddImageEnterWarehouse(),
             InkWell(
-                      onTap: (){
-                        Get.dialog(ImagePickerDialog()).then((value){
-                          // if(value == 0){
-                          //   controller.onGetDetailAdmin();
-                          //   print("-----------------------");
-                          // } else print("!!!!!!!!!!!!!!!!!!!!!!!");
-                        });
-                      },
-                      child: 
-                      Container(
-                        height: 64,
-                        width: 64,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                        ),
-                        child: controller.img != null
-                            ? ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: ImageCustomized(
-                          path:NetworkConfig.URL_SERVER_BASE_CDN+ "/" + controller.img!,
-                          fit: BoxFit.cover,
-                        ),
-                            )
-                            : ClipRRect(
+                onTap: () {
+                  Get.dialog(ImagePickerDialog()).then((value) {
+                    // if(value == 0){
+                    //   controller.onGetDetailAdmin();
+                    //   print("-----------------------");
+                    // } else print("!!!!!!!!!!!!!!!!!!!!!!!");
+                  });
+                },
+                child: Container(
+                  height: 64,
+                  width: 64,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                  ),
+                  child: controller.img != null
+                      ? ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: ImageCustomized(
-                            path: NetworkConfig.URL_SERVER_BASE_CDN + controller.detailStaffResponse!.data!.avatar.toString(),
+                            path: NetworkConfig.URL_SERVER_BASE_CDN +
+                                "/" +
+                                controller.img!,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: ImageCustomized(
+                            path: NetworkConfig.URL_SERVER_BASE_CDN +
+                                controller.detailStaffResponse!.data!.avatar
+                                    .toString(),
                             fit: BoxFit.cover,
                           ),
                         ),
-                      )
-                    ),
+                )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -264,22 +270,24 @@ class EditStaffPage extends GetView<EditStaffController> {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     TextCustomized(
-                    text: controller.detailStaffResponse!.data!.status == 1 ?'Đang họat động' : 'Không hoạt động',
-                    font: SanFranciscoText,
-                    weight: FontWeight.w400,
-                    color: MAIN_BLACK,
+                      text: controller.detailStaffResponse!.data!.status == 1
+                          ? 'Đang họat động'
+                          : 'Không hoạt động',
+                      font: SanFranciscoText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
                     ),
-                     Container(
-                        padding: EdgeInsets.only(top: 5),
-                        child: CupertinoSwitch(
-                           dragStartBehavior: DragStartBehavior.start,
-                            //value: controller.detailStaffResponse!.data!.status == 1 ? true: false,
-                            value: controller.isStatus,
-                            onChanged: (bool value) {
-                              controller.onGetStatusStaff(value);
-                            },
-                            ),
+                    Container(
+                      padding: EdgeInsets.only(top: 5),
+                      child: CupertinoSwitch(
+                        dragStartBehavior: DragStartBehavior.start,
+                        //value: controller.detailStaffResponse!.data!.status == 1 ? true: false,
+                        value: controller.isStatus,
+                        onChanged: (bool value) {
+                          controller.onGetStatusStaff(value);
+                        },
                       ),
+                    ),
                   ],
                 ),
               ],
@@ -288,7 +296,7 @@ class EditStaffPage extends GetView<EditStaffController> {
             ButtonCustomized(
               save,
               backgroundColor: BT_CONFIRM,
-              onTap: (){
+              onTap: () {
                 controller.onUpdateAdmin();
               },
               textColor: WHITE,
@@ -296,7 +304,7 @@ class EditStaffPage extends GetView<EditStaffController> {
             SizedBox(height: 15),
             ButtonCustomized(
               "Xóa Nhân Viên",
-              onTap: (){
+              onTap: () {
                 controller.onDeleteStaff();
               },
               backgroundColor: WHITE,
@@ -308,26 +316,26 @@ class EditStaffPage extends GetView<EditStaffController> {
       ),
     );
   }
-   Widget _customDropdown (BuildContext context, DataRole item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
+
+  Widget _customDropdown(BuildContext context, DataRole item, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
+        border: Border(bottom: BorderSide(color: GRAY, width: 1.0)),
+        //borderRadius: BorderRadius.circular(5),
+        //color: bdredColor,
+      ),
+      child: InkWell(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: TextCustomized(
+                text: item.name?.toString() ?? '',
+                font: SanFranciscoUIText,
+                weight: FontWeight.w400,
+              )),
               //  Flexible(
               //    child: SvgPicture.asset(IC_CHECK1),
               //    )

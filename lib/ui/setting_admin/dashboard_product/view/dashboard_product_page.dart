@@ -30,7 +30,11 @@ class DashboardProductPage extends GetView<DashboardProductController> {
                     padding: EdgeInsets.only(right: 10),
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(DialogAddProduct());
+                        Get.dialog(DialogAddProduct()).then((value) {
+                          if (value != null) {
+                            controller.onGetListProduct();
+                          }
+                        });
                       },
                       child: Icon(
                         Icons.add,
@@ -79,9 +83,14 @@ class DashboardProductPage extends GetView<DashboardProductController> {
                               InkWell(
                                   onTap: () {
                                     Get.dialog(DialogEditProduct(),
-                                        arguments: controller
-                                            .listProducts![index].id!
-                                            .toString());
+                                            arguments: controller
+                                                .listProducts![index].id!
+                                                .toString())
+                                        .then((value) {
+                                      if (value != null) {
+                                        controller.onGetListProduct();
+                                      }
+                                    });
                                   },
                                   child: ImageCustomized(
                                     path: ic_edit,

@@ -11,15 +11,14 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(
         init: SplashController(),
-        builder: (value) => Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(BG_IMG_ADMIN),
-                fit: BoxFit.cover,
-                )
-            ),
-            child: Center(
+        builder: (value) => InitialWidget(
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage(BG_IMG_ADMIN),
+                  fit: BoxFit.cover,
+                )),
+                child: Center(
                   child: ImageCustomized(
                     path: IMG_LOGO,
                     width: 178,

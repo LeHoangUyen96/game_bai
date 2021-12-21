@@ -47,11 +47,11 @@ class MainController extends GetxController implements MainContract {
     tabIndex.value = navigateItemAdmin[index].id;
 
     if (index != 2) {
-      navigateItemAdmin[index].image = getNavImage(navigateItemAdmin[index].id, true);
+      //navigateItem[index].image = getNavImage(navigateItem[index].id, true);
       navigateItemAdmin[index].color = BLACK_1;
       for (var i = 0; i < navigateItemAdmin.length; i++) {
         if (i != index) {
-          navigateItemAdmin[i].image = getNavImage(navigateItemAdmin[i].id, false);
+          //navigateItem[i].image = getNavImage(navigateItem[i].id, false);
         }
         if (i != index) navigateItemAdmin[i].color = BLACK_1;
       }
@@ -130,27 +130,27 @@ class MainController extends GetxController implements MainContract {
     switch (id) {
       case 0:
         if (isActive) {
-          return IC_HOME_ACTIVE;
+          return 'aaaa';
         } else {
-          return IC_NAV_HOME;
+          return "icNavHome";
         }
       case 1:
         if (isActive) {
-          return IC_ORDER_ACTIVE;
+          return "icNavOrderActive";
         } else {
-          return IC_ORDER;
+          return "icNavOrder";
         }
       case 2:
         if (isActive) {
-          return IC_PRESON_ACTIVE;
+          return "icNavNotificationActive";
         } else {
-          return IC_ACCOUNT;
+          return "icNavNotification";
         }
       case 3:
         if (isActive) {
-          return IC_SETTING_ACTIVE;
+          return "icNavProfileActive";
         } else {
-          return IC_SETTING;
+          return "icNavProfile";
         }
       default:
         return '';

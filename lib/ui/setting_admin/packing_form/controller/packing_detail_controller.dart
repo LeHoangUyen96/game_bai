@@ -5,6 +5,7 @@ import 'package:viet_trung_mobile_admin/data/repository/packing_admin_reponsitor
 import 'package:viet_trung_mobile_admin/data/request/add_packing_request.dart';
 import 'package:viet_trung_mobile_admin/data/response/list_transport_admin_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/packing_detail_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class PackingDetailController extends GetxController {
   PackingAdminRepositories? repository;
@@ -52,8 +53,8 @@ class PackingDetailController extends GetxController {
 
   void onDeletePacking(String id) {
     repository!.onDeletePacking(packingId!).then((value) {
-      Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.back(result: true);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       update();
@@ -67,9 +68,9 @@ class PackingDetailController extends GetxController {
       packingFee: feeController.text,
     );
     repository!.onUpdatePacking(packingId!, request).then((value) {
-      Get.back();
+      Get.back(result: true);
       onGetListPacking();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       update();

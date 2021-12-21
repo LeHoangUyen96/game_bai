@@ -31,7 +31,7 @@ class ManagerBagController extends GetxController
   ListTransportFormResponse? listTransportFormResponse;
   SettingRepositories? settingRepositories;
   ListStatusBagResponse? listStatusBagResponse;
-  late ManagerBagContract  contract;
+  ManagerBagContract? contract;
   bool isNextPage = false;
   int page = 1;
   int perPage = 10;
@@ -54,8 +54,6 @@ class ManagerBagController extends GetxController
     getListBag(false);
     fromDay = DateTime.now();
     toDay = DateTime.now();
-    getDataStatusBag();
-    getDataTransportForm();
   }
 
   void getListBag(bool isRefresh) {
@@ -63,10 +61,10 @@ class ManagerBagController extends GetxController
       mDataBagResponse!.clear();
     }
     bagRepositories!.onGetListBag(page, perPage).then((value) {
-      return contract.onGetListBagSuccess(value);
+      return contract!.onGetListBagSuccess(value);
     }).catchError((onError) {
       print("-----------------$onError");
-      return contract.onGetListBagError(onError);
+      return contract!.onGetListBagError(onError);
     });
   }
 
@@ -95,6 +93,7 @@ class ManagerBagController extends GetxController
     if (refreshController.isRefresh) {
       refreshController.refreshCompleted();
     }
+
     update();
   }
 
@@ -226,7 +225,7 @@ class ManagerBagController extends GetxController
     bagRepositories!.onSearchListBag(request, page, perPage).then((value) {
       // Get.back();
       // onCheckFilter();
-      return contract.onGetListBagSuccess(value);
+      return contract!.onGetListBagSuccess(value);
     }).catchError((onError) {
       Get.defaultDialog(
           title: (onError as ErrorResponse).message.toString(), middleText: '');
@@ -235,36 +234,42 @@ class ManagerBagController extends GetxController
   }
 
   void onGetListBagFilter() {
+    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
     mDataBagResponse!.clear();
     bagRepositories!
         .onFilterListBag(codeController.text.toString(), page, perPage)
         .then((value) {
-      return contract.onGetListBagSuccess(value);
+      // Get.back();
+      // onCheckFilter();
+      return contract!.onGetListBagSuccess(value);
     }).catchError((onError) {
       Get.defaultDialog(
           title: (onError as ErrorResponse).message.toString(), middleText: '');
     });
     update();
   }
-   void onAddProduct(){
-     for(var i = 0; i < mListBagResponse!.data!.length; i++){
-       Get.dialog(AddProductToBagDialog(), 
-      arguments: {
-        "warehouse_back_code" : mListBagResponse!.data![i].warehouse_back_code,
-        "transport_form_id" : mListBagResponse!.data![i].transport_form_id,
-      }).then((value){
-        if(value != null){
+
+  void onAddProduct() {
+    for (var i = 0; i < mListBagResponse!.data!.length; i++) {
+      Get.dialog(AddProductToBagDialog(), arguments: {
+        "warehouse_back_code": mListBagResponse!.data![i].warehouse_back_code,
+        "transport_form_id": mListBagResponse!.data![i].transport_form_id,
+      }).then((value) {
+        if (value != null) {
           onGetListOrder(value);
         }
       });
-      print("warehouse_back_code :${mListBagResponse!.data![i].warehouse_back_code}");
-      print("transport_form_id :${mListBagResponse!.data![i].transport_form_id}");
-     }
+      print(
+          "warehouse_back_code :${mListBagResponse!.data![i].warehouse_back_code}");
+      print(
+          "transport_form_id :${mListBagResponse!.data![i].transport_form_id}");
+    }
     update();
   }
-  void onGetListOrder(List<DataOrderAddBag> data){
+
+  void onGetListOrder(List<DataOrderAddBag> data) {
     mListOrder = data;
-    for(var i = 0; i < mListOrder!.length; i++){
+    for (var i = 0; i < mListOrder!.length; i++) {
       mListOrders!.add(DataOrderCreateBag(
         number_package: mListOrder![i].number_package,
         order_id: mListOrder![i].id,
@@ -273,20 +278,21 @@ class ManagerBagController extends GetxController
     onAddPackge();
     update();
   }
-  void onAddPackge(){
-    for(var i = 0; i < mListBagResponse!.data!.length; i++){
+
+  void onAddPackge() {
+    for (var i = 0; i < mListBagResponse!.data!.length; i++) {
       AddOrderToBagRequest request = AddOrderToBagRequest(
-      parent_pack_id: mListBagResponse!.data![i].id,
-      orders: mListOrders,
-    );
-    bagRepositories!.onAddPackage(request).then((value) {
-      getListBag(false);
-      Get.snackbar(NAV_NOTIFICATION, "Thêm đơn hàng thành công");
-      print("--------------$value");
-      update();
-    }).catchError((onError){
-      Get.snackbar(PROFILE_NOTIFY, onError.toString());
-    });
-    } 
+        parent_pack_id: mListBagResponse!.data![i].id,
+        orders: mListOrders,
+      );
+      bagRepositories!.onAddPackage(request).then((value) {
+        getListBag(false);
+        Get.snackbar(NAV_NOTIFICATION, "Thêm đơn hàng thành công");
+        print("--------------$value");
+        update();
+      }).catchError((onError) {
+        Get.snackbar(PROFILE_NOTIFY, onError.toString());
+      });
+    }
   }
 }

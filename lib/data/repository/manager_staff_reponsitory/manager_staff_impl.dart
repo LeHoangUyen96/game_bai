@@ -21,7 +21,8 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
   @override
   Future<ListAdminResponse> onGetListAdmin(int page, int perPage) async {
     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.MANAGER_STAFF_LIST+"?&page=$page&per_page=$perPage";
+    final url =
+        NetworkConfig.MANAGER_STAFF_LIST + "?&page=$page&per_page=$perPage";
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ListAdminResponse.fromJson(responseJson.body);
@@ -91,10 +92,10 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
 
   @override
   Future<bool> onResetPasswordAdmin(int id) async {
-     final header = NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.MANAGER_USER_RESET_PASSWORD+ "$id";
+    final header = NetworkConfig.onBuildHeader();
+    final url = NetworkConfig.MANAGER_USER_RESET_PASSWORD + "$id";
     //final body = json.encode(request);
-    final responseJson = await post(url,{}, headers: header);
+    final responseJson = await post(url, {}, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return true;
     }
@@ -102,7 +103,8 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
   }
 
   @override
-  Future<UploadAdminResponse> onUpdateAdmin(UpdateAdminRequest request , int id) async{
+  Future<UploadAdminResponse> onUpdateAdmin(
+      UpdateAdminRequest request, int id) async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.MANAGER_STAFF_UPDATE + "$id";
     final body = json.encode(request);
@@ -114,7 +116,7 @@ class ManagerStaffImpl extends GetConnect implements ManagerStaffRepositories {
   }
 
   @override
-  Future<String> onUploadAvatarStaff(List<File> image)async {
+  Future<String> onUploadAvatarStaff(List<File> image) async {
     final url = NetworkConfig.UPLOAD_IMAGE;
     final header = await NetworkConfig.onBuildHeader(isMultipart: true);
     final responseJson = await NetworkClient.onPostFile(url,

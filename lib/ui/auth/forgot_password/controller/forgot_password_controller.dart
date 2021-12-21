@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
-import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
 import 'package:viet_trung_mobile_admin/data/repository/auth_repository/auth_repository.dart';
-import 'package:viet_trung_mobile_admin/data/request/auth_request.dart';
 import 'package:viet_trung_mobile_admin/data/response/auth_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/forgot_error_response.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
@@ -40,14 +38,12 @@ class ForgotController extends GetxController implements ForgotPassContract {
     }
 
     if (isEmailValid) {
-      AuthRequest _request = AuthRequest(email: emailController.text);
-      _authRepository
-          .onForgotPassWord(_request, NetworkConfig.FORGOT_PASSWORD)
-          .then((value) {
-        return contract.onSuccess(value);
+      _authRepository.onForgotPassStep1(emailController.text).then((value) {
+        Get.snackbar(NOTIFY, value.message.toString());
+        Get.to(() => ConfirmPage(), arguments: emailController.text);
+        update();
       }).catchError((onError) {
-        return contract.onError(onError);
-        // Error response here, depend on error code we will show the detail message
+        return onError;
       });
     }
 
@@ -65,8 +61,6 @@ class ForgotController extends GetxController implements ForgotPassContract {
       isEmailValid = true;
       update();
     }
-    // isEmailValid = false;
-    // emailError = msg.message.toString();
     update();
   }
 

@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/detail_user_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/edit_customer_page.dart';
 import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
@@ -37,7 +38,6 @@ class DetailUserPage extends GetView<DetailUserController> {
     return PreferredSize(
       preferredSize: sizeHeader,
       child: AppBar(
-        //centerTitle: true,
         title: TextCustomized(
           text: MANAGE_PACKAGE_CUSTOMER,
           color: WHITE,
@@ -60,7 +60,10 @@ class DetailUserPage extends GetView<DetailUserController> {
         ),
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(EditCustomerPage(),
+                  arguments: controller.detailUserResponse!.data!.id!);
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: SvgPicture.asset(
@@ -85,45 +88,52 @@ class DetailUserPage extends GetView<DetailUserController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 30.0,
-                  child: ClipOval(
-                    child: controller.detailUserResponse!.data!.avatar ==
-                                null ||
-                            controller.detailUserResponse!.data!.avatar == ''
-                        ? ImageCustomized(
-                            path: LOGO_IMG,
-                            height: 60,
-                            width: 60,
-                          )
-                        : ImageCustomized(
-                            path: controller.detailUserResponse!.data!.avatar,
-                            height: 60,
-                            width: 60,
-                          ),
-                  ),
-                  // child:  ImageCustomized(
-                  //         path: LOGO_IMG,
-                  //     height: 60,
-                  //     width: 60,
-                  //     ),
-                  //),
-                  backgroundColor: Colors.transparent,
-                ),
+                Container(
+                    height: 70,
+                    width: 70,
+                    child: Stack(children: [
+                      CircleAvatar(
+                        radius: 50.0,
+                        child: ClipOval(
+                          child: controller.detailUserResponse!.data!.avatar ==
+                                      null ||
+                                  controller.detailUserResponse!.data!.avatar ==
+                                      ''
+                              ? ImageCustomized(
+                                  path: LOGO_IMG,
+                                  height: 70,
+                                  width: 70,
+                                )
+                              : ImageCustomized(
+                                  path: controller
+                                      .detailUserResponse!.data!.avatar,
+                                  height: 70,
+                                  width: 70,
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ])),
                 SizedBox(height: 5.0),
+                TextCustomized(
+                    text: controller.detailUserResponse!.data!.name!,
+                    font: inter,
+                    weight: FontWeight.w500,
+                    size: 16),
+                SizedBox(height: 5),
                 Wrap(
                   spacing: 5.0,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     SvgPicture.asset(
                       IC_ACCOUNT,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     ),
                     TextCustomized(
-                      text:
-                          controller.detailUserResponse!.data!.name.toString(),
+                      text: controller.detailUserResponse!.data!.user_code!,
                       size: normalSize,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     )
                   ],
                 ),
@@ -134,13 +144,13 @@ class DetailUserPage extends GetView<DetailUserController> {
                   children: [
                     SvgPicture.asset(
                       IC_PHONE,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     ),
                     TextCustomized(
                       text:
                           controller.detailUserResponse!.data!.phone.toString(),
                       size: normalSize,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     )
                   ],
                 ),
@@ -157,7 +167,7 @@ class DetailUserPage extends GetView<DetailUserController> {
               children: [
                 TextCustomized(
                   text: email,
-                  color: BT_GRAY,
+                  color: GRAY3,
                 ),
                 SizedBox(height: 10.0),
                 Container(
@@ -173,7 +183,7 @@ class DetailUserPage extends GetView<DetailUserController> {
                 SizedBox(height: 15.0),
                 TextCustomized(
                   text: ADDRESS,
-                  color: BT_GRAY,
+                  color: GRAY3,
                 ),
                 SizedBox(height: 10.0),
                 Container(
@@ -190,22 +200,21 @@ class DetailUserPage extends GetView<DetailUserController> {
                       itemCount: controller
                           .detailUserResponse!.data!.addresses!.length),
                 ),
-               
               ],
             ),
           ),
-           SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: ButtonCustomized(
-                RESET_PASSWORD,
-                textColor: WHITE,
-                onTap: (){
-                  controller.onResetPassword();
-                },
-                backgroundColor: BT_CONFIRM,
-              ),
-            )
+          SizedBox(height: 10.0),
+          Container(
+            padding: EdgeInsets.all(15),
+            child: ButtonCustomized(
+              resetPassword,
+              textColor: WHITE,
+              onTap: () {
+                controller.onResetPassword();
+              },
+              backgroundColor: COLOR_BT,
+            ),
+          )
         ],
       ),
     );

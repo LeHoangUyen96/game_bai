@@ -4,6 +4,7 @@ import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/role_admin_reponsitory/role_admin_reponsitory.dart';
 import 'package:viet_trung_mobile_admin/data/request/update_role_request.dart';
 import 'package:viet_trung_mobile_admin/data/response/role_detail_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class RoleDetailController extends GetxController {
   RoleAdminRepositories? repository;
@@ -68,7 +69,8 @@ class RoleDetailController extends GetxController {
       permissions: permision,
     );
     repository!.onUpdateRole(request, roleId!).then((value) {
-      Get.snackbar('Thông báo', value.message!);
+      Get.back(result: true);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);
@@ -79,7 +81,7 @@ class RoleDetailController extends GetxController {
   void onDeleteRole(int id) {
     repository!.onDeleteRole(roleId!).then((value) {
       Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);

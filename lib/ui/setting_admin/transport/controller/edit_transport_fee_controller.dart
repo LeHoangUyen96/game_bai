@@ -94,8 +94,8 @@ class EditTransportFormFeeController extends GetxController {
       productId: idProduct!,
     );
     repository!.onUpdateTransportFee(transportFeeId!, _request).then((value) {
-      Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.back(result: true);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       update();

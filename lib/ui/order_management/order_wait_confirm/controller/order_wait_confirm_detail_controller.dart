@@ -203,7 +203,7 @@ class OrderWaitConfirmDetailController extends GetxController {
   void onConfirm(VerifiOrderWaitConfirmRequest request) {
     orderAminRepositories!.onConfirmOrderWaitConfirm(request).then((value) {
       Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);

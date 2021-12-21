@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -38,23 +36,8 @@ class EnterWarehouseController extends GetxController {
   String? name;
   String? phone;
   String? image;
-  int product_id = 0;
   RamdomBillOrderResponse? ramdomBillOrderResponse;
   OrderRepositories? orderRepositories;
-  ListProductResponse ? listProductResponse;
-  List<ItemProduct>? mDataItemProduct = [];
-  TransportAdminRepositories ? transportAdminRepositories;
-  List<File>? images;
-  List<Asset>? selectedAssetsPrevious;
-  List<DataImagesEnterWareHouseResponse>? mImages = [];
-  String? mDataUploadImage;
-  List<String>? img;
-  String billCodeErros = '';
-  bool isBillCodeValid = true;
-  String productIdErros = '';
-  bool isProductIdValid = true;
-  String numberPackageErros = '';
-  bool isNumberPackageValid = true;
   @override
   void onInit() {
     super.onInit();
@@ -83,10 +66,6 @@ class EnterWarehouseController extends GetxController {
       }
     }
     orderRepositories = Injector().order;
-    transportAdminRepositories = Injector().transport;
-    images = <File>[];
-    img = <String>[];
-    selectedAssetsPrevious = <Asset>[];
   }
 
   Future<void> scanBarcodeNormal() async {
@@ -123,54 +102,29 @@ class EnterWarehouseController extends GetxController {
     }).catchError((onError) {
       print('isErorrs');
     });
+
     update();
     print(user_id);
   }
-Future<List<ItemProduct>> getDataProduct () async {
-    transportAdminRepositories!.onGetListProduct().then((value){
-      listProductResponse = value;
-      mDataItemProduct!.addAll(listProductResponse!.data!);
-    }).catchError((onError){
-    });
-    return mDataItemProduct!;
-  }
+
   void onEnterWareHouse() {
-    if (product_id == 0) {
-      isProductIdValid = false;
-      productIdErros = "Mặt hàng không được để trống";
-    } else {
-      isProductIdValid = true;
-    }
-    if (barCodeValueController.text.isEmpty) {
-      isBillCodeValid = false;
-      billCodeErros = "Mã bill không được để trống";
-    } else {
-      isBillCodeValid = true;
-    }
-    if (numberPackageController.text.isEmpty) {
-      isNumberPackageValid = false;
-      numberPackageErros = "Số kiện hàng không được để trống";
-    } else {
-      isNumberPackageValid = true;
-    }
-    if(isProductIdValid && isBillCodeValid && isNumberPackageValid){
-      EnterWareHouseRequest request = EnterWareHouseRequest(
-      user_id: user_id != 0 ? user_id : null,
+    EnterWareHouseRequest request = EnterWareHouseRequest(
+      user_id: ParseNumber.parseInt(user_id),
       phone: phone,
       bill_code: barCodeValueController.text.toString(),
-      product_id: product_id,
+      item: itemValueController.text.toString(),
       transport_fee: ParseNumber.parseDouble(transportFeeController.text),
       number_package: ParseNumber.parseInt(numberPackageController.text),
-      images: img,
+      images: image,
       is_prohibited_item: is_prohibited_item,
     );
     orderRepositories!.onEnterWarehouse(request).then((value) {
       Get.snackbar(NOTIFY, "Nhập kho thành công");
     }).catchError((onError) {
-      return onEnterWareHouseError(onError);
+      return onError(onError);
     });
     Get.back(result: request);
-    }
+
     update();
   }
 
@@ -183,17 +137,6 @@ Future<List<ItemProduct>> getDataProduct () async {
     print("$is_prohibited_item");
     update();
   }
-  
-  void onEnterWareHouseError (ErrorsEnterWarehouseResponse msg){
-    if (msg.errors!.bill_code!.toList().isNotEmpty) {
-      isBillCodeValid = false;
-      billCodeErros = msg.errors!.bill_code![0].toString();
-      update();
-    } else {
-      isBillCodeValid = true;
-      update();
-    }
-  }
 
   @override
   void onError(ErrorResponse msg) {
@@ -201,41 +144,4 @@ Future<List<ItemProduct>> getDataProduct () async {
     // Get.snackbar("Thông báo", msg.message.toString());
     Get.back();
   }
-  void onClearImage(int index) {
-    mImages!.removeAt(index);
-    update();
-  }
-  void onPickerImage(ImageSource imageSource) {
-    //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-    HandleImage().pickerImage(imageSource).then((value) {
-      images!.add(value!);
-      mImages!.add(DataImagesEnterWareHouseResponse(
-          key: "", path: "", file: value, isNetWork: false));
-      // uploadImageComplain();
-      img!.add(value.path);
-      Get.back(result: images);
-      update();
-    }).catchError((onError) {
-      Get.back();
-    });
-  }
-
-  void onPickerMultiImage() {
-    Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-    HandleImage().multiPickerImage(selectedAssetsPrevious!).then((value) async {
-      if (value.length != 0) {
-        selectedAssetsPrevious = value;
-        images = await HandleImage().convertAssetToFile(value);
-        //uploadImageComplain();
-        Get.back();
-        Get.back(result: images);
-      }
-    }).catchError((onError) {
-      //
-      Get.back();
-      Get.defaultDialog(
-          title: (onError as ErrorResponse).message.toString(), middleText: '');
-    });
-  }
-  
 }

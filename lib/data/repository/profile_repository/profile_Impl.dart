@@ -59,9 +59,7 @@ class ProfileImpl extends GetConnect implements ProfileRepositories {
   Future<UploadImagesResponse> onUploadAvatarProfile(String images) async {
     final url = NetworkConfig.PROFILE_UPLOAD_IMAGE;
     final header = NetworkConfig.onBuildHeader();
-    Map data = {
-      'avatar': images,
-    };
+    Map data = {'avatar': images};
     final responseJson = await post(url, data, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return UploadImagesResponse.fromJson(responseJson.body);

@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:viet_trung_mobile_admin/data/response/admin_add_image_enter_warehouse_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
@@ -119,7 +120,7 @@ class OrderShipBackDetailController extends GetxController {
         .onUpdateFeeWarhouseChina(request, orderId!)
         .then((value) {
       Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);

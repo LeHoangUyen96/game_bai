@@ -29,7 +29,11 @@ class PackingPage extends GetView<PackingController> {
                     padding: EdgeInsets.only(right: 10),
                     child: InkWell(
                       onTap: () {
-                        Get.to(AddPackingPage());
+                        Get.to(AddPackingPage())!.then((value) {
+                          if (value != null) {
+                            controller.onGetListPacking();
+                          }
+                        });
                       },
                       child: Icon(
                         Icons.add,
@@ -67,7 +71,12 @@ class PackingPage extends GetView<PackingController> {
             InkWell(
                 onTap: () {
                   Get.to(PackingDetailPage(),
-                      arguments: response.id!.toString());
+                          arguments: response.id!.toString())!
+                      .then((value) {
+                    if (value != null) {
+                      controller.onGetListPacking();
+                    }
+                  });
                 },
                 child: Row(children: [
                   const SizedBox(width: 12),

@@ -63,7 +63,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
         actions: [
           InkWell(
             onTap: () {
-              Get.to(EditStaffPage(),arguments: controller.id);
+              Get.to(EditStaffPage(), arguments: controller.id);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -107,28 +107,27 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                             width: 60,
                           ),
                   ),
-                  // child:  ImageCustomized(
-                  //         path: LOGO_IMG,
-                  //     height: 60,
-                  //     width: 60,
-                  //     ),
-                  //),
                   backgroundColor: Colors.transparent,
                 ),
                 SizedBox(height: 5.0),
+                TextCustomized(
+                    text: controller.detailStaffResponse!.data!.name!,
+                    font: inter,
+                    weight: FontWeight.w500,
+                    size: 16),
+                SizedBox(height: 5),
                 Wrap(
                   spacing: 5.0,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     SvgPicture.asset(
                       IC_ACCOUNT,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     ),
                     TextCustomized(
-                      text:
-                          controller.detailStaffResponse!.data!.name.toString(),
+                      text: controller.detailStaffResponse!.data!.user_code!,
                       size: normalSize,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     )
                   ],
                 ),
@@ -139,13 +138,13 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                   children: [
                     SvgPicture.asset(
                       IC_PHONE,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     ),
                     TextCustomized(
                       text: controller.detailStaffResponse!.data!.phone
                           .toString(),
                       size: normalSize,
-                      color: BT_GRAY,
+                      color: GRAY3,
                     )
                   ],
                 ),
@@ -162,7 +161,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
               children: [
                 TextCustomized(
                   text: email,
-                  color: BT_GRAY,
+                  color: GRAY3,
                 ),
                 SizedBox(height: 10.0),
                 Container(
@@ -179,7 +178,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                 SizedBox(height: 15.0),
                 TextCustomized(
                   text: "Phân quyền",
-                  color: BT_GRAY,
+                  color: GRAY3,
                 ),
                 SizedBox(height: 10.0),
                 Container(
@@ -188,7 +187,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                   decoration: BoxDecoration(
                       border: Border(bottom: BorderSide(color: BT_GRAY))),
                   child: TextCustomized(
-                    text: controller.detailStaffResponse!.data!.role_name.toString(),
+                    text: 'Nhân viên kho Trung Quốc',
                     color: BT_CONFIRM,
                   ),
                 ),
@@ -203,7 +202,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                         children: [
                           TextCustomized(
                             text: "Trạng thái",
-                            color: BT_GRAY,
+                            color: GRAY3,
                           ),
                           SizedBox(height: 10.0),
                           TextCustomized(
@@ -230,23 +229,10 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                       ),
                     ],
                   ),
-                ),
-                
+                )
               ],
             ),
           ),
-          SizedBox(height: 10.0),
-          Container(
-            padding: EdgeInsets.all(15),
-            child: ButtonCustomized(
-              RESET_PASSWORD,
-              textColor: WHITE,
-              onTap: (){
-                controller.onResetPasswordAdmin();
-              },
-              backgroundColor: BT_CONFIRM,
-            ),
-          )
         ],
       ),
     );

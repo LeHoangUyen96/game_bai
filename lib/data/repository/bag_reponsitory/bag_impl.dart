@@ -132,9 +132,11 @@ class BagImpl extends GetConnect implements BagRepositories {
             : '') +
         (request.transport_form_id != null
             ? "&transport_form_id=${request.transport_form_id}"
-            : '')
-     + (request.user_id != 0 ? "&user_id=${request.user_id}" : '')
-     + (request.packing_form_id != null ? "&packing_form_id=${request.packing_form_id}" : '');
+            : '') +
+        (request.user_id != 0 ? "&user_id=${request.user_id}" : '') +
+        (request.packing_form_id != null
+            ? "&packing_form_id=${request.packing_form_id}"
+            : '');
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ListOrderAddBagResponse.fromJson(
@@ -144,23 +146,25 @@ class BagImpl extends GetConnect implements BagRepositories {
   }
 
   @override
-  Future<ListOrderAddBagResponse> onSearchBillCode(String bill_code, String warehouse_back_code, int transport_form_id)async {
+  Future<ListOrderAddBagResponse> onSearchBillCode(String bill_code,
+      String warehouse_back_code, int transport_form_id) async {
     final header = await NetworkConfig.onBuildHeader();
-    final url = NetworkConfig.BAG_LIST_ORDER+
-    "?bill_code=$bill_code&warehouse_back_code=$warehouse_back_code&transport_form_id=$transport_form_id";
+    final url = NetworkConfig.BAG_LIST_ORDER +
+        "?bill_code=$bill_code&warehouse_back_code=$warehouse_back_code&transport_form_id=$transport_form_id";
     final responseJson = await get(url, headers: header);
-    if(responseJson.statusCode! >= 200 && responseJson.statusCode! < 300){
-      return ListOrderAddBagResponse.fromJson(responseJson.body as Map<String, dynamic>);
+    if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
+      return ListOrderAddBagResponse.fromJson(
+          responseJson.body as Map<String, dynamic>);
     }
     throw ErrorResponse.fromJson(responseJson.body);
   }
 
   @override
-  Future<CreateBagResponse> onCreateBag(CreateBagRequest request)async {
+  Future<CreateBagResponse> onCreateBag(CreateBagRequest request) async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.BAG_CREATE;
     final body = json.encode(request);
-    final responseJson = await post(url,body, headers: header);
+    final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return CreateBagResponse.fromJson(responseJson.body);
     }
@@ -168,11 +172,11 @@ class BagImpl extends GetConnect implements BagRepositories {
   }
 
   @override
-  Future<bool> onAddPackage(AddOrderToBagRequest request) async{
+  Future<bool> onAddPackage(AddOrderToBagRequest request) async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.BAG_ADD_PACKAGE;
     final body = json.encode(request);
-    final responseJson = await post(url,body, headers: header);
+    final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return true;
     }
@@ -180,16 +184,14 @@ class BagImpl extends GetConnect implements BagRepositories {
   }
 
   @override
-  Future<bool> onDelPackage(DelOrderToBagRequest request) async{
+  Future<bool> onDelPackage(DelOrderToBagRequest request) async {
     final header = NetworkConfig.onBuildHeader();
     final url = NetworkConfig.BAG_DEL_PACKAGE;
     final body = json.encode(request);
-    final responseJson = await post(url,body, headers: header);
+    final responseJson = await post(url, body, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return true;
     }
     throw ErrorCreateAdminResponse.fromJson(responseJson.body);
   }
-
-
 }

@@ -25,14 +25,14 @@ class CreateBagController extends GetxController {
   List<DataListPackingFormFormResponse>? mDataListPackingFormFormResponse = [];
   TextEditingController searchController = TextEditingController();
   TextEditingController totalCodController = TextEditingController();
-  
+
   TextEditingController weightController = TextEditingController();
-  BagRepositories ? bagRepositories;
-  SettingRepositories ? settingRepositories;
-  ListTransportFormResponse ? listTransportFormResponse;
-  ListPackingFormResponse ? listPackingFormFormResponse;
-  ListStatusBagResponse ? listStatusBagResponse;
-  ListWareHouseBackResponse ? listWareHouseBackResponse;
+  BagRepositories? bagRepositories;
+  SettingRepositories? settingRepositories;
+  ListTransportFormResponse? listTransportFormResponse;
+  ListPackingFormResponse? listPackingFormFormResponse;
+  ListStatusBagResponse? listStatusBagResponse;
+  ListWareHouseBackResponse? listWareHouseBackResponse;
   OrderAdminRepositories? orderAminRepositories;
   List<DataSearchCustomer>? searchResponse;
   String? item_code;
@@ -45,8 +45,8 @@ class CreateBagController extends GetxController {
   int order_id = 0;
   int? number_package;
   int total_numberPackage = 0;
-   final FocusNode focusNode = FocusNode();
-  List< DataListOrderAddBagResponse> ? mDataListOrder =[];
+  final FocusNode focusNode = FocusNode();
+  List<DataListOrderAddBagResponse>? mDataListOrder = [];
   List<DataOrderCreateBag>? mListOrders = [];
   bool enabled = false;
   bool onSelect = false;
@@ -97,31 +97,35 @@ class CreateBagController extends GetxController {
     getDataTransportForm();
     getDataListTransport();
   }
-  void onGetListOrder(List<DataOrderAddBag> data){
+
+  void onGetListOrder(List<DataOrderAddBag> data) {
     mListOrder = data;
-    for(var i = 0; i < mListOrder!.length; i++){
-      total_numberPackage = total_numberPackage + mListOrder![i].number_package!;
+    for (var i = 0; i < mListOrder!.length; i++) {
+      total_numberPackage =
+          total_numberPackage + mListOrder![i].number_package!;
       totalCodPackage = totalCodPackage! + mListOrder![i].transport_fee!;
     }
     print("${mDataListOrder!.length}");
     update();
   }
-  void onClearOrder( data, int index) {
-   
-    for(var i = 0; i < mListOrder!.length; i++){
-      if(mListOrder![i].id == data){
-        total_numberPackage = total_numberPackage - mListOrder![i].number_package!;
-      print('--------------------------${total_numberPackage}');
-      totalCodPackage = totalCodPackage! - mListOrder![i].transport_fee!;
-      } 
+
+  void onClearOrder(data, int index) {
+    for (var i = 0; i < mListOrder!.length; i++) {
+      if (mListOrder![i].id == data) {
+        total_numberPackage =
+            total_numberPackage - mListOrder![i].number_package!;
+        print('--------------------------${total_numberPackage}');
+        totalCodPackage = totalCodPackage! - mListOrder![i].transport_fee!;
+      }
     }
-     mListOrder!.removeAt(index);
+    mListOrder!.removeAt(index);
     //onGetListOrder(mListOrder!);
     update();
   }
-  Future<List<DataListWareHouseBackResponse>> getDataWareHouseBack () async {
+
+  Future<List<DataListWareHouseBackResponse>> getDataWareHouseBack() async {
     //Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-    bagRepositories!.onGetListWarehouseback().then((value){
+    bagRepositories!.onGetListWarehouseback().then((value) {
       listWareHouseBackResponse = value;
       mDataListWareHouseBackResponse!.addAll(listWareHouseBackResponse!.data!);
     }).catchError((onError) {});
@@ -169,6 +173,7 @@ class CreateBagController extends GetxController {
       update();
     });
   }
+
   void isShowCard(String phone, int user_code) {
     searchController = TextEditingController(text: phone);
     userCode = user_code;
@@ -176,9 +181,9 @@ class CreateBagController extends GetxController {
     print('-user_code-$user_code');
     update();
   }
-  void onCreateBag(){
 
-    for(var i = 0; i < mListOrder!.length; i++){
+  void onCreateBag() {
+    for (var i = 0; i < mListOrder!.length; i++) {
       mListOrders!.add(DataOrderCreateBag(
         number_package: mListOrder![i].number_package,
         order_id: mListOrder![i].id,
@@ -202,7 +207,7 @@ class CreateBagController extends GetxController {
     } else {
       isTypeBagValid = true;
     }
-    if (typeBag == "intact_bag" && searchController.text.isEmpty ) {
+    if (typeBag == "intact_bag" && searchController.text.isEmpty) {
       isSearchUserValid = false;
       searchUserErros = "Khách hàng không được để trống";
     } else {
@@ -226,32 +231,35 @@ class CreateBagController extends GetxController {
     } else {
       isPackingFromValid = true;
     }
-    if(isWarehouseBackCodeValid && isTransportFormIdValid 
-            && isTypeBagValid &&  isSearchUserValid 
-            && isWeightFromValid && isTotalCodValid 
-            && isOrderValid && isPackingFromValid){
+    if (isWarehouseBackCodeValid &&
+        isTransportFormIdValid &&
+        isTypeBagValid &&
+        isSearchUserValid &&
+        isWeightFromValid &&
+        isTotalCodValid &&
+        isOrderValid &&
+        isPackingFromValid) {
       CreateBagRequest request = CreateBagRequest(
-      parent_pack_type : typeBag,
-      warehouse_back_code : warehouse_back_code,
-      user_id : userCode != null ? userCode : null,
-      transport_form_id : transport_form_id,
-      weight : ParseNumber.parseInt(weightController.text),
-      total_cod : totalCodPackage,
-      packing_form_id: packing_form_id,
-      orders : mListOrders
-    );
-    bagRepositories!.onCreateBag(request).then((value) {
-      Get.snackbar(NOTIFY, value.message.toString());
-    }).catchError((onError){
-      return onError(onError);
-    });
-    Get.back(result: request);
+          parent_pack_type: typeBag,
+          warehouse_back_code: warehouse_back_code,
+          user_id: userCode != null ? userCode : null,
+          transport_form_id: transport_form_id,
+          weight: ParseNumber.parseInt(weightController.text),
+          total_cod: totalCodPackage,
+          packing_form_id: packing_form_id,
+          orders: mListOrders);
+      bagRepositories!.onCreateBag(request).then((value) {
+        Get.snackbar(NOTIFY, value.message.toString());
+      }).catchError((onError) {
+        return onError(onError);
+      });
+      Get.back(result: request);
     }
-    
+
     update();
   }
 
-  void onAddProduct(){
+  void onAddProduct() {
     if (warehouse_back_code == null) {
       isWarehouseBackCodeValid = false;
       warehouseBackCodeErros = "Kho chuyển về không được để trống";
@@ -276,22 +284,24 @@ class CreateBagController extends GetxController {
     } else {
       isTypeBagValid = true;
     }
-     if (typeBag == "intact_bag" && searchController.text.isEmpty) {
+    if (typeBag == "intact_bag" && searchController.text.isEmpty) {
       isSearchUserValid = false;
       searchUserErros = "Khách hàng không được để trống";
     } else {
       isSearchUserValid = true;
-      
     }
-    if(isWarehouseBackCodeValid && isTransportFormIdValid && isPackingFromValid && isTypeBagValid && isSearchUserValid ){
-      Get.dialog(AddProductToBagDialog(), 
-      arguments: {
-        "warehouse_back_code" : warehouse_back_code,
-        "transport_form_id" : transport_form_id,
-        "packing_form_id" : packing_form_id, 
-        "userCode" : userCode,
-      }).then((value){
-        if(value != null){
+    if (isWarehouseBackCodeValid &&
+        isTransportFormIdValid &&
+        isPackingFromValid &&
+        isTypeBagValid &&
+        isSearchUserValid) {
+      Get.dialog(AddProductToBagDialog(), arguments: {
+        "warehouse_back_code": warehouse_back_code,
+        "transport_form_id": transport_form_id,
+        "packing_form_id": packing_form_id,
+        "userCode": userCode,
+      }).then((value) {
+        if (value != null) {
           onGetListOrder(value);
         }
       });

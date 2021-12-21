@@ -119,49 +119,50 @@ class CreateBagPage extends GetView<CreateBagController> {
                 ),
                 popupItemBuilder: _customDropdown,
               ),
-               ),
-               SizedBox(height: 5),
-              controller.isTypeBagValid == false
-                ?  TextCustomized(
-                      text: controller.typeBagErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            ),
+            SizedBox(height: 5),
+            controller.isTypeBagValid == false
+                ? TextCustomized(
+                    text: controller.typeBagErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-              SizedBox(height: 15),
-              controller.typeBag == 'intact_bag' 
-               ?Container(
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     TextCustomized(
-                      text: customer,
-                      font: SanFranciscoUIText,
-                      size: normalSize,
-                      weight: FontWeight.w600,
-                      color: BLACK_1,
-                      ),
-                      SizedBox(height: 15),
-                      SearchTextFieldUser(searchController: controller.searchController),
-                      SizedBox(height: 5),
-                      controller.isSearchUserValid == false
-                        ? TextCustomized(
-                              text: controller.searchUserErros,
-                              font: SanFranciscoText,
-                              size: 12,
-                              maxLine: 2,
-                              weight: FontWeight.w400,
-                              color: RED,
-                          )
-                        : Container(),
-                   ],
-                 ),
-               )
-               :Container(), 
-              SizedBox(height: 15),
+            SizedBox(height: 15),
+            controller.typeBag == 'intact_bag'
+                ? Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextCustomized(
+                          text: customer,
+                          font: SanFranciscoUIText,
+                          size: normalSize,
+                          weight: FontWeight.w600,
+                          color: BLACK_1,
+                        ),
+                        SizedBox(height: 15),
+                        SearchTextFieldUser(
+                            searchController: controller.searchController),
+                        SizedBox(height: 5),
+                        controller.isSearchUserValid == false
+                            ? TextCustomized(
+                                text: controller.searchUserErros,
+                                font: SanFranciscoText,
+                                size: 12,
+                                maxLine: 2,
+                                weight: FontWeight.w400,
+                                color: RED,
+                              )
+                            : Container(),
+                      ],
+                    ),
+                  )
+                : Container(),
+            SizedBox(height: 15),
             TextCustomized(
               text: MANAGE_PACKAGE_WARE_HOUSE_MOVE_BACK,
               font: SanFranciscoUIText,
@@ -197,63 +198,65 @@ class CreateBagPage extends GetView<CreateBagController> {
                 popupItemBuilder: _customDropdownWareHouseBack,
               ),
             ),
-              SizedBox(height: 5),
-              controller.isWarehouseBackCodeValid == false
-                ?  TextCustomized(
-                      text: controller.warehouseBackCodeErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            SizedBox(height: 5),
+            controller.isWarehouseBackCodeValid == false
+                ? TextCustomized(
+                    text: controller.warehouseBackCodeErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-              SizedBox(height: 15),
-              TextCustomized(
+            SizedBox(height: 15),
+            TextCustomized(
               text: MANAGE_PACKAGE_TRANSFER_FORM,
               font: SanFranciscoUIText,
               size: normalSize,
               weight: FontWeight.w600,
               color: BLACK_1,
-              ),
-              SizedBox(height: 15),
-               Container(
-                child: DropdownSearch<DataListTransportFormResponse>(
-                  mode: Mode.MENU,
-                  maxHeight: 120,
-                  popupSafeArea: PopupSafeArea(),
-                  onFind: (String? filter) => controller.getDataTransportForm(),
-                  hint: "Chọn hình thức vận chuyển",
-                  onChanged:( data ){
-                    print('${controller.transport_form_id}');
-                    controller.transport_form_id = data!.id!;
-                    controller.update();
-                    },
-                  itemAsString: (DataListTransportFormResponse u) => u.name!,
-                  dropdownButtonBuilder: (_)=> Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
-                  ),
-                  popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
-                  popupItemBuilder: _customDropdownTransportForm,
+            ),
+            SizedBox(height: 15),
+            Container(
+              child: DropdownSearch<DataListTransportFormResponse>(
+                mode: Mode.MENU,
+                maxHeight: 120,
+                popupSafeArea: PopupSafeArea(),
+                onFind: (String? filter) => controller.getDataTransportForm(),
+                hint: "Chọn hình thức vận chuyển",
+                onChanged: (data) {
+                  print('${controller.transport_form_id}');
+                  controller.transport_form_id = data!.id!;
+                  controller.update();
+                },
+                itemAsString: (DataListTransportFormResponse u) => u.name!,
+                dropdownButtonBuilder: (_) => Container(
+                  padding: EdgeInsets.all(10.0),
+                  child: SvgPicture.asset(
+                    IC_ARROW_DOWN,
+                    color: GRAY,
                   ),
                 ),
-                
-              SizedBox(height: 5),
-              controller.isTransportFormIdValid == false
-                ?  TextCustomized(
-                      text: controller.transportFormIdErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+                popupShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                popupItemBuilder: _customDropdownTransportForm,
+              ),
+            ),
+            SizedBox(height: 5),
+            controller.isTransportFormIdValid == false
+                ? TextCustomized(
+                    text: controller.transportFormIdErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-               SizedBox(height: 15),
-              TextCustomized(
+            SizedBox(height: 15),
+            TextCustomized(
               text: MANAGE_PACKAGE_PACKING_FORM,
               font: SanFranciscoUIText,
               size: normalSize,
@@ -282,116 +285,115 @@ class CreateBagPage extends GetView<CreateBagController> {
                   ),
                 ),
                 popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 popupItemBuilder: _customDropdownPackingForm,
-                ), 
               ),
-              SizedBox(height: 5),
-              controller.isPackingFromValid == false
-                ?  TextCustomized(
-                      text: controller.packingFromErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+            ),
+            SizedBox(height: 5),
+            controller.isPackingFromValid == false
+                ? TextCustomized(
+                    text: controller.packingFromErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-              SizedBox(height: 15),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(height: 15),
+            Row(crossAxisAlignment: CrossAxisAlignment.start,
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                Expanded(
-                  flex: 2,
-                  //width: Get.width*0.4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextCustomized(
-                        text: MANAGE_PACKAGE_WEIGHT,
-                        font: SanFranciscoUIText,
-                        size: normalSize,
-                        weight: FontWeight.w600,
-                        color: BLACK_1,
-                        ),
-                        SizedBox(height: 5,),
-                        Container(
-                          //width: Get.width*0.4,
-                          child: TextFieldCustomized(
-                            textController: controller.weightController,
-                            hint: "Nhập số cân",
+                  Expanded(
+                    flex: 2,
+                    //width: Get.width*0.4,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextCustomized(
+                            text: MANAGE_PACKAGE_WEIGHT,
+                            font: SanFranciscoUIText,
+                            size: normalSize,
+                            weight: FontWeight.w600,
+                            color: BLACK_1,
                           ),
-                        )
-                    ]
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            //width: Get.width*0.4,
+                            child: TextFieldCustomized(
+                              textController: controller.weightController,
+                              hint: "Nhập số cân",
+                            ),
+                          )
+                        ]),
                   ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  flex: 2,
-                  //width: Get.width*0.4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextCustomized(
-                        text: ORDER_LIST_PARCELS,
-                        font: SanFranciscoUIText,
-                        size: normalSize,
-                        weight: FontWeight.w600,
-                        color: BLACK_1,
-                        ),
-                        SizedBox(height: 5,),
-                        Container(
-                          //width: Get.width*0.5,
-                          child: TextFieldCustomized(
-                            readOnly: true,
-                            hint: controller.total_numberPackage.toString(),
-                            colorBackgrount: MAIN_BG,
-                          ),
-                        )
-                    ]
+                  SizedBox(width: 10),
+                  Expanded(
+                      flex: 2,
+                      //width: Get.width*0.4,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustomized(
+                              text: ORDER_LIST_PARCELS,
+                              font: SanFranciscoUIText,
+                              size: normalSize,
+                              weight: FontWeight.w600,
+                              color: BLACK_1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              //width: Get.width*0.5,
+                              child: TextFieldCustomized(
+                                readOnly: true,
+                                hint: controller.total_numberPackage.toString(),
+                                colorBackgrount: MAIN_BG,
+                              ),
+                            )
+                          ])),
+                  //       popupItemBuilder: _customDropdownPackingForm,
+                  //     ),
+                ]),
+            SizedBox(height: 5),
+            controller.isWeightFromValid == false
+                ? TextCustomized(
+                    text: controller.weightFromErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
-                ),
-          //       popupItemBuilder: _customDropdownPackingForm,
-          //     ),
-                ]
-              ),
-                SizedBox(height: 5),
-                controller.isWeightFromValid == false
-                  ? TextCustomized(
-                        text: controller.weightFromErros,
-                        font: SanFranciscoText,
-                        size: 12,
-                        maxLine: 2,
-                        weight: FontWeight.w400,
-                        color: RED,
-                    )
-                  : Container(),
-              SizedBox(height: 15),
-              TextCustomized(
-                  text: MANAGE_PACKAGE_TOTAL_COD,
-                  font: SanFranciscoUIText,
-                  size: normalSize,
-                  weight: FontWeight.w600,
-                  color: BLACK_1,
-                  ),
-              SizedBox(height: 5),
-              TextFieldCustomized(
-                hint: controller.totalCodPackage.toString(),
-                readOnly: true,
-                colorBackgrount: MAIN_BG,
-                textController: controller.totalCodController,
-              ),
-              SizedBox(height: 5),
-              controller.isTotalCodValid == false
-                ?  TextCustomized(
-                      text: controller.totalCodErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+                : Container(),
+            SizedBox(height: 15),
+            TextCustomized(
+              text: MANAGE_PACKAGE_TOTAL_COD,
+              font: SanFranciscoUIText,
+              size: normalSize,
+              weight: FontWeight.w600,
+              color: BLACK_1,
+            ),
+            SizedBox(height: 5),
+            TextFieldCustomized(
+              hint: controller.totalCodPackage.toString(),
+              readOnly: true,
+              colorBackgrount: MAIN_BG,
+              textController: controller.totalCodController,
+            ),
+            SizedBox(height: 5),
+            controller.isTotalCodValid == false
+                ? TextCustomized(
+                    text: controller.totalCodErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
             SizedBox(height: 15),
@@ -444,37 +446,38 @@ class CreateBagPage extends GetView<CreateBagController> {
               height: 10,
             ),
             controller.isOrderValid == false
-                ?  TextCustomized(
-                      text: controller.orderErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
+                ? TextCustomized(
+                    text: controller.orderErros,
+                    font: SanFranciscoText,
+                    size: 12,
+                    maxLine: 2,
+                    weight: FontWeight.w400,
+                    color: RED,
                   )
                 : Container(),
-            SizedBox(height: 10,),
-            controller.changeBill == true 
-              ? Container(
-                child: ListView.separated(
-                  itemCount: controller.mListOrder!.length,
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 10);
-                  },
-                  physics: ClampingScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index){
-                    return _buildListBill(controller.mListOrder![index],index);
-                  }
-                  )
-              )
-              : Container(),
-              SizedBox(height: 15),
+            SizedBox(
+              height: 10,
+            ),
+            controller.changeBill == true
+                ? Container(
+                    child: ListView.separated(
+                        itemCount: controller.mListOrder!.length,
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 10);
+                        },
+                        physics: ClampingScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return _buildListBill(
+                              controller.mListOrder![index], index);
+                        }))
+                : Container(),
+            SizedBox(height: 15),
             Container(
               alignment: Alignment.center,
               child: InkWell(
-                onTap: (){
-                   controller.onAddProduct();
+                onTap: () {
+                  controller.onAddProduct();
                 },
                 child: Wrap(
                   spacing: 5.0,
@@ -496,7 +499,7 @@ class CreateBagPage extends GetView<CreateBagController> {
             SizedBox(height: 15),
             ButtonCustomized(
               BT_REGISTER,
-              onTap: (){
+              onTap: () {
                 controller.onCreateBag();
               },
               backgroundColor: BT_CONFIRM,
@@ -504,23 +507,21 @@ class CreateBagPage extends GetView<CreateBagController> {
             SizedBox(height: 10),
             ButtonCustomized(
               CANCEL_DELETE_IN_CART,
-              onTap: (){
+              onTap: () {
                 Get.back();
               },
               backgroundColor: WHITE,
               textColor: BT_CONFIRM,
               borderColor: BT_GRAY,
             ),
-                
           ],
-        
         ),
-          
       ),
-      );
+    );
   }
-   Widget _buildListBill(DataOrderAddBag data, index){
-    return  Container(
+
+  Widget _buildListBill(DataOrderAddBag data, index) {
+    return Container(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -540,12 +541,12 @@ class CreateBagPage extends GetView<CreateBagController> {
                     weight: FontWeight.w700,
                     color: MAIN_BLACK,
                     size: normalSize,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        controller.onClearOrder(data.id,index);
-                      },
-                      child: TextCustomized(
+                  ),
+                  InkWell(
+                    onTap: () {
+                      controller.onClearOrder(data.id, index);
+                    },
+                    child: TextCustomized(
                       text: delete,
                       font: SanFranciscoText,
                       weight: FontWeight.w400,
@@ -566,8 +567,8 @@ class CreateBagPage extends GetView<CreateBagController> {
                     weight: FontWeight.w500,
                     size: normalSize,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: data.packing_form.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
@@ -587,17 +588,19 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: data.number_package.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: BLACK,
                   ),
                 ],
-              ),   
-              SizedBox(height: 5,),
-              //  SizedBox(height: 5,),     
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              //  SizedBox(height: 5,),
               //  Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [
@@ -615,9 +618,9 @@ class CreateBagPage extends GetView<CreateBagController> {
               //       color: BLACK,
               //       ),
               //   ],
-              // ),   
-              // SizedBox(height: 5,),     
-               Row(
+              // ),
+              // SizedBox(height: 5,),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextCustomized(
@@ -626,8 +629,8 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: "¥" + data.transport_fee.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
@@ -647,16 +650,18 @@ class CreateBagPage extends GetView<CreateBagController> {
                     size: normalSize,
                     weight: FontWeight.w500,
                     color: BLACK_1,
-                    ),
-                    TextCustomized(
+                  ),
+                  TextCustomized(
                     text: data.surcharge.toString(),
                     font: SanFranciscoText,
                     weight: FontWeight.w400,
                     color: RED_1,
                   ),
                 ],
-              ), 
-              SizedBox(height: 5,),     
+              ),
+              SizedBox(
+                height: 5,
+              ),
               //  Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [
@@ -674,9 +679,8 @@ class CreateBagPage extends GetView<CreateBagController> {
               //       color: BLACK,
               //       ),
               //   ],
-              // ), 
-                ]
-              ),
+              // ),
+            ]),
             //]),
           )
         ]));

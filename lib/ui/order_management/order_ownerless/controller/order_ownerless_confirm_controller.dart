@@ -337,7 +337,7 @@ class OrderOwnerlessConfirmController extends GetxController
   void onSave(VerifiOrderOwnerlessRequest request) {
     orderAminRepositories!.onVerifiOrderOwnerless(request).then((value) {
       Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);
@@ -348,7 +348,7 @@ class OrderOwnerlessConfirmController extends GetxController
   void onSaves(VerifiOrderConfirmRequest request) {
     orderAminRepositories!.onVerifiOrder(request).then((value) {
       Get.back();
-      Get.snackbar('Thông báo', value.message!);
+      Get.snackbar(NOTIFY, value.message!);
       update();
     }).catchError((onError) {
       print(onError);

@@ -3,7 +3,7 @@ const String LICENSE = "This Base of Project belongs to Tekup Solution";
 
 const String NAV_HOME = 'Trang chủ';
 const String NAV_CART = 'Giỏ hàng';
-const String NAV_NOTIFICATION = 'Thông báo';
+const String NAV_NOTIFICATION = NOTIFY;
 const String NAV_PROFILE = 'Cá nhân';
 const String NAV_SETTING = 'Cài đặt';
 
@@ -502,7 +502,6 @@ const String DIALOG_WALLET_BT_RECHARGE = 'Nạp tiền';
 const String DELIVERY_REQUEST_HD = 'Tạo yêu cầu giao hàng';
 const String DELIVERY_CODE = 'Mã phiếu giao hàng';
 const String DELIVERY_TOTAL_PACKAGE = 'Tổng số kiện hàng';
-
 const String DELIVERY_TOTAL_WEIGHT = 'Tổng cân nặng phí ';
 const String DELIVERY_ORDER_NUMBER = 'Số đơn hàng';
 const String DELIVERY_ORDER_NORMAR = 'Đơn thường';
@@ -691,7 +690,7 @@ const String DISCOUNT_CODE_ALL =
     '* Đã hiển thị tất cả mã giảm giá thuộc danh mục giảm giá của bạn';
 
 //Notification
-const String NOTIFICATION_APP_BAR = 'Thông báo';
+const String NOTIFICATION_APP_BAR = NOTIFY;
 const String NOTIFICATION_INFO_APP_BAR = 'Chi tiết thông báo';
 const String NOTIFICATION_FROM_ORDER = 'Thông báo đơn hàng';
 const String NOTIFICATION_FROM_SYSTEM = 'Thông báo từ hệ thống';
@@ -704,7 +703,7 @@ const String HEADER_QUESTION = 'Câu hỏi thường gặp';
 //Notification
 const String AUTH_LOGIN_SUCCESS = 'Đăng nhập thành công';
 const String AUTH_LOGIN_ERROR_PASS = 'Mật khẩu tối thiểu 8 kí tự';
-const String AUTH_LOGIN_ERROR_EMAIL = 'Email/SĐT không được để trống';
+const String AUTH_LOGIN_ERROR_EMAIL = 'Email không được để trống';
 const String AUTH_LOGIN_EMAIL_ERROR = 'Email/SĐT không đúng định dạng';
 const String AUTH_LOGIN_ERROR_PASS_EMPTY = 'Mật khẩu không được để trống';
 const String AUTH_FORGOT_PASS_ERROR_INPUT =
@@ -735,7 +734,7 @@ const String LOGIN_RESET_PASSWORD = "Đặt lại mật khẩu";
 const String LOGIN_FORGOTPASSWORD = "Quên mật khẩu?";
 const String LOGIN_REGISTER_NOW = "Đăng ký ngay";
 const String LOGIN_NO_ACCOUNT = "Bạn chưa có tài khoản?";
-const String LOGIN_RESET = "Khôi phục ";
+const String LOGIN_RESET = "Khôi Phục ";
 const String LOGIN_SIGN_TO_CONTINUE = "Đăng nhập để tiếp tục";
 const String LOGIN_CREATE_ACCOUNT = "Tạo một mới tài khoản";
 const String LOGIN_ENTER_EMAIL = "Nhập Email để lấy lại mật khẩu";
@@ -783,7 +782,7 @@ const String ADMIN_ENTER_PHONE_OR_CUSTOMERS_CODE =
     'Nhập số điện thoại hoặc mã khách hàng';
 const String ADMIN_ENTER_AVIATION_INFORMATION = 'Nhập Hàng Không Thông Tin';
 const String ADMIN_SEARCH = 'Tìm Kiếm';
-const String ADMIN_ENTER_WAREHOUSE = 'Nhập kho';
+const String ADMIN_ENTER_WAREHOUSE = 'Nhập Kho';
 const String ADMIN_CUSTOMER_CODE = 'Mã khách hàng';
 const String ADMIN_CUSTOMER_NAME = 'Tên khách hàng';
 const String ADMIN_ENTER_BILL_CODE = 'Nhập mã bill';
@@ -970,3 +969,13 @@ const String all = "Tất cả";
 const String noFeedback = "Không có đánh giá nào";
 const String deliverySuccess = "Giao hàng thành công";
 const String deliveryForm = "Hình thức nhận hàng";
+const String noOrders = "Không có đơn hàng nào";
+const String inputWeight = "Nhập khối lượng";
+const String inputVolume = "Nhập thể tích";
+const String transportFee = "Phí vận chuyển";
+const String youSureDelete = "Bạn có chắc chắn muốn xoá";
+const String codeError = "Mã code không được để trống";
+const String inputCode = 'Nhập mã code';
+const String code = "Mã code";
+const String nameCustomer = "Tên khách hàng";
+const String resetPassword = 'RESET PASSWORD';
