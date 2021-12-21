@@ -1,20 +1,14 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/response/city_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/district_response.dart';
 import 'package:viet_trung_mobile_admin/data/response/wards_response.dart';
 import 'package:viet_trung_mobile_admin/res/colors.dart';
-import 'package:viet_trung_mobile_admin/res/dimens.dart';
 import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/inventory_management/view/add_image_enter_warehouse_page.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/create_bag_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/edit_customer_controller.dart';
 import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
@@ -72,7 +66,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextCustomized(
-            text: name,
+            text: nameCustomer,
             font: SanFranciscoText,
             weight: FontWeight.w400,
             color: MAIN_BLACK,
@@ -303,7 +297,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
             textController: controller.userAddress,
           ),
           SizedBox(height: 25),
-          ButtonCustomized(save, backgroundColor: BT_CONFIRM, textColor: WHITE,
+          ButtonCustomized(save, backgroundColor: COLOR_BT, textColor: WHITE,
               onTap: () {
             controller.onSave();
           }),
