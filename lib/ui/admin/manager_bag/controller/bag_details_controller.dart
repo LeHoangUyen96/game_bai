@@ -60,7 +60,6 @@ class BagDetailsController extends GetxController {
   void onGetDetailBag() {
     bagRepositories!.onGetDetailsBag(id!).then((value) {
       bagDetailsResponse = value;
-
       update();
     }).catchError((onError) {
       Get.defaultDialog(title: (onError).message.toString(), middleText: '');
@@ -165,6 +164,7 @@ class BagDetailsController extends GetxController {
     Get.dialog(AddProductToBagDialog(), arguments: {
       "warehouse_back_code": bagDetailsResponse!.data!.warehouse_back_code,
       "transport_form_id": bagDetailsResponse!.data!.transport_form_id,
+      "packing_form_id": bagDetailsResponse!.data!.packing_form_id,
     }).then((value) {
       if (value != null) {
         onGetListOrder(value);

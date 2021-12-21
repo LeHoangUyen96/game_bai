@@ -39,6 +39,7 @@ class CreateBagController extends GetxController {
   String? typeBag;
   bool changeBill = false;
   int transport_form_id = 0;
+  int packing_form_id = 0;
   String? warehouse_back_code;
   String? packing_from;
   int order_id = 0;
@@ -60,6 +61,8 @@ class CreateBagController extends GetxController {
   bool isTypeBagValid = true;
   String transportFormIdErros = '';
   bool isTransportFormIdValid = true;
+  String packingFormIdErros = '';
+  bool isPackingFormIdValid = true;
   String warehouseBackCodeErros = '';
   bool isWarehouseBackCodeValid = true;
   String packingFromErros = '';
@@ -222,13 +225,20 @@ class CreateBagController extends GetxController {
     } else {
       isOrderValid = true;
     }
+    if (packing_form_id == 0) {
+      isPackingFromValid = false;
+      packingFromErros = "Hình thức đóng gói không được để trống";
+    } else {
+      isPackingFromValid = true;
+    }
     if (isWarehouseBackCodeValid &&
         isTransportFormIdValid &&
         isTypeBagValid &&
         isSearchUserValid &&
         isWeightFromValid &&
         isTotalCodValid &&
-        isOrderValid) {
+        isOrderValid &&
+        isPackingFromValid) {
       CreateBagRequest request = CreateBagRequest(
           parent_pack_type: typeBag,
           warehouse_back_code: warehouse_back_code,
@@ -236,6 +246,7 @@ class CreateBagController extends GetxController {
           transport_form_id: transport_form_id,
           weight: ParseNumber.parseInt(weightController.text),
           total_cod: totalCodPackage,
+          packing_form_id: packing_form_id,
           orders: mListOrders);
       bagRepositories!.onCreateBag(request).then((value) {
         Get.snackbar(NOTIFY, value.message.toString());
@@ -261,10 +272,34 @@ class CreateBagController extends GetxController {
     } else {
       isTransportFormIdValid = true;
     }
-    if (isWarehouseBackCodeValid && isTransportFormIdValid) {
+    if (packing_form_id == 0) {
+      isPackingFromValid = false;
+      packingFromErros = "Hình thức đóng gói không được để trống";
+    } else {
+      isPackingFromValid = true;
+    }
+    if (typeBag == null) {
+      isTypeBagValid = false;
+      typeBagErros = "Kiểu bao không được để trống";
+    } else {
+      isTypeBagValid = true;
+    }
+    if (typeBag == "intact_bag" && searchController.text.isEmpty) {
+      isSearchUserValid = false;
+      searchUserErros = "Khách hàng không được để trống";
+    } else {
+      isSearchUserValid = true;
+    }
+    if (isWarehouseBackCodeValid &&
+        isTransportFormIdValid &&
+        isPackingFromValid &&
+        isTypeBagValid &&
+        isSearchUserValid) {
       Get.dialog(AddProductToBagDialog(), arguments: {
         "warehouse_back_code": warehouse_back_code,
         "transport_form_id": transport_form_id,
+        "packing_form_id": packing_form_id,
+        "userCode": userCode,
       }).then((value) {
         if (value != null) {
           onGetListOrder(value);

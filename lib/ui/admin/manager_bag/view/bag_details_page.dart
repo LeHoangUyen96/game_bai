@@ -237,6 +237,29 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextCustomized(
+                          text: ORDER_LIST_PACKING_FORM,
+                          font: SanFranciscoUIText,
+                          size: normalSize,
+                          weight: FontWeight.w500,
+                          color: BLACK_1,
+                        ),
+                        TextCustomized(
+                          text: controller
+                              .bagDetailsResponse!.data!.packing_form
+                              .toString(),
+                          font: SanFranciscoText,
+                          weight: FontWeight.w400,
+                          color: BLACK,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextCustomized(
                           text: MANAGE_PACKAGE_NUMBER_OF_CUSTOMER,
                           font: SanFranciscoUIText,
                           size: normalSize,
@@ -481,14 +504,15 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: TextCustomized(
-                      text: "Hành trình đơn hàng",
-                      size: 16,
-                      font: SanFranciscoText,
-                      weight: FontWeight.w700,
-                      color: BLACK,
-                    )),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  child: TextCustomized(
+                    text: "Hành trình đơn hàng",
+                    size: 16,
+                    font: SanFranciscoText,
+                    weight: FontWeight.w700,
+                    color: BLACK,
+                  ),
+                ),
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: WHITE),
@@ -517,143 +541,9 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                ListView.builder(
-                    itemCount: controller
-                        .bagDetailsResponse!.data!.packing_journey!.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemBuilder: (BuildContext context, index) {
-                      return _buildListJourney(index);
-                    }),
               ],
             ),
           ),
-          // Container(
-          //   padding: EdgeInsets.only(top: 10,bottom: 10),
-          //   child: Column(
-          //     children: [
-          //       TimelineTile(
-          //         isFirst: true,
-          //         alignment: TimelineAlign.manual,
-          //         lineXY: 0.4,
-          //         indicatorStyle: IndicatorStyle(
-          //           color: Colors.green,
-          //           height: 10,
-          //           width: 10,
-          //           drawGap: false,
-          //           indicatorXY: 0,
-          //         ),
-          //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-          //         endChild: Container(
-          //           padding: EdgeInsets.only(left: 10),
-          //           child: Column(
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             children: [
-          //               TextCustomized(
-          //                 text: "Kho Trung Quốc, đang đóng hàng về",
-          //                 font: SanFranciscoTextLight,
-          //                 weight: FontWeight.w400,
-          //                 color: Colors.green,
-          //               ),
-          //               SizedBox(height: 50,),
-          //             ],
-          //           ),
-          //         ),
-          //         startChild: Container(
-          //           child: Container(
-          //             alignment: const Alignment(0.7, -0.800),
-          //             child: TextCustomized(
-          //               text: "11/11/2021",
-          //               font: SanFranciscoTextLight,
-          //               weight: FontWeight.w400,
-          //               color: MAIN_GRAY,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //       TimelineTile(
-          //         alignment: TimelineAlign.manual,
-          //         lineXY: 0.4,
-          //         indicatorStyle: IndicatorStyle(
-          //           color: Colors.green,
-          //           height: 10,
-          //           width: 10,
-          //           drawGap: false,
-          //           indicatorXY: 0,
-          //         ),
-          //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-          //         endChild: Container(
-          //           padding: EdgeInsets.only(left: 10),
-          //           child: Column(
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             children: [
-          //               TextCustomized(
-          //                 text: "Kho Trung Quốc ",
-          //                 font: SanFranciscoTextLight,
-          //                 weight: FontWeight.w400,
-          //                 color: Colors.green,
-          //               ),
-          //               SizedBox(height: 50,),
-          //             ],
-          //           ),
-          //         ),
-          //         startChild: Container(
-          //           child: Container(
-          //             alignment: const Alignment(0.7, -0.800),
-          //             child: TextCustomized(
-          //               text: "11/11/2021",
-          //               font: SanFranciscoTextLight,
-          //               weight: FontWeight.w400,
-          //               color: MAIN_GRAY,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //        TimelineTile(
-          //         isLast: true,
-          //         alignment: TimelineAlign.manual,
-          //         lineXY: 0.4,
-          //         indicatorStyle: IndicatorStyle(
-          //           color: Colors.green,
-          //           height: 10,
-          //           width: 10,
-          //           drawGap: false,
-          //           indicatorXY: 0,
-          //         ),
-          //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-          //         endChild: Container(
-          //           padding: EdgeInsets.only(left: 10),
-          //           child: Column(
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             children: [
-          //               TextCustomized(
-          //                 text: "Kho Trung Quốc, đang đóng hàng về",
-          //                 font: SanFranciscoTextLight,
-          //                 weight: FontWeight.w400,
-          //                 color: Colors.green,
-          //               ),
-          //               SizedBox(height: 50,),
-          //             ],
-          //           ),
-          //         ),
-          //         startChild: Container(
-          //           child: Container(
-          //             alignment: const Alignment(0.7, -0.800),
-          //             child: TextCustomized(
-          //               text: "11/11/2021",
-          //               font: SanFranciscoTextLight,
-          //               weight: FontWeight.w400,
-          //               color: MAIN_GRAY,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );
@@ -666,167 +556,165 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
           Container(
-              padding: EdgeInsets.only(top: 5, bottom: 10),
-              decoration: BoxDecoration(
-                  border: Border(
-                top: BorderSide(color: BT_GRAY),
-                //bottom: BorderSide(color: BT_GRAY)
-              )),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextCustomized(
-                            text: data.bill_code.toString(),
-                            font: SanFranciscoText,
-                            weight: FontWeight.w700,
-                            color: MAIN_BLACK,
-                            size: normalSize,
-                          ),
-                          controller.bagDetailsResponse!.data!
-                                      .parent_pack_status_code ==
-                                  "warehouse_china"
-                              ? InkWell(
-                                  onTap: () {
-                                    controller.onDelPackage(data.id!);
-                                  },
-                                  child: TextCustomized(
-                                    text: delete,
-                                    font: SanFranciscoText,
-                                    weight: FontWeight.w400,
-                                    color: RED_1,
-                                  ),
-                                )
-                              : Container(),
-                        ]),
+            padding: EdgeInsets.only(top: 5, bottom: 10),
+            decoration: BoxDecoration(
+                border: Border(
+              top: BorderSide(color: BT_GRAY),
+              //bottom: BorderSide(color: BT_GRAY)
+            )),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                TextCustomized(
+                  text: data.bill_code.toString(),
+                  font: SanFranciscoText,
+                  weight: FontWeight.w700,
+                  color: MAIN_BLACK,
+                  size: normalSize,
+                ),
+                controller.bagDetailsResponse!.data!.parent_pack_status_code ==
+                        "warehouse_china"
+                    ? InkWell(
+                        onTap: () {
+                          controller.onDelPackage(data.id!);
+                        },
+                        child: TextCustomized(
+                          text: delete,
+                          font: SanFranciscoText,
+                          weight: FontWeight.w400,
+                          color: RED_1,
+                        ),
+                      )
+                    : Container(),
+              ]),
 
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextCustomized(
-                          text: MANAGE_PACKAGE_PACKING_FORM,
-                          font: SanFranciscoUIText,
-                          weight: FontWeight.w500,
-                          size: normalSize,
-                          color: BLACK_1,
-                        ),
-                        TextCustomized(
-                          text: data.packing_form.toString(),
-                          font: SanFranciscoText,
-                          weight: FontWeight.w400,
-                          color: BLACK,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextCustomized(
-                          text: ORDER_LIST_PARCELS,
-                          font: SanFranciscoUIText,
-                          size: normalSize,
-                          weight: FontWeight.w500,
-                          color: BLACK_1,
-                        ),
-                        TextCustomized(
-                          text: controller.onGetNumberPackageInBag(data),
-                          font: SanFranciscoText,
-                          weight: FontWeight.w400,
-                          color: BLACK,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     TextCustomized(
-                    //       text: BAG_WEIGHT,
-                    //       font: SanFranciscoUIText,
-                    //       size: normalSize,
-                    //       weight: FontWeight.w500,
-                    //       color: BLACK_1,
-                    //       ),
-                    //       TextCustomized(
-                    //       text: data.surcharge.toString(),
-                    //       font: SanFranciscoText,
-                    //       weight: FontWeight.w400,
-                    //       color: BLACK,
-                    //       ),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 5,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextCustomized(
-                          text: ORDER_LIST_COD,
-                          font: SanFranciscoUIText,
-                          size: normalSize,
-                          weight: FontWeight.w500,
-                          color: BLACK_1,
-                        ),
-                        TextCustomized(
-                          text: "¥" + data.transport_fee.toString(),
-                          font: SanFranciscoText,
-                          weight: FontWeight.w400,
-                          color: BLACK,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextCustomized(
-                          text: MANAGE_PACKAGE_SURCHARGE,
-                          font: SanFranciscoUIText,
-                          size: normalSize,
-                          weight: FontWeight.w500,
-                          color: BLACK_1,
-                        ),
-                        TextCustomized(
-                          text: data.surcharge.toString(),
-                          font: SanFranciscoText,
-                          weight: FontWeight.w400,
-                          color: BLACK_1,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    //  Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     TextCustomized(
-                    //       text: DELIVERY_FEE_TRANSACTION,
-                    //       font: SanFranciscoUIText,
-                    //       size: normalSize,
-                    //       weight: FontWeight.w500,
-                    //       color: BLACK_1,
-                    //       ),
-                    //       TextCustomized(
-                    //       text: ORDER_NULL,
-                    //       font: SanFranciscoText,
-                    //       weight: FontWeight.w400,
-                    //       color: BLACK,
-                    //       ),
-                    //   ],
-                    // ),
-                  ]))
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextCustomized(
+                    text: MANAGE_PACKAGE_PACKING_FORM,
+                    font: SanFranciscoUIText,
+                    weight: FontWeight.w500,
+                    size: normalSize,
+                    color: BLACK_1,
+                  ),
+                  TextCustomized(
+                    text: data.packing_form.toString(),
+                    font: SanFranciscoText,
+                    weight: FontWeight.w400,
+                    color: BLACK,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextCustomized(
+                    text: ORDER_LIST_PARCELS,
+                    font: SanFranciscoUIText,
+                    size: normalSize,
+                    weight: FontWeight.w500,
+                    color: BLACK_1,
+                  ),
+                  TextCustomized(
+                    text: controller.onGetNumberPackageInBag(data),
+                    font: SanFranciscoText,
+                    weight: FontWeight.w400,
+                    color: BLACK,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: BAG_WEIGHT,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: data.surcharge.toString(),
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ),
+              // SizedBox(height: 5,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextCustomized(
+                    text: ORDER_LIST_COD,
+                    font: SanFranciscoUIText,
+                    size: normalSize,
+                    weight: FontWeight.w500,
+                    color: BLACK_1,
+                  ),
+                  TextCustomized(
+                    text: "¥" + data.transport_fee.toString(),
+                    font: SanFranciscoText,
+                    weight: FontWeight.w400,
+                    color: BLACK,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextCustomized(
+                    text: MANAGE_PACKAGE_SURCHARGE,
+                    font: SanFranciscoUIText,
+                    size: normalSize,
+                    weight: FontWeight.w500,
+                    color: BLACK_1,
+                  ),
+                  TextCustomized(
+                    text: data.surcharge.toString(),
+                    font: SanFranciscoText,
+                    weight: FontWeight.w400,
+                    color: BLACK_1,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              //  Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextCustomized(
+              //       text: DELIVERY_FEE_TRANSACTION,
+              //       font: SanFranciscoUIText,
+              //       size: normalSize,
+              //       weight: FontWeight.w500,
+              //       color: BLACK_1,
+              //       ),
+              //       TextCustomized(
+              //       text: ORDER_NULL,
+              //       font: SanFranciscoText,
+              //       weight: FontWeight.w400,
+              //       color: BLACK,
+              //       ),
+              //   ],
+              // ),
+            ]),
+            //]),
+          )
         ]));
   }
 
@@ -858,6 +746,8 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
     );
   }
 
+//    );
+//  }
   Widget _buildListJourney(index) {
     return Center(
       child: TimelineTile(

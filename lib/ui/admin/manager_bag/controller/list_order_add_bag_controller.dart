@@ -20,8 +20,10 @@ class ListOrderAddToBagController extends GetxController {
   List<DataListOrderAddBagResponse>? mDataListOrder = [];
   BagRepositories? bagRepositories;
   int? transport_form_id;
+  int? packing_form_id;
   String? warehouse_back_code;
   int? order_id;
+  int? user_id;
   int? number_package;
   List<DataOrderAddBag>? mListOrders = [];
   DataOrderCreateBag? mDataOrderCreateBag;
@@ -39,9 +41,20 @@ class ListOrderAddToBagController extends GetxController {
       } else {
         warehouse_back_code = Get.arguments['warehouse_back_code'];
       }
+      if (Get.arguments['packing_form_id'] == null) {
+      } else {
+        packing_form_id = Get.arguments['packing_form_id'];
+      }
+      if (Get.arguments['user_id'] == null) {
+        user_id = 0;
+      } else {
+        user_id = Get.arguments['user_id'];
+      }
     }
     print("transport_form_id:$transport_form_id");
     print("warehouse_back_code:$warehouse_back_code");
+    print("packing_form_id:$packing_form_id");
+    print("user_id:$user_id");
     onGetListOrderAddToBag();
   }
 
@@ -50,6 +63,8 @@ class ListOrderAddToBagController extends GetxController {
     ListOrderAddBagRequest request = ListOrderAddBagRequest(
       warehouse_back_code: warehouse_back_code,
       transport_form_id: transport_form_id,
+      packing_form_id: packing_form_id,
+      user_id: user_id,
     );
     bagRepositories!.onGetListOrderAddBag(request).then((value) {
       //Get.dialog(LoadingSpinKit(), barrierDismissible: false);

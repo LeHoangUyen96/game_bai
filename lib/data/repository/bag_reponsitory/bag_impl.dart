@@ -132,9 +132,11 @@ class BagImpl extends GetConnect implements BagRepositories {
             : '') +
         (request.transport_form_id != null
             ? "&transport_form_id=${request.transport_form_id}"
+            : '') +
+        (request.user_id != 0 ? "&user_id=${request.user_id}" : '') +
+        (request.packing_form_id != null
+            ? "&packing_form_id=${request.packing_form_id}"
             : '');
-    // + (request.user_id != null ? "&user_id=${request.user_id}" : '')
-    // + (request.bill_code != null ? "&bill_code=${request.bill_code}" : '');
     final responseJson = await get(url, headers: header);
     if (responseJson.statusCode! >= 200 && responseJson.statusCode! < 300) {
       return ListOrderAddBagResponse.fromJson(

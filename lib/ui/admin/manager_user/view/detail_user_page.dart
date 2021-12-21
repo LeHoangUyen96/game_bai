@@ -9,6 +9,7 @@ import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/detail_user_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
@@ -38,7 +39,7 @@ class DetailUserPage extends GetView<DetailUserController> {
       child: AppBar(
         //centerTitle: true,
         title: TextCustomized(
-          text: MANAGE_PACKAGE_EMPLOYEE,
+          text: MANAGE_PACKAGE_CUSTOMER,
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
@@ -192,6 +193,18 @@ class DetailUserPage extends GetView<DetailUserController> {
               ],
             ),
           ),
+          SizedBox(height: 10.0),
+          Container(
+            padding: EdgeInsets.all(15),
+            child: ButtonCustomized(
+              'RESET PASSWORD',
+              textColor: WHITE,
+              onTap: () {
+                controller.onResetPassword();
+              },
+              backgroundColor: BT_CONFIRM,
+            ),
+          )
         ],
       ),
     );

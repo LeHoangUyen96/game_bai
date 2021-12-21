@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import 'package:viet_trung_mobile_admin/data/response/list_user_response.dart';
 import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:viet_trung_mobile_admin/res/dimens.dart';
@@ -11,11 +12,9 @@ import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/view/edit_staff_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/controller/manager_user_list_controller.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/create_user_page.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/detail_user_page.dart';
-import 'package:viet_trung_mobile_admin/ui/admin/manager_user/view/edit_customer_page.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
@@ -31,7 +30,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
       builder: (value) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
-        body: controller.listUserResponse != null
+        body: controller.mDataListUserResponse != null
             ? buildBody()
             : LoadingSpinKit(),
         backgroundColor: BT_GRAY,
@@ -45,7 +44,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
       child: AppBar(
         //centerTitle: true,
         title: TextCustomized(
-          text: 'Quản lý khách hàng',
+          text: MANAGE_PACKAGE_CUSTOMER,
           color: WHITE,
           font: SanFranciscoText,
           isCenter: true,
@@ -172,16 +171,53 @@ class ManagerUserPage extends GetView<ManagerUserController> {
                   child: ListView.separated(
                     itemBuilder: (BuildContext context, int index) {
                       return __buildItemStaff(
-                          controller.listUserResponse!.data![index]);
+                          controller.mDataListUserResponse![index]);
                     },
                     shrinkWrap: true,
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 10);
                     },
                     physics: BouncingScrollPhysics(),
-                    itemCount: controller.listUserResponse!.data!.length,
+                    itemCount: controller.mDataListUserResponse!.length,
                   ),
                 ),
+                // onLoading: controller.onListLoading,
+                // footer: CustomFooter(
+                //   builder: (BuildContext context, LoadStatus? mode) {
+                //     Widget body;
+                //     if (mode == LoadStatus.idle) {
+                //       body = Container();
+                //     } else if (mode == LoadStatus.loading) {
+                //       body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+                //     } else if (mode == LoadStatus.failed) {
+                //       body = Text("Load Failed!Click retry!");
+                //     } else if (mode == LoadStatus.canLoading) {
+                //       body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+                //     } else {
+                //       body = Text("No more Data");
+                //     }
+                //     return Container(
+                //       height: 55.0,
+                //       child: Center(child: body),
+                //     );
+                //   },
+                // ),
+                // controller: controller.refreshController,
+                // child: Container(
+                //   padding: EdgeInsets.all(15),
+                //   child: ListView.separated(
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return __buildItemStaff(
+                //           controller.listUserResponse!.data![index]);
+                //     },
+                //     shrinkWrap: true,
+                //     separatorBuilder: (context, index) {
+                //       return SizedBox(height: 10);
+                //     },
+                //     physics: BouncingScrollPhysics(),
+                //     itemCount: controller.listUserResponse!.data!.length,
+                //   ),
+                //),
               ),
             ),
           ),
@@ -213,20 +249,22 @@ class ManagerUserPage extends GetView<ManagerUserController> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                          child: Material(
-                            color: Colors.transparent,
-                            clipBehavior: Clip.antiAlias,
-                            child: ImageCustomized(
-                              path: data.avatar.toString().isEmpty
-                                  ? LOGO_IMG
-                                  : data.avatar.toString(),
-                              fit: BoxFit.cover,
-                              width: 60,
-                              height: 60,
-                            ),
+                        CircleAvatar(
+                          radius: 30.0,
+                          child: ClipOval(
+                            child: data.avatar == null || data.avatar == ''
+                                ? ImageCustomized(
+                                    path: LOGO_IMG,
+                                    height: 60,
+                                    width: 60,
+                                  )
+                                : ImageCustomized(
+                                    path: data.avatar,
+                                    height: 60,
+                                    width: 60,
+                                  ),
                           ),
+                          backgroundColor: Colors.transparent,
                         ),
                         SizedBox(width: 10.0),
                         Column(
@@ -263,7 +301,7 @@ class ManagerUserPage extends GetView<ManagerUserController> {
                       color: GREEN1, borderRadius: BorderRadius.circular(16)),
                   child: InkWell(
                       onTap: () {
-                        Get.to(EditCustomerPage(), arguments: data.id!);
+                        //Get.to(EditStaffPage(), arguments: data.id!);
                       },
                       child: Center(
                         child: SvgPicture.asset(IC_EDIT_ADDRESS,

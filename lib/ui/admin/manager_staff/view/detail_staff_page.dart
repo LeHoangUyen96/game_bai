@@ -10,6 +10,8 @@ import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/size.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/controller/detail_staff_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_staff/view/edit_staff_page.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
@@ -98,6 +100,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                           )
                         : ImageCustomized(
                             path: controller.detailStaffResponse!.data!.avatar,
+                            fit: BoxFit.fill,
                             height: 60,
                             width: 60,
                           ),

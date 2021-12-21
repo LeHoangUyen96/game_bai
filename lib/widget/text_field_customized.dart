@@ -33,6 +33,7 @@ class TextFieldCustomized extends StatefulWidget {
   final Color? colorBackgrount;
   final Color? colorHintText;
   final double? width;
+  final bool? readOnly;
   final TextStyle? style;
   final TextAlign? align;
 
@@ -61,6 +62,7 @@ class TextFieldCustomized extends StatefulWidget {
     this.colorBackgrount,
     this.colorHintText,
     this.width,
+    this.readOnly,
     this.style,
     this.align,
   });
@@ -118,7 +120,6 @@ class _TextFieldCustomizedState extends State<TextFieldCustomized> {
         children: [
           SizedBox(width: 10),
           Expanded(
-            flex: 10,
             child: TextField(
               style: widget.style ??
                   TextStyle(

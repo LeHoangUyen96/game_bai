@@ -6,6 +6,7 @@ class CreateBagRequest {
   String? warehouse_back_code;
   int? user_id;
   int? transport_form_id;
+  int? packing_form_id;
   int? weight;
   double? total_cod;
   List<DataOrderCreateBag>? orders;
@@ -16,6 +17,7 @@ class CreateBagRequest {
     this.transport_form_id,
     this.weight,
     this.orders,
+    this.packing_form_id,
     this.total_cod,
   });
 
@@ -25,6 +27,7 @@ class CreateBagRequest {
     this.transport_form_id = -1;
     this.user_id = -1;
     this.weight = -1;
+    this.packing_form_id = -1;
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +38,7 @@ class CreateBagRequest {
     data['transport_form_id'] = this.transport_form_id;
     data['weight'] = this.weight;
     data['total_cod'] = this.total_cod;
+    data['packing_form_id'] = this.packing_form_id;
     data['orders'] = this.orders!.map((e) => e.toJson()).toList();
     return data;
   }
