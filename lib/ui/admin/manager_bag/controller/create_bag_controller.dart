@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/models/order_item_add_to_bag.dart';
-import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
-import 'package:viet_trung_mobile/data/repository/order_admin_repository/order_admin_repositories.dart';
-import 'package:viet_trung_mobile/data/repository/setting_reponsitory/setting_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
-import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
-import 'package:viet_trung_mobile/data/response/list_packing_form_response.dart';
-import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/models/order_item_add_to_bag.dart';
+import 'package:viet_trung_mobile_admin/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/setting_reponsitory/setting_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/create_bag_request.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_packing_form_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_status_bag_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_form_response.dart';
 
-import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
-import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_warehouse_back_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/search_customer_response.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
 class CreateBagController extends GetxController {
   List<DataListWareHouseBackResponse>? mDataListWareHouseBackResponse = [];
@@ -39,6 +39,7 @@ class CreateBagController extends GetxController {
   String? typeBag;
   bool changeBill = false;
   int transport_form_id = 0;
+  int packing_form_id = 0;
   String? warehouse_back_code;
   String? packing_from;
   int order_id = 0;
@@ -60,6 +61,8 @@ class CreateBagController extends GetxController {
   bool isTypeBagValid = true;
   String transportFormIdErros = '';
   bool isTransportFormIdValid = true;
+  String packingFormIdErros = '';
+  bool isPackingFormIdValid = true;
   String warehouseBackCodeErros = '';
   bool isWarehouseBackCodeValid = true;
   String packingFromErros = '';
@@ -217,7 +220,16 @@ class CreateBagController extends GetxController {
     } else {
       isOrderValid = true;
     }
-    if(isWarehouseBackCodeValid && isTransportFormIdValid && isTypeBagValid &&  isSearchUserValid&& isWeightFromValid && isTotalCodValid&& isOrderValid){
+    if (packing_form_id == 0) {
+      isPackingFromValid = false;
+      packingFromErros = "Hình thức đóng gói không được để trống";
+    } else {
+      isPackingFromValid = true;
+    }
+    if(isWarehouseBackCodeValid && isTransportFormIdValid 
+            && isTypeBagValid &&  isSearchUserValid 
+            && isWeightFromValid && isTotalCodValid 
+            && isOrderValid && isPackingFromValid){
       CreateBagRequest request = CreateBagRequest(
       parent_pack_type : typeBag,
       warehouse_back_code : warehouse_back_code,
@@ -225,6 +237,7 @@ class CreateBagController extends GetxController {
       transport_form_id : transport_form_id,
       weight : ParseNumber.parseInt(weightController.text),
       total_cod : totalCodPackage,
+      packing_form_id: packing_form_id,
       orders : mListOrders
     );
     bagRepositories!.onCreateBag(request).then((value) {
@@ -251,11 +264,32 @@ class CreateBagController extends GetxController {
     } else {
       isTransportFormIdValid = true;
     }
-    if(isWarehouseBackCodeValid && isTransportFormIdValid){
+    if (packing_form_id == 0) {
+      isPackingFromValid = false;
+      packingFromErros = "Hình thức đóng gói không được để trống";
+    } else {
+      isPackingFromValid = true;
+    }
+    if (typeBag == null) {
+      isTypeBagValid = false;
+      typeBagErros = "Kiểu bao không được để trống";
+    } else {
+      isTypeBagValid = true;
+    }
+     if (typeBag == "intact_bag" && searchController.text.isEmpty) {
+      isSearchUserValid = false;
+      searchUserErros = "Khách hàng không được để trống";
+    } else {
+      isSearchUserValid = true;
+      
+    }
+    if(isWarehouseBackCodeValid && isTransportFormIdValid && isPackingFromValid && isTypeBagValid && isSearchUserValid ){
       Get.dialog(AddProductToBagDialog(), 
       arguments: {
         "warehouse_back_code" : warehouse_back_code,
         "transport_form_id" : transport_form_id,
+        "packing_form_id" : packing_form_id, 
+        "userCode" : userCode,
       }).then((value){
         if(value != null){
           onGetListOrder(value);

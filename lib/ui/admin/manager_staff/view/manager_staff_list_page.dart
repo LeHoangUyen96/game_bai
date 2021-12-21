@@ -223,6 +223,7 @@ class ManagerStaffPage extends GetView<ManagerStaffController> {
                                   )
                                 : ImageCustomized(
                                     path: data.avatar,
+                                    fit: BoxFit.fill,
                                     height: 60,
                                     width: 60,
                                   ),

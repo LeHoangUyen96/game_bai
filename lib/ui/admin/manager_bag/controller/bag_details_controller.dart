@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/models/order_item_add_to_bag.dart';
-import 'package:viet_trung_mobile/data/repository/bag_reponsitory/bag_reponsitory.dart';
-import 'package:viet_trung_mobile/data/request/add_order_to_bag_request.dart';
-import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
-import 'package:viet_trung_mobile/data/request/del_package.dart';
-import 'package:viet_trung_mobile/data/response/bag_details_response.dart';
-import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
-import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
-import 'package:viet_trung_mobile/data/response/search_customer_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/models/order_item_add_to_bag.dart';
+import 'package:viet_trung_mobile_admin/data/repository/bag_reponsitory/bag_reponsitory.dart';
+import 'package:viet_trung_mobile_admin/data/request/add_order_to_bag_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/create_bag_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/del_package.dart';
+import 'package:viet_trung_mobile_admin/data/response/bag_details_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_status_bag_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/search_customer_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
 
 class BagDetailsController extends GetxController {
   List<DataListStatusBagResponse>? mDataListStatusBagResponse = [];
@@ -60,7 +60,6 @@ class BagDetailsController extends GetxController {
   void onGetDetailBag() {
     bagRepositories!.onGetDetailsBag(id!).then((value) {
       bagDetailsResponse = value;
-    
       update();
     }).catchError((onError) {
       Get.defaultDialog(title: (onError).message.toString(), middleText: '');
@@ -163,6 +162,7 @@ class BagDetailsController extends GetxController {
       arguments: {
         "warehouse_back_code" : bagDetailsResponse!.data!.warehouse_back_code,
         "transport_form_id" : bagDetailsResponse!.data!.transport_form_id,
+        "packing_form_id" : bagDetailsResponse!.data!.packing_form_id,
       }).then((value){
         if(value != null){
           onGetListOrder(value);

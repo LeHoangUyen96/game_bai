@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import 'package:viet_trung_mobile_admin/data/response/list_user_response.dart';
 import 'package:viet_trung_mobile_admin/res/colors.dart';
 import 'package:viet_trung_mobile_admin/res/dimens.dart';
@@ -176,43 +177,44 @@ class ManagerUserPage extends GetView<ManagerUserController> {
                 physics: BouncingScrollPhysics (),
                 itemCount: controller.mDataListUserResponse!.length,
                 ),
-                onLoading: controller.onListLoading,
-                footer: CustomFooter(
-                  builder: (BuildContext context, LoadStatus? mode) {
-                    Widget body;
-                    if (mode == LoadStatus.idle) {
-                      body = Container();
-                    } else if (mode == LoadStatus.loading) {
-                      body = SpinKitCircle(color: MAIN_COLOR, size: 40);
-                    } else if (mode == LoadStatus.failed) {
-                      body = Text("Load Failed!Click retry!");
-                    } else if (mode == LoadStatus.canLoading) {
-                      body = SpinKitCircle(color: MAIN_COLOR, size: 40);
-                    } else {
-                      body = Text("No more Data");
-                    }
-                    return Container(
-                      height: 55.0,
-                      child: Center(child: body),
-                    );
-                  },
                 ),
-                controller: controller.refreshController,
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  child: ListView.separated(
-                    itemBuilder: (BuildContext context, int index) {
-                      return __buildItemStaff(
-                          controller.listUserResponse!.data![index]);
-                    },
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 10);
-                    },
-                    physics: BouncingScrollPhysics(),
-                    itemCount: controller.listUserResponse!.data!.length,
-                  ),
-                ),
+                // onLoading: controller.onListLoading,
+                // footer: CustomFooter(
+                //   builder: (BuildContext context, LoadStatus? mode) {
+                //     Widget body;
+                //     if (mode == LoadStatus.idle) {
+                //       body = Container();
+                //     } else if (mode == LoadStatus.loading) {
+                //       body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+                //     } else if (mode == LoadStatus.failed) {
+                //       body = Text("Load Failed!Click retry!");
+                //     } else if (mode == LoadStatus.canLoading) {
+                //       body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+                //     } else {
+                //       body = Text("No more Data");
+                //     }
+                //     return Container(
+                //       height: 55.0,
+                //       child: Center(child: body),
+                //     );
+                //   },
+                // ),
+                // controller: controller.refreshController,
+                // child: Container(
+                //   padding: EdgeInsets.all(15),
+                //   child: ListView.separated(
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return __buildItemStaff(
+                //           controller.listUserResponse!.data![index]);
+                //     },
+                //     shrinkWrap: true,
+                //     separatorBuilder: (context, index) {
+                //       return SizedBox(height: 10);
+                //     },
+                //     physics: BouncingScrollPhysics(),
+                //     itemCount: controller.listUserResponse!.data!.length,
+                //   ),
+                //),
               ),
             ),
           ),

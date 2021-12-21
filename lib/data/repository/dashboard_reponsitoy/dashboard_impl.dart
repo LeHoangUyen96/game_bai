@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/network/network_config.dart';
-import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
-import 'package:viet_trung_mobile/data/response/dashboard_admin_response.dart';
-import 'package:viet_trung_mobile/data/response/dashboard_user_response.dart';
-import 'package:viet_trung_mobile/data/response/error_response.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
+import 'package:viet_trung_mobile_admin/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
+import 'package:viet_trung_mobile_admin/data/response/dashboard_admin_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/dashboard_user_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
 
 class DashboardImpl extends GetConnect implements DashboardRepositories {
   @override

@@ -26,11 +26,11 @@ class DialogFaild extends GetView<ProfileController> {
                   padding: EdgeInsets.all(16),
                   child: SingleChildScrollView(
                       child: Column(children: [
-                    ImageCustomized(
-                      path: ic_faild,
-                      height: 60,
-                      width: 60,
-                    ),
+                    // ImageCustomized(
+                    //   path: ic_faild,
+                    //   height: 60,
+                    //   width: 60,
+                    // ),
                     SizedBox(height: 8),
                     TextCustomized(
                       text: faild,

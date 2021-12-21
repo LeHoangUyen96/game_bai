@@ -1,11 +1,12 @@
-import 'package:viet_trung_mobile/data/response/order_add_bag_response.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/response/order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class CreateBagRequest {
   String? parent_pack_type;
   String? warehouse_back_code;
   int? user_id;
   int? transport_form_id;
+  int? packing_form_id;
   int? weight;
   double ? total_cod;
   List<DataOrderCreateBag>? orders;
@@ -16,6 +17,7 @@ class CreateBagRequest {
         this.transport_form_id,
         this.weight,
         this.orders,
+        this.packing_form_id,
         this.total_cod,
       });
 
@@ -25,6 +27,7 @@ class CreateBagRequest {
   this.transport_form_id = -1;
   this.user_id = -1;
   this.weight = -1;
+  this.packing_form_id = -1;
   }
 
 
@@ -36,6 +39,7 @@ class CreateBagRequest {
     data['transport_form_id'] = this.transport_form_id;
     data['weight'] = this.weight;
     data['total_cod'] = this.total_cod;
+    data['packing_form_id'] = this.packing_form_id;
     data['orders'] = this.orders!.map((e) => e.toJson()).toList();
     return data;
   }
