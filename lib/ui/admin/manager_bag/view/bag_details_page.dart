@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
-import 'package:viet_trung_mobile/data/response/list_status_bag_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/size.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/bag_details_controller.dart';
-import 'package:viet_trung_mobile/widget/loading_spinkit.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_status_bag_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/size.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/controller/bag_details_controller.dart';
+import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 class BagDeatailsPage extends GetView<BagDetailsController> {
   BuildContext? mContext;
@@ -227,6 +227,29 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                           font: SanFranciscoText,
                           weight: FontWeight.w400,
                           color: RED_1,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextCustomized(
+                          text: ORDER_LIST_PACKING_FORM,
+                          font: SanFranciscoUIText,
+                          size: normalSize,
+                          weight: FontWeight.w500,
+                          color: BLACK_1,
+                        ),
+                        TextCustomized(
+                          text: controller
+                              .bagDetailsResponse!.data!.packing_form
+                              .toString(),
+                          font: SanFranciscoText,
+                          weight: FontWeight.w400,
+                          color: BLACK,
                         ),
                       ],
                     ),
@@ -479,6 +502,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                     weight: FontWeight.w700,
                     color: BLACK,
                   ),
+                ),
                   Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
@@ -507,143 +531,6 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      ListView.builder(
-                          itemCount: controller.bagDetailsResponse!.data!
-                              .packing_journey!.length,
-                          shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
-                          itemBuilder: (BuildContext context, index) {
-                            return _buildListJourney(index);
-                          }),
-                    ],
-                  ),
-                ),
-                // Container(
-                //   padding: EdgeInsets.only(top: 10,bottom: 10),
-                //   child: Column(
-                //     children: [
-                //       TimelineTile(
-                //         isFirst: true,
-                //         alignment: TimelineAlign.manual,
-                //         lineXY: 0.4,
-                //         indicatorStyle: IndicatorStyle(
-                //           color: Colors.green,
-                //           height: 10,
-                //           width: 10,
-                //           drawGap: false,
-                //           indicatorXY: 0,
-                //         ),
-                //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-                //         endChild: Container(
-                //           padding: EdgeInsets.only(left: 10),
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               TextCustomized(
-                //                 text: "Kho Trung Quốc, đang đóng hàng về",
-                //                 font: SanFranciscoTextLight,
-                //                 weight: FontWeight.w400,
-                //                 color: Colors.green,
-                //               ),
-                //               SizedBox(height: 50,),
-                //             ],
-                //           ),
-                //         ),
-                //         startChild: Container(
-                //           child: Container(
-                //             alignment: const Alignment(0.7, -0.800),
-                //             child: TextCustomized(
-                //               text: "11/11/2021",
-                //               font: SanFranciscoTextLight,
-                //               weight: FontWeight.w400,
-                //               color: MAIN_GRAY,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       TimelineTile(
-                //         alignment: TimelineAlign.manual,
-                //         lineXY: 0.4,
-                //         indicatorStyle: IndicatorStyle(
-                //           color: Colors.green,
-                //           height: 10,
-                //           width: 10,
-                //           drawGap: false,
-                //           indicatorXY: 0,
-                //         ),
-                //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-                //         endChild: Container(
-                //           padding: EdgeInsets.only(left: 10),
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               TextCustomized(
-                //                 text: "Kho Trung Quốc ",
-                //                 font: SanFranciscoTextLight,
-                //                 weight: FontWeight.w400,
-                //                 color: Colors.green,
-                //               ),
-                //               SizedBox(height: 50,),
-                //             ],
-                //           ),
-                //         ),
-                //         startChild: Container(
-                //           child: Container(
-                //             alignment: const Alignment(0.7, -0.800),
-                //             child: TextCustomized(
-                //               text: "11/11/2021",
-                //               font: SanFranciscoTextLight,
-                //               weight: FontWeight.w400,
-                //               color: MAIN_GRAY,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //        TimelineTile(
-                //         isLast: true,
-                //         alignment: TimelineAlign.manual,
-                //         lineXY: 0.4,
-                //         indicatorStyle: IndicatorStyle(
-                //           color: Colors.green,
-                //           height: 10,
-                //           width: 10,
-                //           drawGap: false,
-                //           indicatorXY: 0,
-                //         ),
-                //         beforeLineStyle: LineStyle(color: BT_GRAY, thickness: 2) ,
-                //         endChild: Container(
-                //           padding: EdgeInsets.only(left: 10),
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               TextCustomized(
-                //                 text: "Kho Trung Quốc, đang đóng hàng về",
-                //                 font: SanFranciscoTextLight,
-                //                 weight: FontWeight.w400,
-                //                 color: Colors.green,
-                //               ),
-                //               SizedBox(height: 50,),
-                //             ],
-                //           ),
-                //         ),
-                //         startChild: Container(
-                //           child: Container(
-                //             alignment: const Alignment(0.7, -0.800),
-                //             child: TextCustomized(
-                //               text: "11/11/2021",
-                //               font: SanFranciscoTextLight,
-                //               weight: FontWeight.w400,
-                //               color: MAIN_GRAY,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -813,7 +700,7 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
               // ), 
                 ]
               ),
-            ]),
+            //]),
           )
         ]));
   }
@@ -846,8 +733,8 @@ class BagDeatailsPage extends GetView<BagDetailsController> {
     );
   }
 
-   );
- }
+//    );
+//  }
  Widget _buildListJourney(index){
    return Center(
      child: TimelineTile(

@@ -1,5 +1,5 @@
-import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
-import 'package:viet_trung_mobile/ulti/helper/parse_number_from_json.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/ulti/helper/parse_number_from_json.dart';
 
 class BagDetailsResponse {
   DataBagDetailsResponse? data;
@@ -27,6 +27,8 @@ class DataBagDetailsResponse {
   int? customer_number;
   int? transport_form_id;
   String? transport_form;
+  int? packing_form_id;
+  String? packing_form;
   String? weight;
   String? volume;
   String? created_at;
@@ -56,6 +58,8 @@ class DataBagDetailsResponse {
     this.packing_journey,
     this.orders,
     this.total_cod,
+    this.packing_form_id,
+    this.packing_form,
     this.transport_form_id
   });
     DataBagDetailsResponse.empty(){
@@ -76,6 +80,8 @@ class DataBagDetailsResponse {
      this.updated_at= '';
      this.transport_form_id = -1;
      this.total_cod = -1;
+     this.packing_form= '';
+     this.packing_form_id = -1;
 
    }
     DataBagDetailsResponse.fromJson( Map<String,dynamic> json) {
@@ -96,6 +102,8 @@ class DataBagDetailsResponse {
      this.updated_at = json["updated_at"] != null ? json["updated_at"].toString() : '';
      this.transport_form_id = ParseNumber.parseInt(json['transport_form_id']);
      this.total_cod = ParseNumber.parseInt(json['total_cod']);
+     this.packing_form = json["packing_form"] != null ? json["packing_form"].toString() : '';
+     this.packing_form_id = ParseNumber.parseInt(json['packing_form_id']);
      this.packing_journey = json["packing_journey"] == null ? <DataPackingJourney>[] : json['packing_journey'].map<DataPackingJourney>((e)=> DataPackingJourney.fromJson(e)).toList();
      this.orders = json["orders"] == null ? <DataListOrderAddBagResponse>[] : json['orders'].map<DataListOrderAddBagResponse>((e)=> DataListOrderAddBagResponse.fromJson(e)).toList();
     }

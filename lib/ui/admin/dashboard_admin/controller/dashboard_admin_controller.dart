@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/di/injector.dart';
-import 'package:viet_trung_mobile/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
-import 'package:viet_trung_mobile/data/response/dashboard_admin_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
+import 'package:viet_trung_mobile_admin/data/di/injector.dart';
+import 'package:viet_trung_mobile_admin/data/repository/dashboard_reponsitoy/dashboard_reponsitoy.dart';
+import 'package:viet_trung_mobile_admin/data/response/dashboard_admin_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
 
 class DashboardAdminController extends GetxController  {
   DashboardAdminResponse ? dashboardAdminResponse;

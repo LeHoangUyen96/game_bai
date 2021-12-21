@@ -2,25 +2,25 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:viet_trung_mobile/data/models/order_item_add_to_bag.dart';
-import 'package:viet_trung_mobile/data/response/list_order_add_bag_response.dart';
-import 'package:viet_trung_mobile/data/response/list_packing_form_response.dart';
-import 'package:viet_trung_mobile/data/response/list_transport_form_response.dart';
-import 'package:viet_trung_mobile/data/response/list_warehouse_back_response.dart';
-import 'package:viet_trung_mobile/res/colors.dart';
-import 'package:viet_trung_mobile/res/dimens.dart';
-import 'package:viet_trung_mobile/res/fonts.dart';
-import 'package:viet_trung_mobile/res/images.dart';
-import 'package:viet_trung_mobile/res/size.dart';
-import 'package:viet_trung_mobile/res/strings.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/controller/create_bag_controller.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/view/find_user_bag.dart';
-import 'package:viet_trung_mobile/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
-import 'package:viet_trung_mobile/ui/order_management/order_ownerless/view/search_widget.dart';
-import 'package:viet_trung_mobile/widget/add_product_dialog.dart';
-import 'package:viet_trung_mobile/widget/button_customized.dart';
-import 'package:viet_trung_mobile/widget/text_customized.dart';
-import 'package:viet_trung_mobile/widget/text_field_customized.dart';
+import 'package:viet_trung_mobile_admin/data/models/order_item_add_to_bag.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_order_add_bag_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_packing_form_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_transport_form_response.dart';
+import 'package:viet_trung_mobile_admin/data/response/list_warehouse_back_response.dart';
+import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
+import 'package:viet_trung_mobile_admin/res/fonts.dart';
+import 'package:viet_trung_mobile_admin/res/images.dart';
+import 'package:viet_trung_mobile_admin/res/size.dart';
+import 'package:viet_trung_mobile_admin/res/strings.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/controller/create_bag_controller.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/find_user_bag.dart';
+import 'package:viet_trung_mobile_admin/ui/admin/manager_bag/view/list_order_add_bag_page.dart';
+import 'package:viet_trung_mobile_admin/ui/order_management/order_ownerless/view/search_widget.dart';
+import 'package:viet_trung_mobile_admin/widget/add_product_dialog.dart';
+import 'package:viet_trung_mobile_admin/widget/button_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
+import 'package:viet_trung_mobile_admin/widget/text_field_customized.dart';
 
 class CreateBagPage extends GetView<CreateBagController> {
   BuildContext? mContext;
@@ -119,7 +119,8 @@ class CreateBagPage extends GetView<CreateBagController> {
                 ),
                 popupItemBuilder: _customDropdown,
               ),
-              SizedBox(height: 5),
+               ),
+               SizedBox(height: 5),
               controller.isTypeBagValid == false
                 ?  TextCustomized(
                       text: controller.typeBagErros,
@@ -195,17 +196,18 @@ class CreateBagPage extends GetView<CreateBagController> {
                 ),
                 popupItemBuilder: _customDropdownWareHouseBack,
               ),
+            ),
               SizedBox(height: 5),
-                controller.isWarehouseBackCodeValid == false
-                  ?  TextCustomized(
-                        text: controller.warehouseBackCodeErros,
-                        font: SanFranciscoText,
-                        size: 12,
-                        maxLine: 2,
-                        weight: FontWeight.w400,
-                        color: RED,
-                    )
-                  : Container(),
+              controller.isWarehouseBackCodeValid == false
+                ?  TextCustomized(
+                      text: controller.warehouseBackCodeErros,
+                      font: SanFranciscoText,
+                      size: 12,
+                      maxLine: 2,
+                      weight: FontWeight.w400,
+                      color: RED,
+                  )
+                : Container(),
               SizedBox(height: 15),
               TextCustomized(
               text: MANAGE_PACKAGE_TRANSFER_FORM,
@@ -238,11 +240,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                   popupItemBuilder: _customDropdownTransportForm,
                   ),
                 ),
-                popupShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                popupItemBuilder: _customDropdownTransportForm,
-              ),
+                
               SizedBox(height: 5),
               controller.isTransportFormIdValid == false
                 ?  TextCustomized(
@@ -272,7 +270,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                 hint: "Chọn hình thức đóng gói",
                 onChanged: (data) {
                   print('$data');
-                  controller.packing_from = data!.name!;
+                  controller.packing_form_id = data!.id!;
                   controller.update();
                 },
                 itemAsString: (DataListPackingFormFormResponse u) => u.name!,
@@ -282,6 +280,12 @@ class CreateBagPage extends GetView<CreateBagController> {
                     IC_ARROW_DOWN,
                     color: GRAY,
                   ),
+                ),
+                popupShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),                
+                      ),
+                popupItemBuilder: _customDropdownPackingForm,
+                ), 
               ),
               SizedBox(height: 5),
               controller.isPackingFromValid == false
@@ -321,7 +325,7 @@ class CreateBagPage extends GetView<CreateBagController> {
                           ),
                         )
                     ]
-                  )
+                  ),
                 ),
                 SizedBox(width: 10),
                 Expanded(
@@ -349,7 +353,9 @@ class CreateBagPage extends GetView<CreateBagController> {
                     ]
                   )
                 ),
-                popupItemBuilder: _customDropdownPackingForm,
+          //       popupItemBuilder: _customDropdownPackingForm,
+          //     ),
+                ]
               ),
                 SizedBox(height: 5),
                 controller.isWeightFromValid == false
@@ -388,82 +394,6 @@ class CreateBagPage extends GetView<CreateBagController> {
                       color: RED,
                   )
                 : Container(),
-              SizedBox(height: 15),
-              Container(
-              width: Get.width,
-              padding: EdgeInsets.symmetric(vertical: 10),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: BT_GRAY
-                  ),
-                )
-              ),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        flex: 10,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextCustomized(
-                              text: MANAGE_PACKAGE_WEIGHT,
-                              font: SanFranciscoUIText,
-                              size: normalSize,
-                              weight: FontWeight.w600,
-                              color: BLACK_1,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              //width: Get.width*0.4,
-                              child: TextFieldCustomized(
-                                hint: "Nhập số cân",
-                              ),
-                            )
-                          ])),
-                  SizedBox(width: 10),
-                  Expanded(
-                      flex: 2,
-                      //width: Get.width*0.4,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextCustomized(
-                              text: ORDER_LIST_PARCELS,
-                              font: SanFranciscoUIText,
-                              size: normalSize,
-                              weight: FontWeight.w600,
-                              color: BLACK_1,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              //width: Get.width*0.5,
-                              child: TextFieldCustomized(
-                                hint: ORDER_LIST_NULL,
-                              ),
-                            )
-                          ])),
-                ]),
-            SizedBox(height: 15),
-            TextCustomized(
-              text: MANAGE_PACKAGE_TOTAL_COD,
-              font: SanFranciscoUIText,
-              size: normalSize,
-              weight: FontWeight.w600,
-              color: BLACK_1,
-            ),
-            SizedBox(height: 5),
-            TextFieldCustomized(
-              hint: ORDER_LIST_NULL,
-            ),
             SizedBox(height: 15),
             Container(
                 width: Get.width,
@@ -581,10 +511,13 @@ class CreateBagPage extends GetView<CreateBagController> {
               textColor: BT_CONFIRM,
               borderColor: BT_GRAY,
             ),
+                
           ],
+        
         ),
+          
       ),
-    );
+      );
   }
    Widget _buildListBill(DataOrderAddBag data, index){
     return  Container(
@@ -744,7 +677,7 @@ class CreateBagPage extends GetView<CreateBagController> {
               // ), 
                 ]
               ),
-            ]),
+            //]),
           )
         ]));
   }

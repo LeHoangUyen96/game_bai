@@ -1,4 +1,4 @@
-import 'package:viet_trung_mobile/data/request/create_bag_request.dart';
+import 'package:viet_trung_mobile_admin/data/request/create_bag_request.dart';
 
 class AddOrderToBagRequest {
   int? parent_pack_id;
