@@ -364,16 +364,13 @@ class ProfilePage extends GetView<ProfileController> {
       child: Material(
         color: Colors.transparent,
         clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: () {},
-          child: ImageCustomized(
-            path: controller.mDataProfile!.data!.avatar.toString().isEmpty
-                ? LOGO_IMG
-                : controller.mDataProfile!.data!.avatar.toString(),
-            fit: BoxFit.cover,
-            width: 80,
-            height: 80,
-          ),
+        child: ImageCustomized(
+          path: controller.mDataProfile!.data!.avatar.toString().isEmpty
+              ? LOGO_IMG
+              : controller.mDataProfile!.data!.avatar.toString(),
+          fit: BoxFit.cover,
+          width: 80,
+          height: 80,
         ),
       ),
     );

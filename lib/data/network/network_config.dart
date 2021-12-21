@@ -175,7 +175,8 @@ class NetworkConfig {
   static const String BAG_LIST_ORDER = URL_SERVER + "/admin/bag/list-order";
   static const String BAG_CREATE = URL_SERVER + "/admin/bag/create";
   static const String BAG_ADD_PACKAGE = URL_SERVER + "/admin/bag/add-package";
-  static const String BAG_DEL_PACKAGE = URL_SERVER + "/admin/bag/delete-package";
+  static const String BAG_DEL_PACKAGE =
+      URL_SERVER + "/admin/bag/delete-package";
 
   //Setting
   static const String SETTING_PACKING_FORM =
@@ -227,6 +228,8 @@ class NetworkConfig {
   //order admin shipped
   static const String listOrderShipped =
       URL_SERVER + "/admin/order/list-order-shipped";
+  static const String updateVNFee =
+      URL_SERVER + "/admin/order/update-warehouse-vn/";
 
   //setting role admin
   static const String listRole = URL_SERVER + "/admin/role";
@@ -256,27 +259,36 @@ class NetworkConfig {
       URL_SERVER + "/admin/transport-form-fee/detail/";
   static const String updateTransportFee =
       URL_SERVER + "/admin/transport-form-fee/update-fee/";
+  static const String listStatus = URL_SERVER + "/admin/order/list-status";
 
   // Dashboard User
   static const String DASHBOARD_USER = URL_SERVER + "/dashboard";
-   // Dashboard Admin
+  // Dashboard Admin
   static const String DASHBOARD_ADMIN = URL_SERVER + "/admin/dashboard";
   // Rating Order
   static const String RATING_ORDER = URL_SERVER + "/comment";
   static const String RATING_ORDER_LIST = URL_SERVER + "/comment/list";
   // Manager Staff
   static const String MANAGER_STAFF_LIST = URL_SERVER + "/admin/users/list/1";
-  static const String MANAGER_STAFF_DETAIL = URL_SERVER + "/admin/users/detail-admin/";
-  static const String MANAGER_STAFF_DELETE = URL_SERVER + "/admin/users/delete-user/";
-  static const String MANAGER_STAFF_CHANGE_STATUS = URL_SERVER + "/admin/users/changed-status/";
-  static const String MANAGER_STAFF_CREATE = URL_SERVER + "/admin/users/create-admin";
-  static const String MANAGER_STAFF_UPDATE = URL_SERVER + "/admin/users/update-admin/";
-  
+  static const String MANAGER_STAFF_DETAIL =
+      URL_SERVER + "/admin/users/detail-admin/";
+  static const String MANAGER_STAFF_DELETE =
+      URL_SERVER + "/admin/users/delete-user/";
+  static const String MANAGER_STAFF_CHANGE_STATUS =
+      URL_SERVER + "/admin/users/changed-status/";
+  static const String MANAGER_STAFF_CREATE =
+      URL_SERVER + "/admin/users/create-admin";
+  static const String MANAGER_STAFF_UPDATE =
+      URL_SERVER + "/admin/users/update-admin/";
+
   // Manager User
   static const String MANAGER_USER_LIST = URL_SERVER + "/admin/users/list/0";
-  static const String MANAGER_USER_DETAIL = URL_SERVER + "/admin/users/detail-user/";
-  static const String MANAGER_USER_CREATE = URL_SERVER + "/admin/users/create-user";
-  static const String MANAGER_USER_RESET_PASSWORD = URL_SERVER + "/admin/users/reset-password-admin/";
+  static const String MANAGER_USER_DETAIL =
+      URL_SERVER + "/admin/users/detail-user/";
+  static const String MANAGER_USER_CREATE =
+      URL_SERVER + "/admin/users/create-user";
+  static const String MANAGER_USER_RESET_PASSWORD =
+      URL_SERVER + "/admin/users/reset-password-admin/";
 
   //settings packing
   static const String listPacking =
@@ -305,4 +317,20 @@ class NetworkConfig {
   //manager feedback & review
   static const String listFeedback = URL_SERVER + "/admin/comment/list";
   static const String feedDetail = URL_SERVER + "/admin/comment/detail/";
+
+  //manager inventor
+  static const String listWarehouse = URL_SERVER + "/admin/warehouses/list";
+  static const String warehouseDetail =
+      URL_SERVER + "/admin/warehouses/detail/";
+  static const String updateWarehouse = URL_SERVER + "/admin/warehouses/update";
+  static const String deleteWarehouse =
+      URL_SERVER + "/admin/warehouses/delete/";
+  static const String checkWarehouse = URL_SERVER + "/admin/warehouses/get/";
+
+  //forgot pass
+  static const forgotPassStep1 = URL_SERVER + "/auth/forgot";
+  static const forgotPassStep2 = URL_SERVER + "/auth/reset-password";
+
+  //manager customer
+  static const updateCustomer = URL_SERVER + "/admin/users/update-user/";
 }

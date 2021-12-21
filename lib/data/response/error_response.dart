@@ -25,12 +25,16 @@ class Error {
   final List<String>? billCodeError;
 
   Error(
-      {this.emailError, this.passwordError, this.namedError, this.phoneError,this.billCodeError});
+      {this.emailError,
+      this.passwordError,
+      this.namedError,
+      this.phoneError,
+      this.billCodeError});
 
   Error.fromJson(Map<String, dynamic> json)
       : emailError = json['email'] != null
-      ? (json['email'] as List).map((e) => e.toString()).toList()
-      : null,
+            ? (json['email'] as List).map((e) => e.toString()).toList()
+            : null,
         passwordError = json['password'] != null
             ? (json['password'] as List).map((e) => e.toString()).toList()
             : null,
@@ -42,5 +46,5 @@ class Error {
             : null,
         billCodeError = json['bill_code'] != null
             ? (json['bill_code'] as List).map((e) => e.toString()).toList()
-            : null;    
+            : null;
 }

@@ -1,5 +1,4 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -220,18 +219,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                   ],
                 ),
               ),
-              SizedBox(height: 5),
-              controller.isBillCodeValid == false
-                ?  TextCustomized(
-                      text: controller.billCodeErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
-                  )
-                : Container(),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               TextCustomized(
                 text: ADMIN_ITEMS,
                 font: SanFranciscoUIText,
@@ -240,45 +228,11 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                 weight: FontWeight.w700,
               ),
               SizedBox(height: 10),
-              // TextFieldCustomized(
-              //   hint: ADMIN_NAME_ITEMS,
-              //   textController: controller.itemValueController,
-              // ),
-              Container(
-                child: DropdownSearch<ItemProduct>(
-                  mode: Mode.MENU,
-                  maxHeight: 120,
-                  popupSafeArea: PopupSafeArea(),
-                  onFind: (String? filter) => controller.getDataProduct(),
-                  hint: "Chọn tên mặt hàng",
-                  onChanged:( data ){
-                    print('$data');
-                    controller.product_id = data!.id!;
-                    controller.update();
-                    },
-                  itemAsString: (ItemProduct u) => u.name!,
-                  dropdownButtonBuilder: (_)=> Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(IC_ARROW_DOWN,color: GRAY,),
-                  ),
-                  popupShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),                
-                      ),
-                  popupItemBuilder: _customDropdownProduct,
-                  ),
+              TextFieldCustomized(
+                hint: ADMIN_NAME_ITEMS,
+                textController: controller.itemValueController,
               ),
-              SizedBox(height: 5),
-              controller.isProductIdValid == false
-                ?  TextCustomized(
-                      text: controller.productIdErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
-                  )
-                : Container(),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               TextCustomized(
                 text: ADMIN_COD,
                 font: SanFranciscoUIText,
@@ -304,18 +258,7 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
                 hint: ADMIN_ENTER_PARCEL_NUMBER,
                 textController: controller.numberPackageController,
               ),
-              SizedBox(height: 5),
-              controller.isNumberPackageValid == false
-                ?  TextCustomized(
-                      text: controller.numberPackageErros,
-                      font: SanFranciscoText,
-                      size: 12,
-                      maxLine: 2,
-                      weight: FontWeight.w400,
-                      color: RED,
-                  )
-                : Container(),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               TextCustomized(
                 text: ADMIN_IMG,
                 font: SanFranciscoUIText,
@@ -376,35 +319,4 @@ class EnterWarehousePage extends GetView<EnterWarehouseController> {
           ),
         ));
   }
-  Widget _customDropdownProduct (BuildContext context, ItemProduct item, bool isSelected){
-   return Container(
-     padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: GRAY, width: 1.0 )),
-              //borderRadius: BorderRadius.circular(5),
-              //color: bdredColor,
-            ),
-           child: InkWell(
-             onTap: (){},
-            child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Flexible(
-                 child: TextCustomized(
-                   text: item.name?.toString()??'',
-                   font: SanFranciscoUIText,
-                   weight: FontWeight.w400,
-                   )
-                   ),
-              //  Flexible(
-              //    child: SvgPicture.asset(IC_CHECK1),
-              //    )    
-             ],
-           )
-
-      ), 
-
-   );
- }
-
 }

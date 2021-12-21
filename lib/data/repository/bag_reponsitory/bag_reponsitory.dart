@@ -21,9 +21,12 @@ abstract class BagRepositories {
       ManagerBagRequest request, int page, int perPage);
   Future<ListBagResponse> onFilterListBag(String code, int page, int perPage);
   Future<BagDetailsResponse> onGetDetailsBag(int id);
-  Future<UploadStatusBagResponse> onUpdateSatusBag(String parent_pack_status_code,int id);
-  Future<ListOrderAddBagResponse> onGetListOrderAddBag(ListOrderAddBagRequest request);
-  Future<ListOrderAddBagResponse> onSearchBillCode( String bill_code, String warehouse_back_code ,int transport_form_id  );
+  Future<UploadStatusBagResponse> onUpdateSatusBag(
+      String parent_pack_status_code, int id);
+  Future<ListOrderAddBagResponse> onGetListOrderAddBag(
+      ListOrderAddBagRequest request);
+  Future<ListOrderAddBagResponse> onSearchBillCode(
+      String bill_code, String warehouse_back_code, int transport_form_id);
   Future<CreateBagResponse> onCreateBag(CreateBagRequest request);
   Future<bool> onAddPackage(AddOrderToBagRequest request);
   Future<bool> onDelPackage(DelOrderToBagRequest request);

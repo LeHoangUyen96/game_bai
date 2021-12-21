@@ -190,22 +190,21 @@ class DetailUserPage extends GetView<DetailUserController> {
                       itemCount: controller
                           .detailUserResponse!.data!.addresses!.length),
                 ),
-               
               ],
             ),
           ),
-           SizedBox(height: 10.0),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: ButtonCustomized(
-                RESET_PASSWORD,
-                textColor: WHITE,
-                onTap: (){
-                  controller.onResetPassword();
-                },
-                backgroundColor: BT_CONFIRM,
-              ),
-            )
+          SizedBox(height: 10.0),
+          Container(
+            padding: EdgeInsets.all(15),
+            child: ButtonCustomized(
+              'RESET PASSWORD',
+              textColor: WHITE,
+              onTap: () {
+                controller.onResetPassword();
+              },
+              backgroundColor: BT_CONFIRM,
+            ),
+          )
         ],
       ),
     );

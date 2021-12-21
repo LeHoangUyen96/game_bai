@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/models/order_item_add_to_bag.dart';
@@ -11,7 +10,6 @@ import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
 typedef NumberOderCallback = void Function(int id, String val);
 
-
 class ItemOrder extends StatelessWidget {
   const ItemOrder({
     required this.dataOrderAddBag,
@@ -19,18 +17,15 @@ class ItemOrder extends StatelessWidget {
     this.id,
     this.bill_code,
     this.number_package_remain,
-    this.item, 
-    this.packing_form, 
-    this.transport_fee, 
+    this.item,
+    this.packing_form,
+    this.transport_fee,
     this.surcharge,
-
-   
   });
-
 
   final NumberOderCallback? numberPackage;
   final int? id;
-  final DataListOrderAddBagResponse dataOrderAddBag; 
+  final DataListOrderAddBagResponse dataOrderAddBag;
   final String? bill_code;
   final String? packing_form;
   final int? number_package_remain;
@@ -40,7 +35,6 @@ class ItemOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController numberOrderController = TextEditingController();
 
     return Container(
@@ -48,28 +42,26 @@ class ItemOrder extends StatelessWidget {
       decoration:
           BoxDecoration(border: Border(bottom: BorderSide(color: BT_GRAY))),
       padding: EdgeInsets.symmetric(vertical: 5),
-      child:  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [ 
-         Row(
-           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-           crossAxisAlignment: CrossAxisAlignment.start,
-          children:[
-           Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:[  
-                          TextCustomized(
-                            text: dataOrderAddBag.bill_code.toString(),
-                            font: SanFranciscoText,
-                            weight: FontWeight.w700,
-                            color: MAIN_BLACK,
-                            size: normalSize,
-                          ),
-                          
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextCustomized(
+                          text: dataOrderAddBag.bill_code.toString(),
+                          font: SanFranciscoText,
+                          weight: FontWeight.w700,
+                          color: MAIN_BLACK,
+                          size: normalSize,
+                        ),
+
                         // Spacer(),
                         // Container(
                         //     width: 50,
@@ -83,7 +75,7 @@ class ItemOrder extends StatelessWidget {
                         //     padding: EdgeInsets.symmetric(horizontal: 15),
                         //     child: Center(
                         //       child: TextField(
-                                
+
                         //         onChanged: (val){
                         //          controller.number_package = ParseNumber.parseInt(val);
                         //          controller.order_id = data.id;
@@ -100,96 +92,87 @@ class ItemOrder extends StatelessWidget {
                         //           hintText: data.number_package_remain.toString(),
                         //           hintStyle: TextStyle(
                         //               color: GRAY,
-                        //               fontSize: smallSize, 
+                        //               fontSize: smallSize,
                         //               fontFamily: SanFranciscoUIText
                         //               ),
                         //         ),
                         //       ),
                         //     ),
                         // )
-                        ]
-                      ), 
-                    SizedBox(height: 5),
-                    Wrap(spacing: 5.0, children: [
-                      TextCustomized(
-                        text: MANAGE_PACKAGE_CUSTOMER_NAME,
-                        font: SanFranciscoUIText,
-                        weight: FontWeight.w400,
-                        color: MAIN_BLACK,
-                        size: smallSize,
-                      ),
-                      TextCustomized(
-                        text: dataOrderAddBag.name_customer.toString(),
-                        font: SanFranciscoUIText,
-                        weight: FontWeight.w400,
-                        color: MAIN_BLACK,
-                        size: smallSize,
-                      ),
-                    ]),
-                    SizedBox(height: 5),
-                    Wrap(spacing: 5.0, children: [
-                      TextCustomized(
-                        text: DELIVERY_NOTE_NUMBER_PARCEL_HD,
-                        font: SanFranciscoUIText,
-                        weight: FontWeight.w400,
-                        color: MAIN_BLACK,
-                        size: smallSize,
-                      ),
-                      TextCustomized(
-                        text: dataOrderAddBag.number_package_remain.toString(),
-                        font: SanFranciscoUIText,
-                        weight: FontWeight.w400,
-                        color: MAIN_BLACK,
-                        size: smallSize,
-                      ),
-                    ]),
-                  ],
-                ),
-                Container(
-                  height: 30,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: BT_GRAY),
-                    borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: TextField(
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: BLACK,
-                      fontSize: customSize,
-                      fontFamily: SanFranciscoUIText,
+                      ]),
+                  SizedBox(height: 5),
+                  Wrap(spacing: 5.0, children: [
+                    TextCustomized(
+                      text: MANAGE_PACKAGE_CUSTOMER_NAME,
+                      font: SanFranciscoUIText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                      size: smallSize,
                     ),
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: dataOrderAddBag.number_package_remain.toString(),
-                      hintStyle: TextStyle(
+                    TextCustomized(
+                      text: dataOrderAddBag.name_customer.toString(),
+                      font: SanFranciscoUIText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                      size: smallSize,
+                    ),
+                  ]),
+                  SizedBox(height: 5),
+                  Wrap(spacing: 5.0, children: [
+                    TextCustomized(
+                      text: DELIVERY_NOTE_NUMBER_PARCEL_HD,
+                      font: SanFranciscoUIText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                      size: smallSize,
+                    ),
+                    TextCustomized(
+                      text: dataOrderAddBag.number_package_remain.toString(),
+                      font: SanFranciscoUIText,
+                      weight: FontWeight.w400,
+                      color: MAIN_BLACK,
+                      size: smallSize,
+                    ),
+                  ]),
+                ],
+              ),
+              Container(
+                height: 30,
+                width: 60,
+                decoration: BoxDecoration(
+                    border: Border.all(color: BT_GRAY),
+                    borderRadius: BorderRadius.circular(5)),
+                child: TextField(
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: BLACK,
+                    fontSize: customSize,
+                    fontFamily: SanFranciscoUIText,
+                  ),
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    hintText: dataOrderAddBag.number_package_remain.toString(),
+                    hintStyle: TextStyle(
                         color: BT_GRAY,
                         fontFamily: SanFranciscoTextLight,
-                        fontSize: smallSize
-                      ),
-                    ),
-                    //maxLength: 4, 
-                    onChanged: (val){
-                          this.numberPackage!(id!, val);
-                        },
-                    onSubmitted: (val){
-                     this.numberPackage!(id!, val);
-                    },
-                    
-                    keyboardType: TextInputType.number,
-                    controller: numberOrderController,
+                        fontSize: smallSize),
                   ),
-                )
-                          
+                  //maxLength: 4,
+                  onChanged: (val) {
+                    this.numberPackage!(id!, val);
+                  },
+                  onSubmitted: (val) {
+                    this.numberPackage!(id!, val);
+                  },
 
-          ]
-        ),
-        ]
-      ),
-          
+                  keyboardType: TextInputType.number,
+                  controller: numberOrderController,
+                ),
+              )
+            ]),
+      ]),
     );
   }
 }

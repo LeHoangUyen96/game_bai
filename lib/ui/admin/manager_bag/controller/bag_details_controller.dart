@@ -26,7 +26,7 @@ class BagDetailsController extends GetxController {
   Color? color;
   List<DataOrderAddBag>? mListOrder = [];
   List<DataOrderCreateBag>? mListOrders = [];
-  int ? number_package_in_bags;
+  int? number_package_in_bags;
 
   @override
   void onInit() {
@@ -66,19 +66,18 @@ class BagDetailsController extends GetxController {
       update();
     });
   }
-  void onDelPackage(int idOrder){
-   
-      DelOrderToBagRequest request = DelOrderToBagRequest(
-        parent_pack_id: id,
-        order_id: idOrder
-      );
-    bagRepositories!.onDelPackage(request).then((value){
+
+  void onDelPackage(int idOrder) {
+    DelOrderToBagRequest request =
+        DelOrderToBagRequest(parent_pack_id: id, order_id: idOrder);
+    bagRepositories!.onDelPackage(request).then((value) {
       onGetDetailBag();
       Get.snackbar(NAV_NOTIFICATION, "Xoá đơn hàng thành công");
-    }).catchError((onError){
+    }).catchError((onError) {
       Get.defaultDialog(title: (onError).message.toString(), middleText: '');
     });
   }
+
   void onUpdateStatusBag() {
     bagRepositories!.onUpdateSatusBag(item_code!, id!).then((value) {
       Get.snackbar(NAV_NOTIFICATION, value.message.toString());
@@ -121,19 +120,22 @@ class BagDetailsController extends GetxController {
     }
     return color!;
   }
-  String onGetNumberPackageInBag (DataListOrderAddBagResponse data){
+
+  String onGetNumberPackageInBag(DataListOrderAddBagResponse data) {
     String? temp;
-    for(var i = 0; i < data.number_package_in_bags!.length ; i++){
-        if(bagDetailsResponse!.data!.id == data.number_package_in_bags![i].parent_pack_id){
-            temp = data.number_package_in_bags![i].number_package.toString();
-          print("is number_package_in_bags ${temp}");
-    }
+    for (var i = 0; i < data.number_package_in_bags!.length; i++) {
+      if (bagDetailsResponse!.data!.id ==
+          data.number_package_in_bags![i].parent_pack_id) {
+        temp = data.number_package_in_bags![i].number_package.toString();
+        print("is number_package_in_bags ${temp}");
+      }
     }
     return temp!;
   }
-  void onGetListOrder(List<DataOrderAddBag> data){
+
+  void onGetListOrder(List<DataOrderAddBag> data) {
     mListOrder = data;
-    for(var i = 0; i < mListOrder!.length; i++){
+    for (var i = 0; i < mListOrder!.length; i++) {
       mListOrders!.add(DataOrderCreateBag(
         number_package: mListOrder![i].number_package,
         order_id: mListOrder![i].id,
@@ -142,7 +144,8 @@ class BagDetailsController extends GetxController {
     onAddPackge();
     update();
   }
-  void onAddPackge(){
+
+  void onAddPackge() {
     AddOrderToBagRequest request = AddOrderToBagRequest(
       parent_pack_id: id,
       orders: mListOrders,
@@ -152,22 +155,21 @@ class BagDetailsController extends GetxController {
       Get.snackbar(NAV_NOTIFICATION, "Thêm đơn hàng thành công");
       print("--------------$value");
       update();
-    }).catchError((onError){
+    }).catchError((onError) {
       Get.snackbar(PROFILE_NOTIFY, onError.toString());
     });
   }
-  void onAddProduct(){
-    
-      Get.dialog(AddProductToBagDialog(), 
-      arguments: {
-        "warehouse_back_code" : bagDetailsResponse!.data!.warehouse_back_code,
-        "transport_form_id" : bagDetailsResponse!.data!.transport_form_id,
-        "packing_form_id" : bagDetailsResponse!.data!.packing_form_id,
-      }).then((value){
-        if(value != null){
-          onGetListOrder(value);
-        }
-      });
+
+  void onAddProduct() {
+    Get.dialog(AddProductToBagDialog(), arguments: {
+      "warehouse_back_code": bagDetailsResponse!.data!.warehouse_back_code,
+      "transport_form_id": bagDetailsResponse!.data!.transport_form_id,
+      "packing_form_id": bagDetailsResponse!.data!.packing_form_id,
+    }).then((value) {
+      if (value != null) {
+        onGetListOrder(value);
+      }
+    });
     update();
   }
 }

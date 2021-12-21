@@ -62,9 +62,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
         ),
         actions: [
           InkWell(
-            onTap: () {
-              Get.to(EditStaffPage(),arguments: controller.id);
-            },
+            onTap: () {},
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: SvgPicture.asset(
@@ -188,7 +186,7 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                   decoration: BoxDecoration(
                       border: Border(bottom: BorderSide(color: BT_GRAY))),
                   child: TextCustomized(
-                    text: controller.detailStaffResponse!.data!.role_name.toString(),
+                    text: 'Nhân viên kho Trung Quốc',
                     color: BT_CONFIRM,
                   ),
                 ),
@@ -230,23 +228,10 @@ class DetailStaffPage extends GetView<DetailStaffController> {
                       ),
                     ],
                   ),
-                ),
-                
+                )
               ],
             ),
           ),
-          SizedBox(height: 10.0),
-          Container(
-            padding: EdgeInsets.all(15),
-            child: ButtonCustomized(
-              RESET_PASSWORD,
-              textColor: WHITE,
-              onTap: (){
-                controller.onResetPasswordAdmin();
-              },
-              backgroundColor: BT_CONFIRM,
-            ),
-          )
         ],
       ),
     );

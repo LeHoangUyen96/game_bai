@@ -27,12 +27,12 @@ class DetailUserController extends GetxController {
       print("-----------------$onError");
     });
   }
-  void onResetPassword(){
+
+  void onResetPassword() {
     managerUserRepositories!.onResetPasswordUser(id!).then((value) {
       Get.snackbar(NOTIFY, "Thay đổi mật khẩu thành công");
-    }).catchError((onError){
+    }).catchError((onError) {
       print("-----------------$onError");
     });
   }
- 
 }

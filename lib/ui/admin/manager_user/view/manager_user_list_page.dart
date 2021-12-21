@@ -30,7 +30,9 @@ class ManagerUserPage extends GetView<ManagerUserController> {
       builder: (value) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
-        body: controller.mDataListUserResponse != null ? buildBody() : LoadingSpinKit(),
+        body: controller.mDataListUserResponse != null
+            ? buildBody()
+            : LoadingSpinKit(),
         backgroundColor: BT_GRAY,
       ),
     );
@@ -129,54 +131,55 @@ class ManagerUserPage extends GetView<ManagerUserController> {
             child: Container(
               height: Get.height * 0.8,
               child: SmartRefresher(
-          enablePullDown: true,
-          enablePullUp: true,
-          onRefresh: controller.onListRefresh,
-          header: WaterDropHeader(
-              refresh: SpinKitCircle(
-                color: MAIN_COLOR,
-                size: 30,
-              ),
-              complete: SpinKitCircle(
-                color: MAIN_COLOR,
-                size: 40,
-              ),
-          ),
-          onLoading: controller.onListLoading,
-          footer: CustomFooter(
-              builder: (BuildContext context, LoadStatus? mode) {
-                Widget body;
-                if (mode == LoadStatus.idle) {
-                  body = Container();
-                } else if (mode == LoadStatus.loading) {
-                  body = SpinKitCircle(color: MAIN_COLOR, size: 40);
-                } else if (mode == LoadStatus.failed) {
-                  body = Text("Load Failed!Click retry!");
-                } else if (mode == LoadStatus.canLoading) {
-                  body = SpinKitCircle(color: MAIN_COLOR, size: 40);
-                } else {
-                  body = Text("No more Data");
-                }
-                return Container(
-                  height: 55.0,
-                  child: Center(child: body),
-                );
-              },
-          ),
-          controller: controller.refreshController,
-          child: Container(
-              padding: EdgeInsets.all(15),
-              child: ListView.separated(
-                itemBuilder: (BuildContext context, int index){
-                  return __buildItemStaff(controller.mDataListUserResponse![index]);
-                }, 
-                shrinkWrap: true,
-                separatorBuilder: (context, index) {
-                  return SizedBox(height: 10);
-                },
-                physics: BouncingScrollPhysics (),
-                itemCount: controller.mDataListUserResponse!.length,
+                enablePullDown: true,
+                enablePullUp: true,
+                onRefresh: controller.onListRefresh,
+                header: WaterDropHeader(
+                  refresh: SpinKitCircle(
+                    color: MAIN_COLOR,
+                    size: 30,
+                  ),
+                  complete: SpinKitCircle(
+                    color: MAIN_COLOR,
+                    size: 40,
+                  ),
                 ),
+                onLoading: controller.onListLoading,
+                footer: CustomFooter(
+                  builder: (BuildContext context, LoadStatus? mode) {
+                    Widget body;
+                    if (mode == LoadStatus.idle) {
+                      body = Container();
+                    } else if (mode == LoadStatus.loading) {
+                      body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+                    } else if (mode == LoadStatus.failed) {
+                      body = Text("Load Failed!Click retry!");
+                    } else if (mode == LoadStatus.canLoading) {
+                      body = SpinKitCircle(color: MAIN_COLOR, size: 40);
+                    } else {
+                      body = Text("No more Data");
+                    }
+                    return Container(
+                      height: 55.0,
+                      child: Center(child: body),
+                    );
+                  },
+                ),
+                controller: controller.refreshController,
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  child: ListView.separated(
+                    itemBuilder: (BuildContext context, int index) {
+                      return __buildItemStaff(
+                          controller.mDataListUserResponse![index]);
+                    },
+                    shrinkWrap: true,
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: 10);
+                    },
+                    physics: BouncingScrollPhysics(),
+                    itemCount: controller.mDataListUserResponse!.length,
+                  ),
                 ),
                 // onLoading: controller.onListLoading,
                 // footer: CustomFooter(

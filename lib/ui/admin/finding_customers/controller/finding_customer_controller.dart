@@ -65,11 +65,10 @@ class FindingCustomerController extends GetxController {
       isPhoneValid = true;
     }
     if (isPhoneValid) {
-       //
+      phoneValueController.clear();
       Get.to(EnterWarehousePage(),
           arguments: {'phone': phoneValueController.text});
     }
-    phoneValueController.clear();
     update();
   }
 }

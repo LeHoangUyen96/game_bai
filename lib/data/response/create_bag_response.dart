@@ -4,9 +4,9 @@ class CreateBagResponse {
   String? message;
   DataCreateBag? data;
 
-  CreateBagResponse({this.message,this.data});
+  CreateBagResponse({this.message, this.data});
 
-  CreateBagResponse.fromJson(Map<String,dynamic> json){
+  CreateBagResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     data = json['data'] != null ? DataCreateBag.fromJson(json['data']) : null;
   }
@@ -50,15 +50,24 @@ class DataCreateBag {
   DataCreateBag.fromJson(Map<String, dynamic> json) {
     id = ParseNumber.parseInt(json['id']);
     code = json['code'] != null ? json['code'] : '';
-    parent_pack_type = json['parent_pack_type'] != null ? json['parent_pack_type'] : '';
-    parent_pack_name = json['parent_pack_name'] != null ? json['parent_pack_name'] : '';
-    warehouse_back_code = json['warehouse_back_code'] != null ? json['warehouse_back_code'] : '';
-    warehouse_back_name = json['warehouse_back_name'] != null ? json['warehouse_back_name'] : '';
-    parent_pack_status_code = json['parent_pack_status_code'] != null ? json['parent_pack_status_code'] : '';
-    parent_pack_status_name = json['parent_pack_status_name'] != null ? json['parent_pack_status_name'] : '';
+    parent_pack_type =
+        json['parent_pack_type'] != null ? json['parent_pack_type'] : '';
+    parent_pack_name =
+        json['parent_pack_name'] != null ? json['parent_pack_name'] : '';
+    warehouse_back_code =
+        json['warehouse_back_code'] != null ? json['warehouse_back_code'] : '';
+    warehouse_back_name =
+        json['warehouse_back_name'] != null ? json['warehouse_back_name'] : '';
+    parent_pack_status_code = json['parent_pack_status_code'] != null
+        ? json['parent_pack_status_code']
+        : '';
+    parent_pack_status_name = json['parent_pack_status_name'] != null
+        ? json['parent_pack_status_name']
+        : '';
     item_number = ParseNumber.parseInt(json['item_number']);
     customer_number = ParseNumber.parseInt(json['customer_number']);
-    transport_form = json['transport_form'] != null ? json['transport_form'] : '';
+    transport_form =
+        json['transport_form'] != null ? json['transport_form'] : '';
     weight = ParseNumber.parseInt(json['weight']);
     volume = ParseNumber.parseInt(json['volume']);
     created_at = json['created_at'] != null ? json['created_at'] : '';

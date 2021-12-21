@@ -337,8 +337,8 @@ class OrderShipBackDetailPage extends GetView<OrderShipBackDetailController> {
                           child: TextCustomized(
                             text: orderJourney,
                             size: 16,
-                            font: SanFranciscoText,
-                            weight: FontWeight.w700,
+                            font: inter,
+                            weight: FontWeight.w500,
                             color: BLACK,
                           ),
                         ),

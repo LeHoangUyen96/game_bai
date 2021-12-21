@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
 import 'package:viet_trung_mobile_admin/res/colors.dart';
+import 'package:viet_trung_mobile_admin/res/dimens.dart';
 import 'package:viet_trung_mobile_admin/res/fonts.dart';
 import 'package:viet_trung_mobile_admin/res/images.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
@@ -59,16 +62,25 @@ class ProfileAdminPage extends GetView<ProfileController> {
               padding: EdgeInsets.all(16),
               child: Column(children: [
                 Center(
-                    child: Stack(
-                  children: [
-                    buildImageAvt(),
-                    Positioned(
-                      bottom: -1,
-                      right: -5,
-                      child: buildEditIcon(),
-                    ),
-                  ],
-                )),
+                    child: Container(
+                        height: 80,
+                        width: 80,
+                        child: Stack(
+                          children: [
+                            buildImageAvt(),
+                            InkWell(
+                                onTap: () {
+                                  Get.dialog(_selectedImageDialog());
+                                },
+                                child: Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: SvgPicture.asset(
+                                      camera,
+                                      width: 18,
+                                      height: 18,
+                                    ))),
+                          ],
+                        ))),
                 SizedBox(width: 15),
                 Center(
                   child: Container(
@@ -221,37 +233,22 @@ class ProfileAdminPage extends GetView<ProfileController> {
 
   Widget buildImageAvt() {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(40)),
       child: Material(
         color: Colors.transparent,
         clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: () {},
-          child: ImageCustomized(
-            path: controller.mDataProfile!.data!.avatar.toString().isEmpty
-                ? LOGO_IMG
-                : controller.mDataProfile!.data!.avatar.toString(),
-            fit: BoxFit.cover,
-            width: 80,
-            height: 80,
-          ),
+        child: ImageCustomized(
+          path: controller.mDataProfile!.data!.avatar.toString().isEmpty
+              ? LOGO_IMG
+              : NetworkConfig.URL_SERVER_BASE_CDN +
+                  controller.mDataProfile!.data!.avatar.toString(),
+          fit: BoxFit.cover,
+          width: 80,
+          height: 80,
         ),
       ),
     );
   }
-
-  Widget buildEditIcon() => buildCircle(
-        color: GRAY6,
-        all: 1,
-        child: buildCircle(
-            color: GRAY6,
-            all: 2,
-            child: SvgPicture.asset(
-              IC_EDIT_PROFILE,
-              width: 18,
-              height: 18,
-            )),
-      );
 
   Widget buildCircle({
     required Widget child,
@@ -265,4 +262,76 @@ class ProfileAdminPage extends GetView<ProfileController> {
           child: child,
         ),
       );
+
+  Widget _selectedImageDialog() {
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      insetPadding: EdgeInsets.symmetric(horizontal: 16.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
+      contentPadding: EdgeInsets.zero,
+      content: Container(
+        height: 80,
+        width: Get.width * 0.4,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 40,
+              width: Get.width,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: TEXT_GREY_IN_CART,
+                    width: 0.5,
+                  ),
+                ),
+              ),
+              child: InkWell(
+                onTap: () {
+                  controller.onPickerImage(ImageSource.camera);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Row(
+                    children: [
+                      TextCustomized(
+                        size: smallMediumSize,
+                        weight: FontWeight.w500,
+                        color: Colors.black,
+                        text: PROFILE_NEW_IMAGE,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 40,
+              width: Get.width,
+              child: InkWell(
+                onTap: () {
+                  controller.onPickerImage(ImageSource.gallery);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Row(
+                    children: [
+                      TextCustomized(
+                        size: smallMediumSize,
+                        weight: FontWeight.w500,
+                        color: Colors.black,
+                        text: PROFILE_IMAGE_LIB,
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

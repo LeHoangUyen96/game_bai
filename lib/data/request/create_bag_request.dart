@@ -8,28 +8,27 @@ class CreateBagRequest {
   int? transport_form_id;
   int? packing_form_id;
   int? weight;
-  double ? total_cod;
+  double? total_cod;
   List<DataOrderCreateBag>? orders;
-      CreateBagRequest({
-        this.parent_pack_type,
-        this.warehouse_back_code,
-        this.user_id,
-        this.transport_form_id,
-        this.weight,
-        this.orders,
-        this.packing_form_id,
-        this.total_cod,
-      });
+  CreateBagRequest({
+    this.parent_pack_type,
+    this.warehouse_back_code,
+    this.user_id,
+    this.transport_form_id,
+    this.weight,
+    this.orders,
+    this.packing_form_id,
+    this.total_cod,
+  });
 
- CreateBagRequest.empty(){
-   this.parent_pack_type = '';
-  this.warehouse_back_code = '';
-  this.transport_form_id = -1;
-  this.user_id = -1;
-  this.weight = -1;
-  this.packing_form_id = -1;
+  CreateBagRequest.empty() {
+    this.parent_pack_type = '';
+    this.warehouse_back_code = '';
+    this.transport_form_id = -1;
+    this.user_id = -1;
+    this.weight = -1;
+    this.packing_form_id = -1;
   }
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -44,23 +43,24 @@ class CreateBagRequest {
     return data;
   }
 }
-class   DataOrderCreateBag {
-    int? order_id;
-    int? number_package;
 
-   DataOrderCreateBag({
+class DataOrderCreateBag {
+  int? order_id;
+  int? number_package;
+
+  DataOrderCreateBag({
     this.order_id,
     this.number_package,
   });
-    DataOrderCreateBag.empty(){
-     this.order_id = -1;
-     this.number_package= -1;
-   }
-    DataOrderCreateBag.fromJson( Map<String,dynamic> json) {
-     this.order_id = ParseNumber.parseInt(json['order_id']);
-     this.number_package = ParseNumber.parseInt(json['number_package']);
-    }
-    Map<String, dynamic> toJson() {
+  DataOrderCreateBag.empty() {
+    this.order_id = -1;
+    this.number_package = -1;
+  }
+  DataOrderCreateBag.fromJson(Map<String, dynamic> json) {
+    this.order_id = ParseNumber.parseInt(json['order_id']);
+    this.number_package = ParseNumber.parseInt(json['number_package']);
+  }
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['order_id'] = this.order_id;
     data['number_package'] = this.number_package;
