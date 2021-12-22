@@ -33,7 +33,7 @@ class ManagerBagPage extends GetView<ManagerBagController> {
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar(),
         //body:  SingleChildScrollView(child: buildBody()) ,
-        body: controller.mListBagResponse != null
+        body: controller.mDataBagResponse != null
             ? buildBody()
             : LoadingSpinKit(),
         backgroundColor: BT_GRAY,
@@ -628,34 +628,34 @@ class ManagerBagPage extends GetView<ManagerBagController> {
               ),
             ),
             //SizedBox(height: 15),
-            mData.parent_pack_status_name == ORDER_LIST_CHINA_WAREHOUSE
-                ? Container(
-                    padding: EdgeInsets.only(top: 15.0, bottom: 10.0),
-                    decoration: BoxDecoration(
-                        border: Border(top: BorderSide(color: BT_GRAY))),
-                    alignment: Alignment.center,
-                    child: InkWell(
-                      onTap: () {
-                        controller.onAddProduct();
-                      },
-                      child: Wrap(
-                        spacing: 5.0,
-                        children: [
-                          SvgPicture.asset(
-                            IC_ADD_CIRCLE,
-                            color: GRAY8,
-                          ),
-                          TextCustomized(
-                            text: MANAGE_PACKAGE_MOVE_GOOD,
-                            size: normalSize,
-                            color: GRAY8,
-                            weight: FontWeight.w700,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                : Container(),
+            // mData.parent_pack_status_name == ORDER_LIST_CHINA_WAREHOUSE
+            //     ? Container(
+            //         padding: EdgeInsets.only(top: 15.0, bottom: 10.0),
+            //         decoration: BoxDecoration(
+            //             border: Border(top: BorderSide(color: BT_GRAY))),
+            //         alignment: Alignment.center,
+            //         child: InkWell(
+            //           onTap: () {
+            //             controller.onAddProduct();
+            //           },
+            //           child: Wrap(
+            //             spacing: 5.0,
+            //             children: [
+            //               SvgPicture.asset(
+            //                 IC_ADD_CIRCLE,
+            //                 color: GRAY8,
+            //               ),
+            //               TextCustomized(
+            //                 text: MANAGE_PACKAGE_MOVE_GOOD,
+            //                 size: normalSize,
+            //                 color: GRAY8,
+            //                 weight: FontWeight.w700,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       )
+            //     : Container(),
           ]),
     );
   }
