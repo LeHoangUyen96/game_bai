@@ -67,7 +67,10 @@ class EditCustomerController extends GetxController {
       userName = TextEditingController(text: value.data!.name!);
       userPhone = TextEditingController(text: value.data!.phone!);
       userEmail = TextEditingController(text: value.data!.email!);
-      userAddress = TextEditingController(text: value.data!.email!);
+      userAddress = TextEditingController(text: value.data!.address!);
+      city = value.data!.cityId!;
+      district = value.data!.districtId!;
+      wards = value.data!.wardsId!;
       update();
     }).catchError((onError) {
       print("-----------------$onError");

@@ -31,11 +31,11 @@ class DialogSuccess extends GetView<ProfileController> {
                     Container(
                         padding: EdgeInsets.all(15),
                         child: Column(children: [
-                          // ImageCustomized(
-                          //   path: ic_success,
-                          //   height: 60,
-                          //   width: 60,
-                          // ),
+                          ImageCustomized(
+                            path: ic_success,
+                            height: 60,
+                            width: 60,
+                          ),
                           TextCustomized(
                             text: success,
                             size: 20,

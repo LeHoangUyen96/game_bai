@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile_admin/data/request/update_fee_warhouse_china.dart';
 import 'package:viet_trung_mobile_admin/data/response/order_admin_detail_response.dart';
 import 'dart:io';
@@ -29,19 +30,21 @@ class OrderStorageDetailController extends GetxController {
   int? id;
   List<File>? images;
   List<Asset>? selectedAssetsPrevious;
-  List<String>? img;
+  List<String>? imgs;
+  String? img;
+  ProfileRepositories? profileRepositories;
 
   @override
   void onInit() {
     super.onInit();
     orderAminRepositories = Injector().orderAmin;
+    profileRepositories = Injector().profile;
     if (Get.arguments == null) {
       orderId = null;
     } else {
       orderId = Get.arguments;
     }
     images = <File>[];
-    img = <String>[];
     selectedAssetsPrevious = <Asset>[];
     onGetOrderDetail(orderId!);
     transportFeeController = TextEditingController(text: textTransportFee);
@@ -53,6 +56,7 @@ class OrderStorageDetailController extends GetxController {
       orderStorage = value;
       textTransportFee = value.data!.transportFee!.toString();
       textSurcharge = value.data!.surcharge!;
+      imgs = value.data!.image!;
       update();
     }).catchError((onError) {
       print(onError);
@@ -71,10 +75,20 @@ class OrderStorageDetailController extends GetxController {
       mImages!.add(DataImagesEnterWareHouseResponse(
           key: "", path: "", file: value, isNetWork: false));
       Get.back(result: images);
-      img!.add(value.path);
+      imgs!.add(value.path);
+      onUpLoadImage();
       update();
     }).catchError((onError) {
       Get.back();
+    });
+  }
+
+  void onUpLoadImage() {
+    profileRepositories!.onUploadImageProfile(images!).then((response) {
+      imgs!.add(response);
+      update();
+    }).catchError((onError) {
+      return onError;
     });
   }
 
@@ -114,7 +128,7 @@ class OrderStorageDetailController extends GetxController {
       surcharge: textSurcharge,
       transportFee: textTransportFee,
       isProhibitedItem: isCheck == true ? 2 : 1,
-      image: img,
+      image: imgs,
     );
     orderAminRepositories!
         .onUpdateFeeWarhouseChina(request, orderId!)

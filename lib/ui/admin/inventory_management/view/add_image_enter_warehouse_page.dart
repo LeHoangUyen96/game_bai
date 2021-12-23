@@ -14,18 +14,17 @@ import 'package:viet_trung_mobile_admin/ui/admin/inventory_management/controller
 import 'package:viet_trung_mobile_admin/widget/image_customized.dart';
 import 'package:viet_trung_mobile_admin/widget/text_customized.dart';
 
-class AddImageEnterWarehouse
-    extends GetView<EnterWarehouseUploadImageController> {
+class AddImageEnterWarehouse extends GetView<EnterWarehouseController> {
   //List<String> listImg = [];
-  List<DataImagesEnterWareHouseResponse>? mImages = [];
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EnterWarehouseUploadImageController>(
+    return GetBuilder<EnterWarehouseController>(
+      init: EnterWarehouseController(),
       builder: (value) => Container(
           height: 120,
           padding: EdgeInsets.all(20),
           child: ListView.separated(
-            //crossAxisCount: 4,
             physics: ClampingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: controller.mImages!.length + 1,
@@ -38,34 +37,26 @@ class AddImageEnterWarehouse
                         } else if (controller.mImages!.length == 5) {
                           Get.snackbar(NOTIFY, ERROR_IMAGES);
                         }
-                        //controller.onPickerImage(ImageSource.gallery);
                       },
-                      child: Container(
-                        //  height: 50,
-                        //  width: 50,
-                        child: DottedBorder(
-                            borderType: BorderType.RRect,
-                            color: GRAY,
-                            strokeWidth: 3,
-                            radius: Radius.circular(25),
-                            dashPattern: [8, 4],
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25)),
-                              child: Container(
-                                  padding: EdgeInsets.all(13),
-                                  color: GRAY7,
-                                  //width: Get.width*0.2,
-                                  //height: Get.height*0.16,
-                                  child: Center(
-                                    child: SvgPicture.asset(
-                                      IC_CAMERA,
-                                      width: Get.width * 0.1 - 20,
-                                      height: Get.height * 0.1 - 25.0,
-                                    ),
-                                  )),
-                            )),
-                      ),
+                      child: DottedBorder(
+                          borderType: BorderType.RRect,
+                          color: GRAY,
+                          strokeWidth: 3,
+                          radius: Radius.circular(25),
+                          dashPattern: [8, 4],
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                            child: Container(
+                                padding: EdgeInsets.all(13),
+                                color: GRAY7,
+                                child: Center(
+                                  child: SvgPicture.asset(
+                                    IC_CAMERA,
+                                    width: Get.width * 0.1 - 20,
+                                    height: Get.height * 0.1 - 25.0,
+                                  ),
+                                )),
+                          )),
                     )
                   : Container(
                       height: Get.height * 0.3,
@@ -76,16 +67,6 @@ class AddImageEnterWarehouse
                         color: GRAY_BG,
                       ),
                       child: controller.mImages![index].isNetWork ?? true
-                          // ? ImageCustomized(
-                          //     path: NetworkConfig.URL_SERVER_BASE_CDN + controller.mImages![index].path.toString(),
-                          //     fit: BoxFit.cover,
-                          //   )
-                          // : ImageCustomized(
-                          //     file: controller.mImages![index].file!.absolute,
-                          //     width: 120,
-                          //     height: 100,
-                          //     fit: BoxFit.cover,
-                          //   ),
                           ? Container(
                               height: Get.height * 0.3,
                               width: Get.width * 0.25,
@@ -126,9 +107,6 @@ class AddImageEnterWarehouse
                             )
                           : Container(
                               height: Get.height * 0.3,
-                              width: Get.width * 0.3,
-                              // margin: EdgeInsets.symmetric(
-                              //     horizontal: Get.width * 0.01),
                               child: Stack(
                                 children: [
                                   Center(

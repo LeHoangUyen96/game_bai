@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:viet_trung_mobile_admin/data/di/injector.dart';
 import 'package:viet_trung_mobile_admin/data/repository/order_admin_repository/order_admin_repositories.dart';
+import 'package:viet_trung_mobile_admin/data/repository/profile_repository/profile_repository.dart';
 import 'package:viet_trung_mobile_admin/data/request/update_fee_warehouse_vn.dart';
 import 'package:viet_trung_mobile_admin/data/response/order_admin_detail_response.dart';
 import 'dart:io';
@@ -8,10 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:viet_trung_mobile_admin/data/response/admin_add_image_enter_warehouse_response.dart';
-import 'package:viet_trung_mobile_admin/data/response/error_response.dart';
 import 'package:viet_trung_mobile_admin/res/strings.dart';
 import 'package:viet_trung_mobile_admin/ulti/helper/handle_image.dart';
-import 'package:viet_trung_mobile_admin/widget/loading_spinkit.dart';
 
 class OrderVietnamDetailController extends GetxController {
   OrderAdminRepositories? orderAminRepositories;
@@ -34,19 +33,21 @@ class OrderVietnamDetailController extends GetxController {
   int? id;
   List<File>? images;
   List<Asset>? selectedAssetsPrevious;
-  List<String>? img;
+  List<String>? imgs;
+  String? img;
+  ProfileRepositories? profileRepositories;
 
   @override
   void onInit() {
     super.onInit();
     orderAminRepositories = Injector().orderAmin;
+    profileRepositories = Injector().profile;
     if (Get.arguments == null) {
       orderId = null;
     } else {
       orderId = Get.arguments;
     }
     images = <File>[];
-    img = <String>[];
     selectedAssetsPrevious = <Asset>[];
     onGetOrderDetail(orderId!);
     transportFeeController = TextEditingController(text: textTransportFee);
@@ -78,31 +79,26 @@ class OrderVietnamDetailController extends GetxController {
       mImages!.add(DataImagesEnterWareHouseResponse(
           key: "", path: "", file: value, isNetWork: false));
       Get.back(result: images);
-      img!.add(value.path);
+      imgs!.add(value.path);
+      onUpLoadImage();
       update();
     }).catchError((onError) {
       Get.back();
     });
   }
 
-  void onPickerMultiImage() {
-    Get.dialog(LoadingSpinKit(), barrierDismissible: false);
-    HandleImage().multiPickerImage(selectedAssetsPrevious!).then((value) async {
-      if (value.length != 0) {
-        selectedAssetsPrevious = value;
-        images = await HandleImage().convertAssetToFile(value);
-        Get.back();
-        Get.back(result: images);
-      }
+  void onUpLoadImage() {
+    profileRepositories!.onUploadImageProfile(images!).then((response) {
+      imgs!.add(response);
+      update();
     }).catchError((onError) {
-      Get.back();
-      Get.defaultDialog(
-          title: (onError as ErrorResponse).message.toString(), middleText: '');
+      return onError;
     });
   }
 
   void onClearImage(int index) {
     mImages!.removeAt(index);
+    imgs!.remove(index);
     update();
   }
 
@@ -125,7 +121,7 @@ class OrderVietnamDetailController extends GetxController {
     UpdateFeeWarhouseVN request = UpdateFeeWarhouseVN(
       surcharge: textSurcharge,
       transportFee: textTransportFee,
-      image: img,
+      image: imgs,
       vnFee: textVNFee,
       volume: volumeController!.text,
       weight: weightController!.text,

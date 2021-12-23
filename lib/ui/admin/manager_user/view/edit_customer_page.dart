@@ -122,14 +122,15 @@ class EditCustomerPage extends GetView<EditCustomerController> {
                                     return DropdownMenuItem<DataCity>(
                                       value: value,
                                       child: Text(
-                                        value.name.toString(),
+                                        value.name!,
                                       ),
                                     );
                                   }).toList(),
                                   onChanged: (DataCity? value) {
                                     controller.onChangeCity(value!, value.id!);
                                   },
-                                  hint: Text(city),
+                                  hint: Text(controller
+                                      .detailUserResponse!.data!.cityName!),
                                 )
                               : DropdownButton(
                                   icon: _iconDropdown(),
@@ -182,7 +183,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
                                         value: value,
                                         child: Container(
                                           child: Text(
-                                            value.name.toString(),
+                                            value.name!,
                                           ),
                                         ),
                                       );
@@ -207,7 +208,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
                                       ),
                                     ],
                                     onChanged: (value) {},
-                                    hint: Text(distric),
+                                    hint: Text(''),
                                   )),
                       ),
                     ),
@@ -247,7 +248,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
                                       return DropdownMenuItem<DataWards>(
                                         value: value,
                                         child: Text(
-                                          value.name.toString(),
+                                          value.name!,
                                         ),
                                       );
                                     }).toList(),
@@ -255,7 +256,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
                                       controller.onChangeWards(
                                           value!, value.id!);
                                     },
-                                    hint: Text(ward),
+                                    hint: Text(''),
                                   )
                                 : DropdownButton(
                                     icon: _iconDropdown(),
@@ -269,7 +270,7 @@ class EditCustomerPage extends GetView<EditCustomerController> {
                                       ),
                                     ],
                                     onChanged: (value) {},
-                                    hint: Text(ward),
+                                    hint: Text(''),
                                   )),
                       ),
                     ),

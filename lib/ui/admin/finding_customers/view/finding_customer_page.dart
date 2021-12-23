@@ -63,6 +63,7 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
           FocusScope.of(mContext!).requestFocus(FocusNode());
         },
         child: Center(
+            child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 30),
             //alignment: Alignment.center,
@@ -137,12 +138,12 @@ class FindingCustomerPage extends GetView<FindingCustomerController> {
                     ///Get.to(EnterWarehousePage());
                     controller.onFindUser();
                   },
-                  backgroundColor: BLACK,
+                  backgroundColor: COLOR_BT,
                 ),
                 SizedBox(height: 15),
               ],
             ),
           ),
-        ));
+        )));
   }
 }

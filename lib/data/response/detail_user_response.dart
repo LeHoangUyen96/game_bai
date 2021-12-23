@@ -21,6 +21,13 @@ class DataDetailUser {
   String? avatar;
   String? user_code;
   List<DataAddresses>? addresses;
+  int? cityId;
+  String? cityName;
+  int? districtId;
+  String? districtName;
+  int? wardsId;
+  String? wardsName;
+  String? address;
 
   DataDetailUser({
     this.id,
@@ -30,6 +37,13 @@ class DataDetailUser {
     this.avatar,
     this.user_code,
     this.addresses,
+    this.address,
+    this.cityId,
+    this.cityName,
+    this.districtId,
+    this.districtName,
+    this.wardsId,
+    this.wardsName,
   });
   DataDetailUser.empty() {
     this.id = -1;
@@ -52,6 +66,13 @@ class DataDetailUser {
         : json['addresses']
             .map<DataAddresses>((e) => DataAddresses.fromJson(e))
             .toList();
+    cityId = json['city_id'] ?? 0;
+    cityName = json['city_name'] ?? '';
+    districtId = json['district_id'] ?? 0;
+    districtName = json['district_name'] ?? '';
+    wardsId = json['wards_id'] ?? 0;
+    wardsName = json['wards_name'] ?? '';
+    address = json['address'] ?? '';
   }
 }
 
