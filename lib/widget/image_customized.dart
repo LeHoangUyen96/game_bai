@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:viet_trung_mobile_admin/data/network/network_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -221,9 +220,7 @@ class ImageCustomized extends StatelessWidget {
       return imageUrl;
     } else if (imageUrl.indexOf('//') == 0) {
       return 'https:' + imageUrl;
-    } else if (imageUrl != '' && imageUrl.indexOf('http') < 0) {
-      return NetworkConfig.URL_SERVER_BASE_CDN + imageUrl;
-    }
+    } else if (imageUrl != '' && imageUrl.indexOf('http') < 0) {}
     return imageUrl;
   }
 

@@ -1,7 +1,6 @@
-# viet_trung_mobile_admin
+# game_bai
 
-Viet Trung Mobile
-
+Game Bai 68
 ## Getting Started
 
 This project is a starting point for a Flutter application.
